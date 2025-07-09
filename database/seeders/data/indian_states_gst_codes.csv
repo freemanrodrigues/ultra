@@ -1,0 +1,38 @@
+statename,shortname,country_id,statecode,zone,status
+Jammu & Kashmir,JK,11,1,1,1
+Himachal Pradesh,,11,2,1,1
+Punjab,,11,3,1,1
+Chandigarh,,11,4,1,1
+Uttarakhand,,11,5,1,1
+Haryana,,11,6,1,1
+Delhi,,11,7,1,1
+Rajasthan,RJ,11,8,,1
+Uttar Pradesh,UP,11,9,,1
+Bihar,,11,10,,1
+Sikkim,,11,11,,1
+Arunachal Pradesh,,11,12,,1
+Nagaland,,11,13,,1
+Manipur,,11,14,,1
+Mizoram,,11,15,,1
+Tripura,,11,16,,1
+Meghalaya,,11,17,,1
+Assam,,11,18,,1
+West Bengal,WB,11,19,,1
+Jharkhand,,11,20,,1
+Odisha,,11,21,,1
+Chhattisgarh,,11,22,,1
+Madhya Pradesh,MP,11,23,,1
+Gujarat,GJ,11,24,,1
+Daman & Diu,,11,25,,1
+Dadra & Nagar Haveli,,11,26,,1
+Maharashtra,MH,11,27,,1
+Karnataka,,11,29,,1
+Goa,,11,30,,1
+Lakshadweep,,11,31,,1
+Kerala,,11,32,,1
+Tamil Nadu,TN,11,33,,1
+Pondicherry,,11,34,,1
+Andaman & Nicobar Islands,,11,35,,1
+Telangana,,11,36,,1
+Andhra Pradesh,AP,11,37,,1
+Other Territory,,11,98,,1

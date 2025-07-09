@@ -1,0 +1,127 @@
+// Composer install
+composer require league/csv
+
+
+php artisan make:model Sample -mcr
+
+php artisan make:model CompanyMaster -mcr
+php artisan make:model CustomerMaster -mcr
+account code - integer, account category, account name
+
+php artisan make:model SiteMaster -mcr
+lat long, type of customer, customer_site_code 
+Google latlong api
+
+php artisan make:model PlantMaster -mcr
+useless
+php artisan make:model CourierMaster -mcr
+php artisan make:model BankMaster -mcr
+useless
+php artisan make:model ItemMaster -mcr
+php artisan make:model TestMaster -mcr
+to be discussed
+php artisan make:model EquipmentMaster -mcr
+Mst + Transaction data
+
+
+php artisan make:model SampleType  -mcr
+Just Do it
+
+
+php artisan make:model GradeMaster  -mcr
+Just Do it
+
+php artisan make:model BrandMaster -mcr
+Just Do it
+
+
+php artisan make:model MakeMst -mcr
+// Some Transaction Data
+
+php artisan make:model BottleType -mcr
+Just Do it
+
+php artisan make:model SampleNature -mcr
+Just Do it
+
+php artisan make:model CompanyModelMaster -mcr
+php artisan make:model BrandGradeSampleType -mcr		// Need to know more
+php artisan make:model SubAssembly -mcr
+// Some Transaction Data
+
+php artisan make:model FerrographyMaster -mcr
+Just Do it
+
+php artisan make:model UnitMaster -mcr
+Just Do it
+
+php artisan make:model CommentsMaster -mcr				// Need to know more
+php artisan make:model PricelistMaster -mcr				// Need to know more
+
+php artisan make:model EmailMaster -mcr
+php artisan make:model EmailSerialAutomation -mcr		// No head & Tail
+
+php artisan make:model LocationMaster -mcr
+Instead we Need Country Master & State Master With States for India
+
+php artisan make:model GSTMaster -mcr
+// No need for this table, instead this will go Customer 
+
+php artisan make:model SMSTemplate -mcr
+// Can be review later
+
+php artisan make:model Country -mcr
+php artisan make:model State -mcr
+----------------------
+Sr. No	Inst Id	Make	Size	Uncertainty	Correction 1	Correction 2	Correction 3	Accuracy	Constant 1	Remarks 1	Constant 2	Remarks 2	Constant 3	Remarks 3	CaliberationDate	CaliberationDone
+
+
+Table  - brand_masters with columns  brand_code, 	brand_name, status
+
+
+Create a CRUD for the table using laravel & bootstrap
+
+->names([
+    '/master/brand/' => 'brand.index',
+    '/master/brand/create' => 'brand.create',
+    '/master/brand/store' => 'brand.store',
+    '/master/brand/show' => 'brand.show',
+    '/master/brand/edit' => 'brand.edit',
+    '/master/brand/update' => 'brand.update',
+    '/master/brand/destroy' => 'brand.destroy'
+])
+
+
+Table - equipment_masters having columns em_code, em_name, status
+
+provide me complete controller code for the CRUD operation of the above table for Laravel 12
+
+@cinemicabot Final Destination: Bloodlines
+
+@cinemicabot Lilo & Stitch
+Sitaare Zameen Par
+Panchayat Season 4
+
+Only 
+
+The below laravel 12 code is not deleting the record
+
+public function destroy(SiteMaster $siteMaster): RedirectResponse
+{
+
+	$result = $siteMaster->delete();
+	
+	return redirect()->route('brand.index')
+
+}
+
+
+
+The govt of India had permitted the captive coal mining companies to mine 50% more coal of the rated capacity some 2 years back.
+
+it takes time to ramp-up the capacity. While reading the Annual Report of JP Power, i came to know that th company has started mining the additional capacity for the past 3-4 months.
+
+This company can either sell the coal in the open market or use for it's plant.
+
+This was one of the reason why i am bullish over Reliance Power.	 
+
