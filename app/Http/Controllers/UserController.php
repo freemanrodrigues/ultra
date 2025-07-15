@@ -234,8 +234,10 @@ class UserController extends Controller
     
     public function registerHtml():View
     {
-       
-        return view('reset-password');
+        $countries = Country::all();
+        $companies = CompanyMaster::all();
+        //dd($companies);
+        return view('register')->with(['countries' => $countries, 'companies' => $companies]);
 
     }
     
