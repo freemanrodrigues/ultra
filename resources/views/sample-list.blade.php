@@ -43,14 +43,14 @@
                             <td>{{ date('d-M-Y',strtotime($sample->sample_date)) }}</td>
                             <td>{{ $sample->lot_no }}</td>
                             <td>{{ date('H:i:s',strtotime($sample->sample_date)) }}</td>
-                            <td>{{ $sample->courier_id }}</td>
-                            <td>{{ $sample->customer_id }}</td>
-                            <td>{{ $sample->company_id }}</td>
+                            <td>@if(!empty($courier_mst[$sample->courier_id])){{ $courier_mst[$sample->courier_id] }} @endif</td>
+                            <td>@if(!empty($customer_mst[$sample->customer_id])){{ $customer_mst[$sample->customer_id] }}@endif</td>
+                            <td>@if(!empty($company_mst[$sample->company_id])){{ $company_mst[$sample->company_id] }}@endif</td>
                             <td>{{ $sample->pod_no }}</td>
                             <td>{{ $sample->no_of_samples }}</td>
                             <td>{{ $sample->cus_site_contact_person_id }}</td>
                             <td>{{ $sample->site_company }}</td>
-                            <td>{{ $sample->remarks }}</td>
+                            <td>{{ $sample->additional_info }}</td>
                             <td>{{ $sample->work_order }}</td>
                         </tr>
                     @endforeach

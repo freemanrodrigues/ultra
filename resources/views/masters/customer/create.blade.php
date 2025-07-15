@@ -378,7 +378,7 @@
         </div>
     </div>
 </div>
-<script src="/js/sample/create-sample.js"></script>
+<script src="/js/sample/create-customer.js"></script>
 <script language="javascript">
 
 

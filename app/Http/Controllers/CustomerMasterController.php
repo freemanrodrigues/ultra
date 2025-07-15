@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{CompanyMaster,CustomerMaster};
+use App\Models\{CompanyMaster,CustomerMaster,SiteMaster};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
@@ -24,21 +24,22 @@ class CustomerMasterController extends Controller
     {
        // dd("Create");
      //   $customer = CustomerMaster::all();
-     $companies = CompanyMaster::getCompanyArray();
+         $companies = CompanyMaster::getCompanyArray();
+         
         return view('masters.customer.create')->with(['companies' => $companies]);
     }
-
+/*
     public function createCustomer():View
     {
-        dd("Create");
+       // dd("Create");
      //   $customer = CustomerMaster::all();
      $states = array();
      $salesPersons = array();
      $companies = CompanyMaster::getCompanyArray();
-     dd('XCV');
+     
         return view('masters.customer.create-customer')->with(['companies' => $companies, 'states' => $states, 'salesPersons' => $salesPersons]);
     }
-
+*/
     /**
      * Store a newly created resource in storage.
      */
@@ -180,5 +181,24 @@ class CustomerMasterController extends Controller
     public function destroy(CustomerMaster $customerMaster)
     {
         //
+    }
+
+    public function getCustomerAddress(Request $request)
+    {
+        $request->validate([
+            'customerid' => 'required|integer',
+        ]);
+
+        
+        $customer = CustomerMaster::where('id', $request->customerid)->first();
+        $sitemaster = SiteMaster::getSite($request->customerid);
+        
+        if ($customer) {
+            return response()->json([
+                'customer' => $customer, 
+                'sitemaster' => $sitemaster, 
+            ]);
+        }
+        return response()->json([]);
     }
 }

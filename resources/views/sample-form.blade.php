@@ -104,14 +104,15 @@
                                         <div class="mb-3">
                                             <label for="customer_id" class="form-label fw-semibold">Customer</label>
                                             <div class="icon-input">
-                                                <input type="text" class="form-control" id="customer_id" name="customer_id">
+                                                <input type="text" class="form-control customer_id" id="customer_id" name="customer_id">
                                                 <i class="bi bi-building"></i>
                                             </div>
                                         </div>
 -->
                                         <div class="mb-3">
-                                            <label for="address" class="form-label fw-semibold">Address</label>
-                                            <textarea class="form-control" id="address" rows="4" placeholder="Enter full address" autocomplete="off"></textarea>
+                                            <div id="address_place_holder">
+                                            
+                                            </div>
                                         </div>
 
                                         <div class="row">
@@ -139,24 +140,33 @@
                                         <h5 class="text-primary mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Site Contact Information</h5>
                                         
                                         <div class="mb-3">
-                                            <label for="siteContactPerson" class="form-label fw-semibold">Site Contact Person</label>
-                                            <div class="icon-input">
-                                                <input type="text" class="form-control required-field" id="siteContactPerson" required name="cus_site_contact_person_id">
+                                            <label for="site_master_id" class="form-label fw-semibold">Site Master</label>
+                                            <div class="icon-input" >
+                                               <select name="site_master_id" id="site_master_id" class="form-control">
+                                               <option value="">Select Contact</option> 
+                                               </select>
                                                 <i class="bi bi-person-badge"></i>
                                             </div>
+                                            <!-- div class="icon-input" id="#site_master_id2">
+                                                <input type="text" class="form-control required-field" id="siteContactPerson" required name="cus_site_contact_person_id">
+                                                <i class="bi bi-person-badge"></i>
+                                            </div -->
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="siteCompany" class="form-label fw-semibold">Company</label>
+                                            <label for="cus_site_contact_person_id" class="form-label fw-semibold">Contact</label>
                                             <div class="icon-input">
-                                                <input type="text" class="form-control" id="siteCompany">
-                                                <i class="bi bi-building"></i>
+                                               <select name="cus_site_contact_person_id" id="cus_site_contact_person_id" class="form-control">
+                                               <option value="">Select Contact</option> 
+                                               </select>
+                                               
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="siteAddress" class="form-label fw-semibold">Address</label>
-                                            <textarea class="form-control" id="siteAddress" rows="4" placeholder="Enter site address"></textarea>
+                                             <div id="siteAddress">
+                                            
+                                            </div>
                                         </div>
 
                                         <div class="row">
@@ -279,4 +289,5 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- script src="/js/script.js"></script -->
+    <script src="/js/sample/create-sample.js"></script>
 @endsection

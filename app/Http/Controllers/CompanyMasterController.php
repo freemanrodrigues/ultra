@@ -69,7 +69,7 @@ class CompanyMasterController extends Controller
             'gst_no' => 'required|string|max:15',
         ]);
         $pan = substr($request->gst_no, 2, 12);
-        $company = CompanyMaster::where('@pancard', $pan)->first();
+        $company = CompanyMaster::where('pancard', $pan)->first();
 
         if ($company) {
             return response()->json([

@@ -21,12 +21,10 @@
     <div class="row w-100">
         <div class="col-md-6 offset-md-3">
             <div class="card shadow rounded-4">
-             <div class="card-header text-center mt-4 mb-2 rounded-top-4">
-                   <img src="https://www.ultralabs.co.in/public/images/logo.png"></img>
-                </div>
+  
             
                 <div class="card-header text-center bg-primary text-white ">
-                    <h4 class="mb-0">Login</h4>
+                    <h4 class="mb-0">Reset Password</h4>
                 </div>
                 <div class="card-body p-4">
                     @if (session('status'))
@@ -49,17 +47,17 @@
         {{ session('error') }}
     </div>
 @endif
-                    <form method="POST" action="{{ route('verify-login') }}" >
+                    <form method="POST" action="{{ route('reset-password.update') }}" >
                         @csrf
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}"
-                                   class="form-control @error('email') is-invalid @enderror" required autofocus>
+                            <label for="cur_password" class="form-label">Current Password</label>
+                            <input type="password" name="cur_password" id="cur_password" value="{{ old('cur_password') }}"
+                                   class="form-control @error('cur_password') is-invalid @enderror" required autofocus>
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label d-flex justify-content-between">
+                            <label for="new_password" class="form-label d-flex justify-content-between">
                                 Password
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}" class="small text-decoration-none">
@@ -67,27 +65,17 @@
                                     </a>
                                 @endif
                             </label>
-                            <input type="password" name="password" id="password"
-                                   class="form-control @error('password') is-invalid @enderror" required>
+                            <input type="password" name="new_password" id="new_password"
+                                   class="form-control @error('new_password') is-invalid @enderror" required>
                         </div>
 
-                        <div class="mb-3 form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                   {{ old('remember') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="remember">Remember me</label>
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary login">Login</button>
+                       
+                        <div class="d-grid mt-3">
+                            <button type="submit" class="btn btn-primary login">Reset Password</button>
                         </div>
                     </form>
 
-                    <div class="text-center mt-3">
-                        <span class="text-muted small">Don't have an account?</span>
-                        <a href="{{ route('register') }}" class="text-primary small">Register</a><br>
-                         <span class="text-muted small">Want to reset password?</span>
-                        <a href="{{ route('register') }}" class="text-primary small">Reset Password</a><br>
-                    </div>
+                    
                 </div>
             </div>
         </div>

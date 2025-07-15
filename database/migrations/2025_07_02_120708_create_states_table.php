@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('statename');
             $table->string('shortname')->nullable();
-            $table->integer('country_id')->unsigned();
+            $table->unsignedBigInteger('country_id');
             $table->string('statecode',6)->nullable();
             $table->char('zone',1)->nullable();
             $table->boolean('status')->default(1);

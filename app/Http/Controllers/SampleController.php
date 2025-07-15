@@ -14,8 +14,10 @@ class SampleController extends Controller
     public function index():View
     {
         $samples = Sample::all();
-       // dd($samples);
-        return view('sample-list')->with(['samples' => $samples]);
+        $courier_mst = CourierMaster::getCourierArray();
+        $company_mst = CompanyMaster::getCompanyArray();
+        $customer_mst = CustomerMaster::getCustomerArray();
+        return view('sample-list',compact('samples','courier_mst','company_mst','customer_mst'));
     }
 
     /**
@@ -40,29 +42,29 @@ class SampleController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-      //  dd($request->all());
+       // dd($request->all());
         $validated = $request->validate([
             'lot_no' => 'required|string|max:15',
             'courier_id' => 'required|integer|max:99',
             'no_of_samples' => 'required|integer|max:255',
             'sample_date' => 'required|date',
             "pod_no" => 'required|string|max:24',
-          "customer" => 'string',
-        "company_id" => 'string',
+          "customer_id" => 'string',
+        "company_id" => 'nullable|string',
         "cus_mobile" => 'required|numeric',
         "cus_email" => 'required|email',
-        "cus_site_contact_person_id" => 'required|string',
-        "cus_site_contact_mobile" => 'required|numeric',
-        "cus_site_contact_email" => 'required|email',
-        "expected_report_date" => 'required|date',
-        "work_order_date" => 'required|date',
-        "work_order" => 'required|string|max:24',
-        "freight_charges" => ['required', 'regex:/^\d{1,4}(\.\d{1,2})?$/'],
-        "additional_info" => 'required|string|max:255',
-        "site_sample_dispacted_date" => 'required|date',
+        "cus_site_contact_person_id" => 'nullable|string',
+        "cus_site_contact_mobile" => 'nullable|numeric',
+        "cus_site_contact_email" => 'nullable|email',
+        "expected_report_date" => 'nullable|date',
+        "work_order_date" => 'nullable|date',
+        "work_order" => 'nullable|string|max:24',
+        "freight_charges" => ['nullable', 'regex:/^\d{1,4}(\.\d{1,2})?$/'],
+        "additional_info" => 'nullable|string|max:255',
+        "site_sample_dispacted_date" => 'nullable|date',
         "collection_center_sample_received_date" => 'date',
-        "collection_center_sample_collected_date" => 'required|date',
-        "lab_sample_received_date" => 'required|date',
+        "collection_center_sample_collected_date" => 'nullable|date',
+        "lab_sample_received_date" => 'nullable|date',
         ]);
        
        

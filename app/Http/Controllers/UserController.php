@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,User};
+use App\Models\{Country,CompanyMaster,SiteContact,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -205,26 +206,36 @@ class UserController extends Controller
 
     $validated = $request->validate([
         'email' => 'required|email',
-        'password' => 'required|string|min:8',
+        'password' => [
+            'required',
+            'min:8', 
+        //    'regex:/[a-z]/',    
+         //   'regex:/[A-Z]/',   
+         //   'regex:/[0-9]/',    
+         //   'regex:/[@$!%*#?&]/', 
+        ],
     ]);
         $email = $request['email'];
         $password = $request['password'];
 
        if(Auth::attempt(['email'=> $email, 'password' => $password])) {
-         return redirect()->route('sample.index');
+       //  die( "User".Auth::user()->user_type);
+        if(Auth::user()->user_type == 0) {
+            
+         }
+         $dash1 = 'dashboard'; 
+         return redirect()->route($dash1);
         } else {
             return redirect()->back()
             ->withInput()
-            ->with('error', 'Error creating Item: ');
+            ->with('error', 'Login Failed');
         } 
     }
     
     public function registerHtml():View
     {
-        $countries = Country::all();
-        $companies = CompanyMaster::all();
-        //dd($companies);
-        return view('register')->with(['countries' => $countries, 'companies' => $companies]);
+       
+        return view('reset-password');
 
     }
     
@@ -283,4 +294,111 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('login');
 	}
+
+    public function getCustomerAddress(Request $request)
+    {
+        $request->validate([
+            'site_master_id' => 'required|integer',
+        ]);
+        $sitemasters = SiteContact::where('id',$request->site_master_id )->first();
+       // $user = User::where('id', $sitemasters->customerid)->first();
+        $sql = "SELECT * FROM `users` u, `site_contacts` sc where site_masters_id = 5 and sc.user_id = u.id";
+        $user = DB::select($sql);
+        if ($user) {
+            return response()->json([
+                'user' => $user, 
+                'sitemasters' => $sitemasters, 
+            ]);
+        }
+        return response()->json([]);
+    }
+
+    public function getSiteContactDetails(Request $request)
+    {
+        $request->validate([
+            'site_master_id' => 'required|integer',
+        ]);
+       // $sitemasters = SiteContact::where('id',$request->site_master_id )->first();
+       $sql = "SELECT sm.* FROM `site_contacts` sc , site_masters sm WHERE `site_masters_id` = $request->site_master_id and sc.site_masters_id = sm.id;";
+       $sitemasters = DB::select($sql);
+      
+       // $user = User::where('id', $sitemasters->customerid)->first();
+        $sql = "SELECT * FROM `users` u, `site_contacts` sc where site_masters_id = $request->site_master_id and sc.user_id = u.id";
+        $user = DB::select($sql);
+        if ($user) {
+            return response()->json([
+                'user' => $user, 
+                'sitemasters' => $sitemasters, 
+            ]);
+        }
+        return response()->json([]);
+    }
+    
+
+    public function resetPasswordView():View
+    {
+        return view('reset-password');
+    }
+
+    public function updateResetPassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => 'required|string',
+            'cur_password' => 'required|string',
+            
+        ]);
+        $haspwd = Hash::make($request['cur_password']);
+       $user =  User::where('password', $haspwd)->where('id', Auth::user()->id);
+       if(!empty($user)) {
+            //dd("Password Correct update");
+            $newpwd = Hash::make($request['new_password']);
+            User::where('id', Auth::user()->id)->update(['password' => $newpwd]);
+            Session::flush();
+            Auth::logout();
+            return redirect()->route('login');
+       } else{
+        return redirect()->back()
+                       ->withInput()
+                       ->with('error', 'Old Password is incorrect' );
+       }
+       // $sitemasters = SiteContact::where('id',$request->site_master_id )->first();
+       $sql = "SELECT * FROM `site_contacts` sc , site_masters sm WHERE `site_masters_id` = $request->site_master_id and sc.site_masters_id = sm.id;";
+       $sitemasters = DB::select($sql);
+      
+       // $user = User::where('id', $sitemasters->customerid)->first();
+        $sql = "SELECT * FROM `users` u, `site_contacts` sc where site_masters_id = $request->site_master_id and sc.user_id = u.id";
+        $user = DB::select($sql);
+        if ($user) {
+            return response()->json([
+                'user' => $user, 
+                'sitemasters' => $sitemasters, 
+            ]);
+        }
+        return response()->json([]);
+    }
+    public function forgotPasswordView():View
+    {
+        return view('forgot-password');
+    }
+
+    public function updateForgotPassword(Request $request)
+    {
+        $request->validate([
+            'site_master_id' => 'required|integer',
+        ]);
+       // $sitemasters = SiteContact::where('id',$request->site_master_id )->first();
+       $sql = "SELECT sm.* FROM `site_contacts` sc , site_masters sm WHERE `site_masters_id` = $request->site_master_id and sc.site_masters_id = sm.id;";
+       $sitemasters = DB::select($sql);
+      
+       // $user = User::where('id', $sitemasters->customerid)->first();
+        $sql = "SELECT * FROM `users` u, `site_contacts` sc where site_masters_id = $request->site_master_id and sc.user_id = u.id";
+        $user = DB::select($sql);
+        if ($user) {
+            return response()->json([
+                'user' => $user, 
+                'sitemasters' => $sitemasters, 
+            ]);
+        }
+        return response()->json([]);
+    }
 }

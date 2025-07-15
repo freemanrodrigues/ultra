@@ -30,13 +30,17 @@ Route::get('/blank', function () {
 });
 
    
-
+Route::get('/dashboard', function () {  return view('dashboard');})->name('dashboard');;
 Route::get('login', [UserController::class,'loginHtml'])->name('login');;
 Route::get('logout', [UserController::class,'logout'])->name('logout');;
 Route::get('register', [UserController::class,'registerHtml'])->name('register');;
 Route::post('register-user', [UserController::class,'registerUser'])->name('register-user');
 Route::get('registersuccess', [UserController::class,'registerSuccess'])->name('register-success');
 Route::post('verify', [UserController::class,'verifyUser'])->name('verify-login');
+Route::get('reset-password', [UserController::class,'resetPasswordView'])->name('reset-password');
+Route::post('reset-password-update', [UserController::class,'updateResetPassword'])->name('reset-password.update');
+Route::get('forgot-password', [UserController::class,'forgotPasswordView'])->name('reset-password');
+Route::post('forgot-password-update', [UserController::class,'updateForgotPassword'])->name('forgot-password.update');
 Route::any('/check-gst', [CompanyMasterController::class,'checkGST'])->name('check.gst');
 
 Route::group(['middleware' => ['loginAuth']], function () {
@@ -76,7 +80,10 @@ Route::any('/sample-copy', [SampleController::class,'sampleCopy'])->name('sample
 
 Route::resource('/masters/courier', CourierMasterController::class);
 Route::any('/master/courier/bulk_delete', [CourierMasterController::class,'bulkDelete'])->name('courier.bulk_delete');
-Route::get('/masters/customer/create-customer', [CustomerMasterController::class,'createCustomer'])->name('customer.create-customer');
+//Route::get('/masters/customer/create-customer', [CustomerMasterController::class,'createCustomer'])->name('customer.create-customer');
+Route::any('/ajax-get-customer-address', [CustomerMasterController::class,'getCustomerAddress'])->name('ajax-get-customer-address');
+Route::any('/ajax-get-site-contact-details', [UserController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
+
 Route::resource('/masters/customer', CustomerMasterController::class);
 Route::any('/master/customer/bulk_delete', [CustomerMasterController::class,'bulkDelete'])->name('customer.bulk_delete');
 
