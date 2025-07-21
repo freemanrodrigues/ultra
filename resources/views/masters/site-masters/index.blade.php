@@ -80,6 +80,7 @@
                                 <th>Site Code</th>
                                 <th>Site Name</th>
                                 <th>Status</th>
+                                <th>Devices</th>
                                 <th>Created Date</th>
                                 <th width="200">Actions</th>
                             </tr>
@@ -92,6 +93,7 @@
                                     </td>
                                     <td>{{ $siteMaster->site_name }}</td>
                                     <td>{!! $siteMaster->status_badge !!}</td>
+                                    <td><a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a></td>
                                     <td>
                                         <small class="text-muted">
                                         @if(!empty($siteMaster->created_at))

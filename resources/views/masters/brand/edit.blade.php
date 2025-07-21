@@ -1,7 +1,6 @@
 @extends('/layouts/master-layout')
 
 @section('content')
-{{ $brand->brand_code }}
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -15,7 +14,7 @@
                         @method('PUT')
                         
                         <div class="mb-3">
-                            <label for="brand_code" class="form-label">Site Code <span class="text-danger">*</span></label>
+                            <label for="brand_code" class="form-label">Brand Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('brand_code') is-invalid @enderror" 
                                    id="brand_code" 
@@ -31,7 +30,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="brand_name" class="form-label">Site Name <span class="text-danger">*</span></label>
+                            <label for="brand_name" class="form-label">Brand Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('brand_name') is-invalid @enderror" 
                                    id="brand_name" 

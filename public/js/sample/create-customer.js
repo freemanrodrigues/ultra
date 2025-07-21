@@ -89,66 +89,39 @@ $(document).ready(function () {
         }
     });
 
-    $('#customer_id').change(function() {
-      //  alert("Get Customer");
-        const customerid = $(this).val().trim();
-        $.ajax({
-            url: "/ajax-get-customer-address", // {{ route('ajax-get-customer-address') }}
-            method: 'POST',
-            data: {
-                'customerid': customerid,
-            },
-            success: function (response) {
-              //  alert(response.customer.id);
-               // if (response.exists) {
-                   // console.log("THe Pan number Exists");
-                  //  alert(response.customer.id);
-                    
-                //    $('#address_place_holder').append("<h5>address</h5>");  
-                  var address =  response.customer.address+"<br>"+response.customer.city+", "+response.customer.state+"<br>"+response.customer.pincode;
-                
-                var optHtml = '';
-                 $.each(response.sitemaster, function(index, site) {
-                    console.log('Site ' + index + ':', site.site_name);
-                    // Access properties: site.id, site.site_code, etc.
-                    optHtml+= '<option value="'+site.id+'">'+site.site_name+'</option>';
-                });
-                //alert("OP :"+optHtml);
-                 $('#site_master_id').html(optHtml);
-                 $('#address_place_holder').html( address);
-                
-            },
-            error: function () {
-                $('#gst_result').text('Error validating GST number');
-            }
-        });
+    $('#gst_no').on('blur', function () {
+        const gstNo = $(this).val().trim();
+        //alert("Works");
+        if (gstNo.length >= 15) {
+            $.ajax({
+                url: "/check-gst",
+                method: 'POST',
+                data: {
+                    'gst_no': gstNo,
+                },
+                success: function (response) {
+                    if (response.exists) {
+                        console.log("THe Pan number Exists");
+                     //   $('#gst_result').text('GST matched with company: ' + response.company_name);
+                     $('#company_id').val( response.company_name);
+                     alert(response.company_id);
+                     $('#companyid_val').val( response.company_id);
+                     $('#company_id').attr('readonly', true);
+                    } else {
+                       //$('#gst_result').text('No company found for this GST number');
+                       console.log(" Not Exists");
+                        $('#company_id').prop('required', true);
+                        
+                    }
+                },
+                error: function () {
+                    $('#gst_result').text('Error validating GST number');
+                }
+            });
+        } else {
+            $('#gst_result').text('Please enter a valid 15-digit GST number.');
+        }
     });
     
-    $('#site_master_id').change(function() {
-          
-          const site_master_id = $(this).val().trim();
-          $.ajax({
-              url: "/ajax-get-site-contact-details", // {{ route('ajax-get-customer-address') }}
-              method: 'POST',
-              data: {
-                  'site_master_id': site_master_id,
-              },
-              success: function (response) {
-                  var site_address = '';
-                  $.each(response.sitemasters, function(index, sitemasters) { 
-                    site_address = sitemasters.address+'<br>'+sitemasters.address1+'<br> '+sitemasters.city+'<br>'+sitemasters.state;
-                });
-                
-                  var optHtml = '';
-                   $.each(response.user, function(index, user) {
-                      optHtml+= '<option value="'+user.id+'">'+user.firstname+' '+user.lastname+'</option>';
-                  });
-                   $('#cus_site_contact_person_id').html(optHtml);
-                   $('#siteAddress').html(site_address);
-              },
-              error: function () {
-                  $('#siteAddress').text('Address Not Available');
-              }
-          });
-      });
+    
 });

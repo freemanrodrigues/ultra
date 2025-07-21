@@ -90,8 +90,7 @@ class BrandMasterController extends Controller
     public function edit(BrandMaster $brand): View
     {
    
-       echo "<br>".$brand->brand_code;
-    
+      
         return view('masters.brand.edit', compact('brand'));
    
     }

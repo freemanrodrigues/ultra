@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
     */   
                     
         $this->call([
-         //   CountrySeeder::class,
-          //  StateSeeder::class,
-          //  CompanySeeder::class,
-          //  UserSeeder::class,
+            CountrySeeder::class,
+            StateSeeder::class,
+            CompanySeeder::class,
+            UserSeeder::class,
             CustomerSeeder::class,
             SiteMasterSeeder::class,
             UnitSeeder::class,

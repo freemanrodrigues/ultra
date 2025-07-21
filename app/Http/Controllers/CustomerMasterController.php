@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{CompanyMaster,CustomerMaster,SiteMaster};
+use App\Models\{Country,CompanyMaster,CustomerMaster,SiteMaster};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
@@ -25,8 +25,9 @@ class CustomerMasterController extends Controller
        // dd("Create");
      //   $customer = CustomerMaster::all();
          $companies = CompanyMaster::getCompanyArray();
-         
-        return view('masters.customer.create')->with(['companies' => $companies]);
+         $countries = Country::getCountryArray();
+         //dd($countries);
+        return view('masters.customer.create',compact('countries','companies'));
     }
 /*
     public function createCustomer():View
@@ -88,8 +89,9 @@ class CustomerMasterController extends Controller
 
               return redirect()->route('customer.index')
                              ->with('success', 'Customer created successfully!');
+                             
           } catch (\Exception $e) {
-              dd("Fail". $e->getMessage());
+              //dd("Fail". $e->getMessage());
               return redirect()->back()
                              ->withInput()
                              ->with('error', 'Error creating customer: ' . $e->getMessage());

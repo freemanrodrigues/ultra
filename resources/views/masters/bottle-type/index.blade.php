@@ -43,7 +43,12 @@
         </div>
     </form>
 </div>
-
+@if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+@endif
 <!-- Bulk Actions -->
 <div id="bulk-actions" style="display: none;" class="mb-3">
     <form method="POST" action="{{ route('ferrography.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">

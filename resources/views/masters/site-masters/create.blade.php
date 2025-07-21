@@ -1,4 +1,4 @@
-@extends('/layouts/master-layout1')
+@extends('/layouts/master-layout')
 
 @section('content')
 <div class="container mt-4">
@@ -183,19 +183,3 @@ $('#YourPinCode').val(prev_long_name_pincode);
 </script>
 @endsection
 
-@push('scripts')
-<script>
-    // Auto-generate site code based on site name (optional)
-    document.getElementById('site_name').addEventListener('input', function() {
-        const siteName = this.value;
-        const siteCodeField = document.getElementById('site_code');
-        
-        if (siteCodeField.value === '') {
-            // Generate code from first 3 letters + random number
-            const code = siteName.substring(0, 3).toUpperCase() + 
-                         Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-            siteCodeField.value = code;
-        }
-    });
-</script>
-@endpush

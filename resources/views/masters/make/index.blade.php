@@ -11,7 +11,12 @@
         <i class="fas fa-plus"></i> Add New Make
     </a>
 </div>
-
+@if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+@endif
 <!-- Search and Filter Form -->
 <div class="search-form">
     <form method="GET" action="{{ route('make.index') }}">
@@ -70,8 +75,9 @@
                                 <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
                             </th>
                             <th>ID</th>
-                            <th>Site Code</th>
-                            <th>Site Name</th>
+                            <th>Make Code</th>
+                            <th>Make Name</th>
+                            <th>Brand</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th width="150">Actions</th>
@@ -89,6 +95,7 @@
                                 <code class="bg-light px-2 py-1 rounded">{{ $make->make_code }}</code>
                             </td>
                             <td>{{ $make->make_name }}</td>
+                             <td>{{ $make->brand_id }}</td>
                             <td>
                                 <span class="badge status-badge {{ $make->status == 'active' ? 'bg-success' : 'bg-secondary' }}">
                                     <i class="fas {{ $make->status == 'active' ? 'fa-check' : 'fa-times' }}"></i>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,SiteContact,User};
+use App\Models\{Country,CompanyMaster,CustomerMaster,SiteContact,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -49,9 +49,9 @@ class UserController extends Controller
     public function create():View
     {
         $countries = Country::all();
-        $companies = CompanyMaster::all();
+        $customers = CustomerMaster::all();
         //dd($companies);
-        return view('masters.user.create')->with(['countries' => $countries, 'companies' => $companies]);
+        return view('masters.user.create')->with(['countries' => $countries, 'customers' => $customers]);
     }
 
     /**
@@ -69,6 +69,7 @@ class UserController extends Controller
         'city' => 'required|string',
         'state' => 'required|string',
         'pincode' => 'required|string',
+        'customer_id' => 'required|integer',
         'status' => 'required|in:1,0'
     ]);
    /* 
@@ -86,8 +87,13 @@ class UserController extends Controller
     "status" => "1"
     */
     try {
-        User::create($validated);
+        $user = User::create($validated);
+        $userId = $user->id;
+        $customer = CustomerMaster::getCountryId($request['customer_id']);
         
+        User::where('id',$userId)->update(['company_id'=>$customer[0]->company_id, 'customer_id' =>$request->customer_id]);
+
+
         return redirect()->route('users.index')
                        ->with('success', 'User created successfully!');
     } catch (\Exception $e) {
@@ -138,7 +144,7 @@ class UserController extends Controller
         'state' => 'required|string',
         'pincode' => 'required|string',
         'country_id' => 'required|integer',
-        'company_id' => 'required|integer',
+        'customer_id' => 'required|integer',
         'user_type' => 'required|integer',
         'user_role' => 'required|integer',
        'status' => 'required|in:1,0'
@@ -147,7 +153,7 @@ class UserController extends Controller
     try {
        // User::create($validated);
         
-       
+       $company_id = CustomerMaster::getCompanyId($request->customer_id);
         $id =$request->id;
         $user = User::find($id);
         // $user->title = $request->input("title");
@@ -161,7 +167,8 @@ class UserController extends Controller
          $user->state =  $request->state;
          $user->pincode =  $request->pincode;
          $user->country_id =  $request->country_id;
-         $user->company_id =  $request->company_id;
+         $user->company_id =  $company_id;
+         $user->customer_id = $request->customer_id;
          $user->user_type =  $request->user_type;
          $user->user_role =  $request->user_role;
          $user->status =  $request->status;
@@ -169,7 +176,7 @@ class UserController extends Controller
             return redirect()->route('users.index')
                     ->with('success', 'User Updated successfully!');
         } catch (\Exception $e) {
-        dd("<br>Error : ".$e->getMessage());
+        //dd("<br>Error : ".$e->getMessage());
         return redirect()->back()
                 ->withInput()
                 ->with('error', 'Error Updating User: ' . $e->getMessage());
@@ -234,10 +241,10 @@ class UserController extends Controller
     
     public function registerHtml():View
     {
+       
         $countries = Country::all();
-        $companies = CompanyMaster::all();
-        //dd($companies);
-        return view('register')->with(['countries' => $countries, 'companies' => $companies]);
+        $customers = CustomerMaster::all();
+        return view('register')->with(['countries' => $countries, 'customers' => $customers]);
 
     }
     
@@ -255,7 +262,9 @@ class UserController extends Controller
         'city' => 'required|string',
         'state' => 'required|string',
         'pincode' => 'required|string',
-        'company_id' => 'required',
+        'customer_id' => 'required|integer',
+        
+    //    'customer_id' => 'required',
         //'status' => 'required|in:1,0'
     ]);
 
@@ -274,8 +283,12 @@ class UserController extends Controller
     "status" => "1"
     */
     try {
-        User::create($validated);
+        $user = User::create($validated);
+        $userId = $user->id;
+        $customer = CustomerMaster::getCountryId($request['customer_id']);
         
+        User::where('id',$userId)->update(['company_id'=>$customer[0]->company_id, 'customer_id' =>$request->customer_id]);
+
         return redirect()->route('register-success')
                        ->with('success', 'User created successfully!');
     } catch (\Exception $e) {
@@ -288,6 +301,7 @@ class UserController extends Controller
 
     public function registerSuccess():View
     {
+       
         return view('register-success');
     }
 
@@ -386,21 +400,28 @@ class UserController extends Controller
     public function updateForgotPassword(Request $request)
     {
         $request->validate([
-            'site_master_id' => 'required|integer',
+            'email' => 'required|email',
         ]);
        // $sitemasters = SiteContact::where('id',$request->site_master_id )->first();
-       $sql = "SELECT sm.* FROM `site_contacts` sc , site_masters sm WHERE `site_masters_id` = $request->site_master_id and sc.site_masters_id = sm.id;";
-       $sitemasters = DB::select($sql);
-      
+     
+        $user = User::where('email',$request->email)->get();
        // $user = User::where('id', $sitemasters->customerid)->first();
-        $sql = "SELECT * FROM `users` u, `site_contacts` sc where site_masters_id = $request->site_master_id and sc.user_id = u.id";
-        $user = DB::select($sql);
-        if ($user) {
-            return response()->json([
-                'user' => $user, 
-                'sitemasters' => $sitemasters, 
-            ]);
+      
+        if (count($user) == 0) {
+            echo "Zereo";
+            return redirect()->back()
+                       ->withInput()
+                       ->with('error', 'Email address not Exist' );
+        } else {
+            echo "User Exists";
         }
-        return response()->json([]);
+      // create a link
+
+      // Email
+        
+    }
+
+    public function resetPasswordLink(Request $request){
+        return view('reset-password-link');
     }
 }

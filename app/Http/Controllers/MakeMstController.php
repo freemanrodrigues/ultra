@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MakeMst;
+use App\Models\{BrandMaster,MakeMst};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
@@ -44,7 +44,8 @@ class MakeMstController extends Controller
      */
     public function create():view
     {
-        return view('masters.make.create');
+        $brands = BrandMaster::getBrandArray();
+        return view('masters.make.create',compact('brands'));
     }
 
     /**
@@ -55,6 +56,7 @@ class MakeMstController extends Controller
         $validated = $request->validate([
             'make_code' => 'required|string|max:50|unique:make_msts,make_code',
             'make_name' => 'required|string|max:255',
+            'brand_id'=>'required|integer',
             'status' => 'required|in:1,0'
         ]);
 

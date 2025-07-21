@@ -11,4 +11,8 @@ class SiteMaster extends Model
     public static function getSite($customerid){
         return SiteMaster::where('customer_id',$customerid )->get();
     }
+
+    public static function getAllSite(){
+        return SiteMaster::where('status',1 )->get();
+    }
 }

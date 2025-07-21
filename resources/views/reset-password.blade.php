@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,7 +59,7 @@
 
                         <div class="mb-3">
                             <label for="new_password" class="form-label d-flex justify-content-between">
-                                Password
+                                New Password
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}" class="small text-decoration-none">
                                         Forgot?
@@ -67,6 +68,11 @@
                             </label>
                             <input type="password" name="new_password" id="new_password"
                                    class="form-control @error('new_password') is-invalid @enderror" required>
+                                    <div class="input-group-prepend">
+                                    <div class="input-group-text"> 
+                                    <span id="icon_click" class="fas fa-eye text-info"></span>
+                                    </div>
+                                    </div>
                         </div>
 
                        
@@ -87,7 +93,7 @@
         <!--end::App Content-->
       </main>
       <!--end::App Main-->
-
+<script src="/js/user/reset-password.js"></script>
 </body>
 
 </html>

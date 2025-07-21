@@ -12,6 +12,7 @@ class CustomerMaster extends Model
 		return CustomerMaster::all();
 	}
 
+	
     public static function getCustomerArray() {
 		$customer = CustomerMaster::where('status', '1')
 		->orderBy("customer_name")
@@ -22,5 +23,10 @@ class CustomerMaster extends Model
 			$customerArr[$v->id] = $v->customer_name;
        return $customerArr;	
 	} 
+	
+	public static function getCountryId($id) {
+		return CustomerMaster::where('id',$id)->get(['company_id']);
+	}
+
 
 }

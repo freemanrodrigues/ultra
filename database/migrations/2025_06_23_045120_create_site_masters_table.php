@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('pincode')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
+            $table->string('email')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('landline')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->string('customer_type')->nullable();

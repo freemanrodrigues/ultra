@@ -8,10 +8,15 @@
         <small class="text-muted">({{ $brands->total() }} total)</small>
     </h1>
     <a href="{{ route('brand.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add New Site
+        <i class="fas fa-plus"></i> Add New Brand
     </a>
 </div>
-
+@if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+@endif
 <!-- Search and Filter Form -->
 <div class="search-form">
     <form method="GET" action="{{ route('brand.index') }}">

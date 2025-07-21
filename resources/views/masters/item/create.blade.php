@@ -12,7 +12,7 @@
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="item_code" class="form-label">item Code <span class="text-danger">*</span></label>
+                            <label for="item_code" class="form-label">Item Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('item_code') is-invalid @enderror" 
                                    id="item_code" 
@@ -28,13 +28,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="item_name" class="form-label">item Name <span class="text-danger">*</span></label>
+                            <label for="item_name" class="form-label">Item Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('item_name') is-invalid @enderror" 
                                    id="item_name" 
                                    name="item_name" 
                                    value="{{ old('item_name') }}" 
-                                   placeholder="Enter item name"
+                                   placeholder="Enter Item Name"
                                    maxlength="255"
                                    required>
                             @error('item_name')
@@ -57,7 +57,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Create item Master
+                                <i class="bi bi-check-circle"></i> Create Item Master
                             </button>
                             <a href="{{ route('item.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel

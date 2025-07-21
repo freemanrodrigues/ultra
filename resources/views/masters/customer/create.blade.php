@@ -21,7 +21,17 @@
                     </div>
                 </div>
             </div>
-
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold">Whoops!</strong>
+            <span class="block sm:inline">There were some problems with your input.</span>
+            <ul class="mt-3 list-disc list-inside">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
             <!-- Main Form Card -->
             <div class="card shadow-lg border-0">
                 <div class="card-body p-4">
@@ -184,18 +194,22 @@
                                             <label for="country" class="form-label fw-semibold">
                                                 Country <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" class="form-control" id="country"  name="country"   required>
-                                        {{--    <select class="form-select @error('country') is-invalid @enderror" 
-                                                    id="country" 
-                                                    name="country" 
-                                                    required>
+                                            <!-- input type="text" class="form-control" id="country"  name="country"   required -->
+                                           <select class="form-select @error('country') is-invalid @enderror" 
+                                                    id="country" name="country"  required>
                                                 <option value="">Select Country</option>
+                                                @foreach($countries as $v => $country)
+                                                    <option value="{{ $v }}" 
+                                                            {{ $v == 71 ? 'selected' : '' }}>
+                                                        {{ $country }}
+                                                    </option>
+                                                @endforeach
                                                 <option value="India" {{ old('country') == 'India' ? 'selected' : '' }}>India</option>
                                                 <option value="USA" {{ old('country') == 'USA' ? 'selected' : '' }}>USA</option>
                                                 <option value="UK" {{ old('country') == 'UK' ? 'selected' : '' }}>UK</option>
                                                 <option value="Canada" {{ old('country') == 'Canada' ? 'selected' : '' }}>Canada</option>
                                                 <option value="Australia" {{ old('country') == 'Australia' ? 'selected' : '' }}>Australia</option>
-                                            </select> --}}
+                                            </select> 
                                             @error('country')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -320,7 +334,7 @@
                                                 <option value="">Select Status</option>
                                                 <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
                                                 <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
-                            s                </select>
+                                            </select>
                                             @error('status')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

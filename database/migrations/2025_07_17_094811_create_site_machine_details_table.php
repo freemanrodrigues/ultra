@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sms_templates', function (Blueprint $table) {
+        Schema::create('site_machine_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
-            $table->integer('sitename');
-            $table->string('severity');
-            $table->integer('mobile_number');
+            $table->integer('model_id');
+            $table->integer('site_master_id');
+            $table->string('machine_number');
+            $table->string('machine_code');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sms_templates');
+        Schema::dropIfExists('site_machine_details');
     }
 };

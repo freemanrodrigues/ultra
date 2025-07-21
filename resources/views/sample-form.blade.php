@@ -119,7 +119,7 @@
                                             <div class="col-sm-6 mb-3">
                                                 <label for="mobile" class="form-label fw-semibold">Mobile</label>
                                                 <div class="icon-input">
-                                                    <input type="tel" class="form-control" id="mobile" name="cus_mobile" >
+                                                    <input type="tel" class="form-control" id="mobile" name="cus_mobile"  maxlength="10" required>
                                                     <i class="bi bi-phone"></i>
                                                 </div>
                                             </div>
@@ -173,7 +173,7 @@
                                             <div class="col-sm-6 mb-3">
                                                 <label for="siteMobile" class="form-label fw-semibold">Mobile</label>
                                                 <div class="icon-input">
-                                                    <input type="tel" class="form-control" id="siteMobile"  name="cus_site_contact_mobile">
+                                                    <input type="tel" class="form-control" id="siteMobile"  name="cus_site_contact_mobile" maxlength="10">
                                                     <i class="bi bi-phone"></i>
                                                 </div>
                                             </div>

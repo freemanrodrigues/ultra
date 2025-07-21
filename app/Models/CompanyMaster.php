@@ -28,4 +28,6 @@ class CompanyMaster extends Model
 		$company =	CompanyMaster::create(['company_name' =>$array[0],'pancard' =>substr($array[1], 2, 12),'status' =>1]);
 		return $company->id;
 	}
+
+	
 }

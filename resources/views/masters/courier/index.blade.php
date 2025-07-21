@@ -11,7 +11,12 @@
         <i class="fas fa-plus"></i> Add New Courier
     </a>
 </div>
-
+@if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+@endif
 <!-- Search and Filter Form -->
 <div class="search-form">
     <form method="GET" action="{{ route('courier.index') }}">
@@ -70,8 +75,8 @@
                                 <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
                             </th>
                             <th>ID</th>
-                            <th>Site Code</th>
-                            <th>Site Name</th>
+                            <th>Courier Code</th>
+                            <th>Courier Name</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th width="150">Actions</th>

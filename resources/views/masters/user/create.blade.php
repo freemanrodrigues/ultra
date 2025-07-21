@@ -30,20 +30,20 @@
                     <input type="hidden" name="id" id="user_id">
 
                     <div class="col-md-6">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
                     </div>
                     <div class="col-md-6">
-                        <label>Phone</label>
-                        <input type="text" name="phone" class="form-control">
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone" class="form-control" id="phone" maxlength="10" required>
                     </div>
                     <div class="col-md-6">
-                        <label>First Name</label>
-                        <input type="text" name="firstname" class="form-control" required>
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname"  id="firstname" class="form-control" required>
                     </div>
                     <div class="col-md-6">
-                        <label>Last Name</label>
-                        <input type="text" name="lastname" class="form-control">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" id="lastname" class="form-control">
                     </div>
                     <div class="col-md-6">
                         <label>Address 1</label>
@@ -76,11 +76,11 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <label>Company</label>
-                        <select name="company_id" class="form-select">
+                        <label for="customer_id">Company</label>
+                        <select name="customer_id" class="form-select">
                             <option value="">--Select--</option>
-                            @foreach($companies as $company)
-                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                            @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                             @endforeach
                         </select>
                     </div>

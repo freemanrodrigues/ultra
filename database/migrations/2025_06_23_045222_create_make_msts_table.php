@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('make_code')->nullable();
             $table->string('make_name')->nullable();
+            $table->integer('brand_id')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

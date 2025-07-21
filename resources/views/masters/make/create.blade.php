@@ -5,14 +5,27 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">make Master Information</h5>
+                    <h5 class="card-title mb-0">Make Master Information</h5>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('make.store') }}">
                         @csrf
                         
+                        <div class="mb-4">
+                            <label for="brand_id" class="form-label">Brand <span class="text-danger">*</span></label>
+                            <select class="form-select @error('brand_id') is-invalid @enderror" id="brand_id" name="brand_id" required>
+                                <option value="">Select Brand</option>
+                                @foreach($brands as $k => $brand)
+                                    <option value="{{$k}}">{{$brand}}</option>
+                                @endforeach
+                            </select>
+                            @error('brand_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="mb-3">
-                            <label for="make_code" class="form-label">make Code <span class="text-danger">*</span></label>
+                            <label for="make_code" class="form-label">Make Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('make_code') is-invalid @enderror" 
                                    id="make_code" 
@@ -28,13 +41,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="make_name" class="form-label">make Name <span class="text-danger">*</span></label>
+                            <label for="make_name" class="form-label">Make Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('make_name') is-invalid @enderror" 
                                    id="make_name" 
                                    name="make_name" 
                                    value="{{ old('make_name') }}" 
-                                   placeholder="Enter make name"
+                                   placeholder="Enter Make name"
                                    maxlength="255"
                                    required>
                             @error('make_name')
@@ -57,7 +70,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Create make Master
+                                <i class="bi bi-check-circle"></i> Create Make Master
                             </button>
                             <a href="{{ route('make.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel

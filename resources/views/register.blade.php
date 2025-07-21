@@ -43,7 +43,8 @@
                     </div>
                     <div class="col-md-6">
                         <label>Phone</label>
-                        <input type="text" name="phone" class="form-control">
+                        <input type="tel" class="form-control" id="phone" name="phone"  maxlength="10" required>
+
                     </div>
                     <div class="col-md-6">
                         <label>First Name</label>
@@ -84,12 +85,12 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <label>Company</label>
-                        <select name="company_id" class="form-select">
+                        <label>Customer</label>
+                        <select name="customer_id" class="form-select">
                             <option value="">--Select--</option>
                            <option value="0">Internal</option>
-                            @foreach($companies as $company)
-                                <option value="{{ $company->id }}"  >{{ $company->company_name }}</option>
+                            @foreach($customers as $company)
+                                <option value="{{ $company->id }}"  >{{ $company->customer_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -109,7 +110,7 @@
                     --}}
                     <div class="col-md-6">
                         <label>Password</label>
-                        <input name="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control">
                             
                     </div>
                 </div>

@@ -26,10 +26,10 @@ return new class extends Migration
             $table->integer('country_id')->default(71);
             $table->string('phone')->unique();
             $table->integer('company_id')->nullable();
-            $table->integer('customer_masters_id')->nullable();
-            $table->boolean('user_type')->default(0);
+            $table->integer('customer_id')->nullable();
+            $table->integer('user_type')->default(1);
             $table->integer('user_role', false)->default(0);
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

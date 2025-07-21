@@ -791,6 +791,7 @@ User Master</p>
                   <p>Informational</p>
                 </a>
               </li> -->
+               @if (Auth::check() )  
               <li class="nav-item">
                 <a href="#" class="nav-link @if (request()->is('myaccount')) active @endif">
                   <i class="nav-icon bi bi-speedometer"></i>
@@ -801,13 +802,20 @@ User Master</p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                    <a href="{{ route('profile')}}" class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Profile</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('reset-password')}}" class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Reset Password</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
+              @endif
               <li class="nav-item @if (request()->is('report')) menu-opens @endif">
                 <a href="#" class="nav-link @if (request()->is('report')) active @endif">
                   <i class="nav-icon bi bi-speedometer"></i>

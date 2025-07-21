@@ -62,7 +62,7 @@ class SiteMasterController extends Controller
             'site_code' => 'required|string|max:50|unique:site_masters,site_code',
             'site_name' => 'required|string|max:255',
             "site_display_name" => 'string',
-            "contact_type" => 'string',
+        //    "contact_type" => 'string',
             "company_id" => 'integer',
             "customer_id" => 'integer',
             "address" => 'string',
@@ -187,7 +187,7 @@ site_code" => null
        // die("Id:".$id);
        $siteMaster = SiteMaster::where('id' , $id)->get();
        
-       $users = User::where('company_id' , $siteMaster[0]->company_id)->get();
+       $users = User::where('customer_id' , $siteMaster[0]->customer_id)->get();
        //dd($users);
        return view('masters.site-masters.assign-users', compact('siteMaster','users'));
     }
