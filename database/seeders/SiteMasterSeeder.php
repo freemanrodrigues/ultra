@@ -36,6 +36,6 @@ class SiteMasterSeeder extends Seeder
         }
         	
 
-        $this->command->info('Unit data seeded successfully!');
+        $this->command->info('Site Master data seeded successfully!');
     }
 }

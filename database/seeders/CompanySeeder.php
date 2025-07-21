@@ -35,6 +35,6 @@ class CompanySeeder extends Seeder
         }
         	
 
-        $this->command->info('Unit data seeded successfully!');
+        $this->command->info('Compony data seeded successfully!');
     }
 }

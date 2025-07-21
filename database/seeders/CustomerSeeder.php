@@ -37,6 +37,6 @@ class CustomerSeeder extends Seeder
         }
         	
 
-        $this->command->info('Unit data seeded successfully!');
+        $this->command->info('Customer data seeded successfully!');
     }
 }

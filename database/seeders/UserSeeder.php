@@ -42,6 +42,6 @@ class UserSeeder extends Seeder
         }
         	
 
-        $this->command->info('Unit data seeded successfully!');
+        $this->command->info('User data seeded successfully!');
     }
 }

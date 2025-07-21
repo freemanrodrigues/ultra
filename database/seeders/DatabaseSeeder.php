@@ -13,15 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-/*
-        User::factory()->create([
-          'email' => 'test@example.com', 'firstname' => 'Test', 'lastname' => 'Ltest', 'phone' => '9869635632'
-        ]);
-        User::factory()->create([
-             'email' => 'freeman.rodrigues@gmail.com', 'firstname' => 'freeman', 'lastname' => 'rodrigues', 'phone' => '9869635631'
-        ]);
-    */   
+        
                     
         $this->call([
             CountrySeeder::class,
