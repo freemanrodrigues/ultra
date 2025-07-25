@@ -57,6 +57,8 @@ class CustomerMasterController extends Controller
             "state" => 'required|string|max:100',
             "country" => 'required|string|max:100',
             "pincode" => 'required|string|max:24',
+            "email" => 'required|email',
+            "phone" => 'required',
           //  "billing_cycle" => 'date',
           //  "credit_cycle" => 'required|date',
             //    "sales_person_id" => null
@@ -82,6 +84,8 @@ class CustomerMasterController extends Controller
             $cm->state = $request->state;
             $cm->country= $request->country;
             $cm->pincode	= $request->pincode;
+            $cm->email	= $request->email;
+            $cm->mobile	= $request->mobile;
             $cm->billing_cycle = $request->billing_cycle;
             $cm->credit_cycle = $request->credit_cycle;
             $cm->status = 1;

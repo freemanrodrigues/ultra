@@ -36,8 +36,8 @@
                     @foreach ($samples as $index => $sample)
                         <tr>
                             <td>
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteSample({{ $sample->id }})">
-                                    <i class="bi bi-trash"></i>
+                                <button class="btn btn-sm btn-outline-primary" onclick="location.href='{{ route('sample-details', $sample->id) }}'">
+                                    <i class="bi bi-plus"></i>
                                 </button>
                             </td>
                             <td>{{ date('d-M-Y',strtotime($sample->sample_date)) }}</td>
@@ -48,8 +48,8 @@
                             <td>@if(!empty($company_mst[$sample->company_id])){{ $company_mst[$sample->company_id] }}@endif</td>
                             <td>{{ $sample->pod_no }}</td>
                             <td>{{ $sample->no_of_samples }}</td>
-                            <td>{{ $sample->cus_site_contact_person_id }}</td>
-                            <td>{{ $sample->site_company }}</td>
+                            <td>@if(!empty($users[$sample->cus_site_contact_person_id])){{ $users[$sample->cus_site_contact_person_id] }} @endif  </td>
+                            <td>{{ $sitemaster[$sample->site_master_id] }}</td>
                             <td>{{ $sample->additional_info }}</td>
                             <td>{{ $sample->work_order }}</td>
                         </tr>

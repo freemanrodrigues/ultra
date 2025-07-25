@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <label for="contact_type" class="form-label">Contact Type</label>
                         <select name="contact_type" class="form-select">
-                            @foreach(config('constants.CONTACT_TYPE') as $k => $val)
+                        @foreach(config('constants.CONTACT_TYPE') as $k => $val)
                         <option value="{{$k}}">{{$val}}</option>
                         @endforeach  
                            

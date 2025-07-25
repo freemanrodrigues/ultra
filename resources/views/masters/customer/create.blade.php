@@ -114,7 +114,7 @@
                                                     </option>
                                                 @endforeach
                                             </select -->
-                                             <input type="text" name="companyid_val" id="companyid_val">
+                                             <input type="hidden" name="companyid_val" id="companyid_val">
                                            
                                             @error('company_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>

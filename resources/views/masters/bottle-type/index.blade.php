@@ -4,17 +4,17 @@
 <div class="container mt-4">
  <!-- Search and Filter Form --><div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">
-        <i class="fas fa-building text-primary"></i> Ferrography
-        <small class="text-muted">({{ $ferrographys->total() }} total)</small>
+        <i class="fas fa-building text-primary"></i> Bottle Type
+        <small class="text-muted">({{ $bottle_types->total() }} total)</small>
     </h1>
-    <a href="{{ route('ferrography.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add New Site
+    <a href="{{ route('bottle-type.create') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add New Bottle Type
     </a>
 </div>
 
 <!-- Search and Filter Form -->
 <div class="search-form">
-    <form method="GET" action="{{ route('ferrography.index') }}">
+    <form method="GET" action="{{ route('bottle-type.index') }}">
         <div class="row g-3">
             <div class="col-md-4">
                 <label for="search" class="form-label">Search</label>
@@ -35,7 +35,7 @@
                     <button type="submit" class="btn btn-outline-primary">
                         <i class="fas fa-search"></i> Search
                     </button>
-                    <a href="{{ route('ferrography.index') }}" class="btn btn-outline-secondary">
+                    <a href="{{ route('bottle-type.index') }}" class="btn btn-outline-secondary">
                         <i class="fas fa-times"></i> Clear
                     </a>
                 </div>
@@ -51,7 +51,7 @@
 @endif
 <!-- Bulk Actions -->
 <div id="bulk-actions" style="display: none;" class="mb-3">
-    <form method="POST" action="{{ route('ferrography.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">
+    <form method="POST" action="{{ route('bottle-type.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">
         @csrf
         <div class="d-flex align-items-center gap-2">
             <span class="text-muted">With selected:</span>
@@ -66,7 +66,7 @@
 <!-- Data Table -->
 <div class="card">
     <div class="card-body p-0">
-        @if($ferrographys->count() > 0)
+        @if($bottle_types->count() > 0)
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead>
@@ -75,45 +75,45 @@
                                 <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
                             </th>
                             <th>ID</th>
-                            <th>Site Code</th>
-                            <th>Site Name</th>
+                            <th>Bottle Code</th>
+                            <th>Bottle Name</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th width="150">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($ferrographys as $ferrography)
+                        @foreach($bottle_types as $bottle_type)
                         <tr>
                             <td>
-                                <input type="checkbox" name="selected_ids[]" value="{{ $ferrography->id }}" 
+                                <input type="checkbox" name="selected_ids[]" value="{{ $bottle_type->id }}" 
                                        onchange="toggleBulkActions()" class="form-check-input">
                             </td>
-                            <td><strong>{{ $ferrography->id }}</strong></td>
+                            <td><strong>{{ $bottle_type->id }}</strong></td>
                             <td>
-                                <code class="bg-light px-2 py-1 rounded">{{ $ferrography->ferrography_code }}</code>
+                                <code class="bg-light px-2 py-1 rounded">{{ $bottle_type->bottle_code }}</code>
                             </td>
-                            <td>{{ $ferrography->ferrography_name }}</td>
+                            <td>{{ $bottle_type->bottle_name }}</td>
                             <td>
-                                <span class="badge status-badge {{ $ferrography->status == 'active' ? 'bg-success' : 'bg-secondary' }}">
-                                    <i class="fas {{ $ferrography->status == 'active' ? 'fa-check' : 'fa-times' }}"></i>
-                                    {{ ucfirst($ferrography->status) }}
+                                <span class="badge status-badge {{ $bottle_type->status == 1? 'bg-success' : 'bg-secondary' }}">
+                                    <i class="fas {{ $bottle_type->status == 1 ? 'fa-check' : 'fa-times' }}"></i>
+                                    {{ ucfirst($bottle_type->status) }}
                                 </span>
                             </td>
                             <td>
-                                <small class="text-muted">@if(!empty($ferrography->created_at)){{ $ferrography->created_at->format('M d, Y') }} @endif</small>
+                                <small class="text-muted">@if(!empty($bottle_type->created_at)){{ $bottle_type->created_at->format('M d, Y') }} @endif</small>
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('ferrography.show', $ferrography) }}" 
+                                    <a href="{{ route('bottle-type.show', $bottle_type) }}" 
                                        class="btn btn-sm btn-outline-info" title="View">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('ferrography.edit', $ferrography) }}" 
+                                    <a href="{{ route('bottle-type.edit', $bottle_type) }}" 
                                        class="btn btn-sm btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
-                                    <form action="{{ route('ferrography.destroy',  $ferrography) }}" method="POST" 
+                                    <form action="{{ route('bottle-type.destroy',  $bottle_type) }}" method="POST" 
                                           style="display: inline;" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')
@@ -130,14 +130,14 @@
             </div>
             
             <!-- Pagination -->
-            @if($ferrographys->hasPages())
+            @if($bottle_types->hasPages())
                 <div class="card-footer">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="text-muted">
-                            Showing {{ $ferrographys->firstItem() }} to {{ $ferrographys->lastItem() }} 
-                            of {{ $ferrographys->total() }} results
+                            Showing {{ $bottle_types->firstItem() }} to {{ $bottle_types->lastItem() }} 
+                            of {{ $bottle_types->total() }} results
                         </div>
-                        {{ $ferrographys->links() }}
+                        {{ $bottle_types->links() }}
                     </div>
                 </div>
             @endif
@@ -153,11 +153,11 @@
                     @endif
                 </p>
                 @if(request()->hasAny(['search', 'status']))
-                    <a href="{{ route('ferrography.index') }}" class="btn btn-outline-primary me-2">
+                    <a href="{{ route('bottle-type.index') }}" class="btn btn-outline-primary me-2">
                         <i class="fas fa-times"></i> Clear Filters
                     </a>
                 @endif
-                <a href="{{ route('ferrography.create') }}" class="btn btn-primary">
+                <a href="{{ route('bottle-type.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Add New Site
                 </a>
             </div>

@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public static function getUserArray(){
+        $user = User::where('status', '1')
+		->orderBy("firstname")
+		->get(['id','firstname','lastname']);	
+		//dd($user);
+        $userArr = array();
+		foreach($user as $k => $v)
+			$userArr[$v->id] = $v->firstname.' '.$v->lastname;
+       return $userArr;	
+    }
 }

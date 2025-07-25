@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, CourierMasterController,CustomerMasterController,EquipmentMasterController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController, SampleController, SampleNatureController,SampleTypeController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, CourierMasterController,CustomerMasterController,EquipmentMasterController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -74,9 +74,13 @@ Route::any('/master/ferrography/bulk_delete', [FerrographyMasterController::clas
 Route::resource('/masters/sample-nature', SampleNatureController::class);
 Route::any('/master/ferrography/bulk_delete', [SampleNatureController::class,'bulkDelete'])->name('sample-nature.bulk_delete');
 
+Route::any('/master/bottle-type/bulk_delete', [BottleTypeController::class,'bulkDelete'])->name('bottle-type.bulk_delete');
 Route::resource('/masters/bottle-type', BottleTypeController::class);
 Route::resource('/masters/grade', GradeMasterController::class);
 Route::any('/master/grade/bulk_delete', [GradeMasterController::class,'bulkDelete'])->name('grade.bulk_delete');
+
+Route::get('/generate-sales-report', [SampleController::class, 'generateSalesReport'])->name('reports.sales');
+Route::get('/generate-sales-report1', [SampleController::class, 'generateSalesReport1'])->name('reports.sales1');
 Route::resource('/masters/sample-type', SampleTypeController::class);
 Route::any('/master/sample-type/bulk_delete', [SampleTypeController::class,'bulkDelete'])->name('sample-type.bulk_delete');
 
@@ -104,4 +108,7 @@ Route::any('/master/subassembly/bulk_delete', [SubAssemblyController::class,'bul
 Route::resource('/masters/item', ItemMasterController::class);
 Route::any('/master/item/bulk_delete', [ItemMasterController::class,'bulkDelete'])->name('item.bulk_delete');
 
+// Sample details
+Route::get('/sample-details/{id}', [SampleDetailController::class,'addSampleDetials'])->name('sample-details');
+Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDetials'])->name('save-sample-details');
 });

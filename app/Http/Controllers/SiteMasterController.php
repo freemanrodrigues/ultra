@@ -37,8 +37,8 @@ class SiteMasterController extends Controller
         $query->orderBy($sortBy, $sortOrder);
 
         $siteMasters = $query->paginate(10)->appends($request->query());
-
-        return view('masters.site-masters.index', compact('siteMasters'));
+        $customers = CustomerMaster::getCustomerArray();;
+        return view('masters.site-masters.index', compact('siteMasters','customers'));
     }
 
     /**

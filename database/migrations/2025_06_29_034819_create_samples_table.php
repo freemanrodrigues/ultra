@@ -18,12 +18,13 @@ return new class extends Migration
             $table->integer('courier_id');
             $table->string('pod_no')->nullable();
             $table->integer('no_of_samples');
-            $table->integer('customer_id');
+            $table->integer('site_master_id')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->integer('company_id')->nullable();
-            $table->integer('cus_mobile')->nullable();
+            $table->bigInteger('cus_mobile')->nullable();
             $table->string('cus_email')->nullable();
             $table->integer('cus_site_contact_person_id')->nullable();
-            $table->integer('cus_site_contact_mobile')->nullable();
+            $table->bigInteger('cus_site_contact_mobile')->nullable();
             $table->string('cus_site_contact_email')->nullable();
             $table->dateTime('expected_report_date')->nullable();
             $table->string('work_order')->nullable();

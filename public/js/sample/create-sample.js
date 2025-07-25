@@ -107,7 +107,7 @@ $(document).ready(function () {
                 //    $('#address_place_holder').append("<h5>address</h5>");  
                   var address =  response.customer.address+"<br>"+response.customer.city+", "+response.customer.state+"<br>"+response.customer.pincode;
                 
-                var optHtml = '';
+                var optHtml = '<option value="">Select Contact</option>';
                  $.each(response.sitemaster, function(index, site) {
                     console.log('Site ' + index + ':', site.site_name);
                     // Access properties: site.id, site.site_code, etc.

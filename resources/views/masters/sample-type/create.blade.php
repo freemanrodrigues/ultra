@@ -12,13 +12,13 @@
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="sample_type_code" class="form-label">sample_type Code <span class="text-danger">*</span></label>
+                            <label for="sample_type_code" class="form-label">Sample Type Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('sample_type_code') is-invalid @enderror" 
                                    id="sample_type_code" 
                                    name="sample_type_code" 
                                    value="{{ old('sample_type_code') }}" 
-                                   placeholder="Enter unique sample_type code (e.g., sample_type001)"
+                                   placeholder="Enter unique Sample Type code (e.g., Diesel)"
                                    maxlength="50"
                                    required>
                             @error('sample_type_code')
@@ -28,13 +28,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="sample_type_name" class="form-label">sample_type Name <span class="text-danger">*</span></label>
+                            <label for="sample_type_name" class="form-label">Sample Type Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('sample_type_name') is-invalid @enderror" 
                                    id="sample_type_name" 
                                    name="sample_type_name" 
                                    value="{{ old('sample_type_name') }}" 
-                                   placeholder="Enter sample_type name"
+                                   placeholder="Enter Sample Type name"
                                    maxlength="255"
                                    required>
                             @error('sample_type_name')
@@ -50,7 +50,7 @@
                                    id="remark" 
                                    name="remark" 
                                    value="{{ old('remark') }}" 
-                                   placeholder="Enter sample_type name"
+                                   placeholder="Enter Remark"
                                    maxlength="255"
                                    required>
                             @error('remark')
@@ -89,7 +89,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Create sample_type Master
+                                <i class="bi bi-check-circle"></i> Create Sample Type Master
                             </button>
                             <a href="{{ route('sample-type.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel

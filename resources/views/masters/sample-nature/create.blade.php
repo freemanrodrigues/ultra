@@ -12,13 +12,13 @@
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="sample_nature_code" class="form-label">sample-nature Code <span class="text-danger">*</span></label>
+                            <label for="sample_nature_code" class="form-label">Nature Of Sample Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('sample_nature_code') is-invalid @enderror" 
                                    id="sample_nature_code" 
                                    name="sample_nature_code" 
                                    value="{{ old('sample_nature_code') }}" 
-                                   placeholder="Enter unique sample-nature code (e.g., sample-nature001)"
+                                   placeholder="Enter unique Nature Of Sample code (e.g., sample-nature001)"
                                    maxlength="50"
                                    required>
                             @error('sample_nature_code')
@@ -28,13 +28,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="sample_nature_name" class="form-label">sample-nature Name <span class="text-danger">*</span></label>
+                            <label for="sample_nature_name" class="form-label">Nature Of Sample Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('sample_nature_name') is-invalid @enderror" 
                                    id="sample_nature_name" 
                                    name="sample_nature_name" 
                                    value="{{ old('sample_nature_name') }}" 
-                                   placeholder="Enter sample-nature name"
+                                   placeholder="Enter Nature Of Sample name"
                                    maxlength="255"
                                    required>
                             @error('sample_nature_name')
@@ -73,7 +73,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Create sample-nature Master
+                                <i class="bi bi-check-circle"></i> Create Nature Of Sample Master
                             </button>
                             <a href="{{ route('sample-nature.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel

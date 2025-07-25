@@ -15,4 +15,15 @@ class SiteMaster extends Model
     public static function getAllSite(){
         return SiteMaster::where('status',1 )->get();
     }
+
+    public static function getSiteMasterArray(){
+        $sitemaster = SiteMaster::where('status', '1')
+		->orderBy("site_name")
+		->get(['id','site_name']);	
+		//dd($user);
+        $sitemasterArr = array();
+		foreach($sitemaster as $k => $v)
+			$sitemasterArr[$v->id] = $v->site_name;
+       return $sitemasterArr;	
+    }
 }

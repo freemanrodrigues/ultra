@@ -79,6 +79,7 @@
                             <tr>
                                 <th>Site Code</th>
                                 <th>Site Name</th>
+                                <th>Customer</th>
                                 <th>Status</th>
                                 <th>Devices</th>
                                 <th>Created Date</th>
@@ -92,6 +93,7 @@
                                         <strong>{{ $siteMaster->site_code }}</strong>
                                     </td>
                                     <td>{{ $siteMaster->site_name }}</td>
+                                    <td>@if(!empty($customers[$siteMaster->customer_id])){{ $customers[$siteMaster->customer_id] }} @endif</td>
                                     <td>{!! $siteMaster->status_badge !!}</td>
                                     <td><a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a></td>
                                     <td>

@@ -70,8 +70,9 @@
                                 <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
                             </th>
                             <th>ID</th>
-                            <th>Site Code</th>
-                            <th>Site Name</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th width="150">Actions</th>
@@ -88,7 +89,8 @@
                             <td>
                                 <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}</code>
                             </td>
-                            <td>{{ $customer->courier_name }}</td>
+                            <td>{{ $customer->email }}</td>
+                            <td>{{ $customer->mobile }}</td>
                             <td>
                                 <span class="badge status-badge {{ $customer->status == 1 ? 'bg-success' : 'bg-secondary' }}">
                                     <i class="fas {{ $customer->status == 1 ? 'fa-check' : 'fa-times' }}"></i>

@@ -3,16 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\BottleType;
-use Illuminate\Http\Request;
+use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
+use Illuminate\View\View;
 
 class BottleTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): View
     {
-        die("View");
+        $query = BottleType::query();
+        //    sample_nature_code	sample_nature_name	remark	status	
+            // Search functionality
+            if ($request->filled('search')) {
+                $search = $request->get('search');
+                $query->where(function($q) use ($search) {
+                    $q->where('bottle_code', 'like', "%{$search}%")
+                      ->orWhere('bottle_name', 'like', "%{$search}%");
+                });
+            }	
+    
+            // Filter by status
+            if ($request->filled('status')) {
+                $query->where('status', $request->get('status'));
+            }
+    
+            // Sort by
+            $sortBy = $request->get('sort_by', 'created_at');
+            $sortOrder = $request->get('sort_order', 'desc');
+            $query->orderBy($sortBy, $sortOrder);
+    
+            $bottle_types = $query->paginate(10)->appends($request->query());
+    
+            return view('masters.bottle-type.index', compact('bottle_types'));
     }
 
     /**
@@ -20,7 +44,7 @@ class BottleTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('masters.bottle-type.create');
     }
 
     /**
@@ -28,7 +52,26 @@ class BottleTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $validated = $request->validate([
+            'bottle_code' => 'required|string|max:50|unique:bottle_types,bottle_code',
+            'bottle_name' => 'required|string|max:255',
+            'remark' => 'required|string|max:255',
+            'status' => 'required|in:1,0'
+        ]);
+  //dd($request->all());		   
+        try {
+          //  dd($validated);
+          BottleType::create($validated);
+           //dd("Success");
+            return redirect()->route('bottle-type.index')
+                           ->with('success', 'Bottle Type created successfully!');
+        } catch (\Exception $e) {
+            dd("Fail". $e->getMessage());
+            return redirect()->back()
+                           ->withInput()
+                           ->with('error', 'Error creating courier: ' . $e->getMessage());
+        }
     }
 
     /**
