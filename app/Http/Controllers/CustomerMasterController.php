@@ -26,7 +26,7 @@ class CustomerMasterController extends Controller
      //   $customer = CustomerMaster::all();
          $companies = CompanyMaster::getCompanyArray();
          $countries = Country::getCountryArray();
-         dd($countries);
+         //dd($countries);
         return view('masters.customer.create',compact('countries','companies'));
     }
 /*
