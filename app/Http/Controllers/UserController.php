@@ -121,9 +121,9 @@ class UserController extends Controller
      
      
         $countries = Country::all();
-        $companies = CompanyMaster::all();
+        $customers = CustomerMaster::all();
         //dd($companies);
-        return view('masters.user.edit', compact('countries', 'companies'))->with(['users' =>$user ]); //->with(['' => $countries, 'companies' => $companies]);
+        return view('masters.user.edit', compact('countries', 'customers'))->with(['users' =>$user ]); //->with(['' => $countries, 'companies' => $companies]);
     }
 
     /**

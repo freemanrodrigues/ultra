@@ -80,14 +80,14 @@
                         <select name="country_id" class="form-select">
                             <option value="">--Select--</option>
                             @foreach($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->countryname }}</option>
+                                <option value="{{ $country->id }}" @if($country->id == 71) selected @endif>{{ $country->countryname }}</option>
                             @endforeach
                         </select>
                     </div>
                     
                     <div class="col-md-6">
-                        <label for="customer_id">Company</label>
-                        <select name="customer_id" class="form-select">
+                        <label for="customer_id">Customer</label>
+                        <select name="customer_id" class="form-select" required>
                             <option value="">--Select--</option>
                             @foreach($customers as $customer)
                                 <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
@@ -96,15 +96,21 @@
                     </div>
                     <div class="col-md-6">
                         <label>User Type</label>
-                        <select name="user_type" class="form-select">
-                            <option value="admin">Admin</option>
-                            <option value="staff">Staff</option>
-                            <option value="client">Client</option>
+                        <select name="user_type" class="form-select" required>
+                        <option value="">--Select--</option>
+                        @foreach(config('constants.USER_TYPE') as $k => $val)
+                            <option value="{{$k}}">{{$val}}</option>
+                        @endforeach 
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label>User Role</label>
-                        <input type="text" name="user_role" class="form-control">
+                        <select name="user_role" class="form-select" required>
+                        <option value="">--Select--</option>
+                        @foreach(config('constants.USER_ROLE') as $k => $val)
+                            <option value="{{$k}}">{{$val}}</option>
+                        @endforeach 
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label>Status</label>

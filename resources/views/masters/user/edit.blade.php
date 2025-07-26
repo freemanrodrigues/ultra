@@ -84,11 +84,11 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <label>Company</label>
-                        <select name="company_id" class="form-select">
-                            <option value="">--Select--</option>
-                            @foreach($companies as $company)
-                                <option value="{{ $company->id }}"  @if($users->company_id ==$company->id ) selected @endif>{{ $company->company_name }}</option>
+                        <label>Customer</label>
+                        <select name="customer_id" class="form-select">
+                            
+                            @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}" @if($customer->id ==$users->customer_id ) selected @endif>{{ $customer->customer_name }}</option>
                             @endforeach
                         </select>
                     </div>

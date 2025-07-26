@@ -16,7 +16,7 @@
                         <div class="mb-3">
                             <label for="site_id" class="form-label">Site Master <span class="text-danger">*</span></label>
                             <select class="form-select @error('site_id') is-invalid @enderror" id="site_id" name="site_id" required>
-                                <option value="">Select Site</option>
+                                
                                 @foreach($siteMaster as $sm)
                                     <option value="{{$sm->id}}" >{{$sm->site_name}}</option>
                                 @endforeach
@@ -24,11 +24,11 @@
                             @error('site_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Select One.</div>
+                           
                         </div>
 
                         <div class="mb-3">
-                            <label for="users" class="form-label">Contact  User <span class="text-danger">*</span></label>
+                            <label for="users" class="form-label">Company Users <span class="text-danger">*</span></label>
                             <select multiple class="form-select @error('users') is-invalid @enderror" id="users" name="users[]" required>
                             <!--    <option value="">Select Status</option> -->
                                 @foreach($users as $user)
@@ -45,7 +45,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Update Site Master
+                                <i class="bi bi-check-circle"></i> Assign User to SiteMaster
                             </button>
                             <a href="{{ route('site-masters.show', $siteMaster[0]->id) }}" class="btn btn-outline-secondary">
                                 <i class="bi bi-eye"></i> View
