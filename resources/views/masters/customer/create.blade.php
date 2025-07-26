@@ -204,10 +204,7 @@
                                                         {{ $country }}
                                                     </option>
                                                 @endforeach
-                                                <option value="India" {{ old('country') == 'India' ? 'selected' : '' }}>India</option>
-                                                <option value="USA" {{ old('country') == 'USA' ? 'selected' : '' }}>USA</option>
-                                                <option value="UK" {{ old('country') == 'UK' ? 'selected' : '' }}>UK</option>
-                                                <option value="Canada" {{ old('country') == 'Canada' ? 'selected' : '' }}>Canada</option>
+                                                
                                                 <option value="Australia" {{ old('country') == 'Australia' ? 'selected' : '' }}>Australia</option>
                                             </select> 
                                             @error('country')
