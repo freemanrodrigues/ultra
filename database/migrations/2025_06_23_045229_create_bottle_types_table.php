@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bottle_types', function (Blueprint $table) {
             $table->id();
-            $table->string('bottle_code')->nullable();
+            $table->string('bottle_code',12)->nullable();
             $table->string('bottle_name')->nullable();
             $table->string('remark')->nullable();
             $table->boolean('status')->default(1);
