@@ -77,8 +77,8 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>unit Code</th>
-                                <th>unit Name</th>
+                                <th>Unit Code</th>
+                                <th>Unit Name</th>
                                 <th>Status</th>
                                 <th>Created Date</th>
                                 <th width="200">Actions</th>
@@ -91,7 +91,7 @@
                                         <strong>{{ $unitMaster->unit_code }}</strong>
                                     </td>
                                     <td>{{ $unitMaster->unit_name }}</td>
-                                    <td>{!! $unitMaster->status_badge !!}</td>
+                                    <td>{{ $unitMaster->status }}</td>
                                     <td>
                                         <small class="text-muted">
                                         @if(!empty($unitMaster->created_at))

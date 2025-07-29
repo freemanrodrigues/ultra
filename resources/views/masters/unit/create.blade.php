@@ -57,7 +57,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Create unit Master
+                                <i class="bi bi-check-circle"></i> Create Unit Master
                             </button>
                             <a href="{{ route('unit-masters.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel

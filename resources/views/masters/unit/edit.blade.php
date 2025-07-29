@@ -18,7 +18,7 @@
                                    id="unit_code" 
                                    name="unit_code" 
                                    value="{{ old('unit_code')??$unitMaster->unit_code }}" 
-                                   placeholder="Enter unique unit code (e.g., unit001)"
+                                   placeholder="Enter Unique Unit code (e.g., unit001)"
                                    maxlength="50"
                                    required>
                             @error('unit_code')

@@ -16,15 +16,6 @@ return new class extends Migration
             // company code
             $table->string('company_name');
             $table->string('pancard');
-            $table->string('address')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
-            $table->string('pincode')->nullable();
-            $table->string('email')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('landline')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

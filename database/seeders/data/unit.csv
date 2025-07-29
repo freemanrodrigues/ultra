@@ -45,3 +45,48 @@ mPa.s,mPa.s
 kg/m³,kg/m³
 s,Second
 g/m³,g/m³
+BAG,Bags
+BAL,Bale
+BDL,Bundles
+BKL,Buckles
+BOU,Billion Of Units
+BOX,Box
+BTL,Bottles
+BUN,Bunches
+CAN,Cans
+CBM,Cubic Meters
+CCM,Cubic Centimeters
+CMS,Centimeters
+CTN,Cartons
+DOZ,Dozens
+DRM,Drums
+GGK,Great Gross
+GMS,Grammes
+GRS,Gross
+GYD,Gross Yards
+KGS,Kilograms
+KLR,Kilolitre
+KME,Kilometre
+LTR,Litres
+MLT,Mililitre
+MTR,Meters
+MTS,Metric Ton
+NOS,Numbers
+OTH,Others
+PAC,Packs
+PCS,Pieces
+PRS,Pairs
+QTL,Quintal
+ROL,Rolls
+SET,Sets
+SQF,Square Feet
+SQM,Square Meters
+SQY,Square Yards
+TBS,Tablets
+TGM,Ten Gross
+THD,Thousands
+TON,Tonnes
+TUB,Tubes
+UGS,Us Gallons
+UNT,Units
+YDS,Yards

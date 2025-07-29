@@ -26,7 +26,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="ferrography_code" class="form-label">ferrography Code <span class="text-danger">*</span></label>
+                            <label for="ferrography_code" class="form-label">Ferrography Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('ferrography_code') is-invalid @enderror" 
                                    id="ferrography_code" 
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="ferrography_name" class="form-label">ferrography Name <span class="text-danger">*</span></label>
+                            <label for="ferrography_name" class="form-label">Ferrography Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('ferrography_name') is-invalid @enderror" 
                                    id="ferrography_name" 

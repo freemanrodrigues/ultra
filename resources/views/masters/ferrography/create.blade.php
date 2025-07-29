@@ -12,7 +12,7 @@
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="ferrography_code" class="form-label">ferrography Code <span class="text-danger">*</span></label>
+                            <label for="ferrography_code" class="form-label">Ferrography Code <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('ferrography_code') is-invalid @enderror" 
                                    id="ferrography_code" 
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="ferrography_name" class="form-label">ferrography Name <span class="text-danger">*</span></label>
+                            <label for="ferrography_name" class="form-label">Ferrography Name <span class="text-danger">*</span></label>
                             <input type="text" 
                                    class="form-control @error('ferrography_name') is-invalid @enderror" 
                                    id="ferrography_name" 
@@ -57,7 +57,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Create ferrography Master
+                                <i class="bi bi-check-circle"></i> Create Ferrography Master
                             </button>
                             <a href="{{ route('ferrography.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-x-circle"></i> Cancel

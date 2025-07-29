@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('address1')->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
-            $table->string('pincode')->nullable();
-            $table->string('email')->nullable();
-            $table->string('mobile')->nullable();
+            $table->integer('state')->nullable();
+            $table->integer('country')->nullable();
+        //    $table->string('pincode')->nullable();
+        //   $table->string('email')->nullable();
+        //    $table->string('mobile')->nullable();
             $table->string('landline')->nullable();
             $table->string('billing_cycle')->nullable();
             $table->string('credit_cycle')->nullable();

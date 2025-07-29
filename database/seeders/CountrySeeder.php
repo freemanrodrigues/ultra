@@ -35,7 +35,7 @@ class CountrySeeder extends Seeder
                 'currencycode'  => $record['currencycode'],
                 'currencyrate' => $record['currencyrate'],
                 'currencysign' => $record['currencysign'],
-                'status'     => 0,
+                'status'     => 1,
             ]);
         }
 
