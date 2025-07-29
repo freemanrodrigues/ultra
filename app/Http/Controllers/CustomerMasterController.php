@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,CustomerMaster,SiteMaster};
+use App\Models\{Country,CompanyMaster,CustomerMaster,SiteMaster,State};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
@@ -11,10 +11,32 @@ class CustomerMasterController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(Request $request): View
     {
-        $customers = CustomerMaster::all();
-        return view('masters.customer.index')->with(['customers' => $customers]);
+        
+        $query = CustomerMaster::query();
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->get('search');
+            $query->where(function($q) use ($search) {
+                $q->where('display_name', 'like', "%{$search}%")
+                  ->orWhere('customer_name', 'like', "%{$search}%");
+            });
+        }	
+
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('status', $request->get('status'));
+        }
+
+        // Sort by
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+        $query->orderBy($sortBy, $sortOrder);
+
+        $customers = $query->paginate(10)->appends($request->query());
+        return view('masters.customer.index',compact('customers'));
     }
 
     /**
@@ -26,7 +48,8 @@ class CustomerMasterController extends Controller
      //   $customer = CustomerMaster::all();
          $companies = CompanyMaster::getCompanyArray();
          $countries = Country::getCountryArray();
-        return view('masters.customer.create',compact('countries','companies'));
+         $states = State::getStateArray();
+        return view('masters.customer.create',compact('countries','companies','states'));
     }
 /*
     public function createCustomer():View
