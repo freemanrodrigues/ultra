@@ -53,26 +53,21 @@ $(document).ready(function () {
     });
     $('#customer_name').on('blur', function () {
        const cus_name =  $(this).val().trim();
-        $('#division').val( cus_name);
+     //   $('#division').val( cus_name);
     });
     $('#site').on('change', function () {
         const cus_name =  $('#customer_name').val().trim();
        // var site_name = $('select[name="site"]').val();
-       var site_name = $("#site option:selected").text();
-        $('#division').val( cus_name+' '+site_name);
+      // var site_name = $("#site option:selected").text();
+       // $('#division').val( cus_name+' '+site_name);
     });
     $('#gst_no').on('blur', function () {
         const gstNo = $(this).val().trim();
-        //alert("Works 1");
-
         const gstinRegex = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/;
-        
-        //alert("Works");
         if (gstinRegex.test(gstNo)) {
            
-          // getState(gstNo.substring(0, 2));
-            //alert('Yes');
-        
+            $('#pan_no').val( gstNo.substring(2, 12));
+            $('#state_code').val( gstNo.substring(0, 2));
        
             $.ajax({
                 url: "/ajax/check-gst",
@@ -81,20 +76,21 @@ $(document).ready(function () {
                     'gst_no': gstNo,
                 },
                 success: function (response) {
-                //    alert("Response"+response.exists);
-                    if (response.exists) {
-                        console.log("THe Pan number Exists");
-                     //   $('#gst_result').text('GST matched with company: ' + response.company_name);
-                     $('#customer_name').val( response.company_name);
-                   //  alert(response.company_id);
-                     $('#company_id').val( response.company_id);
-                   //  $('#company_id').attr('readonly', true);
-                    } else {
-                       // alert("GST Not Exus"+response.exists);
-                       //$('#gst_result').text('No company found for this GST number');
-                       //console.log(" Not Exists");
-                    //    $('#company_id').prop('required', true);
+                     if (response.exists) {
                         
+                     //   $('#gst_result').text('GST matched with company: ' + response.company_name);
+                        $('#customer_name').val( response.company_name);
+                        $('#company_id').val( response.company_id);
+                       // $('#state_code').val( response.state_id);
+                        $('#state').val(response.state_id);
+
+                        // Optionally trigger the change event if needed
+                        $('#state').change(); 
+                   //  $('#company_id').attr('readonly', true);
+                        $('#gst_error').empty();
+                    } else {
+                       //$('#gst_result').text('No company found for this GST number');
+                        //    $('#company_id').prop('required', true);
                     }
                 },
                 error: function () {

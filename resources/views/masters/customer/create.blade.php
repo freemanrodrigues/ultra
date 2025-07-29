@@ -60,6 +60,7 @@
                                        </div>  
 
                                         <div class="row customer_name_div">
+                                        <div class="col-md-6 mb-3">
                                         <label for="gst_no" class="form-label fw-semibold">GST Number</label>
                                            
                                             <input type="text" 
@@ -74,6 +75,18 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <div id="gst_error"></div>
+                                            </div>
+                                             <div class="col-md-6 mb-3">
+                                                <label for="pan_no" class="form-label fw-semibold">PAN Number</label>
+                                           
+                                            <input type="text" class="form-control @error('pan_no') is-invalid @enderror"   id="pan_no"  name="pan_no"  value="{{ old('pan_no') }}"  placeholder="PAN Number" readonly >
+                                            <div class="form-text"></div>
+                                            @error('pan_no')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            <div id="gst_error"></div>
+
+                                             </div>
                                         </div>  
 
                                     <div class="row">
@@ -96,7 +109,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="site" class="form-label fw-semibold">
+                                            {{-- <label for="site" class="form-label fw-semibold">
                                                 Site <span class="text-danger">*</span>
                                             </label>
                                             <select class="form-select @error('site') is-invalid @enderror" 
@@ -106,9 +119,11 @@
                                                         <option value="{{$k}}">{{$val}}</option>
                                                     @endforeach
                                             </select -->
-                                            @error('customer_name')
+                                            @error('site')
                                                 <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                            @enderror --}}
+                                            <label for="state_code" class="form-label fw-semibold">State Code</label>
+                                             <input type="text" class="form-control @error('state_code') is-invalid @enderror"   id="state_code"  name="state_code"  value="{{ old('state_code') }}"  placeholder="State Code" readonly >
                                         </div>
                                             
                                     </div>
@@ -196,20 +211,15 @@
                                             <label for="state" class="form-label fw-semibold">
                                                 State <span class="text-danger">*</span>
                                             </label>
-                                             <input class="form-control" type="text" id="state"  name="state"   required>
-                                            {{--
+                                            {{-- <input class="form-control" type="text" id="state"  name="state"   required> --}}
+                                            
                                             <select class="form-select @error('state') is-invalid @enderror" 
-                                                    id="state" 
-                                                    name="state" 
-                                                    required>
+                                                    id="state" name="state" required>
                                                 <option value="">Select State</option>
-                                                @foreach($states as $state)
-                                                    <option value="{{ $state }}" 
-                                                            {{ old('state') == $state ? 'selected' : '' }}>
-                                                        {{ $state }}
-                                                    </option>
+                                                @foreach($states as $k => $state)
+                                                    <option value="{{ $k }}"  {{ old('state') == $k ? 'selected' : '' }}> {{ $state }} </option>
                                                 @endforeach
-                                            </select> --}}
+                                            </select> 
                                             @error('state')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
