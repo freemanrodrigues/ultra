@@ -1,3 +1,9 @@
+<!--end::Container-->
+</div>
+<!--end::App Content-->
+</main>
+<!--end::App Main-->
+
 
      <!--begin::Footer-->
       <footer class="app-footer">
@@ -35,7 +41,7 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../../admin/dist/js/adminlte.js"></script>
+    <script src="/../../admin/dist/js/adminlte.js"></script>
     
        
   </body>

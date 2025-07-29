@@ -26,7 +26,6 @@ class CustomerMasterController extends Controller
      //   $customer = CustomerMaster::all();
          $companies = CompanyMaster::getCompanyArray();
          $countries = Country::getCountryArray();
-         //dd($countries);
         return view('masters.customer.create',compact('countries','companies'));
     }
 /*
@@ -46,19 +45,19 @@ class CustomerMasterController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-       // dd($request->all());
+        //dd($request->all());
         $validated = $request->validate([
             'customer_name' => 'required|string|max:255',
-            'display_name' => 'required|string|max:255',
-            "company_id" => 'required|string',
-            'gst_no' => 'required|string|max:15',
+           // 'display_name' => 'required|string|max:255',
+            "company_id" => 'nullable|integer',
+            'gst_no' => 'nullable|string|max:15',
             "address" => 'required|string|max:255',
             "city" => 'required|string|max:100',
             "state" => 'required|string|max:100',
             "country" => 'required|string|max:100',
             "pincode" => 'required|string|max:24',
-            "email" => 'required|email',
-            "phone" => 'required',
+         //   "email" => 'required|email',
+         //   "phone" => 'required',
           //  "billing_cycle" => 'date',
           //  "credit_cycle" => 'required|date',
             //    "sales_person_id" => null
@@ -68,8 +67,8 @@ class CustomerMasterController extends Controller
 
         try {
             //  dd($validated);
-             if(empty($request->companyid_val)) {
-                $arr = array(0 =>$request->company_id,1 =>substr($request->gst_no, 2, 12));
+             if(empty($request->companyid_val) && $request->customer_name != '') {
+                $arr = array(0 =>$request->customer_name,1 =>substr($request->gst_no, 2, 10));
                 $cid = CompanyMaster::createCompany($arr);
              } else {
                 $cid = $request->company_id;
@@ -78,16 +77,17 @@ class CustomerMasterController extends Controller
             $cm->customer_name = $request->customer_name;
             $cm->display_name = $request->display_name;
             $cm->company_id = $cid;
-            $cm->gst_no = $request->gst_no;
+            $cm->gst_no = $request->gst_no??null;;
             $cm->address = $request->address;
-            $cm->city = $request->city;
-            $cm->state = $request->state;
-            $cm->country= $request->country;
-            $cm->pincode	= $request->pincode;
-            $cm->email	= $request->email;
-            $cm->mobile	= $request->mobile;
-            $cm->billing_cycle = $request->billing_cycle;
-            $cm->credit_cycle = $request->credit_cycle;
+            $cm->address1 = $request->address2??null;
+            $cm->city = $request->city??null;
+            $cm->state = $request->state??null;
+            $cm->country= $request->country??null;
+            $cm->pincode	= $request->pincode??null;
+        //    $cm->email	= $request->email;
+         //   $cm->mobile	= $request->mobile;
+            $cm->billing_cycle = $request->billing_cycle??null;;
+            $cm->credit_cycle = $request->credit_cycle??null;;
             $cm->status = 1;
             $cm->save();
 
@@ -95,7 +95,7 @@ class CustomerMasterController extends Controller
                              ->with('success', 'Customer created successfully!');
                              
           } catch (\Exception $e) {
-              //dd("Fail". $e->getMessage());
+              dd("Fail". $e->getMessage());
               return redirect()->back()
                              ->withInput()
                              ->with('error', 'Error creating customer: ' . $e->getMessage());
@@ -105,9 +105,10 @@ class CustomerMasterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CustomerMaster $customerMaster)
+    public function show(CustomerMaster $customer)
     {
-        die("Display Details");
+        $companies = CompanyMaster::getCompanyArray();
+        return view('masters.customer.show', compact('customer','companies'));
     }
 
     /**
@@ -206,5 +207,22 @@ class CustomerMasterController extends Controller
             ]);
         }
         return response()->json([]);
+    }
+
+    public function setupCustomer():View
+    {
+       // dd("Set up Customer");
+         $companies = CompanyMaster::getCompanyArray();
+         $countries = Country::getCountryArray();
+         //dd($countries);
+        return view('masters.customer.setup-customer',compact('countries','companies'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function saveCustomer(Request $request): RedirectResponse
+    {
+        dd("Set up saveCustomer");
     }
 }

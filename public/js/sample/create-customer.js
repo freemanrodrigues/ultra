@@ -15,44 +15,7 @@ $(document).ready(function () {
         }
     });
 
-    // Preview functionality
-    $('#previewBtn').on('click', function () {
-        const form = $('#customerForm')[0];
-        const formData = new FormData(form);
-        let previewHTML = '<div class="row">';
-
-        // Basic Information
-        previewHTML += '<div class="col-md-6"><h6 class="text-primary">Basic Information</h6>';
-        previewHTML += '<p><strong>Customer Name:</strong> ' + (formData.get('customer_name') || 'Not provided') + '</p>';
-        previewHTML += '<p><strong>Display Name:</strong> ' + (formData.get('display_name') || 'Not provided') + '</p>';
-        previewHTML += '<p><strong>Company:</strong> ' + ($('#company_id option:selected').text() || 'Not selected') + '</p>';
-        previewHTML += '<p><strong>GST Number:</strong> ' + (formData.get('gst_no') || 'Not provided') + '</p>';
-        previewHTML += '</div>';
-
-        // Address Information
-        previewHTML += '<div class="col-md-6"><h6 class="text-success">Address Information</h6>';
-        previewHTML += '<p><strong>Address:</strong> ' + (formData.get('address') || 'Not provided') + '</p>';
-        previewHTML += '<p><strong>City:</strong> ' + (formData.get('city') || 'Not provided') + '</p>';
-        previewHTML += '<p><strong>State:</strong> ' + (formData.get('state') || 'Not provided') + '</p>';
-        previewHTML += '<p><strong>Country:</strong> ' + (formData.get('country') || 'Not provided') + '</p>';
-        previewHTML += '<p><strong>Pincode:</strong> ' + (formData.get('pincode') || 'Not provided') + '</p>';
-        previewHTML += '</div>';
-
-        // Business Information
-        previewHTML += '<div class="col-12 mt-3"><h6 class="text-warning">Business Information</h6>';
-        previewHTML += '<div class="row">';
-        previewHTML += '<div class="col-md-4"><p><strong>Billing Cycle:</strong> ' + (formData.get('billing_cycle') || 'Not selected') + '</p></div>';
-        previewHTML += '<div class="col-md-4"><p><strong>Credit Cycle:</strong> ' + (formData.get('credit_cycle') || 'Not provided') + ' days</p></div>';
-        previewHTML += '<div class="col-md-4"><p><strong>Group:</strong> ' + (formData.get('group') || 'Not selected') + '</p></div>';
-        previewHTML += '<div class="col-md-6"><p><strong>Sales Person:</strong> ' + ($('#sales_person_id option:selected').text() || 'Not selected') + '</p></div>';
-        previewHTML += '<div class="col-md-6"><p><strong>Status:</strong> ' + (formData.get('status') || 'Not selected') + '</p></div>';
-        previewHTML += '</div></div>';
-
-        previewHTML += '</div>';
-
-        $('#previewContent').html(previewHTML);
-        new bootstrap.Modal(document.getElementById('previewModal')).show();
-    });
+   
 
     // Form validation
     $('#customerForm').on('submit', function (e) {
@@ -88,40 +51,75 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
+    $('#customer_name').on('blur', function () {
+       const cus_name =  $(this).val().trim();
+        $('#division').val( cus_name);
+    });
+    $('#site').on('change', function () {
+        const cus_name =  $('#customer_name').val().trim();
+       // var site_name = $('select[name="site"]').val();
+       var site_name = $("#site option:selected").text();
+        $('#division').val( cus_name+' '+site_name);
+    });
     $('#gst_no').on('blur', function () {
         const gstNo = $(this).val().trim();
+        //alert("Works 1");
+
+        const gstinRegex = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/;
+        
         //alert("Works");
-        if (gstNo.length >= 15) {
+        if (gstinRegex.test(gstNo)) {
+           
+          // getState(gstNo.substring(0, 2));
+            //alert('Yes');
+        
+       
             $.ajax({
-                url: "/check-gst",
+                url: "/ajax/check-gst",
                 method: 'POST',
                 data: {
                     'gst_no': gstNo,
                 },
                 success: function (response) {
+                //    alert("Response"+response.exists);
                     if (response.exists) {
                         console.log("THe Pan number Exists");
                      //   $('#gst_result').text('GST matched with company: ' + response.company_name);
-                     $('#company_id').val( response.company_name);
-                     alert(response.company_id);
-                     $('#companyid_val').val( response.company_id);
-                     $('#company_id').attr('readonly', true);
+                     $('#customer_name').val( response.company_name);
+                   //  alert(response.company_id);
+                     $('#company_id').val( response.company_id);
+                   //  $('#company_id').attr('readonly', true);
                     } else {
+                       // alert("GST Not Exus"+response.exists);
                        //$('#gst_result').text('No company found for this GST number');
-                       console.log(" Not Exists");
-                        $('#company_id').prop('required', true);
+                       //console.log(" Not Exists");
+                    //    $('#company_id').prop('required', true);
                         
                     }
                 },
                 error: function () {
-                    $('#gst_result').text('Error validating GST number');
+                    
+                    //$('#gst_error').text('Error validating GST number').css('color', 'red');;
                 }
             });
         } else {
-            $('#gst_result').text('Please enter a valid 15-digit GST number.');
+        //    alert('Else');
+            $('#gst_error').text('Please enter a valid 15-digit GST number.').css('color', 'red');;
         }
+        
     });
     
-    
+    $('#b2c_customer').on('change', function() {
+     //   alert("On Checked");
+        const isChecked = $(this).prop('checked');
+        //alert("On Checked"+isChecked);
+         if(isChecked) {
+             //  $("#customer_name_div").prop('disabled',true);
+               $(".customer_name_div").hide();
+         } else {
+            // $("#customer_name_div").prop('disabled',false);
+             $(".customer_name_div").show();
+         }
+        
+     });
 });

@@ -16,13 +16,14 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('display_name')->nullable();
             $table->integer('company_id')->nullable();
+            $table->boolean('b2c_customer')->nullable();
             $table->string('gst_no')->nullable();
-            $table->string('address')->nullable();
+             $table->string('address')->nullable();
             $table->string('address1')->nullable();
             $table->string('city')->nullable();
-            $table->integer('state')->nullable();
+            $table->string('state')->nullable();
             $table->integer('country')->nullable();
-        //    $table->string('pincode')->nullable();
+            $table->string('pincode')->nullable();
         //   $table->string('email')->nullable();
         //    $table->string('mobile')->nullable();
             $table->string('landline')->nullable();

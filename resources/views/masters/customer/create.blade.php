@@ -46,7 +46,39 @@
                                         <i class="bi bi-person-badge me-2"></i>Basic Information
                                     </h5>
                                     
+                                      <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                        <input type="checkbox" 
+                                                   class="form-check-input  @error('b2c_customer') is-invalid @enderror" 
+                                                   id="b2c_customer" 
+                                                   name="b2c_customer" 
+                                                   value="{{ old('b2c_customer')  }}" ><span class="m-2"> <label for="b2c_customer" class="form-label fw-semibold ml-10"> B2C Customer (No GST Required)</label></span>
+                                            @error('b2c_customer')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                       </div>  
+
+                                        <div class="row customer_name_div">
+                                        <label for="gst_no" class="form-label fw-semibold">GST Number</label>
+                                           
+                                            <input type="text" 
+                                                   class="form-control @error('gst_no') is-invalid @enderror" 
+                                                   id="gst_no" 
+                                                   name="gst_no" 
+                                                   value="{{ old('gst_no') }}" 
+                                                   placeholder="Enter GST number (e.g., 22AAAAA0000A1Z5)"
+                                                   pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9A-Za-z]{1}">
+                                            <div class="form-text">Format: 22AAAAA0000A1Z5</div>
+                                            @error('gst_no')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            <div id="gst_error"></div>
+                                        </div>  
+
                                     <div class="row">
+                             
+
                                         <div class="col-md-6 mb-3">
                                             <label for="customer_name" class="form-label fw-semibold">
                                                 Customer Name <span class="text-danger">*</span>
@@ -64,59 +96,36 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="display_name" class="form-label fw-semibold">
-                                                Display Name <span class="text-danger">*</span>
+                                            <label for="site" class="form-label fw-semibold">
+                                                Site <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" 
-                                                   class="form-control @error('display_name') is-invalid @enderror" 
-                                                   id="display_name" 
-                                                   name="display_name" 
-                                                   value="{{ old('display_name') }}" 
-                                                   placeholder="Enter display name"
-                                                   required>
-                                            @error('display_name')
+                                            <select class="form-select @error('site') is-invalid @enderror" 
+                                                    id="site" name="site" required>
+                                                <option value="">Select OR Add Site</option>
+                                                    @foreach(config('constants.SITE_TYPE') as $k => $val)
+                                                        <option value="{{$k}}">{{$val}}</option>
+                                                    @endforeach
+                                            </select -->
+                                            @error('customer_name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                            
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            
-                                            <label for="gst_no" class="form-label fw-semibold">GST Number</label>
-                                            <input type="text" 
-                                                   class="form-control @error('gst_no') is-invalid @enderror" 
-                                                   id="gst_no" 
-                                                   name="gst_no" 
-                                                   value="{{ old('gst_no') }}" 
-                                                   placeholder="Enter GST number (e.g., 22AAAAA0000A1Z5)"
-                                                   pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9A-Za-z]{1}">
-                                            <div class="form-text">Format: 22AAAAA0000A1Z5</div>
-                                            @error('gst_no')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                        
 
-                                        <div class="col-md-6 mb-3">
-                                            <label for="company_id" class="form-label fw-semibold">
-                                                Company <span class="text-danger">*</span>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="division" class="form-label fw-semibold">
+                                                Division (Optional) <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" id="company_id" name="company_id"  class="form-control @error('company_id') is-invalid @enderror" >
-                                            <!-- select class="form-select @error('company_id') is-invalid @enderror" 
-                                                    id="company_id" 
-                                                    name="company_id" 
-                                                    required>
-                                                <option value="">Select Company</option>
-                                                @foreach($companies as $k => $company)
-                                                    <option value="{{ $k }}" 
-                                                            {{ old('company_id') == $k ? 'selected' : '' }}>
-                                                        {{ $company }}
-                                                    </option>
-                                                @endforeach
-                                            </select -->
-                                             <input type="hidden" name="companyid_val" id="companyid_val">
+                                            <input type="text" id="division" name="division"  class="form-control @error('division') is-invalid @enderror" placeholder="Enter Division Name">
+
                                            
-                                            @error('company_id')
+                                             <input type="hidden" name="company_id" id="company_id">
+                                           
+                                            @error('')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -150,10 +159,26 @@
                                         </div>
                                     </div>
 
+                                        <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="address2" class="form-label fw-semibold">
+                                                Address 2 <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control @error('address2') is-invalid @enderror" 
+                                                      id="address2" 
+                                                      name="address2" 
+                                                      value="{{ old('address2') }}" 
+                                                      placeholder="Enter complete address2"
+                                                      required>
+                                            @error('address2')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-4 mb-3">
                                             <label for="city" class="form-label fw-semibold">
-                                                City <span class="text-danger">*</span>
+                                                City/District <span class="text-danger">*</span>
                                             </label>
                                             <input type="text" 
                                                    class="form-control @error('city') is-invalid @enderror" 
@@ -167,7 +192,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-4 mb-3">
                                             <label for="state" class="form-label fw-semibold">
                                                 State <span class="text-danger">*</span>
                                             </label>
@@ -190,7 +215,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-4 mb-3">
                                             <label for="country" class="form-label fw-semibold">
                                                 Country <span class="text-danger">*</span>
                                             </label>
@@ -205,14 +230,16 @@
                                                     </option>
                                                 @endforeach
                                                 
-                                                <option value="Australia" {{ old('country') == 'Australia' ? 'selected' : '' }}>Australia</option>
                                             </select> 
                                             @error('country')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-3 mb-3">
+                                
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mb-3 " >
                                             <label for="pincode" class="form-label fw-semibold">
                                                 Pincode <span class="text-danger">*</span>
                                             </label>
@@ -229,13 +256,27 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="col-6 mb-3 d-flex align-items-center" >
+                                        <input type="checkbox" 
+                                                   class="form-check-input bordered @error('billing_address') is-invalid @enderror" 
+                                                   id="billing_address" 
+                                                   name="billing_address" 
+                                                   value="{{ old('billing_address')  }}"> <span class="m-2"><label for="billing_address" class="form-label fw-semibold ml-20"> B2C Customer (No GST Required)</label></span>
+                                            @error('billing_address')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            <label for="billing_address" class="form-label fw-semibold">
+                                                This is billing address <span class="text-danger">*</span>
+                                            </label>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Business Information Section -->
-                        <div class="row mb-4">
+                        <div class="row mb-4 ">
                             <div class="col-12">
                                 <div class="border-start border-warning border-4 bg-light p-3 rounded">
                                     <h5 class="text-warning mb-3">
@@ -367,32 +408,6 @@
     </div>
 </div>
 
-<!-- Preview Modal -->
-<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="previewModalLabel">
-                    <i class="bi bi-eye me-2"></i>Customer Preview
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="previewContent">
-                <!-- Preview content will be populated by JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary create-customer" onclick="document.getElementById('customerForm').submit();">
-                    <i class="bi bi-check-circle me-1"></i>Confirm & Create
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="/js/sample/create-customer.js"></script>
-<script language="javascript">
-
-
-
-</script>
 @endsection

@@ -68,7 +68,8 @@ class CompanyMasterController extends Controller
         $request->validate([
             'gst_no' => 'required|string|max:15',
         ]);
-        $pan = substr($request->gst_no, 2, 12);
+        $pan = substr($request->gst_no, 2, 10);
+       
         $company = CompanyMaster::where('pancard', $pan)->first();
 
         if ($company) {

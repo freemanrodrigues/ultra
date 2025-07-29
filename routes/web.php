@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, CourierMasterController,CustomerMasterController,EquipmentMasterController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, CourierMasterController,CustomerMasterController,EquipmentMasterController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -29,6 +29,9 @@ Route::get('/blank', function () {
     return view('blank');
 });
 
+Route::get('/blank1', function () {
+    return view('blank1');
+});
    
 Route::get('/dashboard', function () {  return view('dashboard');})->name('dashboard');;
 Route::get('login', [UserController::class,'loginHtml'])->name('login');;
@@ -41,13 +44,29 @@ Route::get('forgot-password', [UserController::class,'forgotPasswordView'])->nam
 Route::post('forgot-password-update', [UserController::class,'updateForgotPassword'])->name('forgot-password.update');
 
 Route::group(['middleware' => ['loginAuth']], function () {
-//Route::middleware([loginAuth::class])->group(function () {
+
+    // setup process
+Route::get('/masters/customer/setup-customer', [CustomerMasterController::class,'setupCustomer'])->name('customer.setup-customer');
+Route::post('/masters/customer/save-customer', [CustomerMasterController::class,'saveCustomer'])->name('customer.save-customer');
+Route::get('/masters/user/setup-user', [UserController::class,'setupUser'])->name('user.setup-user');
+Route::post('/masters/user/save-user', [UserController::class,'saveUser'])->name('user.save-user');
+
+Route::get('/masters/site-masters/setup-sitemaster', [SiteMasterController::class,'setupSitemaster'])->name('site-masters.setup-sitemaster');
+Route::post('/masters/site-masters/save-sitemaster', [SiteMasterController::class,'saveSitemaster'])->name('site-masters.save-sitemaster');
+
+
+
+// Ajax
+Route::any('/ajax/check-gst', [CompanyMasterController::class,'checkGST'])->name('check.gst');
+Route::any('/ajax/get-state', [StateController::class,'checkGST'])->name('get-state');
+
+
 //Route::resource('/master/state', SiteMasterController::class);
 Route::get('profile', [UserController::class,'userProfile'])->name('profile');
 Route::get('reset-password', [UserController::class,'resetPasswordView'])->name('reset-password');
 Route::post('reset-password-update', [UserController::class,'updateResetPassword'])->name('reset-password.update');
 Route::resource('/master/users', UserController::class);
-Route::any('/check-gst', [CompanyMasterController::class,'checkGST'])->name('check.gst');
+
 
 Route::any('/master/site-masters/assign-users/{id}', [SiteMasterController::class,'assignUsers'])->name('site-masters.assign-users');  
 Route::any('/master/site-masters/save-assign-users', [SiteMasterController::class, 'saveAssignUsers'])->name('site-masters.save-assign-users');     
@@ -111,4 +130,10 @@ Route::any('/master/item/bulk_delete', [ItemMasterController::class,'bulkDelete'
 // Sample details
 Route::get('/sample-details/{id}', [SampleDetailController::class,'addSampleDetials'])->name('sample-details');
 Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDetials'])->name('save-sample-details');
+
+
+
+
+
+
 });
