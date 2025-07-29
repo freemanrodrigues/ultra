@@ -409,5 +409,5 @@
 </div>
 
 
-<script src="/js/sample/create-customer.js"></script>
+<script src="/js/sample/create-customer.js?{{date('mmss')}}"></script>
 @endsection
