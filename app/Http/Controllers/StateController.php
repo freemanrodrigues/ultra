@@ -62,4 +62,22 @@ class StateController extends Controller
     {
         //
     }
+
+    public function getState(Request $request)
+    {
+        $request->validate([
+            'state' => 'required|integer',
+        ]);
+       
+        $state = State::where('id', $request->state)->first();
+
+        if ($state) {
+            return response()->json([
+                'exists' => true,
+                'state_id' => $state->id, 
+                'state_code' => $state->shortname, 
+            ]);
+        }
+        return response()->json(['exists' => false]);
+    }
 }

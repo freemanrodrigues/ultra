@@ -83,7 +83,13 @@ class CompanyMasterController extends Controller
                 'company_name' => $company->company_name, 
                 'company_id' => $company->id, 
                 'state_id' => $state->id, 
-                'state_code' => $company->statecode, 
+                'state_code' => $state->shortname, 
+            ]);
+        } elseif ($state) {
+            return response()->json([
+                'exists' => true,
+                'state_id' => $state->id, 
+                'state_code' => $state->shortname, 
             ]);
         }
 

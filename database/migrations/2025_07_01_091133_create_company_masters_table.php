@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('company_masters', function (Blueprint $table) {
             $table->id();
             // company code
-            $table->string('company_name');
-            $table->string('pancard');
+            $table->string('company_name')->unique();
+            $table->string('pancard')->unique()->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

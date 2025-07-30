@@ -35,7 +35,7 @@ class CustomerMasterController extends Controller
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $customers = $query->paginate(10)->appends($request->query());
+        $customers = $query->paginate(100)->appends($request->query());
         return view('masters.customer.index',compact('customers'));
     }
 
@@ -68,7 +68,7 @@ class CustomerMasterController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //dd($request->all());
+       
         $validated = $request->validate([
             'customer_name' => 'required|string|max:255',
            // 'display_name' => 'required|string|max:255',
@@ -98,7 +98,7 @@ class CustomerMasterController extends Controller
              }
             $cm = new CustomerMaster();
             $cm->customer_name = $request->customer_name;
-            $cm->display_name = $request->display_name;
+            $cm->division = $request->division??null;
             $cm->company_id = $cid;
             $cm->gst_no = $request->gst_no??null;;
             $cm->address = $request->address;
@@ -107,21 +107,30 @@ class CustomerMasterController extends Controller
             $cm->state = $request->state??null;
             $cm->country= $request->country??null;
             $cm->pincode	= $request->pincode??null;
+            $cm->gst_state_code = $request->state_code??null;
         //    $cm->email	= $request->email;
          //   $cm->mobile	= $request->mobile;
+            $cm->is_billing = $request->billing_address??null;;
             $cm->billing_cycle = $request->billing_cycle??null;;
             $cm->credit_cycle = $request->credit_cycle??null;;
-            $cm->status = 1;
+            $cm->status = $request->status??null;
             $cm->save();
+
 
               return redirect()->route('customer.index')
                              ->with('success', 'Customer created successfully!');
                              
           } catch (\Exception $e) {
-              dd("Fail". $e->getMessage());
+             // dd("Fail". $e->getMessage());
+            // 1062
+            if($e->getCode() == 1062) {
+                   $err_msg = 'Duplicate Record'; 
+            } else {
+                $err_msg = $e->getMessage();
+            }
               return redirect()->back()
                              ->withInput()
-                             ->with('error', 'Error creating customer: ' . $e->getMessage());
+                             ->with('error', 'Error creating customer: ' . $err_msg);
           }
     }
 
@@ -247,5 +256,31 @@ class CustomerMasterController extends Controller
     public function saveCustomer(Request $request): RedirectResponse
     {
         dd("Set up saveCustomer");
+    }
+
+    public function autoSuggestCustomer(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+        // Fetch data from your database
+        // Replace 'YourModel' and 'name' with your actual model and column name
+        $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
+                                ->select('id', 'company_name') // Select only necessary columns
+                                ->limit(10) // Limit the number of suggestions
+                                ->get();
+
+        return response()->json($suggestions);
+    }
+
+    
+    public function autoSuggestCustomer1(Request $request)
+    {
+       
+        return view('blank1');
     }
 }

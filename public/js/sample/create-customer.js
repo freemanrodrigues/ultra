@@ -1,12 +1,11 @@
 $(document).ready(function () {
     var $ = jQuery.noConflict();
-    // Auto-fill display name based on customer name
-    // $('#customer_name').on('input', function () {
-    //     const displayNameField = $('#display_name');
-    //     if (!displayNameField.val()) {
-    //         displayNameField.val($(this).val());
-    //     }
-    // });
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     // Reset form
     $('#resetBtn').on('click', function () {
@@ -46,11 +45,35 @@ $(document).ready(function () {
         $(this).val($(this).val().replace(/[^0-9]/g, ''));
     });
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+    $('#state').on('change', function () {
+        const state = $('#state').val();
+      
+       if ($('#b2c_customer').is(':checked')) {
+        $.ajax({
+            url: "/ajax/get-state",
+            method: 'POST',
+            data: {
+                'state': state,
+            },
+            success: function (response) {
+                 if (response.exists) {
+                    $('#state_code').val( response.state_code);
+                   // $('#state').val(response.state_code);
+                } 
+            },
+            error: function () {
+                //$('#gst_error').text('Error validating GST number').css('color', 'red');;
+            }
+    });   
+       }
+    });    
+
+    $('#customer_name').on('cut copy paste', function(e) {
+        e.preventDefault(); // Prevent the default cut, copy, and paste actions
+        // Optionally, you can add an alert or message to inform the user
+         alert('Copying and pasting is disabled in this field.');
     });
+
     $('#customer_name').on('blur', function () {
        const cus_name =  $(this).val().trim();
      //   $('#division').val( cus_name);
@@ -67,7 +90,7 @@ $(document).ready(function () {
         if (gstinRegex.test(gstNo)) {
            
             $('#pan_no').val( gstNo.substring(2, 12));
-            $('#state_code').val( gstNo.substring(0, 2));
+            //$('#state_code').val( gstNo.substring(0, 2));
        
             $.ajax({
                 url: "/ajax/check-gst",
@@ -81,7 +104,7 @@ $(document).ready(function () {
                      //   $('#gst_result').text('GST matched with company: ' + response.company_name);
                         $('#customer_name').val( response.company_name);
                         $('#company_id').val( response.company_id);
-                       // $('#state_code').val( response.state_id);
+                        $('#state_code').val( response.state_code);
                         $('#state').val(response.state_id);
 
                         // Optionally trigger the change event if needed
@@ -106,6 +129,7 @@ $(document).ready(function () {
     });
     
     $('#b2c_customer').on('change', function() {
+        $('#create_customer')[0].reset();
      //   alert("On Checked");
         const isChecked = $(this).prop('checked');
         //alert("On Checked"+isChecked);

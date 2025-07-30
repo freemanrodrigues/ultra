@@ -1,0 +1,30 @@
+.suggestion-list {
+    position: absolute; /* Position relative to the parent container */
+    width: calc(100% - 2rem); /* Match input width, accounting for padding */
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #dee2e6; /* Bootstrap border color */
+    border-radius: 0.25rem; /* Bootstrap border-radius */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Bootstrap shadow */
+    z-index: 10; /* Ensure it's above other content */
+    margin-top: 0.25rem; /* Small margin below input */
+}
+.suggestion-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #e9ecef; /* Bootstrap light border */
+}
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+.suggestion-item:hover {
+    background-color: #f8f9fa; /* Bootstrap light hover background */
+}
+.loading-indicator {
+    display: none; /* Hidden by default */
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #6c757d; /* Bootstrap muted text color */
+}
+       
