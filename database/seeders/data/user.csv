@@ -1,8 +1,0 @@
-email,phone,firstname,lastname,company_id,user_type,user_role
-superadmin@ultra.com,987654321,Super,admin,1,1,1
-lead@ultra.com,997654321,Team,Lead,1,1,2
-operator@ultra.com,787654321,Data,Operator,1,1,4
-user@lt.com,127654321,User,LT,2,2,1
-user2@lt.com,687654321,User2,LT,2,2,2
-user@hitachi.com,487654321,User,LT,2,2,1
-user2@hitachi.com,785654321,User2,LT,2,2,2
