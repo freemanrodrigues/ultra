@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Country,CompanyMaster,CustomerMaster,SiteMaster,State};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class CustomerMasterController extends Controller
 {
@@ -28,8 +29,10 @@ class CustomerMasterController extends Controller
         // Filter by status
         if ($request->filled('status')) {
             $query->where('status', $request->get('status'));
+        } else {
+            $query->where('status', 1);
         }
-
+       
         // Sort by
         $sortBy = $request->get('sort_by', 'created_at');
         $sortOrder = $request->get('sort_order', 'desc');
@@ -90,9 +93,13 @@ class CustomerMasterController extends Controller
 
         try {
             //  dd($validated);
-             if(empty($request->companyid_val) && $request->customer_name != '') {
+             if(empty($request->company_id) && $request->customer_name != '') {
+                try {
                 $arr = array(0 =>$request->customer_name,1 =>substr($request->gst_no, 2, 10));
                 $cid = CompanyMaster::createCompany($arr);
+                } catch (\Exception $e) {
+                    Log::error('An error occurred', ['exception' => $e->getMessage()]); // Log an error
+                }
              } else {
                 $cid = $request->company_id;
              }
@@ -150,11 +157,9 @@ class CustomerMasterController extends Controller
     {
        
         $companies = CompanyMaster::getCompanyArray();
- 
-        return view('masters.customer.edit', compact('customer','companies'));
-       
-       
-
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
+        return view('masters.customer.edit', compact('customer','companies','countries','states'));
     }
  //
     /**
@@ -162,7 +167,7 @@ class CustomerMasterController extends Controller
      */
     public function update(Request $request, CustomerMaster $customerMaster)
     {
-        dd($request->all());
+       // dd($request->all());
         $validated = $request->validate([
             'customer_name' => 'required|string|max:255',
             'display_name' => 'required|string|max:255',
@@ -217,9 +222,16 @@ class CustomerMasterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CustomerMaster $customerMaster)
+    public function destroy(CustomerMaster $customer)
     {
-        //
+        try {
+            CustomerMaster::where('id', $customer->id)->update(['status' => 0]);
+            return redirect()->route('make.index')
+                            ->with('success', 'Customer deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                            ->with('error', 'Error deleting Customer: ' . $e->getMessage());
+        }
     }
 
     public function getCustomerAddress(Request $request)

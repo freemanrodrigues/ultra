@@ -5,7 +5,7 @@ return [
            'USER_ROLE' => array('1' => 'SuperAdmin', '2' => 'Team Leader', '3' => 'Executive', '4' => 'Data Entry'),
            'SEVERITY' => array('1' => 'Normal', '2' => 'Caution', '3' => 'Critical'),
            'SITE_TYPE' => array('1' => 'HeadOffice', '2' => 'Manufacturing Plant1', '3' => 'Manufacturing Plant1', '4' => 'WareHouse Delhi', '5' => 'WareHouse Mumbai'),
-           
+           'BILLING_CYCLE' => array('1' => 'Monthly', '2' => 'Quarterly', '3' => 'Half Yearly', '4' => 'Yearly'),
            'BRAND_OF_OIL' => array( 1  => "Castrol",
            2  => "Indian Oil (Servo)",
            3  => "HP Lubricants (Hindustan Petroleum)",

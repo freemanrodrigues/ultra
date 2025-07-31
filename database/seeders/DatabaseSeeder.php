@@ -22,8 +22,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CustomerSeeder::class,
             SiteMasterSeeder::class,
-            UnitSeeder::class,
-         
+            UnitSeeder::class, 
+            CourierSeeder::class,
+            BrandSeeder::class,
+            BottleSeeder::class,
+            FerrographySeeder::class,
+            MakeSeeder::class,
         ]);
     }
 }

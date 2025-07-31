@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('brand_masters', function (Blueprint $table) {
             $table->id();
             $table->string('brand_code')->nullable();
-            $table->string('brand_name')->nullable();
+            $table->string('brand_name')->unique();
             $table->boolean('status')->default(1);
-            $table->softDeletes();
             $table->timestamps();
         });
     }

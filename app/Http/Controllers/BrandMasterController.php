@@ -123,18 +123,16 @@ class BrandMasterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BrandMaster $brandMaster,Request $request): RedirectResponse|JsonResponse
+    public function destroy(BrandMaster $brand): RedirectResponse|JsonResponse
     {
        
-        $segments = explode('/', $_SERVER['REQUEST_URI']);
-        $id = end($segments);
         try {
-            BrandMaster::where('id', $id)->update(['status' => 0]);
+            BrandMaster::where('id', $brand->id)->update(['status' => 0]);
             return redirect()->route('brand.index')
-                            ->with('success', 'Site Master deleted successfully!');
+                            ->with('success', 'BrandMaster deleted successfully!');
         } catch (\Exception $e) {
             return redirect()->back()
-                            ->with('error', 'Error deleting Site Master: ' . $e->getMessage());
+                            ->with('error', 'Error deleting BrandMaster: ' . $e->getMessage());
         }
         
     }

@@ -87,24 +87,29 @@ class MakeMstController extends Controller
      */
     public function edit(MakeMst $make)
     {
-       // die("XX".$make->id);
-        return view('masters.make.edit',compact('make'));
+        $brands = BrandMaster::getBrandArray();
+        return view('masters.make.edit',compact('make',
+        'brands'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MakeMst $makeMst)
+    public function update(Request $request, MakeMst $make)
     {
+        
         $validated = $request->validate([
-            'make_code' => 'required|string|max:50|unique:make_msts,make_code',
+            'make_code' => 'required|string|max:50|unique:make_msts,make_code,'.$make->id,
             'make_name' => 'required|string|max:255',
-            'status' => 'required|in:1,0'
+            'brand_id'=>'required|integer',
+            'status' => 'required|in:1,0',
         ]);
 
         try {
            // dd($validated);
-           MakeMst::create($validated);
+          // MakeMst::create($validated);
+             $make->update($validated);
+            
            // dd("Success");
             return redirect()->route('make.index')
                            ->with('success', 'Make created successfully!');
@@ -119,8 +124,16 @@ class MakeMstController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MakeMst $makeMst)
+    public function destroy(MakeMst $make)
     {
-        //
+        
+        try {
+            MakeMst::where('id', $make->id)->update(['status' => 0]);
+            return redirect()->route('make.index')
+                            ->with('success', 'MakeMaster deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                            ->with('error', 'Error deleting MakeMaster: ' . $e->getMessage());
+        }
     }
 }

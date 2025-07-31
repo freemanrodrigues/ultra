@@ -95,7 +95,7 @@ class FerrographyMasterController extends Controller
      */
     public function update(Request $request, FerrographyMaster $ferrography)
     {
-        //dd("Update");
+        //dd($ferrography->id);
         $validated = $request->validate([
             'ferrography_code' => 'required|string|max:50|unique:ferrography_masters,ferrography_code,'.$ferrography->id,
             'ferrography_name' => 'required|string|max:255',
@@ -121,6 +121,7 @@ class FerrographyMasterController extends Controller
      */
     public function destroy(FerrographyMaster $ferrography)
     {
+        
         try {
             FerrographyMaster::where('id', $ferrography->id)->update(['status' => 0]);
             return redirect()->route('ferrography.index')
