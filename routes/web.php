@@ -28,10 +28,11 @@ Route::get('/sample', function () {
 Route::get('/blank', function () {
     return view('blank');
 });
-
+/*
 Route::get('/blank1', function () {
     return view('blank1');
 });
+*/
    
 Route::get('/dashboard', function () {  return view('dashboard');})->name('dashboard');;
 Route::get('login', [UserController::class,'loginHtml'])->name('login');;
@@ -58,8 +59,10 @@ Route::post('/masters/site-masters/save-sitemaster', [SiteMasterController::clas
 
 // Ajax
 Route::any('/ajax/check-gst', [CompanyMasterController::class,'checkGST'])->name('check.gst');
-Route::any('/ajax/get-state', [StateController::class,'checkGST'])->name('get-state');
+Route::post('/ajax/get-state', [StateController::class,'getState'])->name('get-state');
+Route::any('/ajax/autosuggest-customer', [CustomerMasterController::class,'autoSuggestCustomer'])->name('autosuggest-customer');
 
+Route::get('/blank1', [CustomerMasterController::class,'autoSuggestCustomer1'])->name('blank1');
 
 //Route::resource('/master/state', SiteMasterController::class);
 Route::get('profile', [UserController::class,'userProfile'])->name('profile');

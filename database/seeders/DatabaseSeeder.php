@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountrySeeder::class,
             StateSeeder::class,
-            CompanySeeder::class,
+        /*    CompanySeeder::class,
             UserSeeder::class,
             CustomerSeeder::class,
             SiteMasterSeeder::class,
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             BottleSeeder::class,
             FerrographySeeder::class,
-            MakeSeeder::class,
+            MakeSeeder::class, */
         ]);
     }
 }
