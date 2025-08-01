@@ -38,7 +38,7 @@ class CustomerMasterController
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $customers = $query->paginate(1)->appends($request->query());
+        $customers = $query->paginate(10)->appends($request->query());
         
         return view('masters.customer.index',compact('customers'));
     }
@@ -95,7 +95,7 @@ class CustomerMasterController
                     $cid = $company[0]->id;
                 }
                 } catch (\Exception $e) {
-                    dd($e->getMessage());
+                    //dd($e->getMessage());
                     Log::error('An error occurred', ['exception' => $e->getMessage()]); // Log an error
                     return redirect()->back()
                     ->withInput()

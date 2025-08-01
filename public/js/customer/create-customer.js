@@ -49,11 +49,16 @@ jQuery(function ($) {
 
             $.post('/ajax/check-gst', { gst_no: gstNoVal }, function (response) {
                 if (response.exists) {
-                    $('#customer_name').val(response.company_name);
+                    if(response.company_name){
+                        $('#gst_success').text('GST number already added').css('color', 'green');
+                        $('#customer_name').val(response.company_name);
+                        $("#customer_name").prop("readonly", true);
+                    }
                     $('#company_id').val(response.company_id);
                     $('#state_code').val(response.state_code);
                     $('#state').val(response.state_id).change();
                     $('#gst_error').empty();
+                   
                 }
             }).fail(function () {
                 $('#gst_error').text('Error validating GST number').css('color', 'red');
@@ -104,7 +109,9 @@ jQuery(function ($) {
         $createCustomer.find(':input').not(this).val('');
         $createCustomer.find('input:radio, input:checkbox').not(this).prop('checked', false);
         $createCustomer.find('select').not(this).prop('selectedIndex', 0);
-
+        $('#gst_error').empty();
+        $('#gst_success').empty();
+       
         $('.customer_name_div').toggle(!isChecked);
     });
 });

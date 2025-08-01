@@ -135,7 +135,7 @@
                             Showing {{ $customers->firstItem() }} to {{ $customers->lastItem() }} 
                             of {{ $customers->total() }} results
                         </div>
-                        {{ $customers->links() }}
+                        {{ $customers->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             @endif 

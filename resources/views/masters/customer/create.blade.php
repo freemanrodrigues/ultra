@@ -88,6 +88,7 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <div id="gst_error"></div>
+                                            <div id="gst_success"></div>
                                             </div>
                                              <div class="col-md-6 mb-3">
                                                 <label for="pan_no" class="form-label fw-semibold">PAN Number</label>
@@ -97,21 +98,19 @@
                                             @error('pan_no')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
-                                            <div id="gst_error"></div>
-
-                                             </div>
+                                            </div>
                                         </div>  
 
                                     <div class="row">
-                             
-
                                         <div class="col-md-6 mb-3">
                                             <label for="customer_name" class="form-label fw-semibold">
                                                 Customer Name <span class="text-danger">*</span>
                                             </label>
-        <input type="text" class="form-control @error('customer_name') is-invalid @enderror"                 id="customer_name" name="customer_name" value="{{ old('customer_name')  }}"                 placeholder="Enter customer full name" required>
+        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{ old('customer_name')  }}"                 placeholder="Enter customer full name" required>
              <div id="suggestions" class="suggestion-list d-none">
             </div>
+            
+
             <div id="loading" class="loading-indicator">Loading...</div>
                                             @error('customer_name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -148,7 +147,7 @@
                                             <input type="text" id="division" name="division"  class="form-control @error('division') is-invalid @enderror" placeholder="Enter Division Name" value="{{ old('division') }}" >
 
                                            
-                                             <input type="text" name="company_id" id="company_id">
+                                             <input type="hidden" name="company_id" id="company_id">
                                            
                                             @error('')
                                                 <div class="invalid-feedback">{{ $message }}</div>
