@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
         
                     
         $this->call([
-            CountrySeeder::class,
-            StateSeeder::class,
-        /*    CompanySeeder::class,
-            UserSeeder::class,
+        //    CountrySeeder::class,
+        //    StateSeeder::class,
+            CompanySeeder::class,
             CustomerSeeder::class,
-            SiteMasterSeeder::class,
+        /* UserSeeder::class, 
+           SiteMasterSeeder::class,
             UnitSeeder::class, 
             CourierSeeder::class,
             BrandSeeder::class,

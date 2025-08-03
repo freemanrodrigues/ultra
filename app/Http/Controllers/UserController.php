@@ -86,4 +86,45 @@ class UserController
         Auth::logout();
         return redirect()->route('login');
 	}
+
+    public function index(Request $request): View
+    {
+       // dd("User Index");
+        $query = User::query();
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->get('search');
+            $query->where(function($q) use ($search) {
+                $q->where('firstname', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('status', $request->get('status'));
+        }
+
+        // Sort by
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+        $query->orderBy($sortBy, $sortOrder);
+
+        $users = $query->paginate(10)->appends($request->query());
+        $countries = Country::all();
+        $companies = CompanyMaster::all();
+        return view('masters.user.index', compact('users'))->with(['countries' => $countries, 'companies' => $companies]);
+    }
+
+        /**
+     * Show the form for creating a new resource.
+     */
+    public function create():View
+    {
+        $countries = Country::all();
+        $customers = CustomerMaster::all();
+        //dd($companies);
+        return view('masters.user.create')->with(['countries' => $countries, 'customers' => $customers]);
+    }
 }
