@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         
                     
         $this->call([
-        //    CountrySeeder::class,
-        //    StateSeeder::class,
+            CountrySeeder::class,
+            StateSeeder::class,
             CompanySeeder::class,
             CustomerSeeder::class,
         /* UserSeeder::class, 
