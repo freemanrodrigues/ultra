@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phone')->unique()->nullable();
+            $table->integer('company_id')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->integer('user_type')->default(1);
             $table->integer('user_role', false)->default(0);
             $table->boolean('status')->default(0);

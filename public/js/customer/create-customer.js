@@ -49,11 +49,12 @@ jQuery(function ($) {
 
             $.post('/ajax/check-gst', { gst_no: gstNoVal }, function (response) {
                 if (response.exists) {
-                    if(response.company_name){
+                    if (response.company_name && response.company_name.trim() !== '') {
                         $('#gst_success').text('GST number already added').css('color', 'green');
                         $('#customer_name').val(response.company_name);
                         $("#customer_name").prop("readonly", true);
                     }
+                    $("#customer_name").prop("readonly", false);
                     $('#company_id').val(response.company_id);
                     $('#state_code').val(response.state_code);
                     $('#state').val(response.state_id).change();

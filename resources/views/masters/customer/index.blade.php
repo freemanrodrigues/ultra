@@ -71,7 +71,7 @@
                             </th>
                             <th>ID</th>
                             <th>Customer Name</th>
-                            <th>Email</th>
+                            <th>GST No</th>
                             <th>Mobile</th>
                             <th>Status</th>
                             <th>Created</th>
@@ -89,7 +89,7 @@
                             <td>    <a href="{{ route('customer.show', $customer) }}" class="text-decoration-none">
                                 <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}</code></a>
                             </td>
-                            <td>{{ $customer->email }}</td>
+                            <td>{{ $customer->gst_no }}</td>
                             <td>{{ $customer->mobile }}</td>
                             <td>
                                 <span class="badge status-badge {{ $customer->status == 1 ? 'bg-success' : 'bg-secondary' }}">
@@ -102,6 +102,11 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
+<a href="{{ route('customer-site-masters.index', ['cus_d' => $customer->id]) }}" 
+                                       class="btn btn-sm btn-outline-info" title="View">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                               
                                     <a href="{{ route('customer.show', $customer) }}" 
                                        class="btn btn-sm btn-outline-info" title="View">
                                         <i class="bi bi-eye"></i>

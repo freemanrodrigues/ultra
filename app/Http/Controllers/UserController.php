@@ -127,4 +127,36 @@ class UserController
         //dd($companies);
         return view('masters.user.create')->with(['countries' => $countries, 'customers' => $customers]);
     }
+
+    public function store(Request $request)
+    {
+        //dd($request->all());
+       $validated = $request->validate([
+        'email' => 'required|email|max:100|unique:users,email',
+        'phone' => 'required|string|max:12|unique:users,phone',
+        'firstname' => 'required|string',
+        'lastname' => 'required|string',
+        'customer_id' => 'required|integer',
+        "user_type" => "nullable",
+        "user_role" => "nullable",
+        'status' => 'required|in:1,0'
+    ]);
+
+    try {
+        $user = User::create($validated);
+        $userId = $user->id;
+        $customer = CustomerMaster::getCountryId($request['customer_id']);
+        
+        User::where('id',$userId)->update(['company_id'=>$customer[0]->company_id, 'customer_id' =>$request->customer_id]);
+
+
+        return redirect()->route('users.index')
+                       ->with('success', 'User created successfully!');
+    } catch (\Exception $e) {
+        dd("<br>Error : ".$e->getMessage());
+        return redirect()->back()
+                       ->withInput()
+                       ->with('error', 'Error creating User: ' . $e->getMessage());
+    }
+    }
 }
