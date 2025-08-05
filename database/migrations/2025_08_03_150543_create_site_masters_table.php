@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('site_masters', function (Blueprint $table) {
             $table->id();
         //    $table->string('site_code')->nullable();
-            $table->string('site_name')->nullable();
+            $table->string('site_name')->unique();
         //    $table->string('address')->nullable();
         //    $table->string('address1')->nullable();
             $table->string('city')->nullable();

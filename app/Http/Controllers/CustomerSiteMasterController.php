@@ -81,21 +81,7 @@ class CustomerSiteMasterController
             'status' => 'required|in:1,0'
         ]);
 
-   /*    company_id	customer_id	site_master_id	site_customer_code	site_customer_name	address	city	pincode	state	country	lat	long	status					 */
-   /*
-   "customer_site_code" => "Rus"
-   "customer_site_name_id" => "1"
-   "site_display_name" => "Virar"
-   "customer_id" => "270"
-   "address" => "Virar, Maharashtra, India"
-   "city" => "Virar"
-   "state" => "MH"
-   "country" => "India"
-   "CountryCode" => "IN"
-   "pincode" => "401303"
-   "lat" => "19.4563596"
-   "long" => "72.79246119999999"
-   "status" => "1" */
+
         try {
            // $data = $request->validate();
 			
@@ -144,10 +130,10 @@ class CustomerSiteMasterController
         dd("Destroy Customer Sites");
     }
 
-    public function  assignUsers($id):View
+    public function  assignContact($id):View
     {
        // die("Id:".$id);
-     //  $siteMaster = SiteMaster::where('id' , $id)->get();
+       $siteMaster = SiteMaster::where('id' , $id)->get();
        
        $users = ContactMaster::where('company_id' , $id)->get();
        //dd($users);

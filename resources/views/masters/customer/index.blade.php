@@ -90,7 +90,9 @@
                                 <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}</code></a>
                             </td>
                             <td>{{ $customer->gst_no }}</td>
-                            <td>{{ $customer->mobile }}</td>
+                            <td>{{-- $customer->mobile --}}
+                           
+                            </td>
                             <td>
                                 <span class="badge status-badge {{ $customer->status == 1 ? 'bg-success' : 'bg-secondary' }}">
                                     <i class="fas {{ $customer->status == 1 ? 'fa-check' : 'fa-times' }}"></i>

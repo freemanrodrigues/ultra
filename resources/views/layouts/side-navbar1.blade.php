@@ -355,7 +355,7 @@
 </a>
 </li>
 <li class="nav-item">
-<a href="{{ route('make.index') }}" class="nav-link">                  
+<a href="{{ route('make-model-masters.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Make/Model</p>
 </a>
 </li>

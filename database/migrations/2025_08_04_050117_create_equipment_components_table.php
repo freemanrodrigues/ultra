@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('component_name')->nullable();
             $table->string('component_serial_number')->nullable();
             $table->string('component_type')->nullable();
-            $table->string('assigned_from')->nullable();
-            $table->string('assigned_to')->nullable();         
+            $table->string('assigned_fromdate')->nullable();
+            $table->string('assigned_todate')->nullable();         
             $table->integer('createdby_id')->nullable();
             $table->integer('updatedby_id')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

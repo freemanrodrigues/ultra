@@ -77,8 +77,9 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>Site Code</th>
+                               
                                 <th>Site Name</th>
+                                <th>City/District</th>
                                 <th>Status</th>
                                 <th>Devices</th>
                                 <th>Created Date</th>
@@ -88,10 +89,9 @@
                         <tbody>
                             @foreach($siteMasters as $siteMaster)
                                 <tr>
-                                    <td>
-                                        <strong>{{ $siteMaster->site_code }}</strong>
-                                    </td>
+                                    
                                     <td>{{ $siteMaster->site_name }}</td>
+                                   <td>{{ $siteMaster->city }}</td>
                                    <td>{!! $siteMaster->status_badge !!}</td>
                                     <td><a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a></td>
                                     <td>

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('customer_id')->nullable();
             $table->integer('customer_site_id')->nullable();
             $table->string('customer_site_equiment_name')->nullable();
-            $table->string('assigned_from')->nullable();
-            $table->string('assigned_to')->nullable();
+            $table->string('assigned_fromdate')->nullable();
+            $table->string('assigned_todate')->nullable();
             $table->boolean('status')->default(1);	
             $table->integer('createdby_id')->nullable();
             $table->integer('updatedby_id')->nullable();

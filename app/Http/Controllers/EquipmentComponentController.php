@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\EquipmentComponent;
-use Illuminate\Http\Request;
+use Illuminate\Http\{Request,RedirectResponse};
+use Illuminate\View\View;
 
 class EquipmentComponentController
 {
@@ -12,7 +13,7 @@ class EquipmentComponentController
      */
     public function index()
     {
-        //
+        dd('Index');
     }
 
     /**
@@ -20,7 +21,7 @@ class EquipmentComponentController
      */
     public function create()
     {
-        //
+        dd('create');
     }
 
     /**
@@ -28,7 +29,7 @@ class EquipmentComponentController
      */
     public function store(Request $request)
     {
-        //
+        dd('store'.$request->all());
     }
 
     /**
@@ -36,7 +37,7 @@ class EquipmentComponentController
      */
     public function show(EquipmentComponent $equipmentComponent)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -44,7 +45,8 @@ class EquipmentComponentController
      */
     public function edit(EquipmentComponent $equipmentComponent)
     {
-        //
+        dd('edit');
+    }
     }
 
     /**
@@ -52,7 +54,7 @@ class EquipmentComponentController
      */
     public function update(Request $request, EquipmentComponent $equipmentComponent)
     {
-        //
+        dd('updae'.$request->all());
     }
 
     /**

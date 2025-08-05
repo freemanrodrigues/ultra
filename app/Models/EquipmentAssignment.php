@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class EquipmentAssignment extends Model
 {
-    //
+    protected $fillable = [ 'equipment_id', 'company_id', 'customer_id', 'customer_site_id', 'customer_site_equiment_name', 'assigned_from', 'assigned_to', 'status', 'createdby_id' ];
 }

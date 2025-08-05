@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\EquipmentAssignment;
-use Illuminate\Http\Request;
+use Illuminate\Http\{Request,RedirectResponse};
+use Illuminate\View\View;
 
 class EquipmentAssignmentController
 {
@@ -12,7 +13,7 @@ class EquipmentAssignmentController
      */
     public function index()
     {
-        //
+        dd('Index');
     }
 
     /**
@@ -20,7 +21,7 @@ class EquipmentAssignmentController
      */
     public function create()
     {
-        //
+        dd('Create');
     }
 
     /**
@@ -28,7 +29,7 @@ class EquipmentAssignmentController
      */
     public function store(Request $request)
     {
-        //
+        dd('Store'.$request->all());
     }
 
     /**
@@ -36,7 +37,7 @@ class EquipmentAssignmentController
      */
     public function show(EquipmentAssignment $equipmentAssignment)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -44,7 +45,7 @@ class EquipmentAssignmentController
      */
     public function edit(EquipmentAssignment $equipmentAssignment)
     {
-        //
+        dd('edit');
     }
 
     /**
@@ -52,7 +53,7 @@ class EquipmentAssignmentController
      */
     public function update(Request $request, EquipmentAssignment $equipmentAssignment)
     {
-        //
+        dd('update'.$request->all());
     }
 
     /**

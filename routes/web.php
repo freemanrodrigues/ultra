@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController,MakeModelMasterController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -69,10 +69,19 @@ Route::resource('/master/site-masters', SiteMasterController::class);
 Route::patch('site-masters/{siteMaster}/toggle-status', [SiteMasterController::class, 'toggleStatus'])
          ->name('site-masters.toggle-status');
 
-Route::any('/master/customer-site-masters/assign-contact/{id}', [CustomerSiteMasterController::class,'assignUsers'])->name('customer-site-masters.assign-contact');  
-Route::any('/master/customer-site-masters/save-assign-contact', [CustomerSiteMasterController::class, 'saveAssignUsers'])->name('customer-site-masters.save-assign-contact'); 
+Route::any('/master/customer-site-masters/assign-contact/{id}', [CustomerSiteMasterController::class,'assignContact'])->name('customer-site-masters.assign-contact');  
+Route::any('/master/customer-site-masters/save-assign-contact', [CustomerSiteMasterController::class, 'saveAssignContact'])->name('customer-site-masters.save-assign-contact'); 
          
 Route::resource('/master/customer-site-masters', CustomerSiteMasterController::class);
+
+Route::patch('/masters/make-model-masters/toggle-status', [MakeModelMasterController::class, 'toggleStatus'])->name('make-model-masters.toggle-status');
+Route::resource('/master/make-model-masters', MakeModelMasterController::class);
+
+Route::resource('/master/equipment-masters', EquipmentMasterController::class);
+Route::resource('/master/equipment-assignments', EquipmentAssignmentController::class);
+Route::resource('/master/equipment-components', EquipmentComponentController::class);
+
+
 Route::get('/master/site-device-list/{id}', [SiteMachineDetailController::class,'deviceBySiteMaster'])->name('site-device-list');
 
 Route::resource('/master/site-master-device', SiteMachineDetailController::class);
@@ -82,7 +91,7 @@ Route::resource('/master/contacts-masters', ContactMasterController::class);
 Route::resource('/master/brand', BrandMasterController::class);
 Route::any('/master/brand/bulk_delete', [BrandMasterController::class,'bulkDelete'])->name('brand.bulk_delete');
 
-Route::resource('/masters/equipment-masters', EquipmentMasterController::class);
+
 Route::resource('/masters/unit-masters', UnitMasterController::class);
 Route::patch('/masters/unit-masters/toggle-status', [UnitMasterController::class, 'toggleStatus'])
          ->name('unit-masters.toggle-status');

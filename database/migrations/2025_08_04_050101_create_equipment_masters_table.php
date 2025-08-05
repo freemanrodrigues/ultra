@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('equipment_name');
             $table->integer('make_model_id')->nullable();
             $table->string('serial_number')->unique();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

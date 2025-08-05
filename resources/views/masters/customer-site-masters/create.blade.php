@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <div class="card shadow rounded-4">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Create Customer Site</h5>
+            <h5 class="mb-0">Assign Customer Site</h5>
         </div>
 @if ($errors->any())
     <div class="bg-danger border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
@@ -21,9 +21,13 @@
             <form action="{{ route('customer-site-masters.store') }}" method="POST" id="siteForm" >
                 @csrf
                 <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="site_customer_code" class="form-label">Customer Site Code</label>
-                        <input type="text" name="site_customer_code" class="form-control" required>
+                <div class="col-md-6">
+                        <label for="customer_id" class="form-label">Customer</label>
+                        <select name="customer_id" class="form-select">
+                            @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="site_master_id" class="form-label">Site</label>
@@ -41,13 +45,10 @@
                         <input type="text" name="site_customer_name" class="form-control">
                     </div>
 
+                    
                     <div class="col-md-6">
-                        <label for="customer_id" class="form-label">Customer</label>
-                        <select name="customer_id" class="form-select">
-                            @foreach ($customers as $customer)
-                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
-                            @endforeach
-                        </select>
+                        <label for="site_customer_code" class="form-label">Customer Site Code</label>
+                        <input type="text" name="site_customer_code" class="form-control" required>
                     </div>
 
                     <div class="col-md-12">
@@ -91,7 +92,7 @@
                
                 <div class="mt-4 text-end">
                     <a href="{{ route('site-masters.index') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-success">Create Site</button>
+                    <button type="submit" class="btn btn-success">Create Customer Site</button>
                 </div>
             </form>
         </div>

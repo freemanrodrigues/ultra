@@ -9,7 +9,7 @@
                     <h5 class="card-title mb-0">Edit Site Master: {{ $siteMaster[0]->site_code }}</h5>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('site-masters.save-assign-users') }}">
                         @csrf
                         @method('PUT')
                         
@@ -17,7 +17,9 @@
                             <label for="site_id" class="form-label">Site Master <span class="text-danger">*</span></label>
                             <select class="form-select @error('site_id') is-invalid @enderror" id="site_id" name="site_id" required>
                                 
-                               
+                                @foreach($siteMaster as $sm)
+                                    <option value="{{$sm->id}}" >{{$sm->site_name}}</option>
+                                @endforeach
                             </select>
                             @error('site_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
