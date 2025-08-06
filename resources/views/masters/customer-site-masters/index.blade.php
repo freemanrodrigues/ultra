@@ -8,7 +8,7 @@
  <!-- Search and Filter Form --><div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">
         <i class="fas fa-building text-primary"></i> Customer Site Master
-        <small class="text-muted">({{ $siteMasters->total() }} total)</small>
+        <small class="text-muted">({{ $customerSiteMasters->total() }} total)</small>
     </h1>
     <a href="{{ route('customer-site-masters.create') }}" class="btn btn-primary">
         <i class="fas fa-plus"></i> Add New Customer Site
@@ -64,15 +64,15 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <small class="text-muted">
-                Showing {{ $siteMasters->firstItem() ?? 0 }} to {{ $siteMasters->lastItem() ?? 0 }} 
-                of {{ $siteMasters->total() }} results
+                Showing {{ $customerSiteMasters->firstItem() ?? 0 }} to {{ $customerSiteMasters->lastItem() ?? 0 }} 
+                of {{ $customerSiteMasters->total() }} results
             </small>
         </div>
     </div>
     <!-- Table -->
     <div class="card">
         <div class="card-body p-0">
-            @if($siteMasters->count() > 0)
+            @if($customerSiteMasters->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
@@ -80,62 +80,74 @@
                                 <th>Site Code</th>
                                 <th>Site Name</th>
                                 <th>Customer</th>
-                                <th>Status</th>
+                                <th>Contact</th>
                                 <th>Devices</th>
                                 <th>Created Date</th>
                                 <th width="200">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($siteMasters as $siteMaster)
+                            @foreach($customerSiteMasters as $customerSiteMaster)
                                 <tr>
                                     <td>
-                                        <strong>{{ $siteMaster->site_customer_code }}</strong>
+                                        <strong>{{ $customerSiteMaster->site_customer_code }}</strong>
                                     </td>
-                                    <td>{{ $siteMaster->site_customer_name }}</td>
-                                    <td>@if(!empty($customers[$siteMaster->customer_id])){{ $customers[$siteMaster->customer_id] }} @endif</td>
-                                    <td>{!! $siteMaster->status_badge !!}</td>
-                                    <td><a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a></td>
+                                    <td>{{ $customerSiteMaster->site_customer_name }}</td>
+                                    <td>@if(!empty($customers [$customerSiteMaster->customer_id])){{ $customers[$customerSiteMaster->customer_id] }} @endif</td>
+
+
                                     <td>
+                                    
+                                    <a class="btn btn-sm btn-outline-secondary assigned_contact m-1"  href="{{ route('contact-assignments', [ 'site_id' =>$customerSiteMaster->id , 'customer_id' => $customerSiteMaster->customer_id ]) }}" class= "m-1">
+                                       <i class="bi bi-person-plus"></i> </a>
+
+                                       <a class="btn btn-sm btn-outline-secondary assigned_contact m-1" data-id="{{ $customerSiteMaster->id }}" data-bs-toggle="modal" data-bs-target="#assigned_contact_Modal" ><i class="bi bi-eye"></i></a>
+
+
+                                     </td>
+                                    <td><a href="{{route('site-device-list',$customerSiteMaster->id )}}">Devices</a></td>
+                                    <td>
+
                                         <small class="text-muted">
-                                        @if(!empty($siteMaster->created_at))
-                                            {{ $siteMaster->created_at->format('M d, Y') }}
+                                        @if(!empty($customerSiteMaster->created_at))
+                                            {{ $customerSiteMaster->created_at->format('M d, Y') }}
                                         @endif    
                                         </small>
                                     </td>
                                     <td class="table-actions">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('customer-site-masters.show', $siteMaster) }}" 
+                                            <a href="{{ route('customer-site-masters.show', $customerSiteMaster) }}" 
                                                class="btn btn-sm btn-outline-primary" title="View">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a href="{{ route('customer-site-masters.edit', $siteMaster) }}" 
+                                            <a href="{{ route('customer-site-masters.edit', $customerSiteMaster) }}" 
                                                class="btn btn-sm btn-outline-secondary" title="Edit">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="{{ route('customer-site-masters.assign-contact', $siteMaster->company_id) }}" class="btn btn-sm btn-outline-warning" title="Assign">
-                                       <i class="bi bi-person-plus"></i> </a>
+                                            
+                                 
+                                      
                                             <!-- Toggle Status -->
-                                            <form method="POST" action="{{ route('site-masters.toggle-status', $siteMaster) }}" 
-                                                  style="display: inline;" id="toggle-form-{{ $siteMaster->id }}">
+                                            <form method="POST" action="{{ route('site-masters.toggle-status', $customerSiteMaster) }}" 
+                                                  style="display: inline;" id="toggle-form-{{ $customerSiteMaster->id }}">
                                                 @csrf
                                                 @method('PATCH')
                                                 <button type="button" 
-                                                        class="btn btn-sm btn-outline-{{ $siteMaster->status === 'active' ? 'warning' : 'success' }}"
-                                                        title="{{ $siteMaster->status === 'active' ? 'Deactivate' : 'Activate' }}"
-                                                        onclick="confirmToggle(document.getElementById('toggle-form-{{ $siteMaster->id }}'), '{{ $siteMaster->status }}')">
-                                                    <i class="bi bi-{{ $siteMaster->status === 'active' ? 'pause-circle' : 'play-circle' }}"></i>
+                                                        class="btn btn-sm btn-outline-{{ $customerSiteMaster->status === 'active' ? 'warning' : 'success' }}"
+                                                        title="{{ $customerSiteMaster->status === 'active' ? 'Deactivate' : 'Activate' }}"
+                                                        onclick="confirmToggle(document.getElementById('toggle-form-{{ $customerSiteMaster->id }}'), '{{ $customerSiteMaster->status }}')">
+                                                    <i class="bi bi-{{ $customerSiteMaster->status === 'active' ? 'pause-circle' : 'play-circle' }}"></i>
                                                 </button>
                                             </form>
                                             
                                             <!-- Delete -->
-                                            <form method="POST" action="{{ route('customer-site-masters.destroy', $siteMaster) }}" 
-                                                  style="display: inline;" id="delete-form-{{ $siteMaster->id }}"  onsubmit="return confirm('Are you sure?')">
+                                            <form method="POST" action="{{ route('customer-site-masters.destroy', $customerSiteMaster) }}" 
+                                                  style="display: inline;" id="delete-form-{{ $customerSiteMaster->id }}"  onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-sm btn-outline-danger" 
+                                                <buttomyModalasn type="button" class="btn btn-sm btn-outline-danger" 
                                                         title="Delete"
-                                                        onclick="confirmDelete(document.getElementById('delete-form-{{ $siteMaster->id }}'))">
+                                                        onclick="confirmDelete(document.getElementById('delete-form-{{ $customerSiteMaster->id }}'))">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
@@ -160,10 +172,71 @@
     </div>
 
     <!-- Pagination -->
-    @if($siteMasters->hasPages())
+    @if($customerSiteMasters->hasPages())
         <div class="d-flex justify-content-center mt-4">
-            {{ $siteMasters->links() }}
+            {{ $customerSiteMasters->links() }}
         </div>
     @endif
 </div>
+<!-- The Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Assign Contacts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalForm">
+                    <div class="mb-3">
+                        <label for="assign_contact" class="form-label">Select Contact</label>
+                        <select name="contacts[]" multiple  id="assign_contact" class="form-select" required>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="site_master_id" id="site_master_id">
+                    <input type="hidden" name="site_master_id" id="site_master_id">
+
+                    <div class="d-grid">
+                        <button type="button" id="submit_issue" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+    <div class="modal fade" id="assigned_contact_Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h5 class="modal-title ">Assigned Contacts for <span id=''></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="container my-4" id="assigned_contact_div">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/customer/assign-contact.js?{{date('mmss')}}"></script>    
 @endsection

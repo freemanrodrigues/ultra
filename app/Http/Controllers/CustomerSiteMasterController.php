@@ -36,9 +36,9 @@ class CustomerSiteMasterController
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $siteMasters = $query->paginate(10)->appends($request->query());
+        $customerSiteMasters = $query->paginate(10)->appends($request->query());
         $customers = CustomerMaster::getCustomerArray();;
-        return view('masters.customer-site-masters.index', compact('siteMasters','customers'));
+        return view('masters.customer-site-masters.index', compact('customerSiteMasters','customers'));
     }
 
     /**
@@ -78,8 +78,8 @@ class CustomerSiteMasterController
             "lat" => 'string',
             "long" => 'string',
             "customer_type" => 'string',
-            'status' => 'required|in:1,0'
-        ]);
+                'status' => 'required|in:1,0'
+            ]);
 
 
         try {
@@ -139,4 +139,6 @@ class CustomerSiteMasterController
        //dd($users);
        return view('masters.customer-site-masters.assign-contact', compact('siteMaster','users'));
     }
+
+    
 }

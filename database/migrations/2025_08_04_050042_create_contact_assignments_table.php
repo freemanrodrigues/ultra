@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('designation')->nullable();
             $table->string('role')->nullable();
             $table->string('level')->nullable();
-            $table->boolean('send_bill')->default(1);
-            $table->boolean('send_report')->default(1);
-            $table->boolean('whatsapp')->default(1);
-            $table->boolean('is_primary')->default(1);	
+            $table->boolean('send_bill')->nullable();
+            $table->boolean('send_report')->nullable();
+            $table->boolean('whatsapp')->nullable();
+            $table->boolean('is_primary')->nullable();
             $table->timestamps();
         });
     }

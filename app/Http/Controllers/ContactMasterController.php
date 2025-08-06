@@ -145,4 +145,19 @@ class ContactMasterController
                             ->with('error', 'Error deleting Contact Master: ' . $e->getMessage());
         }
     }
+
+    
+    public function getContacts(Request $request)
+    {
+     /*   $request->validate([
+            'company_id' => 'required|integer',
+        ]);
+       */
+        $data = ContactMaster::where('company_id', $request->company_id)->get();
+
+        if ($data) {
+            return response()->json($data);
+        }
+        return response()->json();
+    }
 }

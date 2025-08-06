@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController,MakeModelMasterController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController,MakeModelMasterController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -78,6 +78,10 @@ Route::patch('/masters/make-model-masters/toggle-status', [MakeModelMasterContro
 Route::resource('/master/make-model-masters', MakeModelMasterController::class);
 
 Route::resource('/master/equipment-masters', EquipmentMasterController::class);
+
+
+
+
 Route::resource('/master/equipment-assignments', EquipmentAssignmentController::class);
 Route::resource('/master/equipment-components', EquipmentComponentController::class);
 
@@ -86,8 +90,10 @@ Route::get('/master/site-device-list/{id}', [SiteMachineDetailController::class,
 
 Route::resource('/master/site-master-device', SiteMachineDetailController::class);
 
+Route::any('/master/contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('contact-assignments');
+
 Route::resource('/master/contacts-masters', ContactMasterController::class);
-     
+Route::resource('/master/contact_assignments', ContactAssignmentController::class);     
 Route::resource('/master/brand', BrandMasterController::class);
 Route::any('/master/brand/bulk_delete', [BrandMasterController::class,'bulkDelete'])->name('brand.bulk_delete');
 
@@ -118,6 +124,9 @@ Route::any('/master/courier/bulk_delete', [CourierMasterController::class,'bulkD
 //Route::get('/masters/customer/create-customer', [CustomerMasterController::class,'createCustomer'])->name('customer.create-customer');
 Route::any('/ajax-get-customer-address', [CustomerMasterController::class,'getCustomerAddress'])->name('ajax-get-customer-address');
 Route::any('/ajax-get-site-contact-details', [UserController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
+
+Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])->name('ajax-get-contacts');
+Route::any('/ajax/get-assigned-contact', [ContactAssignmentController::class,'getAssignedContacts'])->name('ajax-get-contacts');
 
 Route::resource('/masters/customer', CustomerMasterController::class);
 Route::any('/master/customer/bulk_delete', [CustomerMasterController::class,'bulkDelete'])->name('customer.bulk_delete');
