@@ -14,7 +14,8 @@ class ContactMasterController
     public function index(Request $request): View
     {
         $query = ContactMaster::query();
-
+        //$contacts = ContactMaster::with('company')->get();
+        $query->with('company');
         // Search functionality
         if ($request->filled('search')) {
             $search = $request->get('search');

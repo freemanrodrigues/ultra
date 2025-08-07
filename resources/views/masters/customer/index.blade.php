@@ -105,8 +105,8 @@
                             <td>
                                 <div class="btn-group" role="group">
 <a href="{{ route('customer-site-masters.index', ['cus_d' => $customer->id]) }}" 
-                                       class="btn btn-sm btn-outline-info" title="View">
-                                        <i class="bi bi-eye"></i>
+                                       class="btn btn-sm btn-outline-info" title="List Sites">
+                                        <i class="bi bi-list"></i>
                                     </a>
                                
                                     <a href="{{ route('customer.show', $customer) }}" 

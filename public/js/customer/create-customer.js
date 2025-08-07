@@ -105,14 +105,14 @@ jQuery(function ($) {
     // B2C checkbox toggle logic
     $b2cCheckbox.on('change', function () {
         const isChecked = $(this).is(':checked');
-
+        var tokenValue = $('input[name="_token"]').val();
         // Reset all inputs except the B2C checkbox itself
         $createCustomer.find(':input').not(this).val('');
         $createCustomer.find('input:radio, input:checkbox').not(this).prop('checked', false);
         $createCustomer.find('select').not(this).prop('selectedIndex', 0);
         $('#gst_error').empty();
         $('#gst_success').empty();
-       
+        $('input[name="_token"]').val(tokenValue);
         $('.customer_name_div').toggle(!isChecked);
     });
 });

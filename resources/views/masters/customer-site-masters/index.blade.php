@@ -98,14 +98,19 @@
 
                                     <td>
                                     
-                                    <a class="btn btn-sm btn-outline-secondary assigned_contact m-1"  href="{{ route('contact-assignments', [ 'site_id' =>$customerSiteMaster->id , 'customer_id' => $customerSiteMaster->customer_id ]) }}" class= "m-1">
-                                       <i class="bi bi-person-plus"></i> </a>
+                                    <!-- a class="btn btn-sm btn-outline-secondary assigned_contact m-1"  href="{{ route('assign-contact-assignments', [ 'site_id' =>$customerSiteMaster->id , 'customer_id' => $customerSiteMaster->customer_id ]) }}" class= "m-1">
+                                       <i class="bi bi-person-plus"></i> </a -->
+<a class="btn btn-sm btn-outline-secondary m3 m-1" data-id="{{ $customerSiteMaster->id }}" data-customer_id="{{ $customerSiteMaster->customer_id }}"  data-company_id="{{ $customerSiteMaster->company_id }}"  data-bs-toggle="modal" data-bs-target="#m3" >
+                                    <i class="bi bi-person-plus"></i></a>
 
                                        <a class="btn btn-sm btn-outline-secondary assigned_contact m-1" data-id="{{ $customerSiteMaster->id }}" data-bs-toggle="modal" data-bs-target="#assigned_contact_Modal" ><i class="bi bi-eye"></i></a>
 
 
+
                                      </td>
-                                    <td><a href="{{route('site-device-list',$customerSiteMaster->id )}}">Devices</a></td>
+                                    <td><a href="{{route('site-device-list',$customerSiteMaster->id )}}">Devices</a>
+                                    
+                                    </td>
                                     <td>
 
                                         <small class="text-muted">
@@ -179,38 +184,21 @@
     @endif
 </div>
 <!-- The Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="assign_contact_Modal" tabindex="-1" aria-hidden="true">
+     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
         
             <!-- Modal Header -->
-            <div class="modal-header">
-                <h5 class="modal-title">Assign Contacts</h5>
+            <div class="modal-header text-center">
+                <h5 class="modal-title ">Assigned Contacts for <span id=''></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <form id="modalForm">
-                    <div class="mb-3">
-                        <label for="assign_contact" class="form-label">Select Contact</label>
-                        <select name="contacts[]" multiple  id="assign_contact" class="form-select" required>
-                            <!-- Options will be populated dynamically -->
-                        </select>
-                    </div>
 
-                    <input type="hidden" name="site_master_id" id="site_master_id">
-                    <input type="hidden" name="site_master_id" id="site_master_id">
-
-                    <div class="d-grid">
-                        <button type="button" id="submit_issue" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="container my-4" id="assign_contact_div">
+                </div>
             </div>
 
         </div>
@@ -238,5 +226,36 @@
     </div>
 </div>
 
+<!-- The Modal -->
+    <div class="modal fade" id="m3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h5 class="modal-title ">Assigned Contacts for </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="assignContact">
+                <div class="container my-4" id="m3_div">
+                </div>
+            </div>
+             <div id="formErrors" class="text-danger"></div>
+             <div class="modal-footer" >
+              <input type="hidden" name="site_id"  id="site_id">
+              <input type="hidden" name="customer_id" id="customer_id">
+          <button type="button" class="btn btn-success" id="assign_submit">Submit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
 <script src="/js/customer/assign-contact.js?{{date('mmss')}}"></script>    
+<script>
+  const URL = "{{ route('contact-assignments.store') }}";
+</script>
 @endsection

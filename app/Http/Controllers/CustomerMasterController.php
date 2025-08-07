@@ -6,7 +6,7 @@ use App\Models\{Country,CompanyMaster,CustomerMaster,State};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Validation\Rule;
 class CustomerMasterController
 {
     /**
@@ -63,22 +63,27 @@ class CustomerMasterController
     {
        // dd($request->all());
 
-        $validated = $request->validate([
-            'customer_name' => 'required|string|max:255',
-         //   "company_id" => 'required|integer',
-            'gst_no' =>  ['required', 'regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/'],
-            "address" => 'required|string|max:255',
-            "city" => 'required|string|max:100',
-            "state" => 'required|integer|max:100',
-            "country" => 'required|integer|max:100',
-            "pincode" => 'required|string|max:6',
-            //   "email" => 'required|email',
-            //   "phone" => 'required',
-            //  "billing_cycle" => 'date',
-            //  "credit_cycle" => 'required|date',
-            //    "sales_person_id" => null
-            'status' => 'required|in:1,0'
-        ]);
+       $request->validate([
+        'b2c_customer' => ['nullable', 'boolean'],
+        'customer_name' => 'required|string|max:255|unique:customer_masters,customer_name',
+        'gst_no' => [
+            'nullable',                              // Allows null/empty values
+            'required_unless:b2c_customer,1',        // Required if b2c_customer is not 1
+            'prohibited_if:b2c_customer,1',          // Must be empty if b2c_customer is 1
+            'regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/',
+        ],
+        "address" => 'required|string|max:255',
+        "city" => 'required|string|max:100',
+        "state" => 'required|integer|max:100',
+        "country" => 'required|integer|max:100',
+        "pincode" => 'required|string|max:6',
+        //   "email" => 'required|email',
+        //   "phone" => 'required',
+        //  "billing_cycle" => 'date',
+        //  "credit_cycle" => 'required|date',
+        //    "sales_person_id" => null
+        'status' => 'required|in:1,0'
+    ]); 
 
         try {
             //  dd($validated);
@@ -123,8 +128,7 @@ class CustomerMasterController
             $cm->status = $request->status??null;
             $cm->save();
 
-
-              return redirect()->route('customer.index')
+            return redirect()->route('customer.index')
                              ->with('success', 'Customer created successfully!');
                              
           } catch (\Exception $e) {
@@ -153,25 +157,92 @@ class CustomerMasterController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CustomerMaster $customerMaster)
+    public function edit(CustomerMaster $customer)
     {
-        //
+        $companies = CompanyMaster::getCompanyArray();
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
+        return view('masters.customer.edit',compact('countries','companies','states','customer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CustomerMaster $customerMaster)
+    public function update(Request $request, CustomerMaster $customer)
     {
-        //
+         //dd($request->all());
+        $validated = $request->validate([
+            'customer_name' => 'required|string|max:255|unique:customer_masters,customer_name,' . $customer->id,
+            "company_id" => 'required|string',
+            'gst_no' => 'nullable|string|max:15',
+            "address" => 'required|string|max:255',
+            "city" => 'required|string|max:100',
+            "state" => 'required|string|max:100',
+            "country" => 'required|string|max:100',
+            "pincode" => 'required|string|max:24',
+          //  "billing_cycle" => 'date',
+          //  "credit_cycle" => 'required|date',
+            //    "sales_person_id" => null
+            'status' => 'required|in:1,0'
+        ]);
+// account code - integer, account category, account name
+
+        try {
+            //  dd($validated);
+            $company = CompanyMaster::where('pancard', substr($request->gst_no, 2, 10))->get();
+            // dd($company);
+           //  dd($company->id);
+             if(count($company)== 0) {
+                 $arr = array(0 =>$request->customer_name,1 =>substr($request->gst_no, 2, 10));
+                 $cid = CompanyMaster::createCompany($arr);
+             } else {
+                 $cid = $company[0]->id;
+             }
+           //  dd($validated);
+             $customer->update($validated);
+           /*  
+             $id = $request->id;
+             $cm = CustomerMaster::find($id);
+             $cm->customer_name = $request->customer_name;
+             $cm->division = $request->division??null;
+             $cm->company_id = $cid;
+             $cm->gst_no = $request->gst_no??null;
+             $cm->address = $request->address??null;
+            $cm->address1 = $request->address2??null;
+             $cm->city = $request->city??null;
+             $cm->state = $request->state??null;
+             $cm->country= $request->country??null;
+             $cm->pincode	= $request->pincode??null;
+             $cm->is_billing = $request->billing_address??null;
+             $cm->billing_cycle = $request->billing_cycle??null;
+             $cm->credit_cycle = $request->credit_cycle??null;
+             $cm->status =$request->status??null;
+             $cm->save();
+             */
+
+              return redirect()->route('customer.index')
+                             ->with('success', 'Customer updated successfully!');
+          } catch (\Exception $e) {
+              dd("Fail". $e->getMessage());
+              return redirect()->back()
+                             ->withInput()
+                             ->with('error', 'Error updating customer: ' . $e->getMessage());
+          }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CustomerMaster $customerMaster)
+    public function destroy(CustomerMaster $customer)
     {
-        //
+        try {
+            CustomerMaster::where('id', $customer->id)->update(['status' => 0]);
+            return redirect()->route('customer.index')
+                            ->with('success', 'CustomerMaster deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                            ->with('error', 'Error deleting CustomerMaster: ' . $e->getMessage());
+        }
     }
 
     public function autoSuggestCustomer(Request $request)

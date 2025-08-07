@@ -65,7 +65,8 @@
                                     
                                       <div class="row">
                                         <div class="col-md-12 mb-3">
-                                        <input type="checkbox" class="form-check-input"  id="b2c_customer"  name="b2c_customer"><span class="m-2"> <label for="b2c_customer" class="form-label fw-semibold ml-10"> B2C Customer (No GST Required)</label></span>
+                                        <input type="hidden" name="b2c_customer" value="0">
+                                        <input type="checkbox" class="form-check-input"  id="b2c_customer"  name="b2c_customer" value="1" {{ old('b2c_customer') ? 'checked' : '' }}><span class="m-2"> <label for="b2c_customer" class="form-label fw-semibold ml-10"> B2C Customer (No GST Required)</label></span>
                                             @error('b2c_customer')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -82,7 +83,7 @@
                                                    name="gst_no" minlength="15"  maxlength="15"
                                                    value="{{ old('gst_no') }}" 
                                                    placeholder="Enter GST number (e.g., 22AAAAA0000A1Z5)"
-                                                   pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9A-Za-z]{1}">
+                                                   pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9A-Za-z]{1}" autocomplete="off">
                                             <div class="form-text">Format: 22AAAAA0000A1Z5</div>
                                             @error('gst_no')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -106,7 +107,7 @@
                                             <label for="customer_name" class="form-label fw-semibold">
                                                 Customer Name <span class="text-danger">*</span>
                                             </label>
-        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{ old('customer_name')  }}"                 placeholder="Enter customer full name" required>
+        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{ old('customer_name')}}"  placeholder="Enter customer full name" autocomplete="off" required>
              <div id="suggestions" class="suggestion-list d-none">
             </div>
             
@@ -144,7 +145,7 @@
                                             <label for="division" class="form-label fw-semibold">
                                                 Division (Optional) <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" id="division" name="division"  class="form-control @error('division') is-invalid @enderror" placeholder="Enter Division Name" value="{{ old('division') }}" >
+                                            <input type="text" id="division" name="division"  class="form-control @error('division') is-invalid @enderror" placeholder="Enter Division Name" value="{{ old('division') }}" autocomplete="off" >
 
                                            
                                              <input type="hidden" name="company_id" id="company_id">
@@ -192,7 +193,7 @@
                                                       id="address2" 
                                                       name="address2" 
                                                       value="{{ old('address2') }}" 
-                                                      placeholder="Enter complete address2"
+                                                      placeholder="Enter complete address2" autocomplete="off"
                                                       required>
                                             @error('address2')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -209,7 +210,7 @@
                                                    id="city" 
                                                    name="city" 
                                                    value="{{ old('city') }}" 
-                                                   placeholder="Enter city"
+                                                   placeholder="Enter city" autocomplete="off"
                                                    required>
                                             @error('city')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -220,7 +221,6 @@
                                             <label for="state" class="form-label fw-semibold">
                                                 State <span class="text-danger">*</span>
                                             </label>
-                                            {{-- <input class="form-control" type="text" id="state"  name="state"   required> --}}
                                             
                                             <select class="form-select @error('state') is-invalid @enderror" 
                                                     id="state" name="state" required>

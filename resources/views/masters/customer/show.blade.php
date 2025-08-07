@@ -1,61 +1,87 @@
 @extends('/layouts/master-layout1') 
 @section('content')
    
-   <div class="container">
-   <div class="card ">
-   <div class="row mb-2 mt-2">
-         <div class="col-sm-12 text-center"><h3 class="mb-0">Customer Details</h3></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 m-1 "><h5 class="text-center">Customer Name:</h5></div>
-            <div class="col-sm-4 m-1">{{ $customer->customer_name ?? 'N/A' }}</div>
-            <div class="col-sm-2 m-1"><h5 class="text-center">Display Name:</h5></div>
-            <div class="col-sm-3 m-1">{{ $customer->display_name ?? 'N/A' }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 m-1"><h5 class="text-center">Address:</h5></div>
-             <div class="col-sm-4 m-1">{{ $customer->address ?? 'N/A' }}</div>
-            <div class="col-sm-2 m-1"><h5 class="text-center">Address1:</h5></div>
-            <div class="col-sm-3 m-1">{{ $customer->address1 ?? 'N/A' }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 m-1"><h5 class="text-center">Company</h5></div>
-            <div class="col-sm-4 m-1">{{ $customer->company_id ?? 'N/A' }}</div>
-            <div class="col-sm-2 m-1"><h5 class="text-center">GST No.</h5></div>
-            <div class="col-sm-3 m-1">{{ $customer->gst_no ?? 'N/A' }}</div>
-        </div>
-        <div class="row ">
-            <div class="col-sm-2 m-1"><h5 class="text-center">City</h5></div>
-            <div class="col-sm-4 m-1">{{ $customer->city ?? 'N/A' }}</div>
-            <div class="col-sm-2 m-1 "><h5 class="text-center">State</h5></div>
-            <div class="col-sm-3 m-1 ">{{ $customer->state ?? 'N/A' }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 m-1"><h5 class="text-center">Country</h5></div>
-            <div class="col-sm-4 m-1">{{ $customer->country ?? 'N/A' }}</div>
-            <div class="col-sm-2 m-1"><h5 class="text-center">Pincode</h5></div>
-            <div class="col-sm-3 m-1">{{ $customer->pincode ?? 'N/A' }}</div>
-        </div>
-         <div class="row">
-            <div class="col-sm-2 m-1"><h5 class="text-center">Billing Cycle</h5></div>
-            <div class="col-sm-4 m-1">{{ $customer->billing_cycle ?? 'N/A' }}</div>
-            <div class="col-sm-2 m-1"><h5 class="text-center">Credit Cycle</div>
-            <div class="col-sm-3 m-1">{{ $customer->credit_cycle ?? 'N/A' }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 m-1"><h5 class="text-center">Status</h5></div>
-            <div class="col-sm-4 m-1">
-                @if(($customer->status ?? '') == 'active')
-                    <span class="badge bg-success rounded-pill">Active</span>
-                @else
-                    <span class="badge bg-secondary rounded-pill">Inactive</span>
-                @endif
-            </div>
-            <div class="col-sm-2 m-1"><h5 class="text-center">Group</h5></div>
-            <div class="col-sm-3 m-1">{{ $customer->group ?? 'N/A' }}</div>
-        </div>
-      </div>
+   <div class="container my-5">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white text-center rounded-top">
+      <h4 class="mb-0">Customer Details</h4>
     </div>
+
+    <div class="card-body">
+
+      {{-- Row 1 --}}
+      <div class="row mb-3">
+        <div class="col-md-3 text-end fw-semibold text-muted">Customer Name:</div>
+        <div class="col-md-3">{{ $customer->customer_name ?? 'N/A' }}</div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">Display Name:</div>
+        <div class="col-md-3">{{ $customer->display_name ?? 'N/A' }}</div>
+      </div>
+
+      {{-- Row 2 --}}
+      <div class="row mb-3">
+        <div class="col-md-3 text-end fw-semibold text-muted">Address:</div>
+        <div class="col-md-3">{{ $customer->address ?? 'N/A' }}</div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">Address1:</div>
+        <div class="col-md-3">{{ $customer->address1 ?? 'N/A' }}</div>
+      </div>
+
+      {{-- Row 3 --}}
+      <div class="row mb-3">
+        <div class="col-md-3 text-end fw-semibold text-muted">Company:</div>
+        <div class="col-md-3">{{ $customer->company_id ?? 'N/A' }}</div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">GST No.:</div>
+        <div class="col-md-3">{{ $customer->gst_no ?? 'N/A' }}</div>
+      </div>
+
+      {{-- Row 4 --}}
+      <div class="row mb-3">
+        <div class="col-md-3 text-end fw-semibold text-muted">City:</div>
+        <div class="col-md-3">{{ $customer->city ?? 'N/A' }}</div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">State:</div>
+        <div class="col-md-3">{{ $customer->state ?? 'N/A' }}</div>
+      </div>
+
+      {{-- Row 5 --}}
+      <div class="row mb-3">
+        <div class="col-md-3 text-end fw-semibold text-muted">Country:</div>
+        <div class="col-md-3">{{ $customer->country ?? 'N/A' }}</div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">Pincode:</div>
+        <div class="col-md-3">{{ $customer->pincode ?? 'N/A' }}</div>
+      </div>
+
+      {{-- Row 6 --}}
+      <div class="row mb-3">
+        <div class="col-md-3 text-end fw-semibold text-muted">Billing Cycle:</div>
+        <div class="col-md-3">{{ $customer->billing_cycle ?? 'N/A' }}</div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">Credit Cycle:</div>
+        <div class="col-md-3">{{ $customer->credit_cycle ?? 'N/A' }}</div>
+      </div>
+
+      {{-- Row 7 --}}
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-3 text-end fw-semibold text-muted">Status:</div>
+        <div class="col-md-3">
+          @if(($customer->status ?? '') === 'active')
+            <span class="badge bg-success">Active</span>
+          @else
+            <span class="badge bg-secondary">Inactive</span>
+          @endif
+        </div>
+
+        <div class="col-md-3 text-end fw-semibold text-muted">Group:</div>
+        <div class="col-md-3">{{ $customer->group ?? 'N/A' }}</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
    
             @endsection

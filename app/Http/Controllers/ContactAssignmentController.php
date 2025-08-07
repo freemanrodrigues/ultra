@@ -44,9 +44,7 @@ class ContactAssignmentController
     {
     /*    contact_id	company_id	customer_id	customer_site_id	equipment_id	department	designation	role	level	send_bill	send_report	whatsapp	is_primary	
 */
-        echo "<pre>";
-        print_r($request->all());
-        echo "</pre>";
+
         $site_id = $request->site_id;
         $customers = CustomerSiteMaster::where('id', $site_id)->get();
        // dd($customers[0]->site_master_id);
@@ -72,6 +70,7 @@ class ContactAssignmentController
          //  echo "<br> $contact_id | ".$send_email." --  ".$send_report." --  ".$whatsapp." --  ";
           
            if($contact_id != '') {
+            /*
           $ca = new contactAssignment();
           $ca->contact_id = $contact_id;
           $ca->company_id =  $customers[0]->company_id;
@@ -86,12 +85,25 @@ class ContactAssignmentController
         $ca->send_report = (bool) ($send_report??false);
         $ca->whatsapp = (bool) ($whatsapp??false); 
         //  is_primary
-          $ca->save(); 
+          $ca->save();   */
+          contactAssignment::updateOrCreate(
+            [
+                'contact_id' => $contact_id,
+                'customer_site_id' => $customers[0]->site_master_id,
+                'equipment_id' => $equipment_id ?? null,
+            ],
+            [
+                'company_id' => $customers[0]->company_id,
+                'customer_id' => $customers[0]->customer_id,
+                'send_bill' => (bool) ($send_email ?? false),
+                'send_report' => (bool) ($send_report ?? false),
+                'whatsapp' => (bool) ($whatsapp ?? false),
+                'is_primary' => (bool) ($is_primary ?? false),
+            ]
+        );
           }
           
         } 
-        
-
     }
 
     /**
@@ -136,7 +148,7 @@ class ContactAssignmentController
 
         $results = DB::table('contact_assignments as ca')
         ->join('contact_masters as cm', 'ca.contact_id', '=', 'cm.id')
-        ->where('ca.customer_site_id', 1)
+        ->where('ca.customer_site_id', $request->site_id)
         ->select(
             DB::raw("CONCAT(cm.firstname, ' ', cm.lastname) AS full_name"),
             'ca.send_bill',

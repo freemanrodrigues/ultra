@@ -25,7 +25,7 @@
                                 <th >whatsapp</th>
                             </tr>
                         </thead>
-                           <form id="assginContact" method="POST" action="{{ route('contact_assignments.store') }}">
+                           <form id="assginContact" method="POST" action="{{ route('contact-assignments.store') }}">
             @csrf
                         <tbody>
                             @foreach($contacts as $key => $contact)

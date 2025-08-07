@@ -90,10 +90,10 @@ Route::get('/master/site-device-list/{id}', [SiteMachineDetailController::class,
 
 Route::resource('/master/site-master-device', SiteMachineDetailController::class);
 
-Route::any('/master/contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('contact-assignments');
+Route::any('/master/assign-contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('assign-contact-assignments');
 
 Route::resource('/master/contacts-masters', ContactMasterController::class);
-Route::resource('/master/contact_assignments', ContactAssignmentController::class);     
+Route::resource('/master/contact-assignments', ContactAssignmentController::class);     
 Route::resource('/master/brand', BrandMasterController::class);
 Route::any('/master/brand/bulk_delete', [BrandMasterController::class,'bulkDelete'])->name('brand.bulk_delete');
 

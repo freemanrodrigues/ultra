@@ -24,7 +24,7 @@
                 <th>Email</th>
                 <th>Name</th>
                 <th>Phone</th>
-                <th>User Type</th>
+                <th>company</th>
                 <th>Status</th>
                 <th >Actions</th>
             </tr>
@@ -35,7 +35,7 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                 <td>{{ $user->phone }}</td>
-                <td>{{ ucfirst($user->user_type) }}</td>
+                <td>{{  $user->company->company_name; }}</td>
                 <td><span class="badge bg-{{ $user->status ? 'success' : 'secondary' }}">{{ $user->status ? 'Active' : 'Inactive' }}</span></td>
                 <td>
                     <!-- button class="btn btn-sm btn-warning editUserBtn">Edit</button -->

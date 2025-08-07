@@ -91,21 +91,19 @@
                                             <label for="company_id" class="form-label fw-semibold">
                                                 Company <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" id="company_id" name="company_id"  value="{{ old('company_id')??$customer->company_id }}"  class="form-control @error('company_id') is-invalid @enderror" >
-                                            <!-- select class="form-select @error('company_id') is-invalid @enderror" 
+                                            <select class="form-select @error('company_id') is-invalid @enderror" 
                                                     id="company_id" 
                                                     name="company_id" 
                                                     required>
                                                 <option value="">Select Company</option>
                                                 @foreach($companies as $k => $company)
                                                     <option value="{{ $k }}" 
-                                                            {{ old('company_id') == $k ? 'selected' : '' }}>
+                                                            {{ (old('company_id')??$customer->company_id) == $k ? 'selected' : '' }}>
                                                         {{ $company }}
                                                     </option>
                                                 @endforeach
-                                            </select -->
-                                             <input type="text" name="companyid_val" id="companyid_val" value="{{ old('companyid_val')??$customer->company_id }}" >
-                                           
+                                            </select>
+                                            
                                             @error('company_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -362,28 +360,7 @@
     </div>
 </div>
 
-<!-- Preview Modal -->
-<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="previewModalLabel">
-                    <i class="bi bi-eye me-2"></i>Customer Preview
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="previewContent">
-                <!-- Preview content will be populated by JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary create-customer" onclick="document.getElementById('customerForm').submit();">
-                    <i class="bi bi-check-circle me-1"></i>Confirm & Create
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="/js/sample/create-sample.js"></script>
 <script language="javascript">
 

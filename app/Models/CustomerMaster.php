@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerMaster extends Model
 {
-
+	protected $fillable  = ['customer_name' ,'site' ,'division' ,'company_id' ,'b2c_customer' ,'gst_no' ,'gst_state_code' ,'address' ,'address1' ,'city' ,'state' ,'country' ,'pincode' ,'is_billing' ,'landline' ,'billing_cycle' ,'credit_cycle' ,'group' ,'status' ,'account_category'];
 
     public static function getAllCustomer() {
 		return CustomerMaster::all();
