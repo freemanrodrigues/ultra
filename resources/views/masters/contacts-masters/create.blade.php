@@ -61,7 +61,7 @@
                         <select name="company_id" class="form-select" required>
                             <option value="">--Select--</option>
                             @foreach($companies as $company)
-                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                <option value="{{ $company->id }}" @selected($company->id == request('company_id'))>{{ $company->company_name }}</option>
                             @endforeach
                         </select>
                     </div>

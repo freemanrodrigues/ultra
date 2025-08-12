@@ -34,8 +34,8 @@ class CustomerMasterController
         }
        
         // Sort by
-        $sortBy = $request->get('sort_by', 'created_at');
-        $sortOrder = $request->get('sort_order', 'desc');
+        $sortBy = $request->get('sort_by', 'customer_name');
+        $sortOrder = $request->get('sort_order', 'asc');
         $query->orderBy($sortBy, $sortOrder);
 
         $customers = $query->paginate(10)->appends($request->query());
@@ -74,8 +74,8 @@ class CustomerMasterController
         ],
         "address" => 'required|string|max:255',
         "city" => 'required|string|max:100',
-        "state" => 'required|integer|max:100',
-        "country" => 'required|integer|max:100',
+        "state" => 'required|integer',
+        "country" => 'required|integer|min:1|max:999',
         "pincode" => 'required|string|max:6',
         //   "email" => 'required|email',
         //   "phone" => 'required',
@@ -128,20 +128,24 @@ class CustomerMasterController
             $cm->status = $request->status??null;
             $cm->save();
 
-            return redirect()->route('customer.index')
-                             ->with('success', 'Customer created successfully!');
+                return redirect()->route('customer.index')
+                ->with('success', [
+                    'text' => 'Customer Created Successfully!',
+                    'link' => route('site-masters.create'), // link to customer details
+                    'link_text' => 'Now Add A New Site Master'
+                ]);
                              
           } catch (\Exception $e) {
              // dd("Fail". $e->getMessage());
-            // 1062
-            if($e->getCode() == 1062) {
-                   $err_msg = 'Duplicate Record'; 
+            if($e->getCode() == 23000) {
+                   $err_msg = 'This GST number is already registered. Please use a different one.'; 
             } else {
                 $err_msg = $e->getMessage();
             }
-              return redirect()->back()
-                             ->withInput()
-                             ->with('error', 'Error creating customer: ' . $err_msg);
+           
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Error creating customer: ' . $err_msg);
           }
     }
 

@@ -15,6 +15,17 @@
     </a>
 </div>
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ session('success')['text'] }}<br>
+        <a href="{{ session('success')['link'] }}" class="alert-link">
+            {{ session('success')['link_text'] }}
+        </a>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
  <!-- Search and Filter Form -->
     <div class="search-form h-auto m-2 ">
         <form method="GET" action="{{ route('site-masters.index') }}" class="row g-3">

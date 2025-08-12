@@ -244,7 +244,7 @@
                                                 <option value="">Select Country</option>
                                                 @foreach($countries as $v => $country)
                                                     <option value="{{ $v }}" 
-                                                            {{ $v == 71 ? 'selected' : '' }}>
+                                                            {{( old('country')??$v) == 71 ? 'selected' : '' }}>
                                                         {{ $country }}
                                                     </option>
                                                 @endforeach
@@ -391,8 +391,8 @@
                                                     name="status" 
                                                     required>
                                                 <option value="">Select Status</option>
-                                                <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
-                                                <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
+                                               <option value="1" {{ old('status', 1) == 1 ? 'selected' : '' }}>Active</option>
+                                               <option value="0" {{ old('status', 1) == 0 ? 'selected' : '' }}>Inactive</option>
                                             </select>
                                             @error('status')
                                                 <div class="invalid-feedback">{{ $message }}</div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\{Country,CompanyMaster, ContactMaster, CustomerMaster,CustomerSiteMaster,SiteContact,SiteMaster,User};
+use App\Models\{Country,CompanyMaster, ContactMaster, CustomerMaster,CustomerSiteMaster,State,SiteContact,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
 
@@ -30,7 +30,10 @@ class CustomerSiteMasterController
         if ($request->filled('status')) {
             $query->where('status', $request->get('status'));
         }
-
+        if (isset($_GET['customer_id']) && !empty(isset($_GET['customer_id']))) {
+           $query->where('customer_id', $_GET['customer_id']);
+        }
+        
         // Sort by
         $sortBy = $request->get('sort_by', 'created_at');
         $sortOrder = $request->get('sort_order', 'desc');
@@ -47,11 +50,13 @@ class CustomerSiteMasterController
     public function create(): View
     {
        // dd("Create Customer Sites");
-        $countries = Country::all();
+
         $companies = CompanyMaster::all();
         $site_masters = SiteMaster::all();
         $customers = CustomerMaster::all();
-        return view('masters.customer-site-masters.create', compact('countries','companies','customers','site_masters'));
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
+        return view('masters.customer-site-masters.create', compact('countries','companies','customers','site_masters','states'));
     }
 
     /**
@@ -59,7 +64,7 @@ class CustomerSiteMasterController
      */
     public function store(Request $request): RedirectResponse
     {
-       // dd("Save Customer Sites");
+        //dd("Save Customer Sites");
         //dd($request->all());
         $validated = $request->validate([
       //      'site_code' => 'required|string|max:50|unique:site_masters,site_code',
@@ -75,8 +80,8 @@ class CustomerSiteMasterController
             "state" => 'string',
             "country" => 'string',
             "pincode" => 'string',
-            "lat" => 'string',
-            "long" => 'string',
+            "lat" => 'nullable|string',
+            "long" => 'nullable|string',
             "customer_type" => 'string',
                 'status' => 'required|in:1,0'
             ]);
@@ -88,8 +93,13 @@ class CustomerSiteMasterController
             $customer = CustomerMaster::getCountryId($request['customer_id']);
             $validated['company_id'] = $customer[0]->company_id;
             CustomerSiteMaster::create($validated);
+            
             return redirect()->route('customer-site-masters.index')
-                           ->with('success', 'Customer Site Master created successfully!');
+            ->with('success', [
+                'text' => 'Customer Site Master created successfully!',
+                'link' => route('contacts-masters.create',['company_id'=>$customer[0]->company_id]), // link to customer details
+                'link_text' => 'Add Contact'
+            ]);               
         } catch (\Exception $e) {
             dd("<br>Error : ".$e->getMessage());
             return redirect()->back()
@@ -111,7 +121,16 @@ class CustomerSiteMasterController
      */
     public function edit(CustomerSiteMaster $customerSiteMaster)
     {
-        dd("Edit Customer Sites");
+       
+       
+       
+        $companies = CompanyMaster::all();
+        $site_masters = SiteMaster::all();
+        $customers = CustomerMaster::all();
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
+        return view('masters.customer-site-masters.edit', compact('countries','companies','customers','site_masters','customerSiteMaster','states'));
+
     }
 
     /**

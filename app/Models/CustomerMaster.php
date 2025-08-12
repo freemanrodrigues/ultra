@@ -27,4 +27,7 @@ class CustomerMaster extends Model
 		return CustomerMaster::where('id',$id)->get(['company_id']);
 	}
 
+	public static function getCustomerIdByCompanyId($id) {
+		return CustomerMaster::where('company_id',$id)->value('id');
+	}
 }

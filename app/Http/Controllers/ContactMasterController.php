@@ -71,8 +71,16 @@ class ContactMasterController
 
     try {
          ContactMaster::create($validated);
-        return redirect()->route('contacts-masters.index')
-                       ->with('success', 'User created successfully!');
+
+        $customer_id = CustomerMaster::getCustomerIdByCompanyId($request->company_id);
+        return redirect()->route('site-masters.index')
+        ->with('success', [
+            'text' => 'Contact created successfully!',
+            'link' => route('customer-site-masters.index',['customer_id'=>$customer_id]), 
+            'link_text' => 'Next step is to assign contact'
+        ]);               
+                       
+
     } catch (\Exception $e) {
         //dd("<br>Error : ".$e->getMessage());
         return redirect()->back()
@@ -154,6 +162,7 @@ class ContactMasterController
             'company_id' => 'required|integer',
         ]);
        */
+     // dd($request->company_id);
         $data = ContactMaster::where('company_id', $request->company_id)->get();
 
         if ($data) {

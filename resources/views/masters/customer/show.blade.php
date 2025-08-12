@@ -67,7 +67,7 @@
       <div class="row mb-3 align-items-center">
         <div class="col-md-3 text-end fw-semibold text-muted">Status:</div>
         <div class="col-md-3">
-          @if(($customer->status ?? '') === 'active')
+          @if(($customer->status ?? '') === 1)
             <span class="badge bg-success">Active</span>
           @else
             <span class="badge bg-secondary">Inactive</span>
@@ -76,6 +76,9 @@
 
         <div class="col-md-3 text-end fw-semibold text-muted">Group:</div>
         <div class="col-md-3">{{ $customer->group ?? 'N/A' }}</div>
+        <div class="col-md-12 text-center"><a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">
+                                        Back
+                                    </a></div>
       </div>
 
     </div>

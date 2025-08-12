@@ -12,6 +12,17 @@
     </a>
 </div>
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ session('success')['text'] }}
+        <a href="{{ session('success')['link'] }}" class="alert-link">
+            {{ session('success')['link_text'] }}
+        </a>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <!-- Search and Filter Form -->
 <div class="search-form">
     <form method="GET" action="{{ route('customer.index') }}">
@@ -104,7 +115,7 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-<a href="{{ route('customer-site-masters.index', ['cus_d' => $customer->id]) }}" 
+<a href="{{ route('customer-site-masters.index', ['customer_id' => $customer->id]) }}" 
                                        class="btn btn-sm btn-outline-info" title="List Sites">
                                         <i class="bi bi-list"></i>
                                     </a>

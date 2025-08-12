@@ -10,11 +10,21 @@
         <i class="fas fa-building text-primary"></i> Customer Site Master
         <small class="text-muted">({{ $customerSiteMasters->total() }} total)</small>
     </h1>
-    <a href="{{ route('customer-site-masters.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add New Customer Site
-    </a>
+    <a href="{{ route('customer-site-masters.create', ['customer_id' => $_GET['customer_id'] ?? null]) }}" 
+   class="btn btn-primary">
+    <i class="fas fa-plus"></i> Add New Customer Site
+</a>
 </div>
-
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ session('success')['text'] }}<br>
+        <a href="{{ session('success')['link'] }}" class="alert-link">
+            {{ session('success')['link_text'] }}
+        </a>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
  <!-- Search and Filter Form -->
     <div class="search-form h-auto m-2 ">
         <form method="GET" action="{{ route('customer-site-masters.index') }}" class="row g-3">
@@ -88,6 +98,7 @@
                         </thead>
                         <tbody>
                             @foreach($customerSiteMasters as $customerSiteMaster)
+                      
                                 <tr>
                                     <td>
                                         <strong>{{ $customerSiteMaster->site_customer_code }}</strong>

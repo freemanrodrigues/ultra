@@ -80,9 +80,13 @@ class SiteMasterController
         "long" => null */
         try {
             SiteMaster::create($validated);
-            
             return redirect()->route('site-masters.index')
-                           ->with('success', 'Site Master created successfully!');
+            ->with('success', [
+                'text' => 'Site Master created successfully!',
+                'link' => route('customer-site-masters.create'), // link to customer details
+                'link_text' => 'Assign Site For the Customer '
+            ]);
+
         } catch (\Exception $e) {
             dd("<br>Error : ".$e->getMessage());
             return redirect()->back()
