@@ -40,19 +40,19 @@
                    
                     <div class="col-md-6">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
+                        <input type="email" name="email" id="email" class="form-control" required value="{{ old('email')}}">
                     </div>
                     <div class="col-md-6">
                         <label for="phone">Phone</label>
-                        <input type="tel" name="phone" class="form-control" id="phone" pattern="[6-9][0-9]{9}"  minlength="10" maxlength="10"  required>
+                        <input type="tel" name="phone" class="form-control" id="phone" pattern="[6-9][0-9]{9}"  minlength="10" maxlength="10"  value="{{ old('phone')}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="firstname">First Name</label>
-                        <input type="text" name="firstname"  id="firstname" class="form-control" required>
+                        <input type="text" name="firstname"  id="firstname" class="form-control" value="{{ old('phone')}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="lastname">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control">
+                        <input type="text" name="lastname" id="lastname" class="form-control" value="{{ old('lastname')}}"  required>
                     </div>
                     
                     
@@ -68,7 +68,7 @@
                     
                     <div class="col-md-6">
                         <label>Status</label>
-                        <select name="status" class="form-select">
+                        <select name="status" class="form-select" required>
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>

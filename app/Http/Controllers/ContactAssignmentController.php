@@ -31,7 +31,7 @@ class ContactAssignmentController
         $customers = CustomerMaster::getCountryId($customer_id);
         $company_id = $customers[0]->company_id;
 
-        $contacts = ContactMaster::where('company_id', $company_id)->get();
+        $contacts = ContactMaster::where('company_id', $company_id)->orderby(['firstname'])->get();
 
         return view('masters.contact-assignments.contact-assignment',compact('contacts'));
 
@@ -42,9 +42,10 @@ class ContactAssignmentController
      */
     public function store(Request $request)
     {
-    /*    contact_id	company_id	customer_id	customer_site_id	equipment_id	department	designation	role	level	send_bill	send_report	whatsapp	is_primary	
-*/
-
+    
+        // echo "<pre>";
+        // print_r($request->all());
+        // echo "</pre>";
         $site_id = $request->site_id;
         $customers = CustomerSiteMaster::where('id', $site_id)->get();
        // dd($customers[0]->site_master_id);
@@ -101,6 +102,7 @@ class ContactAssignmentController
                 'is_primary' => (bool) ($is_primary ?? false),
             ]
         );
+       // dd(\DB::getQueryLog());
           }
           
         } 

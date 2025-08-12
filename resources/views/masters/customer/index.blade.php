@@ -16,7 +16,7 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill me-2"></i>
         {{ session('success')['text'] }}
-        <a href="{{ session('success')['link'] }}" class="alert-link">
+       <a href="{{ session('success')['link'] }}" class="alert-link">
             {{ session('success')['link_text'] }}
         </a>.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

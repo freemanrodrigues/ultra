@@ -23,16 +23,18 @@
                 <div class="row g-3">
                 <div class="col-md-6">
                         <label for="customer_id" class="form-label">Customer</label>
-                        <select name="customer_id" class="form-select">
+                        <select name="customer_id" id="customer_id" class="form-select">
                             @foreach ($customers as $customer)
-                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                                <option value="{{ $customer->id }}" {{ request('customer_id') == $customer->id ? 'selected' : '' }}>
+                                {{ $customer->customer_name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="site_master_id" class="form-label">Site</label>
                         
-                        <select name="site_master_id" class="form-select" required>
+                        <select name="site_master_id" id="site_master_id" class="form-select" required>
                         @foreach($site_masters as $k => $val)
                         <option value="{{$val->id}}">{{$val->site_name}} - {{$val->city}}</option>
                         @endforeach  
@@ -42,47 +44,62 @@
 
                     <div class="col-md-6">
                         <label for="site_customer_name" class="form-label">Customer Site Name</label>
-                        <input type="text" name="site_customer_name" class="form-control">
+                        <input type="text" name="site_customer_name" id="site_customer_name"  class="form-control">
                     </div>
 
                     
                     <div class="col-md-6">
                         <label for="site_customer_code" class="form-label">Customer Site Code</label>
-                        <input type="text" name="site_customer_code" class="form-control" required>
+                        <input type="text" name="site_customer_code" id="site_customer_code" class="form-control" required>
                     </div>
 
                     <div class="col-md-12">
-                        <label for="address" class="form-label">Address Line 1</label>
+                        <label for="YourPlaces" class="form-label">Address Line 1</label>
                         <input type="text" name="address" class="form-control" id="YourPlaces">
                     </div>
 
 
                     <div class="col-md-4">
-                        <label for="city" class="form-label">City</label>
+                        <label for="YourCity" class="form-label">City</label>
                         <input type="text" name="city" class="form-control" id="YourCity" >
                     </div>
 
                     <div class="col-md-4">
-                        <label for="state" class="form-label">State</label>
-                        <input type="text" name="state" class="form-control" id="YourState" >
+                            <label for="YourState" class="form-label">State</label>
+                        <select class="form-select @error('state') is-invalid @enderror" 
+                                id="YourState" name="state" required>
+                            <option value="">Select State</option>
+                            @foreach($states as $k => $state)
+                                <option value="{{ $k }}"  {{ (old('state')??$select_customer->state )== $k ? 'selected' : '' }}> {{ $state }} </option>
+                            @endforeach
+                        </select> 
+                        @error('state')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-4">
-                        <label for="country" class="form-label">Country</label>
-                        <input type="text" name="country" class="form-control" id="YourCountry">
+                        <label for="YourCountry" class="form-label">Country</label>
+                        <select class="form-select @error('state') is-invalid @enderror" 
+                                id="YourCountry" name="country" required>
+                            <option value="">Select Country</option>
+                            @foreach($countries as $k => $country)
+                                <option value="{{ $k }}"  {{ (old('country')??$select_customer->country )== $k ? 'selected' : '' }}> {{ $country }} </option>
+                            @endforeach
+                        </select> 
+                        
                         <input type="hidden" id="YourCountryCode" name="CountryCode"/> 
-                        <input type="hidden" id="YourPinCode" name="pincode" placeholder="Your Pin Code" />
                         <input type="hidden" name="lat" class="form-control" placeholder="e.g., 19.123456" id="YourLat">
                         <input type="hidden" name="long" class="form-control" placeholder="e.g., 72.123456" id="YourLong">
                     </div>
                  
                     <div class="col-md-6">
-                        <label for="state" class="form-label">PinCode</label>
+                        <label for="YourPinCode" class="form-label">PinCode</label>
                        <input type="text" id="YourPinCode" name="pincode" class="form-control"  placeholder="Your Pin Code" />
                     </div>
                     <div class="col-md-6">
                         <label for="status" class="form-label">Status</label>
-                        <select name="status" class="form-select">
+                        <select name="status" id="status" class="form-select">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
@@ -139,19 +156,23 @@ var prev_long_name_city = value1.long_name;
 //alert(prev_long_name_city + '__prev_long_name_city');
 $('#YourCity').val(prev_long_name_city);
 }
-if((value1.types[0]) == 'administrative_area_level_1')
-{
-var prev_long_name_state = value1.long_name;  
-//alert(prev_long_name_state + '__prev_long_name_state');
-$('#YourState').val(prev_long_name_state);
+
+if((value1.types[0]) == 'administrative_area_level_1') {
+    var prev_long_name_state = value1.long_name;  
+
+   // $('#YourState').val(prev_long_name_state);
+      $("#YourState option").filter(function() {
+            return $(this).text().trim() === prev_long_name_state;
+        }).prop("selected", true).trigger("change");
 }
-if((value1.types[0]) == 'country')
-{
-var prev_long_name_country = value1.long_name;  
-//alert(" ##"+value1.short_name);
-//alert(prev_long_name_country + '__prev_long_name_country');
-$('#YourCountry').val(prev_long_name_country);
-$('#YourCountryCode').val(value1.short_name);
+if((value1.types[0]) == 'country') {
+    var prev_long_name_country = value1.long_name;  
+
+    //$('#YourCountry').val(prev_long_name_country);
+    $("#YourCountry option").filter(function() {
+            return $(this).text().trim() === prev_long_name_country;
+        }).prop("selected", true).trigger("change");
+    $('#YourCountryCode').val(value1.short_name);
 }
 if((value1.types[0]) == 'postal_code')
 {

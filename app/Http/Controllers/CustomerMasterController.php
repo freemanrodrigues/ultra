@@ -90,15 +90,21 @@ class CustomerMasterController
             
           
                 try {
-                $company = CompanyMaster::where('pancard', substr($request->gst_no, 2, 10))->get();
-               // dd($company);
-              //  dd($company->id);
-                if(count($company)== 0) {
-                    $arr = array(0 =>$request->customer_name,1 =>substr($request->gst_no, 2, 10));
-                    $cid = CompanyMaster::createCompany($arr);
-                } else {
-                    $cid = $company[0]->id;
-                }
+
+                    if (empty($request->gst_no)) {
+                        // GST not provided → No PAN
+                        $cid = CompanyMaster::createCompany([$request->customer_name, null]);
+                    } else {
+                        // Extract PAN from GST
+                        $pan = substr($request->gst_no, 2, 10);
+                    
+                        $company = CompanyMaster::where('pancard', $pan)->first();
+                    
+                        $cid = $company
+                            ? $company->id
+                            : CompanyMaster::createCompany([$request->customer_name, $pan]);
+                    }
+                    
                 } catch (\Exception $e) {
                     //dd($e->getMessage());
                     Log::error('An error occurred', ['exception' => $e->getMessage()]); // Log an error
@@ -131,8 +137,8 @@ class CustomerMasterController
                 return redirect()->route('customer.index')
                 ->with('success', [
                     'text' => 'Customer Created Successfully!',
-                    'link' => route('site-masters.create'), // link to customer details
-                    'link_text' => 'Now Add A New Site Master'
+                    'link' => route('customer-site-masters.create',['customer_id'=>$cm->id]), // link to customer details
+                    'link_text' => ' Next Step : Assign Customer Site'
                 ]);
                              
           } catch (\Exception $e) {

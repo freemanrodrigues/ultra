@@ -51,12 +51,16 @@ class CustomerSiteMasterController
     {
        // dd("Create Customer Sites");
 
-        $companies = CompanyMaster::all();
-        $site_masters = SiteMaster::all();
-        $customers = CustomerMaster::all();
+        $companies = CompanyMaster::orderBy('company_name')->get();
+        $site_masters = SiteMaster::orderBy('site_name')->get(['id','site_name','city']);
+        $customers = CustomerMaster::orderBy('customer_name')->get(['id','customer_name']);
         $countries = Country::getCountryArray();
         $states = State::getStateArray();
-        return view('masters.customer-site-masters.create', compact('countries','companies','customers','site_masters','states'));
+        $select_customer = null;
+        if ($customerId = request('customer_id')) {
+            $select_customer = CustomerMaster::find($customerId);
+        }
+        return view('masters.customer-site-masters.create', compact('countries','companies','customers','site_masters','states','select_customer'));
     }
 
     /**
@@ -98,7 +102,7 @@ class CustomerSiteMasterController
             ->with('success', [
                 'text' => 'Customer Site Master created successfully!',
                 'link' => route('contacts-masters.create',['company_id'=>$customer[0]->company_id]), // link to customer details
-                'link_text' => 'Add Contact'
+                'link_text' => ' Next Step : Add Contact'
             ]);               
         } catch (\Exception $e) {
             dd("<br>Error : ".$e->getMessage());
