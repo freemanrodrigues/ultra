@@ -70,7 +70,7 @@
                                 id="YourState" name="state" required>
                             <option value="">Select State</option>
                             @foreach($states as $k => $state)
-                                <option value="{{ $k }}"  {{ (old('state')??$select_customer->state )== $k ? 'selected' : '' }}> {{ $state }} </option>
+                                <option value="{{ $k }}" {{ (old('state') ?? optional($select_customer)->state ) == $k ? 'selected' : '' }}> {{ $state }} </option>
                             @endforeach
                         </select> 
                         @error('state')
@@ -80,11 +80,12 @@
 
                     <div class="col-md-4">
                         <label for="YourCountry" class="form-label">Country</label>
-                        <select class="form-select @error('state') is-invalid @enderror" 
+                        <select class="form-select @error('country') is-invalid @enderror" 
                                 id="YourCountry" name="country" required>
                             <option value="">Select Country</option>
                             @foreach($countries as $k => $country)
-                                <option value="{{ $k }}"  {{ (old('country')??$select_customer->country )== $k ? 'selected' : '' }}> {{ $country }} </option>
+
+                                <option value="{{ $k }}" {{ (old('country') ?? optional($select_customer)->country ) == $k ? 'selected' : '' }}> {{ $country }} </option>
                             @endforeach
                         </select> 
                         

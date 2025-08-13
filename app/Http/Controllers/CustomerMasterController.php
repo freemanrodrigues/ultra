@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,State};
+use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,CustomerSiteMaster,State};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
@@ -164,8 +164,11 @@ class CustomerMasterController
     {
         $companies = CompanyMaster::getCompanyArray();
         $contactmasters =ContactMaster::where('company_id',$customer->company_id )->get();
+        $customerSiteMasters = CustomerSiteMaster::where('customer_id',$customer->id )->get();
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
        // dd($contactmasters);
-        return view('masters.customer.show', compact('customer','companies','contactmasters'));
+        return view('masters.customer.show', compact('customer','companies','contactmasters','countries','states','customerSiteMasters'));
     }
 
     /**
