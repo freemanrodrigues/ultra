@@ -151,4 +151,23 @@ class SiteMasterController
                            ->with('error', 'Error deleting Site Master: ' . $e->getMessage());
         }
     }
+
+    public function autoSuggestSiteName(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+        // Fetch data from your database
+        // Replace 'YourModel' and 'name' with your actual model and column name
+        $suggestions = SiteMaster::where('site_name', 'LIKE', '%' . $query . '%')
+                                ->select('id', 'site_name') // Select only necessary columns
+                                ->limit(10) // Limit the number of suggestions
+                                ->get();
+
+        return response()->json($suggestions);
+    }
 }

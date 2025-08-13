@@ -277,12 +277,12 @@
                                         </div>
                                         <div class="col-6 mb-3 d-flex align-items-center" >
                                         <input type="checkbox" 
-                                                   class="form-check-input bordered @error('billing_address') is-invalid @enderror" 
-                                                   id="billing_address" 
-                                                   name="billing_address" 
-                                                   value="1"> <span class="m-2"><label for="billing_address" class="form-label fw-semibold">
+                                                   class="form-check-input bordered @error('is_billing') is-invalid @enderror" 
+                                                   id="is_billing" 
+                                                   name="is_billing" 
+                                                   value="1"> <span class="m-2"><label for="is_billing" class="form-label fw-semibold">
                                                 This is billing address <span class="text-danger">*</span></span>
-                                            @error('billing_address')
+                                            @error('is_billing')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             

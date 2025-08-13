@@ -51,22 +51,30 @@ class ContactAssignmentController
        // dd($customers[0]->site_master_id);
        foreach($request['counter'] as $k => $v) {
        // echo "<br>$k => $v";
-        $send_email = '';
+        $send_bill = '';
         $contact_id = '';
-        if(!empty($request['send_email'][$k])) {
-             $send_email = TRUE;
-             $contact_id = $request['send_email'][$k];
+
+        if(!empty($request['send_bill'][$k])) {
+            $send_bill = TRUE;
+            $contact_id = $request['send_bill'][$k];
+       }
+
+       $send_report = '';
+       if(!empty($request['send_report'][$k])) {
+           $send_report = TRUE;
+           $contact_id = $request['send_report'][$k];
+       } 
+       
+       $whatsapp = '';
+       if(!empty($request['whatsapp'][$k])) {
+           $whatsapp = TRUE;
+           $contact_id = $request['whatsapp'][$k];
+       }
+       $is_primary = '';
+        if(!empty($request['is_primary'][$k])) {
+             $is_primary = TRUE;
+             $contact_id = $request['is_primary'][$k];
             
-        }
-        $send_report = '';
-        if(!empty($request['send_report'][$k])) {
-            $send_report = TRUE;
-            $contact_id = $request['send_report'][$k];
-        }
-        $whatsapp = '';
-        if(!empty($request['whatsapp'][$k])) {
-            $whatsapp = TRUE;
-            $contact_id = $request['whatsapp'][$k];
         }
          //  echo "<br> $contact_id | ".$send_email." --  ".$send_report." --  ".$whatsapp." --  ";
           
@@ -96,7 +104,7 @@ class ContactAssignmentController
             [
                 'company_id' => $customers[0]->company_id,
                 'customer_id' => $customers[0]->customer_id,
-                'send_bill' => (bool) ($send_email ?? false),
+                'send_bill' => (bool) ($send_bill ?? false),
                 'send_report' => (bool) ($send_report ?? false),
                 'whatsapp' => (bool) ($whatsapp ?? false),
                 'is_primary' => (bool) ($is_primary ?? false),

@@ -73,7 +73,7 @@ class CustomerSiteMasterController
         $validated = $request->validate([
       //      'site_code' => 'required|string|max:50|unique:site_masters,site_code',
       
-            'site_customer_code' => 'required',
+            'site_customer_code' => 'string',
             'site_master_id' => 'required',
             "site_customer_name" => 'string',
         //    "contact_type" => 'string',

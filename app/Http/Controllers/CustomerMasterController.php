@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,CustomerMaster,State};
+use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,State};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
@@ -116,6 +116,8 @@ class CustomerMasterController
             
             $cm = new CustomerMaster();
             $cm->customer_name = $request->customer_name;
+            
+            $cm->b2c_customer = $request->b2c_customer??null;
             $cm->division = $request->division??null;
             $cm->company_id = $cid;
             $cm->gst_no = $request->gst_no??null;;
@@ -128,13 +130,13 @@ class CustomerMasterController
             $cm->gst_state_code = $request->state_code??null;
         //    $cm->email	= $request->email;
          //   $cm->mobile	= $request->mobile;
-            $cm->is_billing = $request->billing_address??null;;
+            $cm->is_billing = $request->is_billing??null;;
             $cm->billing_cycle = $request->billing_cycle??null;;
             $cm->credit_cycle = $request->credit_cycle??null;;
             $cm->status = $request->status??null;
             $cm->save();
 
-                return redirect()->route('customer.index')
+                return redirect()->route('customer.show', $cm->id)
                 ->with('success', [
                     'text' => 'Customer Created Successfully!',
                     'link' => route('customer-site-masters.create',['customer_id'=>$cm->id]), // link to customer details
@@ -161,7 +163,9 @@ class CustomerMasterController
     public function show(CustomerMaster $customer)
     {
         $companies = CompanyMaster::getCompanyArray();
-        return view('masters.customer.show', compact('customer','companies'));
+        $contactmasters =ContactMaster::where('company_id',$customer->company_id )->get();
+       // dd($contactmasters);
+        return view('masters.customer.show', compact('customer','companies','contactmasters'));
     }
 
     /**
@@ -199,6 +203,7 @@ class CustomerMasterController
 
         try {
             //  dd($validated);
+            /*
             $company = CompanyMaster::where('pancard', substr($request->gst_no, 2, 10))->get();
             // dd($company);
            //  dd($company->id);
@@ -207,7 +212,7 @@ class CustomerMasterController
                  $cid = CompanyMaster::createCompany($arr);
              } else {
                  $cid = $company[0]->id;
-             }
+             }*/
            //  dd($validated);
              $customer->update($validated);
            /*  
@@ -230,8 +235,12 @@ class CustomerMasterController
              $cm->save();
              */
 
-              return redirect()->route('customer.index')
-                             ->with('success', 'Customer updated successfully!');
+              return redirect()->route('customer.show',$customer->id)
+                             ->with('success', [
+                                'text' => 'Customer updated successfully!',
+                                'link' => route('customer-site-masters.create',['customer_id'=>$customer->id]), // link to customer details
+                                'link_text' => ' Next Step : Assign Customer Site'
+                            ]);
           } catch (\Exception $e) {
               dd("Fail". $e->getMessage());
               return redirect()->back()
