@@ -3,6 +3,7 @@
 
 
 @section('content')
+<link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 <div class="container mt-4">
 
  <!-- Search and Filter Form --><div class="d-flex justify-content-between align-items-center mb-4">
@@ -33,6 +34,7 @@
                 <label for="search" class="form-label">Search</label>
                 <input type="text" class="form-control" id="search" name="search" 
                        value="{{ request('search') }}" placeholder="Search by code or name...">
+                <input type="hidden" id="record-id" name="record-id">     
             </div>
             <div class="col-md-2">
                 <label for="status" class="form-label">Status</label>
@@ -181,4 +183,11 @@
         </div>
     @endif
 </div>
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div id="modal-search-results"></div>
+    </div>
+</div>  
+<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
 @endsection

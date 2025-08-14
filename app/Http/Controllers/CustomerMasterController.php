@@ -279,7 +279,7 @@ class CustomerMasterController
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
         $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'company_name') // Select only necessary columns
+                                ->select('id', 'company_name as name') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 

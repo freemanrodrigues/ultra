@@ -25,8 +25,8 @@ Route::get('/sample', function () {
     return view('sample-form');
 });
 
-Route::get('/blank', function () {
-    return view('blank');
+Route::any('/delete', function () {
+   return view('blank1');
 });
 /*
 Route::get('/blank1', function () {
@@ -54,7 +54,8 @@ Route::any('/ajax/check-gst', [CompanyMasterController::class,'checkGST'])->name
 Route::post('/ajax/get-state', [StateController::class,'getState'])->name('get-state');
 Route::any('/ajax/autosuggest-customer', [CustomerMasterController::class,'autoSuggestCustomer'])->name('autosuggest-customer');
 
-Route::get('/blank1', [CustomerMasterController::class,'autoSuggestCustomer1'])->name('blank1');
+Route::any('/ajax/autosuggest-sitename', [SiteMasterController::class,'autoSuggestSiteName'])->name('autosuggest-sitename');
+Route::any('/ajax/autosuggest-companyname', [CompanyMasterController::class,'autoSuggestCompanyName'])->name('autosuggest-companyname');
 
 //Route::resource('/master/state', SiteMasterController::class);
 Route::get('profile', [UserController::class,'userProfile'])->name('profile');

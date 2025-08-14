@@ -1,5 +1,6 @@
 @extends('/layouts/master-layout')
 @section('content')
+<link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 
 <div class="container mt-4">
  <!-- Search and Filter Form --><div class="d-flex justify-content-between align-items-center mb-4">
@@ -31,6 +32,9 @@
                 <label for="search" class="form-label">Search</label>
                 <input type="text" class="form-control" id="search" name="search" 
                        value="{{ request('search') }}" placeholder="Search by code or name...">
+<div id="loading" style="display: none;">Loading...</div>
+<div id="search-results"></div>
+<input type="hidden" id="search_id" name="search_id">
             </div>
             <div class="col-md-3">
                 <label for="status" class="form-label">Status</label>
@@ -83,7 +87,7 @@
                             <th>ID</th>
                             <th>Customer Name</th>
                             <th>GST No</th>
-                            <th>Mobile</th>
+                            <th>City</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th width="150">Actions</th>
@@ -101,7 +105,7 @@
                                 <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}</code></a>
                             </td>
                             <td>{{ $customer->gst_no }}</td>
-                            <td>{{-- $customer->mobile --}}
+                            <td>{{ $customer->city }}
                            
                             </td>
                             <td>
@@ -180,4 +184,12 @@
         @endif
     </div>
 </div>
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div id="modal-search-results">
+        </div>
+    </div>
+</div>
+<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
 @endsection

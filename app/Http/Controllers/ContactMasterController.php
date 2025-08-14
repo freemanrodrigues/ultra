@@ -17,12 +17,11 @@ class ContactMasterController
         //$contacts = ContactMaster::with('company')->get();
         $query->with('company');
         // Search functionality
-        if ($request->filled('search')) {
+        if($request->filled('record-id')) { 
+            $query->where("company_id", $request->get('record-id'));
+        }elseif ($request->filled('search')) {
             $search = $request->get('search');
-            $query->where(function($q) use ($search) {
-                $q->where('firstname', 'like', "%{$search}%")
-                  ->orWhere('lastname', 'like', "%{$search}%");
-            });
+            $query->where("company_name", 'like', "%{$search}%");
         }
 
         // Filter by status

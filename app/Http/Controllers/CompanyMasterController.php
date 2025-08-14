@@ -95,4 +95,23 @@ class CompanyMasterController
 
         return response()->json(['exists' => false]);
     }
+
+    public function autoSuggestCompanyName(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+        // Fetch data from your database
+        // Replace 'YourModel' and 'name' with your actual model and column name
+        $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
+        ->select('id', 'company_name as name') 
+        ->limit(10)
+        ->get();
+
+        return response()->json($suggestions);
+    }
 }

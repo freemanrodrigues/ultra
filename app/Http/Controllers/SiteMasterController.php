@@ -17,12 +17,15 @@ class SiteMasterController
         $query = SiteMaster::query();
 
         // Search functionality
-        if ($request->filled('search')) {
+        if($request->filled('record-id')) { 
+            $query->where("id", $request->get('record-id'));
+        }elseif ($request->filled('search')) {
             $search = $request->get('search');
-            $query->where(function($q) use ($search) {
+         /*   $query->where(function($q) use ($search) {
                 $q->where('site_code', 'like', "%{$search}%")
                   ->orWhere('site_name', 'like', "%{$search}%");
-            });
+            }); */
+            $query->where("site_name", 'like', "%{$search}%");
         }
 
         // Filter by status
@@ -100,7 +103,7 @@ class SiteMasterController
      */
     public function show(SiteMaster $siteMaster): View
     {
-        dd("view full details");
+       // dd("view full details");
         return view('masters.site-masters.show', compact('siteMaster'));
     }
 
@@ -164,7 +167,7 @@ class SiteMasterController
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
         $suggestions = SiteMaster::where('site_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'site_name') // Select only necessary columns
+                                ->select('id', 'site_name as name') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 
