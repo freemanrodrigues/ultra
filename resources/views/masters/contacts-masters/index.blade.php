@@ -18,6 +18,9 @@
     @endif
 
     <!-- Users Table -->
+        <div class="card">
+        <div class="card-body p-0">
+            @if($users->count() > 0)
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-light">
             <tr>
@@ -54,7 +57,16 @@
             @endforeach
         </tbody>
     </table>
-
+@else
+                <div class="text-center py-3">
+                    <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+                    <h5 class="mt-3 text-muted">No Contact found</h5>
+                    <p class="text-muted">Get started by adding your first contact.</p>
+                    <a href="{{ route('contacts-masters.create') }}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Add New Contact
+                    </a>
+                </div>
+@endif
 
 
           <!--end::Container-->

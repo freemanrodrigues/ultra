@@ -103,8 +103,14 @@
                                     
                                     <td>{{ $siteMaster->site_name }}</td>
                                    <td>{{ $siteMaster->city }}</td>
-                                   <td>{!! $siteMaster->status_badge !!}</td>
-                                    <td><a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a></td>
+                                   <td>{!! $siteMaster->status_badge !!}
+                                        @if(($siteMaster->status ?? '') === 1)
+                                        <span class="badge bg-success">Active</span>
+                                        @else
+                                        <span class="badge bg-secondary">Inactive</span>
+                                        @endif
+                                   </td>
+                                    <td><!--  a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a --> <i class="bi bi-eye"></i></td>
                                     <td>
                                         <small class="text-muted">
                                         @if(!empty($siteMaster->created_at))
