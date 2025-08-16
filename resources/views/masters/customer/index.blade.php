@@ -102,7 +102,10 @@
                             </td>
                             <td><strong>{{ $customer->id }}</strong></td>
                             <td>    <a href="{{ route('customer.show', $customer) }}" class="text-decoration-none">
-                                <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}</code></a>
+                                <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}
+{{ !empty($customer->division) ? ' - '.$customer->division : '' }}
+{{ !empty($states[$customer->state] ?? null) ? ' - '.$states[$customer->state] : '' }}
+</code></a>
                             </td>
                             <td>{{ $customer->gst_no }}</td>
                             <td>{{ $customer->city }}

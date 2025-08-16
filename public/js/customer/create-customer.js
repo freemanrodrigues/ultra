@@ -52,9 +52,10 @@ jQuery(function ($) {
                     if (response.company_name && response.company_name.trim() !== '') {
                         $('#gst_success').text('GST number already added').css('color', 'green');
                         $('#customer_name').val(response.company_name);
-                        $("#customer_name").prop("readonly", true);
+                        $("#customer_name").prop("disabled", true);
+                       
                     }
-                    $("#customer_name").prop("readonly", false);
+                    $("#customer_name").prop("disabled", false);
                     $('#company_id').val(response.company_id);
                     $('#state_code').val(response.state_code);
                     $('#state').val(response.state_id).change();
@@ -113,6 +114,13 @@ jQuery(function ($) {
         $('#gst_error').empty();
         $('#gst_success').empty();
         $('input[name="_token"]').val(tokenValue);
-        $('.customer_name_div').toggle(!isChecked);
+      //  $('.customer_name_div').toggle(!isChecked);
+      if ($(this).is(':checked')) {
+        // Enable inputs
+        $('#gst_no, #pan_no').prop('disabled', true);
+    } else {
+        // Disable inputs
+        $('#gst_no, #pan_no').prop('disabled', false);
+    }
     });
 });
