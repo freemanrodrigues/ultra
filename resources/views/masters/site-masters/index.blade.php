@@ -20,9 +20,11 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill me-2"></i>
         {{ session('success')['text'] }}<br>
+        @if(session('success')['link'])
         <a href="{{ session('success')['link'] }}" class="alert-link">
             {{ session('success')['link_text'] }}
         </a>.
+        @endif
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
@@ -190,5 +192,4 @@
     </div>
 </div>  
 <script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
-
 @endsection

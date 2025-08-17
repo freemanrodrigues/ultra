@@ -87,7 +87,7 @@
                             <th>GST No</th>
                             <th>City</th>
                             <th>Status</th>
-                            <th>Created</th>
+                            
                             <th width="150">Actions</th>
                         </tr>
                     </thead>
@@ -115,11 +115,17 @@
                                     {{ ucfirst($customer->status) }}
                                 </span>
                             </td>
-                            <td>
+                            <!-- td>
                                 <small class="text-muted">@if(!empty($customer->created_at)){{ $customer->created_at->format('M d, Y') }} @endif</small>
-                            </td>
+                            </td -->
                             <td>
                                 <div class="btn-group" role="group">
+
+<a href="{{ route('customer-site-masters.create', ['customer_id' => $customer->id]) }}" 
+                                       class="btn btn-sm btn-outline-info" title="List Sites">
+                                        <i class="bi bi-house-add"></i>
+                                    </a>
+
 <a href="{{ route('customer-site-masters.index', ['customer_id' => $customer->id]) }}" 
                                        class="btn btn-sm btn-outline-info" title="List Sites">
                                         <i class="bi bi-list"></i>

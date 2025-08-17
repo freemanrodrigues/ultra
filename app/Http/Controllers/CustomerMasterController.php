@@ -18,7 +18,10 @@ class CustomerMasterController
         $query = CustomerMaster::query();
 
         // Search functionality
-        if ($request->filled('search')) {
+        
+        if ($request->filled('')) {
+            $query->where('id', $request->get('company_id'));
+        }elseif ($request->filled('search')) {
             $search = $request->get('search');
             $query->where(function($q) use ($search) {
                 $q->where('gst_no', 'like', "%{$search}%")
@@ -39,8 +42,8 @@ class CustomerMasterController
         $query->orderBy($sortBy, $sortOrder);
 
         $customers = $query->paginate(10)->appends($request->query());
-        
-        return view('masters.customer.index',compact('customers'));
+        $states = State::getStateArray();
+        return view('masters.customer.index',compact('customers', 'states'));
     }
 
     /**
@@ -188,20 +191,28 @@ class CustomerMasterController
     public function update(Request $request, CustomerMaster $customer)
     {
          //dd($request->all());
-        $validated = $request->validate([
+       
+        $request->validate([
+            'b2c_customer' => ['nullable', 'boolean'],
             'customer_name' => 'required|string|max:255|unique:customer_masters,customer_name,' . $customer->id,
-            "company_id" => 'required|string',
-            'gst_no' => 'nullable|string|max:15',
+            'gst_no' => [
+                'nullable',                              // Allows null/empty values
+                'required_unless:b2c_customer,1',        // Required if b2c_customer is not 1
+                'prohibited_if:b2c_customer,1',          // Must be empty if b2c_customer is 1
+                'regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/',
+            ],
             "address" => 'required|string|max:255',
             "city" => 'required|string|max:100',
-            "state" => 'required|string|max:100',
-            "country" => 'required|string|max:100',
-            "pincode" => 'required|string|max:24',
-          //  "billing_cycle" => 'date',
-          //  "credit_cycle" => 'required|date',
+            "state" => 'required|integer',
+            "country" => 'required|integer|min:1|max:999',
+            "pincode" => 'required|string|max:6',
+            //   "email" => 'required|email',
+            //   "phone" => 'required',
+            //  "billing_cycle" => 'date',
+            //  "credit_cycle" => 'required|date',
             //    "sales_person_id" => null
             'status' => 'required|in:1,0'
-        ]);
+        ]); 
 // account code - integer, account category, account name
 
         try {
@@ -217,13 +228,14 @@ class CustomerMasterController
                  $cid = $company[0]->id;
              }*/
            //  dd($validated);
-             $customer->update($validated);
-           /*  
-             $id = $request->id;
-             $cm = CustomerMaster::find($id);
+            // $customer->update($validated);
+             
+             
+             $cm = CustomerMaster::find($customer->id);
              $cm->customer_name = $request->customer_name;
+            $cm->b2c_customer = $request->b2c_customer??null;
              $cm->division = $request->division??null;
-             $cm->company_id = $cid;
+            // $cm->company_id = $cid;
              $cm->gst_no = $request->gst_no??null;
              $cm->address = $request->address??null;
             $cm->address1 = $request->address2??null;
@@ -231,13 +243,15 @@ class CustomerMasterController
              $cm->state = $request->state??null;
              $cm->country= $request->country??null;
              $cm->pincode	= $request->pincode??null;
+             $cm->gst_state_code = $request->state_code??null;
              $cm->is_billing = $request->billing_address??null;
              $cm->billing_cycle = $request->billing_cycle??null;
              $cm->credit_cycle = $request->credit_cycle??null;
              $cm->status =$request->status??null;
              $cm->save();
-             */
-
+             
+             
+        
               return redirect()->route('customer.show',$customer->id)
                              ->with('success', [
                                 'text' => 'Customer updated successfully!',
@@ -245,10 +259,14 @@ class CustomerMasterController
                                 'link_text' => ' Next Step : Assign Customer Site'
                             ]);
           } catch (\Exception $e) {
-              dd("Fail". $e->getMessage());
+                if($e->getCode() == 23000) {
+                    $err_msg = 'This GST number is already registered. Please use a different one.'; 
+                } else {
+                    $err_msg = $e->getMessage();
+                }
               return redirect()->back()
                              ->withInput()
-                             ->with('error', 'Error updating customer: ' . $e->getMessage());
+                             ->with('error', 'Error updating customer: ' . $err_msg);
           }
     }
 

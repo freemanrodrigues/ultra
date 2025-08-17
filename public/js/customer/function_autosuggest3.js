@@ -1,11 +1,17 @@
 $(document).ready(function() {
 
-    $('#search').on('keyup', function() {
+    $('.search').on('keyup', function() {
         var query = $(this).val();
-        var table = 'users';
-        const path = window.location.pathname;    
+        
+        let txtbx = $(this).data("txt_id"); 
         let URL = '';
-
+        const path = window.location.pathname;    
+        
+        const urlMap = {
+            site_master_id: '/ajax/autosuggest-sitename',
+            company_id: '/ajax/autosuggest-companyname',
+            customer_id: '/ajax/autosuggest-customer'
+        };
   
     switch (path) {
         case '/master/contacts-masters':
@@ -20,7 +26,7 @@ $(document).ready(function() {
                 
         default:
             // Handle a default case, if necessary
-            URL = '/ajax/autosuggest-customer';
+            URL = urlMap[txtbx] || '/ajax/autosuggest-customer';
             break;
     }
         if (query.length > 2) {
@@ -28,17 +34,16 @@ $(document).ready(function() {
                 url: URL, // The URL to your server-side script
                 method: 'GET',
                 data: {
-                    query: query,
-                    table: table
+                    query: query
                 },
                 success: function(data) {
                      let resultsHtml = '';
-                     
+                    // alert(txtbx);
                     if (data.length > 0) {
                       
                         $.each(data, function(index, record) {
                             // Option 1: Clickable to fill a textbox and a hidden input
-                            resultsHtml += '<p class="select-option" data-id="' + record.id + '" data-name="' + record.name + '">';
+                            resultsHtml += '<p class="select-option" data-id="' + record.id + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  >';
                             
                             resultsHtml += ' ' + record.name; // Checkmark icon
                             resultsHtml += '</p>';
@@ -49,7 +54,11 @@ $(document).ready(function() {
                          //   resultsHtml += '</p>';
                         });
                     } else {
+                        if(txtbx == 'site_master_id') {
+                            resultsHtml = '<p><a href="/master/site-masters/create">Create New Site</a>.</p>';     
+                        } else {
                         resultsHtml = '<p>No results found.</p>';
+                        }
                     }
                     $('#modal-search-results').html(resultsHtml);
                     
@@ -79,11 +88,16 @@ $(document).ready(function() {
     $('#modal-search-results').on('click', '.select-option', function() {
         var id = $(this).data('id');
         var name = $(this).data('name');
-   
+        var txtbx = $(this).data('txtbx');
+        
+       // alert(txtbx);
         // Assuming your input box is '#search' and your hidden input is '#record-id'
         $('#search').val(name);
+        if (txtbx === "") {
         $('#record-id').val(id); 
-    
+        } else {
+         $('#'+txtbx).val(id); 
+        }
         // Hide the modal and clear its content
         $('#searchModal').css('display', 'none');
         $('#modal-search-results').html('');

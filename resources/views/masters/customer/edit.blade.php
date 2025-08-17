@@ -11,7 +11,7 @@
                             <h4 class="mb-0">
                                 <i class="bi bi-person-plus-fill me-2"></i>Edit Customer :{{$customer->customer_name}}
                             </h4>
-                            <small class="opacity-75">Add a new customer to the system</small>
+                            <!-- small class="opacity-75">Add a new customer to the system</small -->
                         </div>
                         <div>
                             <a href="{{ route('customer.index') }}" class="btn btn-outline-light btn-sm">
@@ -152,8 +152,7 @@ autocomplete="off"
                                                       id="address2" 
                                                       name="address2" 
                                                       value="{{ (old('address2')??$customer->address1) }}" 
-                                                      placeholder="Enter complete address2"
-                                                      required>
+                                                      placeholder="Enter complete address2">
                                             @error('address2')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

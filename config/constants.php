@@ -4,6 +4,7 @@ return [
            'USER_TYPE' => array('1' => 'Staff', '2' => 'Customer', '3' => 'Vendor', '4' => 'Delivery Partner'),
            'USER_ROLE' => array('1' => 'SuperAdmin', '2' => 'Team Leader', '3' => 'Executive', '4' => 'Data Entry'),
            'SEVERITY' => array('1' => 'Normal', '2' => 'Caution', '3' => 'Critical'),
+           'CUSTOMER_GROUP' => array('1' => 'Premium', '2' => 'Standard', '3' => 'Basic'),
            'SITE_TYPE' => array('1' => 'HeadOffice', '2' => 'Manufacturing Plant1', '3' => 'Manufacturing Plant1', '4' => 'WareHouse Delhi', '5' => 'WareHouse Mumbai'),
            'BILLING_CYCLE' => array('1' => 'Monthly', '2' => 'Quarterly', '3' => 'Half Yearly', '4' => 'Yearly'),
            'BRAND_OF_OIL' => array( 1  => "Castrol",

@@ -122,11 +122,17 @@ class SiteMasterController
     public function update(Request $request, SiteMaster $siteMaster)
     {
         $validated = $request->validate([
-            'site_code' => 'required|string|max:50|unique:site_masters,site_code,'.$siteMaster->id,
+           // 'site_code' => 'required|string|max:50|unique:site_masters,site_code,'.$siteMaster->id,
             'site_name' => 'required|string|max:255',
+            "address" => 'nullable|string',
+            "city" => 'nullable|string',
+            "state" => 'nullable|string',
+            "country" => 'nullable|string',
+            "lat" => 'nullable|string',
+            "long" => 'nullable|string',
             'status' => 'required|in:1,0'
         ]);
-
+        
         try {
             $siteMaster->update($validated);
           //  dd("sucess");

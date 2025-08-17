@@ -219,7 +219,7 @@
                                                        title="View Details"> {{ $equipment->equipment_name }}</a>
                                             </td>
                                             <td>{{ $equipment->serial_number }}</td>
-                                            <td>{{ $equipment->	make_model_id }}</td>
+                                            <td>{{ $equipment->make_model->make }} {{ $equipment->make_model->model }}</td>
                                             <td>
                                                 <span class="badge bg-{{ $equipment->status ? 'success' : 'danger' }}">
                                                     {{ $equipment->status ? 'Active' : 'Inactive' }}

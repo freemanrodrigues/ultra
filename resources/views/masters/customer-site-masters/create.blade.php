@@ -2,7 +2,6 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
-
 <div class="container mt-4">
     <div class="card shadow rounded-4">
         <div class="card-header bg-primary text-white">
@@ -48,9 +47,8 @@
                         @endforeach  
                         </select>
                         -->
-                        <input type="text" class="form-control search"  name="search" data-txt_id="site_master_id"
-                       value="{{ request('search') }}" placeholder="Search by code or name...">
-                        <input type="hidden" id="record-id" name="record-id"> 
+                        <input type="text" class="form-control search"  name="search"  id="search" data-txt_id="site_master_id"
+                       value="{{ request('search') }}" placeholder="Search Site Name...">
                         <input type="hidden" id="site_master_id" name="site_master_id"> 
                     </div>
 

@@ -90,7 +90,8 @@ class EquipmentMasterController
      */
     public function edit(EquipmentMaster $equipmentMaster)
     {
-        //
+        $make_models = MakeModelMaster::all();
+        return view('masters.equipment-masters.edit',compact('make_models','equipmentMaster'));
     }
 
     /**
@@ -98,7 +99,25 @@ class EquipmentMasterController
      */
     public function update(Request $request, EquipmentMaster $equipmentMaster)
     {
-        //
+        $validated = $request->validate([
+            'equipment_name' => 'required|string',
+            'serial_number' => 'required|string|unique:equipment_masters,serial_number,'.$equipmentMaster->id,
+           "make_model_id" => 'integer',
+           'status' => 'required|in:1,0'
+         ]);
+
+         try {
+             // $data = $request->validate();
+            // EquipmentMaster::create($validated);
+             $equipmentMaster->update($validated);
+              return redirect()->route('equipment-masters.index')
+                             ->with('success', 'Make EquipmentMaster updated successfully!');
+          } catch (\Exception $e) {
+              
+              return redirect()->back()
+                             ->withInput()
+                             ->with('error', 'Error updating EquipmentMaster: ' . $e->getMessage());
+          }   
     }
 
     /**

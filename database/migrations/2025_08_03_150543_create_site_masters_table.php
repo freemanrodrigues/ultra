@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
         //    $table->string('site_code')->nullable();
             $table->string('site_name')->unique();
-        //    $table->string('address')->nullable();
+            $table->string('address')->nullable();
         //    $table->string('address1')->nullable();
             $table->string('city')->nullable();
         //    $table->string('pincode')->nullable();
