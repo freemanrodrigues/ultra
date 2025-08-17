@@ -110,7 +110,7 @@
         <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{ old('customer_name')}}"  placeholder="Enter customer full name" autocomplete="off" required>
              <div id="suggestions" class="suggestion-list d-none">
             </div>
-            
+
 
             <div id="loading" class="loading-indicator">Loading...</div>
                                             @error('customer_name')
@@ -308,16 +308,11 @@
                                                 Billing Cycle <span class="text-danger">*</span>
                                             </label>
                                             <select class="form-select @error('billing_cycle') is-invalid @enderror" 
-                                                    id="billing_cycle" 
-                                                    name="billing_cycle" 
-                                                    required>
-                                                <option value="">Select Billing Cycle</option>
-                                                <option value="monthly" {{ old('billing_cycle') == 'monthly' ? 'selected' : '' }}>Monthly</option>
-                                                <option value="quarterly" {{ old('billing_cycle') == 'quarterly' ? 'selected' : '' }}>Quarterly</option>
-                                                <option value="half_yearly" {{ old('billing_cycle') == 'half_yearly' ? 'selected' : '' }}>Half Yearly</option>
-                                                <option value="yearly" {{ old('billing_cycle') == 'yearly' ? 'selected' : '' }}>Yearly</option>
-
-
+                                                    id="billing_cycle" name="billing_cycle" required>
+                                                    <option value="">Select Billing Cycle</option>
+                                                         @foreach(config('constants.BILLING_CYCLE') as $k => $val)
+                                                        <option value="{{$k}}" {{ old('billing_cycle') == $k ? 'selected' : '' }}>{{$val}}</option>
+                                                    @endforeach
                                             </select>
                                             @error('billing_cycle')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -349,10 +344,11 @@
                                                     id="group" 
                                                     name="group">
                                                 <option value="">Select Group</option>
-                                                <option value="premium" {{ old('group') == 'premium' ? 'selected' : '' }}>Premium</option>
-                                                <option value="standard" {{ old('group') == 'standard' ? 'selected' : '' }}>Standard</option>
-                                                <option value="basic" {{ old('group') == 'basic' ? 'selected' : '' }}>Basic</option>
-                                                <option value="vip" {{ old('group') == 'vip' ? 'selected' : '' }}>VIP</option>
+                                                     @foreach(config('constants.CUSTOMER_GROUP') as $k => $val)
+                                                        <option value="{{$k}}" {{ old('group') == $k ? 'selected' : '' }}>{{$val}}</option>
+                                                    @endforeach
+                                                
+                                                
                                             </select>
                                             @error('group')
                                                 <div class="invalid-feedback">{{ $message }}</div>

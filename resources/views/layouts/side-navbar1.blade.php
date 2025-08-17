@@ -8,7 +8,7 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                <i class="bi bi-list"></i>
+               <i class="bi bi-list"></i>
               </a>
             </li>
             <li class="nav-item d-none d-md-block"><a href="{{route('dashboard')}}" class="nav-link">Home</a></li>
@@ -301,34 +301,15 @@
 <i class="nav-icon bi bi-circle"></i><p>Site Master</p>
 </a>
 </li>
-<!--
+
 <li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>Plant Master</p>
-</a>
-</li>
--->
-<li class="nav-item">
-<a href="{{ route('courier.index') }}" class="nav-link">                  
+<a class="nav-link" >                  
 <i class="nav-icon bi bi-circle"></i><p>Courier Master</p>
 </a>
 </li>
-<!--
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>Bank Master</p>
-</a> -->
+
 </li>
-<li class="nav-item">
-<a href="{{ route('item.index') }}" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>Item Master</p>
-</a>
-</li>
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>Test Master</p>
-</a>
-</li>
+
 <li class="nav-item">
 <a href="{{ route('equipment-masters.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Equipment/Instrument</p>
@@ -340,25 +321,26 @@
 </a>
 </li>
 <li class="nav-item">
-<a href="{{ route('sample-type.index') }}" class="nav-link">                  
+<a href="" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Type of Sample</p>
 </a>
 </li>
 <li class="nav-item">
-<a href="{{ route('grade.index') }}" class="nav-link">                  
+<a  class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Grade Master</p>
 </a>
 </li>
 <li class="nav-item">
-<a href="{{ route('brand.index') }}" class="nav-link">                  
+<a class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Brand Master</p>
-</a>
+</a -->
 </li>
 <li class="nav-item">
 <a href="{{ route('make-model-masters.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Make/Model</p>
 </a>
 </li>
+<!--
 <li class="nav-item">
 <a href="{{ route('bottle-type.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>
@@ -371,18 +353,7 @@ Type Of Bottle</p>
 Nature Of Sample</p>
 </a>
 </li>
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Model Sum Capacity</p>
-</a>
-</li>
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Brand/Grade Fresh Test</p>
-</a>
-</li>
+
 <li class="nav-item">
 <a href="{{ route('subassembly.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>
@@ -401,45 +372,7 @@ Ferrography Master</p>
 Unit Master</p>
 </a>
 </li>
-<!--
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Comments Master</p>
-</a>
-</li>  -->
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-PriceList Master</p>
-</a>
-</li>
-<!--
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Email Master</p>
-</a>
-</li>
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Email Serial Automation</p>
-</a>
-</li>
-
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Location Master</p>
-</a>
-</li>
-<li class="nav-item">
-<a href="./widgets/small-box.html" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-GST Master</p>
-</a>
-</li> -->
+-->
 <li class="nav-item">
 <a href="{{ route('users.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>

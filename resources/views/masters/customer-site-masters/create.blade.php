@@ -1,6 +1,8 @@
 @extends('/layouts/master-layout')
 
 @section('content')
+<link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
+
 <div class="container mt-4">
     <div class="card shadow rounded-4">
         <div class="card-header bg-primary text-white">
@@ -23,6 +25,7 @@
                 <div class="row g-3">
                 <div class="col-md-6">
                         <label for="customer_id" class="form-label">Customer</label>
+                        @if(!empty(request('customer_id')))
                         <select name="customer_id" id="customer_id" class="form-select">
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}" {{ request('customer_id') == $customer->id ? 'selected' : '' }}>
@@ -30,16 +33,25 @@
                                 </option>
                             @endforeach
                         </select>
+                        @else
+                        <input type="text" class="form-control search"  name="search" data-txt_id="customer_id"
+                       value="{{ request('search') }}" placeholder="Search by code or name...">
+                        <input type="hidden" id="customer_id" name="customer_id"> 
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <label for="site_master_id" class="form-label">Site</label>
-                        
+                        <!--
                         <select name="site_master_id" id="site_master_id" class="form-select" required>
                         @foreach($site_masters as $k => $val)
                         <option value="{{$val->id}}">{{$val->site_name}} - {{$val->city}}</option>
                         @endforeach  
                         </select>
-                    
+                        -->
+                        <input type="text" class="form-control search"  name="search" data-txt_id="site_master_id"
+                       value="{{ request('search') }}" placeholder="Search by code or name...">
+                        <input type="hidden" id="record-id" name="record-id"> 
+                        <input type="hidden" id="site_master_id" name="site_master_id"> 
                     </div>
 
                     <div class="col-md-6">
@@ -116,6 +128,14 @@
         </div>
     </div>
 </div>
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div id="modal-search-results"></div>
+    </div>
+</div>  
+<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCnetAvQ6zC7jmWmA3iGwVWmLhjthohRFk"></script>
 <script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCXFJ-lc7cHHcEklG2_oIhTnPKTWsLwHEU"></script>

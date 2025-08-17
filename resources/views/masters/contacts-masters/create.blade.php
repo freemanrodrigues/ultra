@@ -1,6 +1,7 @@
 @extends('/layouts/master-layout')
 
 @section('content')
+<link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 
       <!--begin::App Main-->
       <main class="app-main">
@@ -58,12 +59,19 @@
                     
                     <div class="col-md-6">
                         <label for="company_id">Company</label>
+                        @if(request()->has('company_id'))
                         <select name="company_id" class="form-select" required>
                             <option value="">--Select--</option>
                             @foreach($companies as $company)
                                 <option value="{{ $company->id }}" @selected($company->id == request('company_id'))>{{ $company->company_name }}</option>
                             @endforeach
                         </select>
+                        @else
+        <input type="text" class="form-control search" id="search" name="search" 
+                       value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id">
+                <input type="hidden" id="company_id" name="company_id">    
+
+                        @endif
                     </div>
                     
                     <div class="col-md-6">
@@ -86,5 +94,13 @@
         <!--end::App Content-->
       </main>
       <!--end::App Main-->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div id="modal-search-results"></div>
+    </div>
+</div>  
+<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+
 @endsection
 

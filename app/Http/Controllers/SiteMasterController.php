@@ -17,8 +17,8 @@ class SiteMasterController
         $query = SiteMaster::query();
 
         // Search functionality
-        if($request->filled('record-id')) { 
-            $query->where("id", $request->get('record-id'));
+        if($request->filled('site_master_id')) { 
+            $query->where("id", $request->get('site_master_id'));
         }elseif ($request->filled('search')) {
             $search = $request->get('search');
          /*   $query->where(function($q) use ($search) {

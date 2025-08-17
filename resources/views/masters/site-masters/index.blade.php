@@ -32,9 +32,9 @@
         <form method="GET" action="{{ route('site-masters.index') }}" class="row g-3">
             <div class="col-md-4">
                 <label for="search" class="form-label">Search</label>
-                <input type="text" class="form-control" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by code or name...">
-                <input type="hidden" id="record-id" name="record-id">     
+                <input type="text" class="form-control search" id="search" name="search" 
+                       value="{{ request('search') }}" placeholder="Search by Site Name..."  data-txt_id="site_master_id">
+                <input type="hidden" id="site_master_id" name="site_master_id">    
             </div>
             <div class="col-md-2">
                 <label for="status" class="form-label">Status</label>
@@ -190,4 +190,5 @@
     </div>
 </div>  
 <script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+
 @endsection

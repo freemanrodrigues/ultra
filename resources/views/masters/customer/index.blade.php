@@ -30,11 +30,9 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <label for="search" class="form-label">Search</label>
-                <input type="text" class="form-control" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by code or name...">
-<div id="loading" style="display: none;">Loading...</div>
-<div id="search-results"></div>
-<input type="hidden" id="search_id" name="search_id">
+                <input type="text" class="form-control search" id="search" name="search" 
+                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_id">
+                    <input type="hidden" id="company_id" name="company_id">
             </div>
             <div class="col-md-3">
                 <label for="status" class="form-label">Status</label>
