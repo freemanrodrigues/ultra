@@ -2,8 +2,10 @@ $(document).ready(function() {
 
     $('.search').on('keyup', function() {
         var query = $(this).val();
-        
+        let clickedId = $(this).attr("id");
+       // alert("You clicked: " + clickedId);
         let txtbx = $(this).data("txt_id"); 
+     //   alert(txtbx);
         let URL = '';
         const path = window.location.pathname;    
         
@@ -43,7 +45,7 @@ $(document).ready(function() {
                       
                         $.each(data, function(index, record) {
                             // Option 1: Clickable to fill a textbox and a hidden input
-                            resultsHtml += '<p class="select-option" data-id="' + record.id + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  >';
+                            resultsHtml += '<p class="select-option" data-id="' + record.id + '" data-clickid="' + clickedId + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  >';
                             
                             resultsHtml += ' ' + record.name; // Checkmark icon
                             resultsHtml += '</p>';
@@ -89,15 +91,13 @@ $(document).ready(function() {
         var id = $(this).data('id');
         var name = $(this).data('name');
         var txtbx = $(this).data('txtbx');
+        var clickid = $(this).data('clickid');
         
-       // alert(txtbx);
+       
         // Assuming your input box is '#search' and your hidden input is '#record-id'
-        $('#search').val(name);
-        if (txtbx === "") {
-        $('#record-id').val(id); 
-        } else {
-         $('#'+txtbx).val(id); 
-        }
+        $('#'+clickid).val(name);
+        $('#'+txtbx).val(id); 
+        
         // Hide the modal and clear its content
         $('#searchModal').css('display', 'none');
         $('#modal-search-results').html('');

@@ -57,9 +57,9 @@
 
   <div class="row">
     <div class="col bordered-cell text-end fw-semibold text-muted">Billing Cycle:</div>
-    <div class="col bordered-cell">{{ $customer->billing_cycle ?? 'N/A' }}</div>
+    <div class="col bordered-cell">{{ config('constants.BILLING_CYCLE')[$customer->billing_cycle] ?? 'N/A' }}</div>
     <div class="col bordered-cell text-end fw-semibold text-muted">Credit Cycle:</div>
-    <div class="col bordered-cell">{{ $customer->credit_cycle ?? 'N/A' }}</div>
+    <div class="col bordered-cell">{{config('constants.CUSTOMER_GROUP')[$customer->credit_cycle] ?? 'N/A' }}</div>
   </div> 
 
   <div class="row">

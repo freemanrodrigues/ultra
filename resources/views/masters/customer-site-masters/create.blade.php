@@ -23,8 +23,9 @@
                 @csrf
                 <div class="row g-3">
                 <div class="col-md-6">
-                        <label for="customer_id" class="form-label">Customer</label>
+                        
                         @if(!empty(request('customer_id')))
+                        <label for="customer_id" class="form-label">Customer</label>
                         <select name="customer_id" id="customer_id" class="form-select">
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}" {{ request('customer_id') == $customer->id ? 'selected' : '' }}>
@@ -33,8 +34,9 @@
                             @endforeach
                         </select>
                         @else
-                        <input type="text" class="form-control search"  name="search" data-txt_id="customer_id"
-                       value="{{ request('search') }}" placeholder="Search by code or name...">
+                        <label for="id_customer" class="form-label">Customer</label>
+                        <input type="text" class="form-control search"  name="search" id="id_customer" data-txt_id="customer_id"
+                       value="{{ request('search') }}" placeholder="Search by code or name..."  autocomplete="off">
                         <input type="hidden" id="customer_id" name="customer_id"> 
                         @endif
                     </div>
@@ -47,8 +49,8 @@
                         @endforeach  
                         </select>
                         -->
-                        <input type="text" class="form-control search"  name="search"  id="search" data-txt_id="site_master_id"
-                       value="{{ request('search') }}" placeholder="Search Site Name...">
+                        <input type="text" class="form-control search"  name="search"  id="id_site_master" data-txt_id="site_master_id"
+                       value="{{ request('search') }}" placeholder="Search Site Name..."  autocomplete="off">
                         <input type="hidden" id="site_master_id" name="site_master_id"> 
                     </div>
 
@@ -94,14 +96,13 @@
                                 id="YourCountry" name="country" required>
                             <option value="">Select Country</option>
                             @foreach($countries as $k => $country)
-
                                 <option value="{{ $k }}" {{ (old('country') ?? optional($select_customer)->country ) == $k ? 'selected' : '' }}> {{ $country }} </option>
                             @endforeach
                         </select> 
                         
                         <input type="hidden" id="YourCountryCode" name="CountryCode"/> 
-                        <input type="hidden" name="lat" class="form-control" placeholder="e.g., 19.123456" id="YourLat">
-                        <input type="hidden" name="long" class="form-control" placeholder="e.g., 72.123456" id="YourLong">
+                        <input type="hidden" name="lat" class="form-control"  id="YourLat">
+                        <input type="hidden" name="long" class="form-control" id="YourLong">
                     </div>
                  
                     <div class="col-md-6">

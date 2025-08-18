@@ -58,8 +58,9 @@
                     
                     
                     <div class="col-md-6">
-                        <label for="company_id">Company</label>
+                        
                         @if(request()->has('company_id'))
+                        <label for="company_id">Company</label>
                         <select name="company_id" class="form-select" required>
                             <option value="">--Select--</option>
                             @foreach($companies as $company)
@@ -67,8 +68,9 @@
                             @endforeach
                         </select>
                         @else
-        <input type="text" class="form-control search" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id">
+                        <label for="id_company">Company</label>
+                         <input type="text" class="form-control search" id="id_company" name="search" 
+                       value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id"  autocomplete="off">
                 <input type="hidden" id="company_id" name="company_id">    
 
                         @endif

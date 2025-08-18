@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <label for="search" class="form-label">Company</label>
                 <input type="text" class="form-control search" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search Company Name..."  data-txt_id="company_id">
+                       value="{{ request('search') }}" placeholder="Search Company Name..."  data-txt_id="company_id"  autocomplete="off">
                 <input type="hidden" id="company_id" name="company_id">
                 <!-- select class="form-control" id="search" name="search">
                 <option value="">List by Company</option>

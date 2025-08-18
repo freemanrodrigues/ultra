@@ -29,9 +29,9 @@
     <form method="GET" action="{{ route('customer.index') }}">
         <div class="row g-3">
             <div class="col-md-4">
-                <label for="search" class="form-label">Search</label>
-                <input type="text" class="form-control search" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_id">
+                <label for="id_company" class="form-label">Search</label>
+                <input type="text" class="form-control search" id="id_company" name="search" 
+                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_id" autocomplete="off">
                     <input type="hidden" id="company_id" name="company_id">
             </div>
             <div class="col-md-3">
@@ -84,10 +84,14 @@
                             </th>
                             <th>ID</th>
                             <th>Customer Name</th>
+                            <th>State</th>
+                            <th>Site</th>
+                            <th>Division</th>
+                            <th>Group</th>
                             <th>GST No</th>
                             <th>City</th>
                             <th>Status</th>
-                            
+                         
                             <th width="150">Actions</th>
                         </tr>
                     </thead>
@@ -99,12 +103,16 @@
                                        onchange="toggleBulkActions()" class="form-check-input">
                             </td>
                             <td><strong>{{ $customer->id }}</strong></td>
-                            <td>    <a href="{{ route('customer.show', $customer) }}" class="text-decoration-none">
+                            <td>    <a href="{{ route('customer.show', $customer->id) }}" class="text-decoration-none">
                                 <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}
 {{ !empty($customer->division) ? ' - '.$customer->division : '' }}
 {{ !empty($states[$customer->state] ?? null) ? ' - '.$states[$customer->state] : '' }}
 </code></a>
                             </td>
+                            <td>@if(!empty($states[$customer->state])){{$states[$customer->state] }}@endif</td>
+                            <td>@if(!empty($customer->site_customer_name)){{$customer->site_customer_name }}@endif</td>
+                            <td>{{$customer->division}}</td>
+                            <td>{{ config('constants.CUSTOMER_GROUP.' . $customer->group) ?? 'N/A' }}</td>
                             <td>{{ $customer->gst_no }}</td>
                             <td>{{ $customer->city }}
                            
@@ -131,15 +139,15 @@
                                         <i class="bi bi-list"></i>
                                     </a>
                                
-                                    <a href="{{ route('customer.show', $customer) }}" 
+                                    <a href="{{ route('customer.show', $customer->id) }}" 
                                        class="btn btn-sm btn-outline-info" title="View">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('customer.edit', $customer) }}" 
+                                    <a href="{{ route('customer.edit', $customer->id) }}" 
                                        class="btn btn-sm btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
-                                    <form action="{{ route('customer.destroy',  $customer) }}" method="POST" 
+                                    <form action="{{ route('customer.destroy',  $customer->id) }}" method="POST" 
                                           style="display: inline;" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')

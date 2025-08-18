@@ -17,31 +17,38 @@ class CustomerMasterController
         
         $query = CustomerMaster::query();
 
-        // Search functionality
+        $query->leftJoin(
+            'customer_site_masters', 
+            'customer_masters.id', 
+            '=', 
+            'customer_site_masters.customer_id'
+        )
+        ->select('customer_masters.*', 'customer_site_masters.*', 'customer_masters.state', 'customer_masters.id');
         
-        if ($request->filled('')) {
-            $query->where('id', $request->get('company_id'));
+        if ($request->filled('company_id')) {
+            $query->where('customer_masters.id', $request->get('company_id'));
         }elseif ($request->filled('search')) {
             $search = $request->get('search');
             $query->where(function($q) use ($search) {
-                $q->where('gst_no', 'like', "%{$search}%")
-                  ->orWhere('customer_name', 'like', "%{$search}%");
+                $q->where('customer_masters.gst_no', 'like', "%{$search}%")
+                  ->orWhere('customer_masters.customer_name', 'like', "%{$search}%");
             });
         }	
 
         // Filter by status
         if ($request->filled('status')) {
-            $query->where('status', $request->get('status'));
+            $query->where('customer_masters.status', $request->get('status'));
         } else {
-            $query->where('status', 1);
+            $query->where('customer_masters.status', 1);
         }
        
         // Sort by
-        $sortBy = $request->get('sort_by', 'customer_name');
+        $sortBy = $request->get('sort_by', 'customer_masters.customer_name');
         $sortOrder = $request->get('sort_order', 'asc');
         $query->orderBy($sortBy, $sortOrder);
 
         $customers = $query->paginate(10)->appends($request->query());
+        //dd($customers);
         $states = State::getStateArray();
         return view('masters.customer.index',compact('customers', 'states'));
     }
@@ -136,6 +143,7 @@ class CustomerMasterController
             $cm->is_billing = $request->is_billing??null;;
             $cm->billing_cycle = $request->billing_cycle??null;;
             $cm->credit_cycle = $request->credit_cycle??null;;
+            $cm->group = $request->group??null;;
             $cm->status = $request->status??null;
             $cm->save();
 
@@ -247,6 +255,7 @@ class CustomerMasterController
              $cm->is_billing = $request->billing_address??null;
              $cm->billing_cycle = $request->billing_cycle??null;
              $cm->credit_cycle = $request->credit_cycle??null;
+             $cm->group = $request->group??null;
              $cm->status =$request->status??null;
              $cm->save();
              
@@ -296,8 +305,8 @@ class CustomerMasterController
 
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
-        $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'company_name as name') // Select only necessary columns
+        $suggestions = CustomerMaster::where('customer_name', 'LIKE', '%' . $query . '%')
+                                ->select('id', 'customer_name as name') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 

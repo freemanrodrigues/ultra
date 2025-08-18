@@ -39,12 +39,25 @@
 
                     <div class="col-md-4">
                         <label for="YourState" class="form-label">State</label>
-                        <input type="text" name="state" class="form-control" id="YourState" >
+                       
+                        <select class="form-select @error('state') is-invalid @enderror" 
+                                id="YourState" name="state" required>
+                            <option value="">Select State</option>
+                            @foreach($states as $k => $state)
+                                <option value="{{ $k }}" {{ (old('state') ) == $k ? 'selected' : '' }}> {{ $state }} </option>
+                            @endforeach
+                        </select> 
                     </div>
 
                     <div class="col-md-4">
                         <label for="YourCountry" class="form-label">Country</label>
-                        <input type="text" name="country" class="form-control" id="YourCountry">
+                        <select class="form-select @error('country') is-invalid @enderror" 
+                                id="YourCountry" name="country" required>
+                            <option value="">Select Country</option>
+                            @foreach($countries as $k => $country)
+                                <option value="{{ $k }}" {{ (old('country')) == $k ? 'selected' : '' }}> {{ $country }} </option>
+                            @endforeach
+                        </select> 
                         <input type="hidden" id="YourCountryCode" name="CountryCode"/> 
                         <input type="hidden" id="YourPinCode" name="pincode" placeholder="Your Pin Code" />
                         <input type="hidden" name="lat" class="form-control"  id="YourLat">
@@ -115,14 +128,20 @@ if((value1.types[0]) == 'administrative_area_level_1')
 {
 var prev_long_name_state = value1.long_name;  
 //alert(prev_long_name_state + '__prev_long_name_state');
-$('#YourState').val(prev_long_name_state);
+//$('#YourState').val(prev_long_name_state);
+ $("#YourState option").filter(function() {
+            return $(this).text().trim() === prev_long_name_state;
+        }).prop("selected", true).trigger("change");
 }
 if((value1.types[0]) == 'country')
 {
 var prev_long_name_country = value1.long_name;  
 //alert(" ##"+value1.short_name);
 //alert(prev_long_name_country + '__prev_long_name_country');
-$('#YourCountry').val(prev_long_name_country);
+//$('#YourCountry').val(prev_long_name_country);
+ $("#YourCountry option").filter(function() {
+            return $(this).text().trim() === prev_long_name_country;
+        }).prop("selected", true).trigger("change");
 $('#YourCountryCode').val(value1.short_name);
 }
 if((value1.types[0]) == 'postal_code')

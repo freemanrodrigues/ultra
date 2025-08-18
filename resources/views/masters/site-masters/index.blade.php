@@ -19,7 +19,7 @@
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill me-2"></i>
-        {{ session('success')['text'] }}<br>
+       @if(session('success')['text'])  {{ session('success')['text'] }}<br> @endif
         @if(session('success')['link'])
         <a href="{{ session('success')['link'] }}" class="alert-link">
             {{ session('success')['link_text'] }}
@@ -33,9 +33,9 @@
     <div class="search-form h-auto m-2 ">
         <form method="GET" action="{{ route('site-masters.index') }}" class="row g-3">
             <div class="col-md-4">
-                <label for="search" class="form-label">Search</label>
-                <input type="text" class="form-control search" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by Site Name..."  data-txt_id="site_master_id">
+                <label for="id_site_master" class="form-label">Search</label>
+                <input type="text" class="form-control search" id="id_site_master" name="search" 
+                       value="{{ request('search') }}" placeholder="Search by Site Name..."  data-txt_id="site_master_id"  autocomplete="off">
                 <input type="hidden" id="site_master_id" name="site_master_id">    
             </div>
             <div class="col-md-2">

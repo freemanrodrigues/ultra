@@ -48,8 +48,8 @@ class SiteMasterController
      */
     public function create(): View
     {
-        $countries = Country::all();
-        $states = State::all();
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
        
         return view('masters.site-masters.create', compact('countries','states'));
     }
@@ -112,8 +112,9 @@ class SiteMasterController
      */
     public function edit(SiteMaster $siteMaster): View
     {
-        
-        return view('masters.site-masters.edit', compact('siteMaster'));
+        $countries = Country::getCountryArray();
+        $states = State::getStateArray();
+        return view('masters.site-masters.edit', compact('siteMaster','countries','states'));
     }
 
     /**
@@ -136,8 +137,13 @@ class SiteMasterController
         try {
             $siteMaster->update($validated);
           //  dd("sucess");
+           
             return redirect()->route('site-masters.index')
-                           ->with('success', 'Site Master updated successfully!');
+            ->with('success', [
+                'text' => 'Site Master updated successfully!',
+                'link' => route('customer-site-masters.create'), // link to customer details
+                'link_text' => 'Assign Site For the Customer '
+            ]);               
         } catch (\Exception $e) {
             return redirect()->back()
                            ->withInput()
