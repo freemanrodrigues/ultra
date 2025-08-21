@@ -98,7 +98,7 @@ class CustomerSiteMasterController
             $validated['company_id'] = $customer[0]->company_id;
             CustomerSiteMaster::create($validated);
             
-            return redirect()->route('customer-site-masters.index')
+            return redirect()->route('customer-site-masters.index', ['customer_id'=>$request['customer_id']])
             ->with('success', [
                 'text' => 'Customer Site Master created successfully!',
                 'link' => route('contacts-masters.create',['company_id'=>$customer[0]->company_id]), // link to customer details
