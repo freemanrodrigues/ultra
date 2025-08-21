@@ -9,7 +9,11 @@ class SiteMaster extends Model
     protected $fillable = [ 'site_name',  'city',  'state',  'country',  'lat',  'long',  'status' ];
     
 
-
+    public function customerSiteMasters()
+    {
+        return $this->hasMany(CustomerSiteMaster::class, 'site_master_id');
+    }
+    
     public static function getAllSite(){
         return SiteMaster::where('status',1 )->get();
     }

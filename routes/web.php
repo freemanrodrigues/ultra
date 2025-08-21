@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController,MakeModelMasterController, SampleController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController,MakeModelMasterController, SampleMasterController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -117,13 +117,15 @@ Route::get('/generate-sales-report1', [SampleController::class, 'generateSalesRe
 Route::resource('/masters/sample-type', SampleTypeController::class);
 Route::any('/master/sample-type/bulk_delete', [SampleTypeController::class,'bulkDelete'])->name('sample-type.bulk_delete');
 
-Route::resource('/sample', SampleController::class);
-Route::any('/sample-copy', [SampleController::class,'sampleCopy'])->name('sample-copy');
+Route::resource('/sample', SampleMasterController::class);
+Route::any('/sample-copy', [SampleMasterController::class,'sampleCopy'])->name('sample-copy');
 
 Route::resource('/masters/courier', CourierMasterController::class);
 Route::any('/master/courier/bulk_delete', [CourierMasterController::class,'bulkDelete'])->name('courier.bulk_delete');
 //Route::get('/masters/customer/create-customer', [CustomerMasterController::class,'createCustomer'])->name('customer.create-customer');
 Route::any('/ajax-get-customer-address', [CustomerMasterController::class,'getCustomerAddress'])->name('ajax-get-customer-address');
+
+Route::any('/ajax-get-customer-sites', [CustomerSiteMasterController::class,'getCustomerSites'])->name('ajax-get-customer-sites');
 Route::any('/ajax-get-site-contact-details', [UserController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
 
 Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])->name('ajax-get-contacts');

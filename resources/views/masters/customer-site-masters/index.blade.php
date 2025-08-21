@@ -87,8 +87,10 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>Site Code</th>
                                 <th>Site Name</th>
+                                <th>Site Code</th>
+                                <th>Customer Site Name</th>
+                               
                                 <th>Customer</th>
                                 <th>Contact</th>
                                 
@@ -100,24 +102,21 @@
                             @foreach($customerSiteMasters as $customerSiteMaster)
                       
                                 <tr>
+                                    <td>{{ $customerSiteMaster->siteMaster->site_name }}</td>
                                     <td>
                                         <strong>{{$customerSiteMaster->site_customer_code }}</strong>
                                     </td>
                                     <td>{{ $customerSiteMaster->site_customer_name }}</td>
                                     <td>@if(!empty($customers [$customerSiteMaster->customer_id])){{ $customers[$customerSiteMaster->customer_id] }} @endif</td>
 
-
                                     <td>
-                                    
+                              
                                     <!-- a class="btn btn-sm btn-outline-secondary assigned_contact m-1"  href="{{ route('assign-contact-assignments', [ 'site_id' =>$customerSiteMaster->id , 'customer_id' => $customerSiteMaster->customer_id ]) }}" class= "m-1">
                                        <i class="bi bi-person-plus"></i> </a -->
 <a class="btn btn-sm btn-outline-secondary m3 m-1" data-id="{{ $customerSiteMaster->id }}" data-customer_id="{{ $customerSiteMaster->customer_id }}"  data-company_id="{{ $customerSiteMaster->company_id }}"  data-bs-toggle="modal" data-bs-target="#m3" >
                                     <i class="bi bi-person-plus"></i></a>
 
                                        <a class="btn btn-sm btn-outline-secondary assigned_contact m-1" data-id="{{ $customerSiteMaster->site_master_id }}" data-bs-toggle="modal" data-bs-target="#assigned_contact_Modal" ><i class="bi bi-eye"></i></a>
-
-
-
                                      </td>
                                    
                                     </td>
