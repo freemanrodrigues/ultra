@@ -90,8 +90,6 @@
                             <th>Site</th>
                             <th>Division</th>
                             <th>Group</th>
-                            <th>GST No</th>
-                            <th>City</th>
                             <th>Status</th>
                          
                             <th width="150">Actions</th>
@@ -115,15 +113,8 @@
                             <td>@if(!empty($customer->site_customer_name)){{$customer->site_customer_name }}@endif</td>
                             <td>{{$customer->division}}</td>
                             <td>{{ config('constants.CUSTOMER_GROUP.' . $customer->group) ?? 'N/A' }}</td>
-                            <td>{{ $customer->gst_no }}</td>
-                            <td>{{ $customer->city }}
-                           
-                            </td>
-                            <td>
-                                <span class="badge status-badge {{ $customer->status == 1 ? 'bg-success' : 'bg-secondary' }}">
-                                    <i class="fas {{ $customer->status == 1 ? 'fa-check' : 'fa-times' }}"></i>
-                                    {{ ucfirst($customer->status) }}
-                                </span>
+                            <td>{{$customer->status}}
+                               
                             </td>
                             <!-- td>
                                 <small class="text-muted">@if(!empty($customer->created_at)){{ $customer->created_at->format('M d, Y') }} @endif</small>
