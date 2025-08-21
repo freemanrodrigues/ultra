@@ -62,7 +62,7 @@
                     
                     <div class="col-md-6">
                         <label for="site_customer_code" class="form-label">Customer Site Code</label>
-                        <input type="text" name="site_customer_code" id="site_customer_code" class="form-control" required>
+                        <input type="text" name="site_customer_code" id="site_customer_code" class="form-control">
                     </div>
 
                     <div class="col-md-12">
