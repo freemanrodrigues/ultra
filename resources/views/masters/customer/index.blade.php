@@ -87,7 +87,6 @@
                             <th>ID</th>
                             <th>Customer Name</th>
                             <th>State</th>
-                            <th>Site</th>
                             <th>Division</th>
                             <th>Group</th>
                             <th>Status</th>
@@ -109,12 +108,11 @@
 </code></a>
                             </td>
                             <td>@if(!empty($states[$customer->state])){{$states[$customer->state] }}@endif</td>
-                            <td>@if(!empty($customer->site_customer_name)){{$customer->site_customer_name }}@endif</td>
+                            <!-- td>@if(!empty($customer->site_customer_name)){{$customer->site_customer_name }}@endif</td -->
+                           
                             <td>{{$customer->division}}</td>
                             <td>{{ config('constants.CUSTOMER_GROUP.' . $customer->group) ?? 'N/A' }}</td>
-                            <td>{{$customer->status}}
-                               
-                            </td>
+                            <td>{{$customer->status}} </td>
                             <!-- td>
                                 <small class="text-muted">@if(!empty($customer->created_at)){{ $customer->created_at->format('M d, Y') }} @endif</small>
                             </td -->

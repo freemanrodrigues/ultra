@@ -72,7 +72,7 @@ autocomplete="off"
                                              <div class="col-md-6 mb-3">
                                                 <label for="pan_no" class="form-label fw-semibold">PAN Number</label>
                                            
-                                            <input type="text" class="form-control @error('pan_no') is-invalid @enderror" id="pan_no"  name="pan_no"  value="{{ $customer->b2c_customer ? '' : old('pan_no', $customer->pan_no) }}"   placeholder="PAN Number" @if($customer->b2c_customer) disabled @endif readonly >
+                                            <input type="text" class="form-control @error('pan_no') is-invalid @enderror" id="pan_no"  name="pan_no"  value="{{ $customer->b2c_customer ? '' : old('pan_no', $companies->pancard) }}"    @if($customer->b2c_customer) disabled @endif readonly >
                                             <div class="form-text"></div>
                                             @error('pan_no')
                                                 <div class="invalid-feedback">{{ $message }}</div>

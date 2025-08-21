@@ -187,7 +187,8 @@ class CustomerMasterController
      */
     public function edit(CustomerMaster $customer)
     {
-        $companies = CompanyMaster::getCompanyArray();
+        $companies = CompanyMaster::where('id',$customer->company_id)->first('pancard');
+        //$companies->pancard;
         $countries = Country::getCountryArray();
         $states = State::getStateArray();
         return view('masters.customer.edit',compact('countries','companies','states','customer'));
