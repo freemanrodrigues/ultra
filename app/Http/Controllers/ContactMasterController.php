@@ -61,8 +61,8 @@ class ContactMasterController
     {
         //  dd($request->all());
        $validated = $request->validate([
-        'email' => 'required|email|max:100|unique:users,email',
-        'phone' => 'required|string|max:12|unique:users,phone',
+        'email' => 'required|email|max:100|unique:contact_masters,email',
+        'phone' => 'required|string|max:12|unique:contact_masters,phone',
         'firstname' => 'required|string',
         'lastname' => 'required|string',
         'company_id' => 'required|integer',
