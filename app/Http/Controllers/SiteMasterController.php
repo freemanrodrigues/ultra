@@ -68,8 +68,8 @@ class SiteMasterController
             "city" => 'string',
             "state" => 'string',
             "country" => 'string',
-            "lat" => 'string',
-            "long" => 'string',
+            "lat" => 'nullable|string',
+            "long" => 'nullable|string',
             'status' => 'required|in:1,0'
         ]);
  /*       "site_name" => "Rustomjee"
@@ -91,7 +91,7 @@ class SiteMasterController
             ]);
 
         } catch (\Exception $e) {
-            dd("<br>Error : ".$e->getMessage());
+            //dd("<br>Error : ".$e->getMessage());
             return redirect()->back()
                            ->withInput()
                            ->with('error', 'Error creating Site Master: ' . $e->getMessage());
