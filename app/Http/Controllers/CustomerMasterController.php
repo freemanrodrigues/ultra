@@ -312,4 +312,23 @@ class CustomerMasterController
 
         return response()->json($suggestions);
     }
+
+    public function getCustomerAddress(Request $request)
+    {
+        $request->validate([
+            'customerid' => 'required|integer',
+        ]);
+
+        
+        $customer = CustomerMaster::where('id', $request->customerid)->first();
+        $sitemaster = SiteMaster::getSite($request->customerid);
+        
+        if ($customer) {
+            return response()->json([
+                'customer' => $customer, 
+                'sitemaster' => $sitemaster, 
+            ]);
+        }
+        return response()->json([]);
+    }
 }
