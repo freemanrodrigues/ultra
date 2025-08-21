@@ -116,7 +116,7 @@
                     <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
                     <h5 class="mt-3 text-muted">No site masters found</h5>
                     <p class="text-muted">Get started by adding your first site master.</p>
-                    <a href="{{ route('customer-site-masters.create') }}" class="btn btn-primary">
+                    <a href="{{ route('customer-site-masters.create', ['customer_id' => $customer->id]) }}" class="btn btn-primary">
                         <i class="bi bi-plus-circle"></i> Add New Customer Site
                     </a>
                 </div>
@@ -159,7 +159,7 @@
         <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
         <h5 class="mt-3 text-muted">No Contact found</h5>
         <p class="text-muted">Get started by adding your first contact.</p>
-        <a href="{{ route('contacts-masters.create') }}" class="btn btn-primary">
+        <a href="{{ route('contacts-masters.create', ['customer_id' => $customer->id]) }}" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Add New Contact
         </a>
     </div>
