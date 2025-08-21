@@ -91,7 +91,7 @@
                                 <th>Site Name</th>
                                 <th>Customer</th>
                                 <th>Contact</th>
-                                <th>Devices</th>
+                                
                                 <th>Created Date</th>
                                 <th width="200">Actions</th>
                             </tr>
@@ -119,8 +119,7 @@
 
 
                                      </td>
-                                    <td><a href="{{route('site-device-list',$customerSiteMaster->id )}}">Devices</a>
-                                    
+                                   
                                     </td>
                                     <td>
 
@@ -132,10 +131,10 @@
                                     </td>
                                     <td class="table-actions">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('customer-site-masters.show', $customerSiteMaster) }}" 
+                                            <!-- a href="{{ route('customer-site-masters.show', $customerSiteMaster) }}" 
                                                class="btn btn-sm btn-outline-primary" title="View">
                                                 <i class="bi bi-eye"></i>
-                                            </a>
+                                            </a -->
                                             <a href="{{ route('customer-site-masters.edit', $customerSiteMaster) }}" 
                                                class="btn btn-sm btn-outline-secondary" title="Edit">
                                                 <i class="bi bi-pencil"></i>
@@ -144,7 +143,7 @@
                                  
                                       
                                             <!-- Toggle Status -->
-                                            <form method="POST" action="{{ route('site-masters.toggle-status', $customerSiteMaster) }}" 
+                                            <!-- form method="POST" action="{{ route('site-masters.toggle-status', $customerSiteMaster) }}" 
                                                   style="display: inline;" id="toggle-form-{{ $customerSiteMaster->id }}">
                                                 @csrf
                                                 @method('PATCH')
@@ -154,7 +153,7 @@
                                                         onclick="confirmToggle(document.getElementById('toggle-form-{{ $customerSiteMaster->id }}'), '{{ $customerSiteMaster->status }}')">
                                                     <i class="bi bi-{{ $customerSiteMaster->status === 'active' ? 'pause-circle' : 'play-circle' }}"></i>
                                                 </button>
-                                            </form>
+                                            </form -->
                                             
                                             <!-- Delete -->
                                             <form method="POST" action="{{ route('customer-site-masters.destroy', $customerSiteMaster) }}" 
@@ -190,7 +189,7 @@
     <!-- Pagination -->
     @if($customerSiteMasters->hasPages())
         <div class="d-flex justify-content-center mt-4">
-            {{ $customerSiteMasters->links() }}
+            {{ $customerSiteMasters->links('pagination::bootstrap-5') }}
         </div>
     @endif
 </div>

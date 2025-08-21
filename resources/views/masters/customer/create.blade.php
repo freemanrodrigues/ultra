@@ -406,12 +406,7 @@
                                     <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">
                                         <i class="bi bi-x-circle me-1"></i>Cancel
                                     </a>
-                                    <button type="button" class="btn btn-outline-warning" id="resetBtn">
-                                        <i class="bi bi-arrow-clockwise me-1"></i>Reset
-                                    </button>
-                                    <button type="button" class="btn btn-outline-info" id="previewBtn">
-                                        <i class="bi bi-eye me-1"></i>Preview
-                                    </button>
+
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-circle me-1"></i>Create Customer
                                     </button>

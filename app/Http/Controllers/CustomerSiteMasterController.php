@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\{Country,CompanyMaster, ContactMaster, CustomerMaster,CustomerSiteMaster,State,SiteContact,SiteMaster,User};
+use App\Models\{Country,CompanyMaster, ContactMaster,ContactAssignment, CustomerMaster,CustomerSiteMaster,State,SiteContact,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\DB;
 class CustomerSiteMasterController
 {
     /**
@@ -163,5 +163,41 @@ class CustomerSiteMasterController
        return view('masters.customer-site-masters.assign-contact', compact('siteMaster','users'));
     }
 
+    public function getCustomerSites(Request $request)
+    {
+        $request->validate([
+            'customerid' => 'required|integer',
+        ]);
+
+        
+      //  $customer = CustomerSiteMaster::where('customer_id', $request->customerid)->first();
+      $customers = CustomerSiteMaster::where('customer_id', $request->customerid)
+    ->whereHas('siteMaster', function ($query) {
+        $query->where('id', '=', DB::raw('site_master_id'));
+    })
+    ->get(['site_customer_name','customer_site_masters.id', 'customer_site_masters.address','customer_site_masters.city','customer_site_masters.state','customer_site_masters.pincode' ]);
     
+    //  $sitemaster = SiteMaster::getSite($request->customerid);
+
+
+    $contacts = ContactAssignment::query()
+    ->join('contact_masters', 'contact_masters.id', '=', 'contact_assignments.contact_id')
+    ->where('contact_assignments.customer_id', $request->customerid)
+    ->select(
+        'contact_assignments.contact_id',
+        'contact_masters.firstname',
+        'contact_masters.lastname',
+        'contact_masters.email',
+        'contact_masters.phone'
+    )
+    ->get(); 
+
+        if ($customers) {
+            return response()->json([
+                'customer' => $customers, 
+                'contacts' => $contacts, 
+            ]);
+        }
+        return response()->json([]);
+    }
 }

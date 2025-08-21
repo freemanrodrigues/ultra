@@ -303,7 +303,7 @@
 </li>
 
 <li class="nav-item">
-<a class="nav-link" >                  
+<a href="{{ route('courier.index') }}"  class="nav-link" >                  
 <i class="nav-icon bi bi-circle"></i><p>Courier Master</p>
 </a>
 </li>

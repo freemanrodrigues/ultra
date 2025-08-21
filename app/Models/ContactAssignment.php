@@ -8,4 +8,8 @@ class ContactAssignment extends Model
 {
     protected $fillable = ['contact_id' ,'company_id' ,'customer_id' ,'customer_site_id' ,'equipment_id' ,'department' ,'designation' ,'role' ,'level' ,'send_bill' ,'send_report' ,'whatsapp' ,'is_primary'];
 
+    public function contactMaster()
+    {
+        return $this->belongsTo(ContactMaster::class, 'contact_id');
+    }
 }

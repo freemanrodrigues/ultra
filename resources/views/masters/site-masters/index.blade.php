@@ -50,7 +50,6 @@
                 <label for="sort_by" class="form-label">Sort By</label>
                 <select class="form-select" id="sort_by" name="sort_by">
                     <option value="created_at" {{ request('sort_by') === 'created_at' ? 'selected' : '' }}>Created Date</option>
-                    <option value="site_code" {{ request('sort_by') === 'site_code' ? 'selected' : '' }}>Site Code</option>
                     <option value="site_name" {{ request('sort_by') === 'site_name' ? 'selected' : '' }}>Site Name</option>
                 </select>
             </div>
@@ -132,20 +131,8 @@
                                                class="btn btn-sm btn-outline-secondary" title="Edit">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="{{ route('site-masters.assign-users', $siteMaster) }}" class="btn btn-sm btn-outline-warning" title="Assign">
-                                       <i class="bi bi-person-plus"></i> </a>
-                                            <!-- Toggle Status -->
-                                            <form method="POST" action="{{ route('site-masters.toggle-status', $siteMaster) }}" 
-                                                  style="display: inline;" id="toggle-form-{{ $siteMaster->id }}">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="button" 
-                                                        class="btn btn-sm btn-outline-{{ $siteMaster->status === 'active' ? 'warning' : 'success' }}"
-                                                        title="{{ $siteMaster->status === 'active' ? 'Deactivate' : 'Activate' }}"
-                                                        onclick="confirmToggle(document.getElementById('toggle-form-{{ $siteMaster->id }}'), '{{ $siteMaster->status }}')">
-                                                    <i class="bi bi-{{ $siteMaster->status === 'active' ? 'pause-circle' : 'play-circle' }}"></i>
-                                                </button>
-                                            </form>
+
+                                         
                                             
                                             <!-- Delete -->
                                             <form method="POST" action="{{ route('site-masters.destroy', $siteMaster) }}" 

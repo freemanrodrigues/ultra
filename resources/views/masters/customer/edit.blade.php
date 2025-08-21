@@ -32,7 +32,7 @@
                 <div class="card-body p-4">
                     <form action="{{ route('customer.update',$customer->id) }}" method="POST" id="customerForm" novalidate>
                         @csrf
-                          @method('PUT')
+                        @method('PUT')
                         <!-- Basic Information Section -->
                         <div class="row mb-4">
                             <div class="col-12">
@@ -359,12 +359,13 @@ autocomplete="off"
                                     <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">
                                         <i class="bi bi-x-circle me-1"></i>Cancel
                                     </a>
+                                    <!--
                                     <button type="button" class="btn btn-outline-warning" id="resetBtn">
                                         <i class="bi bi-arrow-clockwise me-1"></i>Reset
                                     </button>
                                     <button type="button" class="btn btn-outline-info" id="previewBtn">
                                         <i class="bi bi-eye me-1"></i>Preview
-                                    </button>
+                                    </button> -->
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-circle me-1"></i>Update Customer
                                     </button>
