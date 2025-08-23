@@ -59,7 +59,9 @@
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
-     <script src="/js/jquery.js"></script>
+      <link rel="stylesheet" href="{{ asset('../../admin/dist/css/adminlte.css')}}" />
+  <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+     <script src="{{ asset('/js/jquery.js') }}"></script>
   </head>
   <!--end::Head-->
   <!--begin::Body-->

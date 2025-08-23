@@ -85,6 +85,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th>Site Code</th>
+                                <th>Customer Site Name</th>
                                 <th>Site Name</th>
                                 <th>Address</th>
                                 <th>Created Date</th>
@@ -97,6 +98,7 @@
                                         <strong>{{$customerSiteMaster->site_customer_code }}</strong>
                                     </td>
                                     <td>{{ $customerSiteMaster->site_customer_name }}</td>
+                                    <td>{{ $customerSiteMaster->siteMaster->site_name }}</td>
                                     <td>{{ $customerSiteMaster->address }}</td>
                                     <td>
                                         <small class="text-muted">
