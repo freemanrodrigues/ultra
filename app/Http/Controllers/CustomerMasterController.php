@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,CustomerSiteMaster,State};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\{DB,Log};
 use Illuminate\Validation\Rule;
+
 class CustomerMasterController
 {
     /**
@@ -331,5 +332,28 @@ class CustomerMasterController
             ]);
         }
         return response()->json([]);
+    }
+
+    public function autoSuggestCustomer1(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+        // Fetch data from your database
+        // Replace 'YourModel' and 'name' with your actual model and column name
+        
+        $sql = "SELECT  customer_masters.id as cus_mas_id,site_name,customer_name, division, customer_masters.group, customer_masters.status, statename
+        FROM customer_masters 
+        LEFT JOIN customer_site_masters   ON customer_masters.id = customer_site_masters.customer_id LEFT JOIN site_masters ON customer_site_masters.site_master_id = site_masters.id   LEFT JOIN states on states.id = customer_site_masters.state
+        WHERE    customer_masters.customer_name LIKE '%".$query."%'  or site_masters.site_name LIKE '%".$query."%'";
+
+        $customers  = DB::select($sql);
+            
+
+        return response()->json($customers);
     }
 }

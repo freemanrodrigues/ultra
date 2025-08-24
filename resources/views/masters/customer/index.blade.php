@@ -33,7 +33,7 @@
             <div class="col-md-4">
                 <label for="id_company" class="form-label">Search</label>
                 <input type="text" class="form-control search" id="id_company" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_id" autocomplete="off">
+                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_site_id" autocomplete="off">
                     <input type="hidden" id="company_id" name="company_id">
             </div>
             <div class="col-md-3">
@@ -94,7 +94,7 @@
                             <th width="150">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody_customer_index">
                         @foreach($customers as $customer)
                         <tr>
                             <td>
@@ -196,5 +196,5 @@
         </div>
     </div>
 </div>
-<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+<script src="/js/customer/tbody_customer_index.js?{{date('mmss')}}"></script>
 @endsection

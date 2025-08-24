@@ -38,8 +38,8 @@
                                 $.each(response, function(index, item) {
                                     // Assuming each item has an 'name' and 'id' property
                                     const suggestionHtml = `
-                                        <div class="suggestion-item" data-id="${item.id}" data-name="${item.company_name}">
-                                            ${item.company_name}
+                                        <div class="suggestion-item" data-id="${item.id}" data-name="${item.name}">
+                                            ${item.name}
                                         </div>
                                     `;
                                     $('#suggestions').append(suggestionHtml);
