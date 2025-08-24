@@ -67,6 +67,9 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+.myDropdownCover{
+    position: relative;
+  }
 .myDropdown {
     position: relative;
     width: 100%;
