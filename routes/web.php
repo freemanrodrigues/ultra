@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMstController,MakeModelMasterController, SampleMasterController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMasterController,MakeModelMasterController,ModelMasterController, SampleMasterController, SampleDetailController, SampleNatureController,SampleTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -28,6 +28,8 @@ Route::get('/sample', function () {
 Route::any('/delete', function () {
    return view('blank1');
 });
+Route::get('testing', [UserController::class,'testing'])->name('testing');
+Route::any('/ajax/autosuggest-country', [UserController::class,'getCountryAddress'])->name('autosuggest-country');
 /*
 Route::get('/blank1', function () {
     return view('blank1');
@@ -53,6 +55,8 @@ Route::group(['middleware' => ['loginAuth']], function () {
 Route::any('/ajax/check-gst', [CompanyMasterController::class,'checkGST'])->name('check.gst');
 Route::post('/ajax/get-state', [StateController::class,'getState'])->name('get-state');
 Route::any('/ajax/autosuggest-customer', [CustomerMasterController::class,'autoSuggestCustomer'])->name('autosuggest-customer');
+
+Route::any('/ajax/autosuggest-customer1', [CustomerMasterController::class,'autoSuggestCustomer1'])->name('autosuggest-customer1');
 
 Route::any('/ajax/autosuggest-sitename', [SiteMasterController::class,'autoSuggestSiteName'])->name('autosuggest-sitename');
 Route::any('/ajax/autosuggest-companyname', [CompanyMasterController::class,'autoSuggestCompanyName'])->name('autosuggest-companyname');
@@ -135,9 +139,12 @@ Route::resource('/masters/customer', CustomerMasterController::class);
 Route::any('/master/customer/bulk_delete', [CustomerMasterController::class,'bulkDelete'])->name('customer.bulk_delete');
 
 
-Route::resource('/masters/make', MakeMstController::class);
-Route::any('/master/make/bulk_delete', [MakeMstController::class,'bulkDelete'])->name('make.bulk_delete');
+Route::resource('/masters/make', MakeMasterController::class);
+Route::any('/master/make/bulk_delete', [MakeMasterController::class,'bulkDelete'])->name('make.bulk_delete');
 
+
+Route::resource('/masters/model', ModelMasterController::class);
+Route::any('/master/model/bulk_delete', [ModelMasterController::class,'bulkDelete'])->name('model.bulk_delete');
 
 Route::resource('/masters/subassembly', SubAssemblyController::class);
 Route::any('/master/subassembly/bulk_delete', [SubAssemblyController::class,'bulkDelete'])->name('subassembly.bulk_delete');

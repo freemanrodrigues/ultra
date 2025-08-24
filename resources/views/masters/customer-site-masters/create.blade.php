@@ -1,7 +1,6 @@
 @extends('/layouts/master-layout')
 
 @section('content')
-<link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 <div class="container mt-4">
     <div class="card shadow rounded-4">
         <div class="card-header bg-primary text-white">
@@ -35,10 +34,11 @@
                         </select>
                         @else
                         <label for="id_customer" class="form-label">Customer</label>
+                        <input type="hidden" id="customer_id" name="customer_id"> 
                         <input type="text" class="form-control search"  name="search" id="id_customer" data-txt_id="customer_id"
                        value="{{ request('search') }}" placeholder="Search by code or name..."  autocomplete="off">
-                        <input type="hidden" id="customer_id" name="customer_id"> 
-                        @endif
+                        <div id="myDropdown_customer_id" class="myDropdown"></div>
+                         @endif
                     </div>
                     <div class="col-md-6">
                         <label for="site_master_id" class="form-label">Site</label>
@@ -49,9 +49,11 @@
                         @endforeach  
                         </select>
                         -->
+                        <input type="hidden" id="site_master_id" name="site_master_id"> 
                         <input type="text" class="form-control search"  name="search"  id="id_site_master" data-txt_id="site_master_id"
                        value="{{ request('search') }}" placeholder="Search Site Name..."  autocomplete="off">
-                        <input type="hidden" id="site_master_id" name="site_master_id"> 
+                        
+                        <div id="myDropdown_site_master_id" class="myDropdown"></div>
                     </div>
 
                     <div class="col-md-6">
@@ -127,14 +129,7 @@
         </div>
     </div>
 </div>
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div id="modal-search-results"></div>
-    </div>
-</div>  
-<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
-
+<script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCnetAvQ6zC7jmWmA3iGwVWmLhjthohRFk"></script>
 <script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCXFJ-lc7cHHcEklG2_oIhTnPKTWsLwHEU"></script>

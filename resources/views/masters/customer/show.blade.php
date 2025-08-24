@@ -11,12 +11,12 @@
    <div class="text-end my-2">
    <a href="{{ route('customer.index') }}" class="btn btn-outline-primary">  Back</a></div>
                                     
-  <div class="card shadow-sm border-1">
+  <div class="csDetail">
     <div class="card-header bg-primary text-white text-center rounded-top">
       <h4 class="mb-0">Customer Details</h4>
     </div>
 
-<div class="container mt-4 ">
+<div class="container shadow mrg-bot">
   <div class="row">
     <div class="col bordered-cell text-end fw-semibold text-muted">Customer Name</div>
     <div class="col bordered-cell">{{ $customer->customer_name ?? 'N/A' }}</div>
@@ -75,9 +75,9 @@
 
   </div>
 
-<div class="text-center mt-5 bg-primary text-white text-center rounded-top">
-<h3 class="text-center">Customer Sites</h3> </div>
- <div class="card">
+<div class="card-header bg-primary text-white text-center rounded-top">
+<h3 class="mb-0">Customer Sites</h3> </div>
+ <div class="container shadow mrg-bot">
         <div class="card-body p-0">
             @if($customerSiteMasters->count() > 0)
                 <div class="table-responsive">
@@ -126,9 +126,9 @@
         </div>
     </div>
 
- <div class="text-center mt-5 bg-primary text-white text-center rounded-top">
-<h3 class="text-center">Customer Contacts</h3> </div>
-  <div class="card">
+ <div class="card-header bg-primary text-white text-center rounded-top">
+<h3 class="mb-0">Customer Contacts</h3> </div>
+  <div class="container shadow mrg-bot">
   <div class="card-body p-0">
       @if($contactmasters->count() > 0)
   <!-- Users Table -->
