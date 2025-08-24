@@ -5,19 +5,20 @@ $(document).ready(function() {
         let clickedId = $(this).attr("id");
        // alert("You clicked: " + clickedId);
         let txtbx = $(this).data("txt_id"); 
-        
+       // alert(txtbx);
         let URL = '';
         const path = window.location.pathname;    
         
         const urlMap = {
             site_master_id: '/ajax/autosuggest-sitename',
             company_id: '/ajax/autosuggest-companyname',
-            customer_id: '/ajax/autosuggest-customer'
+            customer_id: '/ajax/autosuggest-customer',
+            make_id: '/ajax/autosuggest-make',
         };
   
     
         URL = urlMap[txtbx] || '/ajax/autosuggest-customer';
-        
+        //alert(URL);
         if (query.length > 2) {
             $.ajax({
                 url: URL, // The URL to your server-side script
@@ -32,10 +33,10 @@ $(document).ready(function() {
                       
                         $.each(data, function(index, record) {
                             // Option 1: Clickable to fill a textbox and a hidden input
-                           resultsHtml += '<p class="dropdown-item" data-id="' + record.id + '" data-clickid="' + clickedId + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  >';
+                           resultsHtml += '<div class="dropdown-item" data-id="' + record.id + '" data-clickid="' + clickedId + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  >';
                             
                             resultsHtml += ' ' + record.name; // Checkmark icon
-                            resultsHtml += '</p>';
+                            resultsHtml += '</div>';
 
                          	 $('.myDropdown_'+ txtbx).html(resultsHtml);
  				             $('#myDropdown_'+ txtbx).show();
