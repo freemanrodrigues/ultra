@@ -24,8 +24,9 @@
               
                     <div class="col-md-6">
                         <label for="make" class="form-label">Make</label>
-                        <input type="text" name="make" id="make" class="form-control" required>
-                    </div>
+    <input type="hidden" id="make_id" name="make_id"> 
+<input type="text" name="make" id="make" class="form-control search" data-txt_id="make_id" required  autocomplete="off">
+<div id="myDropdown_make_id" class="myDropdown"></div>                </div>
 
                     <div class="col-md-6">
                         <label for="model" class="form-label">Model</label>
@@ -55,6 +56,7 @@
         </div>
     </div>
 </div>
+<script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
 
 @endsection
 

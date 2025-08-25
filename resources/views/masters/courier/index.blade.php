@@ -23,8 +23,9 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <label for="search" class="form-label">Search</label>
-                <input type="text" class="form-control" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by code or name...">
+               <input type="text" class="form-control search" id="search" name="search" 
+value="{{ request('search') }}" placeholder="Search by code or name..." data-txt_id="courier_id"  autocomplete="off">
+<input type="hidden" id="courier_id" name="courier_id">
             </div>
             <div class="col-md-3">
                 <label for="status" class="form-label">Status</label>
@@ -82,7 +83,7 @@
                             <th width="150">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody_customer_index">
                         @foreach($couriers as $courier)
                         <tr>
                             <td>
@@ -164,4 +165,5 @@
         @endif
     </div>
 </div>
+<script src="/js/customer/tbody_customer_index.js?{{date('mmss')}}"></script>
 @endsection

@@ -185,4 +185,20 @@ class SiteMasterController
 
         return response()->json($suggestions);
     }
+    
+    public function ajaxListSitemaster(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+        // Fetch data from your database
+        // Replace 'YourModel' and 'name' with your actual model and column name
+        $suggestions = SiteMaster::where('site_name', 'LIKE', '%' . $query . '%')->get();
+
+        return response()->json($suggestions);
+    }
 }

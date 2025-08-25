@@ -61,6 +61,11 @@ Route::any('/ajax/autosuggest-customer1', [CustomerMasterController::class,'auto
 Route::any('/ajax/autosuggest-sitename', [SiteMasterController::class,'autoSuggestSiteName'])->name('autosuggest-sitename');
 Route::any('/ajax/autosuggest-companyname', [CompanyMasterController::class,'autoSuggestCompanyName'])->name('autosuggest-companyname');
 
+Route::any('/ajax/autosuggest-make', [MakeMasterController::class,'autoSuggestMakeName'])->name('autosuggest-make');
+
+Route::any('/ajax/list-sitemaster', [SiteMasterController::class,'ajaxListSitemaster'])->name('list-sitemaster');
+Route::any('/ajax/list-courier', [CourierMasterController::class,'ajaxListCourier'])->name('list-courier');
+
 //Route::resource('/master/state', SiteMasterController::class);
 Route::get('profile', [UserController::class,'userProfile'])->name('profile');
 Route::get('reset-password', [UserController::class,'resetPasswordView'])->name('reset-password');

@@ -129,4 +129,23 @@ class MakeMasterController
                             ->with('error', 'Error deleting MakeMaster: ' . $e->getMessage());
         }
     }
+
+    public function autoSuggestMakeName(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+        // Fetch data from your database
+        // Replace 'YourModel' and 'name' with your actual model and column name
+        $suggestions = MakeMaster::where('make_name', 'LIKE', '%' . $query . '%')
+        ->select('id', 'make_name as name') 
+        ->limit(10)
+        ->get();
+
+        return response()->json($suggestions);
+    }
 }

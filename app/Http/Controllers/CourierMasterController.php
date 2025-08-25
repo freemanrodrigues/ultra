@@ -129,4 +129,19 @@ class CourierMasterController
                             ->with('error', 'Error deleting Courier Master: ' . $e->getMessage());
         }
     }
+
+    public function ajaxListCourier(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Basic validation (optional but recommended)
+        if (empty($query) || strlen($query) < 2) {
+            return response()->json([]); // Return empty array if query is too short
+        }
+
+
+     //   $customers  = CourierMaster::where('courier_name', 'like', '%".$query."%')->get();
+        $customers = CourierMaster::where('courier_name', 'LIKE', '%' . $query . '%')->get();
+        return response()->json($customers);
+    }
 }

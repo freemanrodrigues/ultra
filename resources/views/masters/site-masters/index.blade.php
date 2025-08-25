@@ -95,12 +95,11 @@
                                 <th>Site Name</th>
                                 <th>City/District</th>
                                 <th>Status</th>
-                                <th>Devices</th>
                                 <th>Created Date</th>
                                 <th width="200">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody_customer_index">
                             @foreach($siteMasters as $siteMaster)
                                 <tr>
                                     
@@ -113,8 +112,7 @@
                                         <span class="badge bg-secondary">Inactive</span>
                                         @endif
                                    </td>
-                                    <td><!--  a href="{{route('site-device-list',$siteMaster->id )}}">Devices</a --> <i class="bi bi-eye"></i></td>
-                                    <td>
+                                     <td>
                                         <small class="text-muted">
                                         @if(!empty($siteMaster->created_at))
                                             {{ $siteMaster->created_at->format('M d, Y') }}
@@ -178,5 +176,5 @@
         <div id="modal-search-results"></div>
     </div>
 </div>  
-<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+<script src="/js/customer/tbody_customer_index.js?{{date('mmss')}}"></script>
 @endsection
