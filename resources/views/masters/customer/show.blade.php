@@ -1,4 +1,4 @@
-@extends('/layouts/master-layout1') 
+@extends('/layouts/master-layout') 
 @section('content')
      <style>
     .bordered-cell {
