@@ -1,12 +1,5 @@
 @extends('/layouts/master-layout') 
 @section('content')
-     <style>
-    .bordered-cell {
-      border: 1px solid #dee2e6; 
-      padding: 10px;
-      text-align: center;
-    }
-  </style>
    <div class="container my-2">
    <div class="text-end my-2">
    <a href="{{ route('customer.index') }}" class="btn btn-secondary">Back</a></div>
@@ -59,7 +52,7 @@
     <div class="col bordered-cell text-end fw-semibold text-muted">Billing Cycle:</div>
     <div class="col bordered-cell">{{ config('constants.BILLING_CYCLE')[$customer->billing_cycle] ?? 'N/A' }}</div>
     <div class="col bordered-cell text-end fw-semibold text-muted">Credit Cycle:</div>
-    <div class="col bordered-cell">{{config('constants.CUSTOMER_GROUP')[$customer->credit_cycle] ?? 'N/A' }}</div>
+    <div class="col bordered-cell">{{$customer->credit_cycle ?? 'N/A' }}</div>
   </div> 
 
   <div class="row">
@@ -70,7 +63,7 @@
             <span class="badge bg-secondary">Inactive</span>
           @endif</div>
     <div class="col bordered-cell text-end fw-semibold text-muted">Group:</div>
-    <div class="col bordered-cell">{{ $customer->group ?? 'N/A' }}</div>
+    <div class="col bordered-cell">{{ config('constants.CUSTOMER_GROUP')[$customer->group] ?? 'N/A' }}</div>
   </div> 
 
   </div>

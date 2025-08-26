@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SiteMaster extends Model
 {
-    protected $fillable = [ 'site_name',  'city',  'state',  'country',  'lat',  'long',  'status' ];
+    protected $fillable = [ 'site_name', 'address', 'city',  'state',  'country',  'lat',  'long',  'status' ];
     
 
     public function customerSiteMasters()

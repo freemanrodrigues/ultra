@@ -1,4 +1,4 @@
-@extends('/layouts/master-layout1') 
+@extends('/layouts/master-layout') 
 @section('content')
 <link rel="stylesheet" href="/css/customer/autosuggest.css?{{date('mmss')}}" />
 <div class="container-fluid py-4">

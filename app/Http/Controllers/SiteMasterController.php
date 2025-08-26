@@ -63,7 +63,7 @@ class SiteMasterController
         $validated = $request->validate([
          //   'site_code' => 'required|string|max:50|unique:site_masters,site_code',
             'site_name' => 'required|string|max:255',
-         //   "address" => 'string',
+            "address" => 'string',
          //   "address1" => 'string',
             "city" => 'string',
             "state" => 'string',
@@ -72,15 +72,7 @@ class SiteMasterController
             "long" => 'nullable|string',
             'status' => 'required|in:1,0'
         ]);
- /*       "site_name" => "Rustomjee"
-        "address" => null
-        "city" => "Virar"
-        "state" => "Maharashtra"
-        "country" => "India"
-        "CountryCode" => null
-        "pincode" => null
-        "lat" => null
-        "long" => null */
+
         try {
             SiteMaster::create($validated);
             return redirect()->route('site-masters.index')
@@ -122,6 +114,7 @@ class SiteMasterController
      */
     public function update(Request $request, SiteMaster $siteMaster)
     {
+       // dd($request->all());
         $validated = $request->validate([
            // 'site_code' => 'required|string|max:50|unique:site_masters,site_code,'.$siteMaster->id,
             'site_name' => 'required|string|max:255',
