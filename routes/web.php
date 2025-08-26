@@ -5,7 +5,10 @@ use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMas
 
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) { 
+         return view('dashboard');
+    } else{ return view('login');}
+    
 });
 
 // Original file
@@ -159,6 +162,7 @@ Route::resource('/masters/item', ItemMasterController::class);
 Route::any('/master/item/bulk_delete', [ItemMasterController::class,'bulkDelete'])->name('item.bulk_delete');
 
 // Sample details
+Route::get('/sample-details_x/{id}', [SampleDetailController::class,'addSampleDetialsX'])->name('sample-details');
 Route::get('/sample-details/{id}', [SampleDetailController::class,'addSampleDetials'])->name('sample-details');
 Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDetials'])->name('save-sample-details');
 

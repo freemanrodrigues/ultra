@@ -92,7 +92,34 @@ class SampleDetailController
         return view('add-sample-details',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
         // ,'devices','sample_types','sample_natures','bottle_types'
     }
-    
+    // Delete 
+     public function addSampleDetialsX($id):View
+    {
+
+        $make_models =MakeModelMaster::getMakeModel();
+        $makes = MakeModelMaster::select('make')->distinct()->pluck('make');
+        //dd($makes);
+        $sample = SampleMaster::where('id',$id)->get();
+
+      // echo "<br> Customer  Id: ". $sample[0]->customer_id;
+     //s  echo "<br> Customer Site Id: ". $sample[0]->customer_site_id;
+     //  echo "<br> Customer Site Id: ". $sample[0]->customer_id;
+        //die();
+
+        $equipments = EquipmentAssignment::getSiteEquipmentList($sample[0]->customer_site_id);
+
+       // dd($equipments);
+       // $sample_natures = SampleNature::getSampleNature();
+       $sample_natures = array(1=>'Batch Sample',2=>'Complaint Sample' , 3=>'Trial Sample' );
+      //  $sample_types = SampleType::getSampleType();
+      $sample_types = array(1=>'USED ENGINE OIL',2=>'New Oil');
+      //  $bottle_types = BottleType::getBottleType();
+        $bottle_types = array(1=>'White',2=>'plastic');
+
+        return view('add-sample-details_x',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
+        // ,'devices','sample_types','sample_natures','bottle_types'
+    }
+
     public function saveSampleDetials(Request $request)
     {
        // dd($request->all());

@@ -120,7 +120,7 @@
                                 <div class="btn-group" role="group">
 
 <a href="{{ route('customer-site-masters.create', ['customer_id' => $customer->id]) }}" 
-                                       class="btn btn-sm btn-outline-info" title="List Sites">
+                                       class="btn btn-sm btn-outline-info" title="Assign Site">
                                         <i class="bi bi-house-add"></i>
                                     </a>
 
