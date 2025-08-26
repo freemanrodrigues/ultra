@@ -57,8 +57,7 @@
       </div>
     </div>
     <div class="card-footer text-end">
-      <a href="#" class="btn btn-primary">Edit</a>
-      <a href="#" class="btn btn-secondary">Back</a>
+  <button onclick="history.back()" class="btn btn-secondary">Back</button>
     </div>
   </div>
 </div>

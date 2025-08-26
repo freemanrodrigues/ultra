@@ -38,7 +38,7 @@ class SiteMasterController
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $siteMasters = $query->paginate(10)->appends($request->query());
+        $siteMasters = $query->paginate(100)->appends($request->query());
         
         return view('masters.site-masters.index', compact('siteMasters'));
     }

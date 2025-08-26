@@ -352,7 +352,12 @@ class CustomerMasterController
         WHERE    customer_masters.customer_name LIKE '%".$query."%'  or site_masters.site_name LIKE '%".$query."%'";
 
         $customers  = DB::select($sql);
-            
+        foreach ($customers as $customer) {
+                if (config('constants.CUSTOMER_GROUP')[$customer->group]) {
+                $customer->group = config('constants.CUSTOMER_GROUP')[$customer->group];
+                }
+        }
+
 
         return response()->json($customers);
     }

@@ -9,7 +9,7 @@
   </style>
    <div class="container my-2">
    <div class="text-end my-2">
-   <a href="{{ route('customer.index') }}" class="btn btn-outline-primary">  Back</a></div>
+   <a href="{{ route('customer.index') }}" class="btn btn-secondary">Back</a></div>
                                     
   <div class="csDetail">
     <div class="card-header bg-primary text-white text-center rounded-top">

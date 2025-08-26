@@ -87,9 +87,9 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>Site Name</th>
+                                 <th>Customer Site Name</th>
+                               <th>Site Name</th>
                                 <th>Site Code</th>
-                                <th>Customer Site Name</th>
                                
                                 <th>Customer</th>
                                 <th>Contact</th>
@@ -102,13 +102,14 @@
                             @foreach($customerSiteMasters as $customerSiteMaster)
                       
                                 <tr>
+                                    <td>@if(!empty($customers [$customerSiteMaster->customer_id])){{ $customers[$customerSiteMaster->customer_id] }} @endif</td>
+
                                     <td>{{ $customerSiteMaster->siteMaster->site_name }}</td>
                                     <td>
                                         <strong>{{$customerSiteMaster->site_customer_code }}</strong>
                                     </td>
                                     <td>{{ $customerSiteMaster->site_customer_name }}</td>
-                                    <td>@if(!empty($customers [$customerSiteMaster->customer_id])){{ $customers[$customerSiteMaster->customer_id] }} @endif</td>
-
+                                   
                                     <td>
                               
                                     <!-- a class="btn btn-sm btn-outline-secondary assigned_contact m-1"  href="{{ route('assign-contact-assignments', [ 'site_id' =>$customerSiteMaster->id , 'customer_id' => $customerSiteMaster->customer_id ]) }}" class= "m-1">
