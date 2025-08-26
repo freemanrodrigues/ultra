@@ -353,7 +353,7 @@ class CustomerMasterController
 
         $customers  = DB::select($sql);
         foreach ($customers as $customer) {
-                if (config('constants.CUSTOMER_GROUP')[$customer->group]) {
+                if (!empty($customer->group)) {
                 $customer->group = config('constants.CUSTOMER_GROUP')[$customer->group];
                 }
         }
