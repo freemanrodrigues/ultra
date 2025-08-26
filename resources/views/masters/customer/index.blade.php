@@ -103,8 +103,8 @@
                             </td>
                             <td><strong>{{ $customer->id }}</strong></td>
                             <td>    <a href="{{ route('customer.show', $customer->id) }}" class="text-decoration-none">
-                                <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}
-{{ !empty($customer->division) ? ' - '.$customer->division : '' }}
+                                <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}{{ !empty($customer->gst_state_code) ? '-'.$customer->gst_state_code : '' }}
+{{ !empty($customer->division) ? '-'.$customer->division : '' }}
 </code></a>
                             </td>
                             <td>@if(!empty($states[$customer->state])){{$states[$customer->state] }}@endif</td>

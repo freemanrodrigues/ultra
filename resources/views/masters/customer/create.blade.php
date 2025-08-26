@@ -268,8 +268,8 @@
                                                    name="pincode" 
                                                    value="{{ old('pincode') }}" 
                                                    placeholder="Enter pincode"
-                                                   pattern="[0-9]{6}"
-                                                   maxlength="6"
+                                                   pattern="^$|^\d{6}$"
+                                                   
                                                    required>
                                             @error('pincode')
                                                 <div class="invalid-feedback">{{ $message }}</div>

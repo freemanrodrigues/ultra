@@ -113,7 +113,7 @@
                  
                     <div class="col-md-6">
                         <label for="YourPinCode" class="form-label">PinCode</label>
-                       <input type="text" id="YourPinCode" name="pincode" class="form-control"  placeholder="Your Pin Code" />
+                       <input type="text" id="YourPinCode" name="pincode" class="form-control"  placeholder="Your Pin Code" pattern="^$|^\d{6}$" title="Pin code must be a 6-digit number or left blank."/>
                     </div>
                     <div class="col-md-6">
                         <label for="status" class="form-label">Status</label>

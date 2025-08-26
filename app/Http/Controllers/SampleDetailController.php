@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{EquipmentAssignment,SampleDetail,SampleMaster};
+use App\Models\{EquipmentAssignment,SampleDetail,SampleMaster,MakeModelMaster};
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -68,13 +68,29 @@ class SampleDetailController
 
     public function addSampleDetials($id):View
     {
+
+        $make_models =MakeModelMaster::getMakeModel();
+        $makes = MakeModelMaster::select('make')->distinct()->pluck('make');
+        //dd($makes);
         $sample = SampleMaster::where('id',$id)->get();
-        $equipments = EquipmentAssignment::getSiteEquipmentList($sample[0]->site_master_id);
+
+      // echo "<br> Customer  Id: ". $sample[0]->customer_id;
+     //s  echo "<br> Customer Site Id: ". $sample[0]->customer_site_id;
+     //  echo "<br> Customer Site Id: ". $sample[0]->customer_id;
+        //die();
+
+        $equipments = EquipmentAssignment::getSiteEquipmentList($sample[0]->customer_site_id);
+
+       // dd($equipments);
        // $sample_natures = SampleNature::getSampleNature();
+       $sample_natures = array(1=>'Batch Sample',2=>'Complaint Sample' , 3=>'Trial Sample' );
       //  $sample_types = SampleType::getSampleType();
+      $sample_types = array(1=>'USED ENGINE OIL',2=>'New Oil');
       //  $bottle_types = BottleType::getBottleType();
-        
-        return view('add-sample-details',compact('sample','devices','sample_types','sample_natures','bottle_types'));
+        $bottle_types = array(1=>'White',2=>'plastic');
+
+        return view('add-sample-details',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
+        // ,'devices','sample_types','sample_natures','bottle_types'
     }
     
     public function saveSampleDetials(Request $request)
@@ -83,9 +99,12 @@ class SampleDetailController
         
        
         if(!empty($request['device_id'])) {
+            $samples =  SampleMaster::where('id', $request->sample_id)->get();
             foreach($request['device_id'] as $k => $device_id){
 
-            $samples =  Sample::where('id', $request->sample_id)->get();
+           if($device_id == 'New') {
+            // Add Device
+           }
             
             if(!empty($request->image[$k])) {
                
@@ -104,10 +123,10 @@ class SampleDetailController
             }
                $smd = new SampleDetail();
                 $smd->sample_id = $request->sample_id;
-                $smd->device_id = $device_id;
+                $smd->equipment_assignments_id = $device_id;
                 $smd->company_id  = $samples[0]->company_id;
                 $smd->customer_id  = $samples[0]->customer_id;
-                $smd->sitemaster_id  = $samples[0]->site_master_id;
+                $smd->customer_site_id  = $samples[0]->customer_site_id;
                 $smd->type_of_sample  = $request->sample_type[$k];
                 $smd->nature_of_sample  = $request->nature_of_Sample[$k];
                 $smd->running_hrs  = $request->running_hrs[$k];
