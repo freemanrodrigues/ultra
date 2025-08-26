@@ -54,8 +54,12 @@ jQuery(function ($) {
                         $('#customer_name').val(response.company_name);
                         $("#customer_name").prop("disabled", true);
                        
+                    } else{
+                        $('#gst_success').text('');
+                        $('#customer_name').val('');
+                        $("#customer_name").prop("disabled", false);
                     }
-                    $("#customer_name").prop("disabled", false);
+                    
                     $('#company_id').val(response.company_id);
                     $('#state_code').val(response.state_code);
                     $('#state').val(response.state_id).change();

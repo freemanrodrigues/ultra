@@ -76,6 +76,16 @@ resultsHtml += '<tr><td></td><td>' +record.id;
                                     resultsHtml += '</td><td> ' + record.status; 
                                     resultsHtml += '</td><td><div class="btn-group" role="group"><a href="/master/customer-site-masters/create?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"> <i class="bi bi-house-add"></i></a><a href="/master/customer-site-masters/?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"><i class="bi bi-list"></i></a><a href="/masters/customer/'+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="View"><i class="bi bi-eye"></i></a><a href="/masters/customer/'+record.cus_mas_id+'/edit" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil"></i></a> </td><tr>';
                                         break;
+                                case 'company_site_id':
+                                    resultsHtml += '<tr><td></td><td>' +record.cus_mas_id;
+                                    resultsHtml += '</td><td> ' + record.customer_name; 
+                                    resultsHtml += '</td><td> ' + record.statename; 
+                                    resultsHtml += '</td><td> ' + record.division; 
+                                    resultsHtml += '</td><td> ' + record.group; 
+                                    resultsHtml += '</td><td> ' + record.status; 
+                                    resultsHtml += '</td><td><div class="btn-group" role="group"><a href="/master/customer-site-masters/create?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"> <i class="bi bi-house-add"></i></a><a href="/master/customer-site-masters/?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"><i class="bi bi-list"></i></a><a href="/masters/customer/'+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="View"><i class="bi bi-eye"></i></a><a href="/masters/customer/'+record.cus_mas_id+'/edit" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil"></i></a> </td><tr>';
+                                        break;        
+                                        
                                 case 'company_id':
                                     resultsHtml += '<tr><td></td><td>' +record.cus_mas_id;
                                     resultsHtml += '</td><td> ' + record.customer_name; 
@@ -102,7 +112,7 @@ resultsHtml += '<tr><td></td><td>' +record.id;
             });
         } else {
 
-            $('#tbody_customer_index').html('');
+         //   $('#tbody_customer_index').html('');
         }
     });
 });
