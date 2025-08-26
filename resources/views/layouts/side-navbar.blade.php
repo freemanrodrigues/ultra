@@ -778,3 +778,9 @@ User Master</p>
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar-->
+      
+<!--begin::App Main-->
+<main class="app-main">
+<!--begin::App Content Header-->
+<div class="app-content-header">
+<!--begin::Container-->
