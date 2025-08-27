@@ -1,5 +1,4 @@
-@extends('/layouts/master-layout')
-@section('content')
+
 <form method="POST" action="{{ route('save-sample-details') }}" id="sampleForm"  enctype="multipart/form-data">
       @csrf
     <div class="table-responsive">
@@ -250,4 +249,3 @@
         });
     });
 </script>
-@endsection

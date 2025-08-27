@@ -47,22 +47,22 @@
                                         <select   class="form-control" id="courierName" name="courier_id" required>
                                         <option value="" >Select Courier </option>
                                             @foreach($courier_mst as $k => $courier)
-                                                <option value="{{ $k }}">{{ $courier }}</option>
+                                                <option value="{{ $k }}" {{ request('courier_id') == $k ? 'selected' : '' }}>{{ $courier }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="noOfSamples" class="form-label fw-semibold">No of Samples</label>
-                                    <input type="number" class="form-control required-field" id="noOfSamples" name="no_of_samples" value="0" min="0">
+                                    <input type="number" class="form-control required-field" id="noOfSamples" name="no_of_samples" value="{{ old('no_of_samples')?? 0 }}" min="1">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="date" class="form-label fw-semibold">Date</label>
-                                    <input type="date" class="form-control required-field" id="date"  name="sample_date">
+                                    <input type="date" class="form-control required-field" id="date"  name="sample_date" value="{{ old('sample_date') }}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="podNo" class="form-label fw-semibold">POD No.</label>
-                                    <input type="text" class="form-control" id="podNo" name="pod_no">
+                                    <input type="text" class="form-control" id="podNo" name="pod_no" value="{{ old('pod_no') }}">
                                 </div>
                             </div>
 
@@ -77,9 +77,12 @@
                                             <label for="customer_id" class="form-label fw-semibold">Customer</label>
                                             <div class="icon-input">
                                             
-<input type="text" class="form-control search" id="id_customer" name="search" 
-value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="customer_id" autocomplete="off">
-<input type="hidden" id="customer_id" name="customer_id">
+<div class="myDropdownCover">
+<input type="hidden" id="customer_id" name="customer_id" value="{{ old('customer_id') }}"> 
+<input type="text" class="form-control search"  name="search" id="id_customer" data-txt_id="customer_id"
+value="{{ old('search') }}" placeholder="Search by code or name..."  autocomplete="off">
+<div id="myDropdown_customer_id" class="myDropdown"></div>
+</div>
                                                 <i class="bi bi-person"></i>
                                             </div>
                                         </div>
@@ -141,24 +144,24 @@ value="{{ request('search') }}" placeholder="Search by customer name..." data-tx
                                         <div class="row">
                                             <div class="col-sm-6 mb-3">
                                                 <label for="reportExpectedBy" class="form-label fw-semibold">Report Expected by</label>
-                                                <input type="date" class="form-control required-field" id="reportExpectedBy" name="expected_report_date">
+                                                <input type="date" class="form-control required-field" id="reportExpectedBy" name="expected_report_date"  value="{{ old('expected_report_date') }}">
                                             </div>
                                             <div class="col-sm-6 mb-3">
                                                 <label for="workOrderDate" class="form-label fw-semibold">Work Order Date</label>
-                                                <input type="date" class="form-control required-field" id="workOrderDate" name="work_order_date">
+                                                <input type="date" class="form-control required-field" id="workOrderDate" name="work_order_date" value="{{ old('work_order_date') }}">
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="workOrder" class="form-label fw-semibold">Work Order</label>
-                                            <input type="text" class="form-control" id="workOrder" name="work_order">
+                                            <input type="text" class="form-control" id="workOrder" name="work_order" value="{{ old('work_order') }}">
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="freightCharges" class="form-label fw-semibold">Freight Charges</label>
                                             <div class="input-group">
                                                 <span class="input-group-text">₹</span>
-                                                <input type="number" class="form-control" id="freightCharges" name="freight_charges" value="0" min="0" step="0.01">
+                                                <input type="number" class="form-control" id="freightCharges" name="freight_charges" value="{{ old('freight_charges')?? 0 }}" min="0" step="0.01">
                                             </div>
                                         </div>
                                     </div>
@@ -170,7 +173,7 @@ value="{{ request('search') }}" placeholder="Search by customer name..." data-tx
                                         
                                         <div class="mb-3">
                                             <label for="additionalInfo" class="form-label fw-semibold">Additional Information</label>
-                                            <textarea class="form-control" id="additionalInfo" name="additional_info" rows="6" placeholder="Enter any additional notes or special instructions"></textarea>
+                                            <textarea class="form-control" id="additionalInfo" name="additional_info" rows="6" placeholder="Enter any additional notes or special instructions">{{ old('additional_info')}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -185,19 +188,19 @@ value="{{ request('search') }}" placeholder="Search by customer name..." data-tx
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 mb-3">
                                                 <label for="sampleDispatchedFromSite" class="form-label fw-semibold">Sample Dispatched from Site</label>
-                                                <input type="datetime-local" class="form-control required-field" id="sampleDispatchedFromSite" name="site_sample_dispacted_date">
+                                                <input type="datetime-local" class="form-control required-field" id="sampleDispatchedFromSite" name="site_sample_dispacted_date" value="{{ old('site_sample_dispacted_date')}}">
                                             </div>
                                             <div class="col-lg-6 col-md-6 mb-3">
                                                 <label for="sampleCollectedFromCenter" class="form-label fw-semibold">Sample Collected from Collection Center</label>
-                                                <input type="datetime-local" class="form-control required-field" id="sampleCollectedFromCenter" name="collection_center_sample_received_date" >
+                                                <input type="datetime-local" class="form-control required-field" id="sampleCollectedFromCenter" name="collection_center_sample_received_date"  value="{{ old('collection_center_sample_received_date')}}">
                                             </div>
                                             <div class="col-lg-6 col-md-6 mb-3">
                                                 <label for="sampleReceivedAtCenter" class="form-label fw-semibold">Sample Received at Collection Center</label>
-                                                <input type="datetime-local" class="form-control required-field" id="sampleReceivedAtCenter" name="collection_center_sample_collected_date">
+                                                <input type="datetime-local" class="form-control required-field" id="sampleReceivedAtCenter" name="collection_center_sample_collected_date"  value="{{ old('collection_center_sample_collected_date')}}">
                                             </div>
                                             <div class="col-lg-6 col-md-6 mb-3">
                                                 <label for="sampleReceivedAtLab" class="form-label fw-semibold">Sample Received at Lab</label>
-                                                <input type="datetime-local" class="form-control required-field" id="sampleReceivedAtLab" name="lab_sample_received_date">
+                                                <input type="datetime-local" class="form-control required-field" id="sampleReceivedAtLab" name="lab_sample_received_date"   value="{{ old('lab_sample_received_date')}}">
                                             </div>
                                         </div>
                                     </div>
@@ -211,12 +214,12 @@ value="{{ request('search') }}" placeholder="Search by customer name..." data-tx
                                         <button type="button" class="btn btn-outline-secondary" id="resetBtn">
                                             <i class="bi bi-arrow-clockwise me-1"></i>Reset
                                         </button>
-                                        <button type="button" class="btn btn-outline-primary" id="previewBtn">
+                                    <!--    <button type="button" class="btn btn-outline-primary" id="previewBtn">
                                             <i class="bi bi-eye me-1"></i>Preview
                                         </button>
                                         <button type="button" class="btn btn-outline-success" id="saveDraftBtn">
                                             <i class="bi bi-download me-1"></i>Save Draft
-                                        </button>
+                                        </button> -->
                                         <button type="submit" class="btn btn-custom text-white">
                                             <i class="bi bi-check-circle me-1"></i>Submit Receipt
                                         </button>
@@ -229,15 +232,8 @@ value="{{ request('search') }}" placeholder="Search by customer name..." data-tx
             </div>
         </div>
     </div>
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div id="modal-search-results">
-        </div>
-    </div>
-</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+    <script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
     <script src="/js/sample/create-sample.js"></script>
     
 @endsection

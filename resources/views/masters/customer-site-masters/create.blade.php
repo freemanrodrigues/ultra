@@ -34,12 +34,12 @@
                         </select>
                         @else
                         <label for="id_customer" class="form-label">Customer</label>
-                        <div class="myDropdownCover">
-                        <input type="hidden" id="customer_id" name="customer_id"> 
-                        <input type="text" class="form-control search"  name="search" id="id_customer" data-txt_id="customer_id"
-                       value="{{ request('search') }}" placeholder="Search by code or name..."  autocomplete="off">
-                        <div id="myDropdown_customer_id" class="myDropdown"></div>
-                        </div>
+<div class="myDropdownCover">
+<input type="text" id="customer_id" name="customer_id"> 
+<input type="text" class="form-control search"  name="search" id="id_customer" data-txt_id="customer_id"
+value="{{ request('search') }}" placeholder="Search by code or name..."  autocomplete="off">
+<div id="myDropdown_customer_id" class="myDropdown"></div>
+</div>
                          @endif
                     </div>
                     <div class="col-md-6">
@@ -55,7 +55,6 @@
                         <input type="hidden" id="site_master_id" name="site_master_id"> 
                         <input type="text" class="form-control search"  name="search"  id="id_site_master" data-txt_id="site_master_id"
                        value="{{ request('search') }}" placeholder="Search Site Name..."  autocomplete="off">
-                        
                         <div id="myDropdown_site_master_id" class="myDropdown"></div>
                         </div>
                     </div>

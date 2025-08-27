@@ -4,19 +4,15 @@
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
             <!-- Header Card -->
-            <div class="card shadow-sm border-0 mb-4">
-                <div class="card-header bg-primary text-white">
+            <div class="text-end my-2"><a href="{{ route('customer.index') }}" class="btn btn-secondary">Back to List</a></div>
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white rounded-top">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h4 class="mb-0">
-                                <i class="bi bi-person-plus-fill me-2"></i>Edit Customer :{{$customer->customer_name}}
+                                <i class="bi bi-person-plus-fill me-2"></i>Edit Customer :&nbsp;{{$customer->customer_name}}
                             </h4>
                             <!-- small class="opacity-75">Add a new customer to the system</small -->
-                        </div>
-                        <div>
-                            <a href="{{ route('customer.index') }}" class="btn btn-outline-light btn-sm">
-                                <i class="bi bi-arrow-left me-1"></i>Back to List
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +24,7 @@
     </div>
 @endif
             <!-- Main Form Card -->
-            <div class="card shadow-lg border-0">
+            <div class="card shadow border-0">
                 <div class="card-body p-4">
                     <form action="{{ route('customer.update',$customer->id) }}" method="POST" id="customerForm" novalidate>
                         @csrf

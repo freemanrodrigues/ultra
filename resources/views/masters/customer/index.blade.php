@@ -3,15 +3,16 @@
 <link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 
 <div class="container mt-4">
- <!-- Search and Filter Form --><div class="d-flex justify-content-between align-items-center mb-4">
+ <!-- Search and Filter Form -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">
         <i class="fas fa-building text-primary"></i> Customer
         <small class="text-muted">({{-- $customers->total() --}} total)</small>
     </h1>
-    <a href="{{ route('customer.create') }}" class="btn btn-primary">
+    <a href="{{ route('customer.create') }}" class="btn btn-secondary">
         <i class="fas fa-plus"></i> Add New Customer
     </a>
-</div>
+  </div>
 
 @if (session('success'))
 @if (session('success')['text'])
@@ -29,7 +30,7 @@
 <!-- Search and Filter Form -->
 <div class="search-form">
     <form method="GET" action="{{ route('customer.index') }}">
-        <div class="row g-3">
+        <div class="row g-3 mb-3">
             <div class="col-md-4">
                 <label for="id_company" class="form-label">Search</label>
                 <input type="text" class="form-control search" id="id_company" name="search" 
@@ -74,7 +75,7 @@
 </div>
 
 <!-- Data Table -->
-<div class="card">
+<div class="card shadow mb-4">
     <div class="card-body p-0">
         @if($customers->count() > 0)
             <div class="table-responsive">
