@@ -7,9 +7,9 @@
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">
         <i class="fas fa-building text-primary"></i> Customer
-        <small class="text-muted">({{-- $customers->total() --}} total)</small>
+        <small class="text-muted">({{ $customers->total() }} total)</small>
     </h1>
-    <a href="{{ route('customer.create') }}" class="btn btn-secondary">
+    <a href="{{ route('customer.create') }}" class="btn btn-primary">
         <i class="fas fa-plus"></i> Add New Customer
     </a>
   </div>

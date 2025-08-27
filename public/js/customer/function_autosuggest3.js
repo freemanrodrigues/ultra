@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    var $ = jQuery.noConflict();
     $('.search').on('keyup', function() {
         var query = $(this).val();
         let clickedId = $(this).attr("id");
@@ -16,13 +16,13 @@ $(document).ready(function() {
         };
   
     switch (path) {
-        case '/master/contacts-masters':
+        case '/masters/contacts-masters':
             URL = '/ajax/autosuggest-companyname';
             break;
         case '/masters/customer':
             URL = '/ajax/autosuggest-customer';
             break;
-        case '/master/site-masters':
+        case '/masters/site-masters':
             URL = '/ajax/autosuggest-sitename';
             break;
                 
@@ -57,7 +57,7 @@ $(document).ready(function() {
                         });
                     } else {
                         if(txtbx == 'site_master_id') {
-                            resultsHtml = '<p><a href="/master/site-masters/create">Create New Site</a>.</p>';     
+                            resultsHtml = '<p><a href="/masters/site-masters/create">Create New Site</a>.</p>';     
                         } else {
                         resultsHtml = '<p>No results found.</p>';
                         }
@@ -97,7 +97,9 @@ $(document).ready(function() {
         // Assuming your input box is '#search' and your hidden input is '#record-id'
         $('#'+clickid).val(name);
         $('#'+txtbx).val(id); 
-        
+        $('#myDropdown_'+txtbx).val(id); 
+        $('#'+txtbx).trigger('change');
+        //alert(" "+txtbx);
         // Hide the modal and clear its content
         $('#searchModal').css('display', 'none');
         $('#modal-search-results').html('');
