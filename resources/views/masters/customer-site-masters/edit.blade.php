@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow rounded-4">
+    <div class="card shadow">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Assign Customer Site</h5>
         </div>

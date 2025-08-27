@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{EquipmentAssignment,SampleDetail,SampleMaster,MakeModelMaster};
+use App\Models\{BottleType,EquipmentAssignment,SampleDetail,SampleMaster,SampleNature,SampleOilType,MakeModelMaster};
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -72,22 +72,17 @@ class SampleDetailController
         $make_models =MakeModelMaster::getMakeModel();
         $makes = MakeModelMaster::select('make')->distinct()->pluck('make');
         //dd($makes);
-        $sample = SampleMaster::where('id',$id)->get();
+        $sample = SampleMaster::where('id',$id)->with('customer')->with('customer_site_masters')->first();  
 
       // echo "<br> Customer  Id: ". $sample[0]->customer_id;
      //s  echo "<br> Customer Site Id: ". $sample[0]->customer_site_id;
      //  echo "<br> Customer Site Id: ". $sample[0]->customer_id;
         //die();
 
-        $equipments = EquipmentAssignment::getSiteEquipmentList($sample[0]->customer_site_id);
-
-       // dd($equipments);
-       // $sample_natures = SampleNature::getSampleNature();
-       $sample_natures = array(1=>'Batch Sample',2=>'Complaint Sample' , 3=>'Trial Sample' );
-      //  $sample_types = SampleType::getSampleType();
-      $sample_types = array(1=>'USED ENGINE OIL',2=>'New Oil');
-      //  $bottle_types = BottleType::getBottleType();
-        $bottle_types = array(1=>'White',2=>'plastic');
+        $equipments = EquipmentAssignment::getSiteEquipmentList($sample->customer_site_id);
+        $sample_natures = SampleNature::getSampleNatureArray();
+        $sample_types = SampleOilType::getSampleOilTypeArray();
+        $bottle_types = BottleType::getBottleTypeArray();
 
         return view('add-sample-details',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
         // ,'devices','sample_types','sample_natures','bottle_types'
@@ -109,12 +104,9 @@ class SampleDetailController
         $equipments = EquipmentAssignment::getSiteEquipmentList($sample[0]->customer_site_id);
 
        // dd($equipments);
-       // $sample_natures = SampleNature::getSampleNature();
-       $sample_natures = array(1=>'Batch Sample',2=>'Complaint Sample' , 3=>'Trial Sample' );
-      //  $sample_types = SampleType::getSampleType();
-      $sample_types = array(1=>'USED ENGINE OIL',2=>'New Oil');
-      //  $bottle_types = BottleType::getBottleType();
-        $bottle_types = array(1=>'White',2=>'plastic');
+        $sample_natures = SampleNature::getSampleNatureArray();
+        $sample_types = SampleOilType::getSampleOilTypeArray();
+        $bottle_types = BottleType::getBottleTypeArray();
 
         return view('add-sample-details_x',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
         // ,'devices','sample_types','sample_natures','bottle_types'

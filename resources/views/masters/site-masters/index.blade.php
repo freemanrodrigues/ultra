@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 <div class="container mt-4">
 
- <!-- Search and Filter Form --><div class="d-flex justify-content-between align-items-center mb-4">
+ <!-- Search and Filter Form -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">
         <i class="fas fa-building text-primary"></i> Site Master
         <small class="text-muted">({{ $siteMasters->total() }} total)</small>
@@ -30,9 +31,9 @@
 @endif
 
  <!-- Search and Filter Form -->
-    <div class="search-form h-auto m-2 ">
+    <div class="search-form h-auto">
         <form method="GET" action="{{ route('site-masters.index') }}" class="row g-3">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="id_site_master" class="form-label">Search</label>
                 <input type="text" class="form-control search" id="id_site_master" name="search" 
                        value="{{ request('search') }}" placeholder="Search by Site Name..."  data-txt_id="site_master_id"  autocomplete="off">
@@ -64,10 +65,10 @@
                 <label class="form-label">&nbsp;</label>
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-outline-primary">
-                        <i class="bi bi-search"></i> Search
+                        <i class="fas fa-search"></i> Search
                     </button>
                     <a href="{{ route('site-masters.index') }}" class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-clockwise"></i>
+                        <i class="fas fa-times"></i> Clear
                     </a>
                 </div>
             </div>
@@ -84,7 +85,7 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="card">
+    <div class="card  shadow mb-4">
         <div class="card-body p-0">
             @if($siteMasters->count() > 0)
                 <div class="table-responsive">

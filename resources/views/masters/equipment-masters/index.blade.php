@@ -205,7 +205,7 @@
                                         <th width="120">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody> 
                                     @foreach($equipmentMasters as $equipment)
                                         <tr>
                                             <td>

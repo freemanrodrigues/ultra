@@ -36,7 +36,7 @@
                   <div class="d-flex">
                     <div class="flex-shrink-0">
                       <img
-                        src="../../admin/dist/assets/img/user1-128x128.jpg"
+                        src="{{asset('../../admin/dist/assets/img/user1-128x128.jpg')}}"
                         alt="User Avatar"
                         class="img-size-50 rounded-circle me-3"
                       />
@@ -207,7 +207,7 @@
           <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
             <img
-              src="../../admin/dist/assets/img/AdminLTELogo.png"
+              src="{{asset('../../admin/dist/assets/img/AdminLTELogo.png')}}"
               alt="AdminLTE Logo"
               class="brand-image opacity-75 shadow"
             />
@@ -320,10 +320,11 @@
 </a>
 </li>
 <li class="nav-item">
-<a href="" class="nav-link">                  
+<a href="{{ route('sample-oil-type.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Type of Sample</p>
 </a>
 </li>
+<!--
 <li class="nav-item">
 <a  class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Grade Master</p>
@@ -341,6 +342,17 @@
 </li>
 <!--
 <li class="nav-item">
+<a href="{{ route('make.index') }}" class="nav-link">                  
+<i class="nav-icon bi bi-circle"></i><p>Make</p>
+</a>
+</li>
+<li class="nav-item">
+<a href="{{ route('model.index') }}" class="nav-link">                  
+<i class="nav-icon bi bi-circle"></i><p>Model</p>
+</a>
+</li>
+-->
+<li class="nav-item">
 <a href="{{ route('bottle-type.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>
 Type Of Bottle</p>
@@ -352,7 +364,7 @@ Type Of Bottle</p>
 Nature Of Sample</p>
 </a>
 </li>
-
+<!--
 
 <li class="nav-item">
 <a href="{{ route('subassembly.index') }}" class="nav-link">                  

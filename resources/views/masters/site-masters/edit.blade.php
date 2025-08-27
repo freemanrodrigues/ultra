@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow rounded-4">
+    <div class="card shadow mb-4">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Edit Site : </h5>
+            <h5 class="mb-0">Edit Site</h5>
         </div>
      @if ($errors->any())
         <div class="bg-danger border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">

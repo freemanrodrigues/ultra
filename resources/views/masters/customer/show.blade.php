@@ -9,7 +9,7 @@
       <h4 class="mb-0">Customer Details</h4>
     </div>
 
-<div class="container shadow mrg-bot">
+<div class="container shadow mb-4">
   <div class="row">
     <div class="col bordered-cell text-end fw-semibold text-muted">Customer Name</div>
     <div class="col bordered-cell">{{ $customer->customer_name ?? 'N/A' }}</div>
@@ -70,7 +70,7 @@
 
 <div class="card-header bg-primary text-white text-center rounded-top">
 <h3 class="mb-0">Customer Sites</h3> </div>
- <div class="container shadow mrg-bot">
+ <div class="container shadow mb-4">
         <div class="card-body p-0">
             @if($customerSiteMasters->count() > 0)
                 <div class="table-responsive">
@@ -121,7 +121,7 @@
 
  <div class="card-header bg-primary text-white text-center rounded-top">
 <h3 class="mb-0">Customer Contacts</h3> </div>
-  <div class="container shadow mrg-bot">
+  <div class="container shadow mb-4">
   <div class="card-body p-0">
       @if($contactmasters->count() > 0)
   <!-- Users Table -->

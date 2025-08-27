@@ -11,4 +11,14 @@ class SampleOilType extends Model
     public static function getSampleType(){
        return  SampleOilType::where('status',1)->get();
     }
+
+    public static function getSampleOilTypeArray() {
+      $sample_oil_type = SampleOilType::where('status', '1')->orderBy("sample_oil_type_name")->get(['id','sample_oil_type_name']);	
+      //dd($sample_nature);
+          $sample_oil_typeArr = array();
+      foreach($sample_oil_type as $k => $v) {
+        $sample_oil_typeArr[$v->id] = $v->sample_oil_type_name;
+      }  
+      return $sample_oil_typeArr;	
+	}   
 }

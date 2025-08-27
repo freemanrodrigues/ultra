@@ -25,10 +25,11 @@
     }
   </style>
 <div class="container my-5">
-  <div class="card shadow-sm">
+  <div class="card-header bg-primary text-white text-center rounded-top">
+    <h4 class="mb-0">Site Details</h4>
+  </div>
+  <div class="card shadow mb-4">
     <div class="card-body">
-      <h3 class="card-title">Site Details</h3>
-
       <div class="row site-details-row">
         <div class="col-md-12">
           <span class="data-label">Site Name:</span>
