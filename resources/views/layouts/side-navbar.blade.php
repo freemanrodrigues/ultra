@@ -264,8 +264,8 @@
                   <p>Theme Generate</p>
                 </a>
               </li> --}}
-              <li class="nav-item @if (request()->is('master/*')) menu-open @endif">
-                <a href="#" class="nav-link @if (request()->is('master/*')) active @endif">
+              <li class="nav-item @if (request()->is('masters/*')) menu-open @endif">
+                <a href="#" class="nav-link @if (request()->is('masters/*')) active @endif">
                   <i class="nav-icon bi bi-box-seam-fill"></i>
                   <p>
                     Master
