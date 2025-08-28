@@ -6,7 +6,9 @@
             // Event listener for keyup on the search input
             $('#customer_name').on('keyup', function() {
                 const query = $(this).val(); // Get the current input value
-
+                if ($('#customer_name').prop('readonly')) {
+                    return;
+                }
                 // Clear any existing timeout to debounce the input
                 clearTimeout(timeout);
 

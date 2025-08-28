@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{CompanyMaster,State};
+use App\Models\{CompanyMaster,CustomerMaster,State};
 use Illuminate\Http\Request;
 
 class CompanyMasterController
@@ -71,15 +71,15 @@ class CompanyMasterController
         $pan = substr($request->gst_no, 2, 10);
         $state_code = substr($request->gst_no, 0, 2);
         if($state_code < 10) {
-            $state_code  =substr($request->gst_no, 1, 2);
+            $state_code  =substr($request->gst_no, 1, 1);
         }
-       
         $company = CompanyMaster::where('pancard', $pan)->first();
         $state = State::where('statecode', $state_code)->first();
-
+        $gst_cnt = CustomerMaster::where('gst_no', $request->gst_no)->count();
         if ($company) {
             return response()->json([
                 'exists' => true,
+                'gst_cnt' => $gst_cnt,
                 'company_name' => $company->company_name, 
                 'company_id' => $company->id, 
                 'state_id' => $state->id, 
@@ -88,6 +88,7 @@ class CompanyMasterController
         } elseif ($state) {
             return response()->json([
                 'exists' => true,
+                'gst_cnt' => $gst_cnt,
                 'state_id' => $state->id, 
                 'state_code' => $state->shortname, 
             ]);

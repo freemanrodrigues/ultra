@@ -66,8 +66,8 @@
     <table class="table table-bordered table-striped align-middle">
         <thead class="table-light">
             <tr>
-                <th>Email</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Phone</th>
                 <th>company</th>
                 <th>Status</th>
@@ -77,8 +77,8 @@
         <tbody>
             @foreach($users as $user)
             <tr data-id="{{ $user->id }}">
-                <td>{{ $user->email }}</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
+                <td>{{ $user->email }}</td>
                 <td>{{ $user->phone }}</td>
                 <td>{{  $user->company->company_name; }}</td>
                 <td><span class="badge bg-{{ $user->status ? 'success' : 'secondary' }}">{{ $user->status ? 'Active' : 'Inactive' }}</span></td>

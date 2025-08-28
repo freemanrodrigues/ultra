@@ -76,18 +76,18 @@ class CustomerMasterController
 
        $request->validate([
         'b2c_customer' => ['nullable', 'boolean'],
-        'customer_name' => 'required|string|max:255|unique:customer_masters,customer_name',
+        'customer_name' => 'required|string|max:255', //|unique:customer_masters,customer_name
         'gst_no' => [
             'nullable',                              // Allows null/empty values
             'required_unless:b2c_customer,1',        // Required if b2c_customer is not 1
             'prohibited_if:b2c_customer,1',          // Must be empty if b2c_customer is 1
             'regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/',
         ],
-        "address" => 'required|string|max:255',
-        "city" => 'required|string|max:100',
+     //  "address" => 'required|string|max:255',
+    //    "city" => 'required|string|max:100',
         "state" => 'required|integer',
         "country" => 'required|integer|min:1|max:999',
-        "pincode" => 'required|string|max:6',
+    //    "pincode" => 'required|string|max:6',
         //   "email" => 'required|email',
         //   "phone" => 'required',
         //  "billing_cycle" => 'date',

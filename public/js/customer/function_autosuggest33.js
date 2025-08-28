@@ -45,7 +45,7 @@ $(document).ready(function() {
 			            $('#myDropdown_'+ txtbx).show();
                     } else {
                         if(txtbx == 'site_master_id') {
-                            resultsHtml = '<div class="dropdown-item"><a href="/master/site-masters/create">Create New Site</a>.</div>';     
+                            resultsHtml = '<div class="dropdown-item"><a href="/masters/site-masters/create">Create New Site</a>.</div>';     
                         } else {
                         resultsHtml = '<div class="dropdown-item">No results found.</div>';
                         }

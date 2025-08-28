@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Country,CompanyMaster,CustomerMaster,SiteContact,State,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
+use Illuminate\Support\Facades\{DB,Log};
 
 class SiteMasterController
 {
@@ -14,8 +15,9 @@ class SiteMasterController
     public function index(Request $request): View
     {
        //dd("Site Master Index");
-        $query = SiteMaster::query();
-
+     //  DB::enableQueryLog();
+        $query = SiteMaster::query()->with('state_table');
+       
         // Search functionality
         if($request->filled('site_master_id')) { 
             $query->where("id", $request->get('site_master_id'));
@@ -39,7 +41,8 @@ class SiteMasterController
         $query->orderBy($sortBy, $sortOrder);
 
         $siteMasters = $query->paginate(100)->appends($request->query());
-        
+       // $logs = DB::getQueryLog();
+      //  dd($logs); 
         return view('masters.site-masters.index', compact('siteMasters'));
     }
 

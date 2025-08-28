@@ -13,6 +13,11 @@ class SiteMaster extends Model
     {
         return $this->hasMany(CustomerSiteMaster::class, 'site_master_id');
     }
+
+    public function state_table()
+    {
+        return $this->belongsTo(State::class, 'state');
+    } 
     
     public static function getAllSite(){
         return SiteMaster::where('status',1 )->get();

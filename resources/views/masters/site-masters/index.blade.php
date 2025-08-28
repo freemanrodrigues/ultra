@@ -95,8 +95,9 @@
                                
                                 <th>Site Name</th>
                                 <th>City/District</th>
+                                 <th>State</th>
                                 <th>Status</th>
-                                <th>Created Date</th>
+                               
                                 <th width="200">Actions</th>
                             </tr>
                         </thead>
@@ -106,6 +107,7 @@
                                     
                                     <td>{{ $siteMaster->site_name }}</td>
                                    <td>{{ $siteMaster->city }}</td>
+                                   <td>{{ $siteMaster->state_table->statename }}</td>
                                    <td>{!! $siteMaster->status_badge !!}
                                         @if(($siteMaster->status ?? '') === 1)
                                         <span class="badge bg-success">Active</span>
@@ -113,13 +115,7 @@
                                         <span class="badge bg-secondary">Inactive</span>
                                         @endif
                                    </td>
-                                     <td>
-                                        <small class="text-muted">
-                                        @if(!empty($siteMaster->created_at))
-                                            {{ $siteMaster->created_at->format('M d, Y') }}
-                                        @endif    
-                                        </small>
-                                    </td>
+                                     
                                     <td class="table-actions">
                                         <div class="btn-group" role="group">
                                             <a href="{{ route('site-masters.show', $siteMaster) }}" 
