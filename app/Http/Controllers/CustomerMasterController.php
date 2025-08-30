@@ -15,7 +15,7 @@ class CustomerMasterController
      */
     public function index(Request $request): View
     {
-        
+       
         $query = CustomerMaster::query();
 
         $query->leftJoin(
@@ -49,6 +49,22 @@ class CustomerMasterController
         $query->orderBy($sortBy, $sortOrder);
 
         $customers = $query->paginate(10)->appends($request->query());
+       
+/*
+        $customers = DB::table('customer_site_masters')
+    ->select(
+        'customer_masters.id',
+        'customer_masters.customer_name',
+        'customer_masters.division',
+        'customer_masters.gst_state_code',
+        'customer_masters.status',
+        'customer_masters.group',
+        'site_masters.site_name'
+    )
+    ->join('customer_masters', 'customer_site_masters.customer_id', '=', 'customer_masters.id')
+    ->join('site_masters', 'customer_site_masters.site_master_id', '=', 'site_masters.id')
+ //   ->where('customer_site_masters.customer_id', 578)
+    ->get(); */
         //dd($customers);
         $states = State::getStateArray();
         return view('masters.customer.index',compact('customers', 'states'));
@@ -305,8 +321,8 @@ class CustomerMasterController
 
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
-        $suggestions = CustomerMaster::where('customer_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'customer_name as name') // Select only necessary columns
+        $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
+                                ->select('id', 'company_name as name') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 
