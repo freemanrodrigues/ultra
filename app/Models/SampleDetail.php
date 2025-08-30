@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class SampleDetail extends Model
 {
-    //
+
+     
+    
+
+   
 }

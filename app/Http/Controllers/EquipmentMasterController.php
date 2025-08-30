@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{EquipmentMaster,MakeModelMaster};
+use App\Models\{EquipmentMaster, EquipmentAssignment, EquipmentComponent,MakeModelMaster};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Auth;
 class EquipmentMasterController
 {
     /**
@@ -127,4 +127,50 @@ class EquipmentMasterController
     {
         //
     }
+
+    public function ajaxSaveEquipmentAndMore(Request $request)
+    {
+        /*
+
+
+
+
+make_model_id - New
+new_make_name - KIA Motors
+new_model_name - K1000
+equipment_name - VAN
+serial_number - MH12-4523
+customer_site_equipment_name - KG Van
+customer_id - 235
+customer_site_id - 8
+*/
+//print_r($request->all());
+       $userid = Auth::user()->id;
+        if($request->make_model_id == 'New') {
+            if($request->make_id == 'New') {
+                $make = $request->new_make_name;
+            }else {
+                $make = $request->make_id;
+            }     
+
+            $array = array('model' => $request->new_model_name,'status'=> 1,'make' => $make);
+            $mmm = MakeModelMaster::create($array);
+            $make_model_id =$mmm->id;
+        } else {
+            $make_model_id = $request->make_model_id;
+        }
+       // 
+       // createEquipment()
+       $em = array('equipment_name' => $request->equipment_name , 'make_model_id' => $make_model_id, 'serial_number' => ($request->serial_number??NULL), 'status'=>1);
+       $equipmentMaster = EquipmentMaster::create($em);
+
+       $ea = array('equipment_id' => $equipmentMaster->id , 'company_id', 'customer_id' => $request->customer_id, 'customer_site_id' => $request->customer_site_id, 'customer_site_equiment_name' => $request->customer_site_equipment_name ,  'status' => 1 , 'createdby_id' =>$userid );
+       $equip = EquipmentAssignment::create($ea);
+$data = array('id' => $equip->id, 'name'=>$request->customer_site_equipment_name, 'customer_site_equiment_name'=>$request->customer_site_equipment_name );
+       return response()->json([
+                'success' => true,
+                'equipment' =>$data,
+                
+            ]);
+    }   
 }

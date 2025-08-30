@@ -1,13 +1,29 @@
 @extends('/layouts/master-layout')
 @section('content')
+<style>
+td {
+  white-space: nowrap;
+  padding: 0 10px; /* Adjust 10px to your desired spacing */
+}
+</style>
 <form method="POST" action="{{ route('save-sample-details') }}" id="sampleForm"  enctype="multipart/form-data">
       @csrf
     <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+
+    <tr>
+        <th>Date</th><td>{{ \Carbon\Carbon::parse($sample->sample_date)->format('d-m-Y') }}</td>
+        <th>Lot.No</th><td>{{$sample->id}}</td>
+        <th>Sample Count</th><td>{{$sample->no_of_samples}}</td>
+        <th>Customer</th><td>@if($sample->customer) {{$sample->customer->customer_name}}  @endif </td>
+        <th>Site</th><td>{{$sample->customer_site_masters->city}}</td>
+    </tr>    
+</table>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Devices</th>
+                    <th>Equipment</th>
                     <th>Type of Sample</th>
                     <th>Nature of Sample</th>
                     <th>Running Hrs </th>
@@ -20,26 +36,24 @@
                     <th>Top Up Volume (Ltr)</th>
                     <th>Sump Capacity</th>
                     <th>Sampling From</th>
-                    <th>Report Expected</th>
+                  
                     <th>Qty</th>
                     <th>Type Of Bottle</th>
-                    <th>Problem</th>
-                    <th>Comments</th>
-                    <th>Customer Note</th>
+                     <th>Customer Note</th>
                     <th>Severity</th>
                     <th>Oil Drained</th>
                     <th>Image Attachment</th>
                     <th>FTR Attachment</th>
-                    <th>Invoice</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @for($i =0;$i<$sample[0]->no_of_samples;$i++)
+                @for($i =0;$i<$sample->no_of_samples;$i++)
                 <tr style="width: 1500px;" id="tr{{ $i+1 }}">
                     <td><i class="bi bi-plus"></i></td>
                     <td style="width:200px">
-                        <select name="device_id[{{ $i+1 }}]" class="form-select selwidth equipment" data-id="{{ $i+1 }}">
+                        <select name="device_id[{{ $i+1 }}]" class="form-select selwidth equipment" data-id="{{ $i+1 }}" data-customer_id="{{ $sample->customer_id }}" data-customer_site_id="{{ $sample->customer_site_id }}"required>
+                        <option value="">Select</option>
                             @foreach($equipments as $device)
                             <option value="{{$device->id}}">{{$device->machine_number." ". $device->customer_site_equiment_name }}</option> 
                             @endforeach
@@ -90,7 +104,6 @@
                     <td>
                         <input type="text" name="sampling_from[{{ $i+1 }}]">
                     </td>
-                    <td><input type="text" name="report_expected_date[{{ $i+1 }}]"></td>
                     <td>
                         <input type="text" name="qty[{{ $i+1 }}]">
                     </td>
@@ -102,15 +115,7 @@
                             @endforeach
                         </select>
                     </td>
-                    <td>
-                        <input type="text" name="problem[{{ $i+1 }}]" style="width:150px">
-                    </td>
-                    <td>
-                        <input type="text" name="comments[{{ $i+1 }}]" style="width:150px">
-                    </td>
-                    <td>
-                        <input type="text" name="customer_note[{{ $i+1 }}]" style="width:150px">
-                    </td>
+                    
                     <td>
                         <select name="severity[{{ $i+1 }}]" class="form-control">
                             @foreach(config('constants.SEVERITY') as $k => $val)
@@ -130,13 +135,12 @@
                     <td>
                         <input class="form-control fir" type="file" name="fir[{{ $i+1 }}]" value="Upload Image">
                     </td>
-                    <td><input type="text" name="invoice[{{ $i+1 }}]" style="width:150px"></td>
-                    <td><button type="button">Save</button></td>
+                   <td><button type="button">Save</button></td>
                 </tr>
                 @endfor 
                 <tr class="save-row">
                     <td>
-                        <input type="hidden" name="sample_id" value="{{$sample[0]->id}}">
+                        <input type="hidden" name="sample_id" value="{{$sample->id}}">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </td>
                 </tr> 
@@ -144,6 +148,99 @@
         </table>
     </div>
 </form>
+
+<div class="modal fade" id="newEquipmentModal" tabindex="-1" aria-labelledby="newEquipmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newEquipmentModalLabel">Add New Equipment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="newEquipmentForm">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="makeModelId" class="form-label">MakeModel</label>
+                        </div>
+                        <div class="col-6">
+                            <select name="make_model_id" class="form-select selwidth" id="makeModelId">
+                                <option value="">Select MakeModel</option>
+                                @foreach($make_models as $mm)
+                                    <option value="{{$mm->id}}">{{$mm->make." ". $mm->model }}</option>
+                                @endforeach
+                                <option value="New">New</option>
+                            </select>
+                        </div>
+                    </div>
+                        <div class="row" id="MakeRow" style="display:none;">
+                        <div class="col-6">
+                            <label for="make" class="form-label">Make</label>
+                        </div>
+                        <div class="col-6">
+                    <select name="make" class="form-select selwidth" id="make">
+                                <option value="">Select Make</option>
+                                @foreach($makes as $make)
+                                    <option value="{{$make}}">{{$make}}</option>
+                                @endforeach
+                                <option value="New">New</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Hidden row for new Make -->
+                    <div class="row mt-2" id="newMakeRow" style="display:none;">
+                        <div class="col-6">
+                            <label for="new_make_name" class="form-label">Add Make</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="new_make_name" name="new_make_name">
+                        </div>
+                    </div>
+
+                    <!-- Hidden row for new Model -->
+                    <div class="row mt-2" id="newModelRow" style="display:none;">
+                        <div class="col-6">
+                            <label for="new_model_name" class="form-label">Add Model</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="new_model_name" name="new_model_name">
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label for="equipment_name" class="form-label">Equipment Name</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="equipment_name" name="equipment_name" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label for="serial_number" class="form-label">Serial Number</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="serial_number" name="serial_number" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label for="customer_site_equipment_name" class="form-label">Customer Site Equipment Name</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="customer_site_equipment_name" name="customer_site_equipment_name" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveNewEquipment">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <style>
 .hidden-make-td, .hidden-new-make-td, .hidden-new-model-td {
     display: none;
@@ -151,103 +248,117 @@
 </style>
 <!-- jQuery CDN -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
-    // Ensure the code runs after the document is fully loaded
-    $(document).ready(function() {
-        // A counter to ensure each new row has a unique ID, starting from the last existing row
-        let rowCounter = parseInt('{{ $sample[0]->no_of_samples ?? 0 }}', 10);
-        let clickedId = $(this).attr("id");
-        // Listen for a 'change' event on any element with the class 'equipment' inside the table body
-        $('tbody').on('change', '.equipment', function() {
-            // Check if the selected value is 'New'
-            if ($(this).val() === 'New') {
-                // Find the closest parent row (tr) of the changed select box
-                const currentRow = $(this).closest('tr');
-                // Increment the counter for the new row
-                rowCounter++;
-                const newRowId = `tr${rowCounter}`;
-                
-                // Define the HTML for the new table row
-                const newRowHtml = `
-                    <tr style="width: 1500px;" id="${newRowId}">
-                        <td><i class="bi bi-plus"></i></td>
-                        <td style="width:200px">
-                            <select name="make_model_id['+clickedId+']" class="form-select selwidth dynamic-field" data-id="${rowCounter}">
-                                <option value="">Select MakeModel</option>
-                                @foreach($make_models as $mm)
-                                <option value="{{$mm->id}}">{{$mm->make." ". $mm->model }}</option> 
-                                @endforeach
-                                <option value="New">New</option>
-                            </select>
-                        </td>
-                        <td class="hidden-make-td">
-                            <select name="make_name['+clickedId+]" class="form-select selwidth dynamic-field" data-id="${rowCounter}">
-                                <option value="">Select Make</option>
-                                @foreach($makes as $k => $make)
-                                <option value="{{$make}}">{{$make }}</option> 
-                                @endforeach
-                                <option value="New">New</option>
-                            </select>
-                        </td>
-                        <td class="hidden-new-make-td">
-                            <input type="text" name="new_make_name['+clickedId+]" placeholder="New Make Name">
-                        </td>
-                        <td class="hidden-new-model-td">
-                            <input type="text" name="new_model_name['+clickedId+]" placeholder="New Model Name">
-                        </td>
-                        <td><input type="text" name="New_EquipmentName['+clickedId+]" placeholder="New Equipment Name"></td>
-                        <td width='50'> 
-                            <input type="text" name="serial_number['+clickedId+]" placeholder="Serial Number">
-                        </td>
-                        <td>
-                            <input type="text" name="customer_site_equiment_name['+clickedId+]" placeholder="Customer Site Equiment Name">
-                        </td>
-                        <td></td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td></td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                `;
+$(document).ready(function() {
+    let currentDropdown = null; // Stores the dropdown that opened the modal
 
-                // Insert the new row HTML immediately after the current row
-                currentRow.after(newRowHtml);
-            }
-        });
+    // Initial state on modal open: hide the conditional rows.
+    $('#newEquipmentModal').on('show.bs.modal', function () {
+        $('#MakeRow').hide();
+        $('#newMakeRow').hide();
+        $('#newModelRow').hide();
+    });
+
+    // 1. Listen for the 'New' option selection on the main equipment dropdowns
+    // Use event delegation to handle dynamically added rows
+    $('.table').on('change', '.equipment', function() {
+        if ($(this).val() === 'New') {
+            currentDropdown = $(this);
+            $('#newEquipmentModal').modal('show');
+        }
+    });
+
+    // 2. Handle the MakeModel dropdown inside the modal
+    $('#makeModelId').on('change', function() {
+   
+        if ($(this).val() === 'New') {
+            // Show Make and Add Model rows when 'New' is selected
+            $('#MakeRow').show();
+            $('#newModelRow').show();
+        } else {
+            // Hide them otherwise
+            $('#MakeRow').hide();
+            $('#newModelRow').hide();
+            $('#newMakeRow').hide(); // Also hide 'Add Make'
+        }
+    });
+
+    // 3. Handle the Make dropdown inside the modal
+    $('#makeSelect').on('change', function() {
+    // alert("New Make");
+        if ($(this).val() === 'New') {
+            // Show the 'Add Make' row when 'New' is selected
+            $('#newMakeRow').show();
+        } else {
+            // Hide it otherwise
+            $('#newMakeRow').hide();
+        }
+    });
+    
+    $('#make').on('change', function() {
+     alert("New Make");
+        if ($(this).val() === 'New') {
+            // Show the 'Add Make' row when 'New' is selected
+            $('#newMakeRow').show();
+        } else {
+            // Hide it otherwise
+            $('#newMakeRow').hide();
+        }
+    });
+
+
+    // 4. Handle the save button click
+    $('#saveNewEquipment').on('click', function(e) {
+        e.preventDefault();
+
+        const postData = {
+            _token: '{{ csrf_token() }}', // Laravel CSRF token
+            make_model_id: $('#makeModelId').val(),
+         //   make_id: $('#makeSelect').val(), // Correct ID for Make select
+            make_id: $('#make').val(), // Correct ID for Make select
+            new_make_name: $('#new_make_name').val(),
+            new_model_name: $('#new_model_name').val(),
+            equipment_name: $('#equipment_name').val(),
+            serial_number: $('#serial_number').val(),
+            customer_site_equipment_name: $('#customer_site_equipment_name').val(),
+            customer_id: currentDropdown.data('customer_id'),
+            customer_site_id: currentDropdown.data('customer_site_id')
+        };
         
-        // New event listener for the dynamic fields within the table body
-        $('tbody').on('change', '.dynamic-field', function() {
-            const dropdown = $(this);
-            const parentRow = dropdown.closest('tr');
-            
-            // Check if the make_model_id dropdown was changed to 'New'
-            if (dropdown.attr('name') === 'make_model_id[]' && dropdown.val() === 'New') {
-                parentRow.find('.hidden-make-td').show();
-                parentRow.find('.hidden-new-model-td').show();
-            } else if (dropdown.attr('name') === 'make_model_id[]') {
-                parentRow.find('.hidden-make-td').hide();
-                parentRow.find('.hidden-new-model-td').hide();
-            }
-            
-            // Check if the make_name dropdown was changed to 'New'
-            if (dropdown.attr('name') === 'make_name[]' && dropdown.val() === 'New') {
-                parentRow.find('.hidden-new-make-td').show();
-            } else if (dropdown.attr('name') === 'make_name[]') {
-                parentRow.find('.hidden-new-make-td').hide();
+        // Basic validation
+        if (!postData.equipment_name || !postData.serial_number || !postData.customer_site_equipment_name) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        // Send AJAX request
+        $.ajax({
+            url: '/ajax/save-equipment-n-more', 
+            type: 'POST',
+            data: postData,
+            success: function(response) {
+                if (response.success) {
+                    // Append the new option to the parent dropdown
+                    currentDropdown.append($('<option>', {
+                        value: response.equipment.id,
+                        text: response.equipment.name + ' ' + response.equipment.customer_site_equiment_name,
+                        selected: true
+                    }));
+
+                    // Close the modal and reset the form
+                    $('#newEquipmentModal').modal('hide');
+                    $('#newEquipmentForm')[0].reset();
+                    alert('Equipment added successfully!');
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred. Please try again.');
+                console.error('AJAX Error:', xhr.responseText);
             }
         });
     });
-</script>
+});
+</script> 
 @endsection

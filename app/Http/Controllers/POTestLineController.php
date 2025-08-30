@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EquipmentComponent;
-use Illuminate\Http\{Request,RedirectResponse};
+use App\Models\POTestLine;
+use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
-class EquipmentComponentController
+class POTestLineController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): View
     {
-        dd('Index');
+       
     }
 
     /**
@@ -21,7 +21,7 @@ class EquipmentComponentController
      */
     public function create()
     {
-        dd('create');
+      
     }
 
     /**
@@ -29,38 +29,37 @@ class EquipmentComponentController
      */
     public function store(Request $request)
     {
-        dd('store'.$request->all());
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(EquipmentComponent $equipmentComponent)
+    public function show(POTestLine $pOTestLine)
     {
-        dd('show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EquipmentComponent $equipmentComponent)
+    public function edit(POTestLine $pOTestLine)
     {
-        dd('edit');
- 
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EquipmentComponent $equipmentComponent)
+    public function update(Request $request, POTestLine $pOTestLine)
     {
-       dd('updae'.$request->all());
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EquipmentComponent $equipmentComponent)
+    public function destroy(POTestLine $pOTestLine)
     {
         //
     }

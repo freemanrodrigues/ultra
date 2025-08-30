@@ -18,8 +18,9 @@
     </div>
 @endif
         <div class="card-body">
-            <form action="{{ route('customer-site-masters.store') }}" method="POST" id="siteForm" >
+            <form action="{{ route('customer-site-masters.update',$customerSiteMaster->id) }}" method="POST" id="siteForm" >
                 @csrf
+                 @method('PUT') 
                 <div class="row g-3">
                 <div class="col-md-6">
                         <label for="customer_id" class="form-label">Customer</label>

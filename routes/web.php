@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMasterController,MakeModelMasterController,ModelMasterController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController, StateController,SiteMasterController,SiteMachineDetailController,SubAssemblyController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController, StateController,SiteMasterController,SubAssemblyController,TestMasterController,UnitMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -99,7 +99,8 @@ Route::resource('/masters/equipment-masters', EquipmentMasterController::class);
 Route::resource('/masters/equipment-assignments', EquipmentAssignmentController::class);
 Route::resource('/masters/equipment-components', EquipmentComponentController::class);
 
-
+Route::resource('/masters/po', POMasterController::class);
+Route::resource('/masters/po-test', POTestLineController::class);
 
 Route::any('/masters/assign-contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('assign-contact-assignments');
 
@@ -126,6 +127,11 @@ Route::get('/generate-sales-report', [SampleMasterController::class, 'generateSa
 Route::get('/generate-sales-report1', [SampleMasterController::class, 'generateSalesReport1'])->name('reports.sales1');
 Route::resource('/masters/sample-oil-type', SampleOilTypeController::class);
 Route::any('/masters/sample-oil-type/bulk_delete', [SampleOilTypeController::class,'bulkDelete'])->name('sample-oil-type.bulk_delete');
+Route::resource('/masters/sample-type', SampleTypeController::class);
+Route::any('/masters/sample-type/bulk_delete', [SampleTypeController::class,'bulkDelete'])->name('sample-type.bulk_delete');
+
+Route::resource('/masters/test', TestMasterController::class);
+Route::any('/masters/test/bulk_delete', [TestMasterController::class,'bulkDelete'])->name('test.bulk_delete');
 
 Route::resource('/sample', SampleMasterController::class);
 Route::any('/sample-copy', [SampleMasterController::class,'sampleCopy'])->name('sample-copy');

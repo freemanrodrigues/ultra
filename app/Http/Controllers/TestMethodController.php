@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EquipmentComponent;
-use Illuminate\Http\{Request,RedirectResponse};
-use Illuminate\View\View;
+use App\Models\TestMethod;
+use Illuminate\Http\Request;
 
-class EquipmentComponentController
+class TestMethodController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        dd('Index');
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class EquipmentComponentController
      */
     public function create()
     {
-        dd('create');
+        //
     }
 
     /**
@@ -29,38 +28,37 @@ class EquipmentComponentController
      */
     public function store(Request $request)
     {
-        dd('store'.$request->all());
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(EquipmentComponent $equipmentComponent)
+    public function show(TestMethod $testMethod)
     {
-        dd('show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EquipmentComponent $equipmentComponent)
+    public function edit(TestMethod $testMethod)
     {
-        dd('edit');
- 
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EquipmentComponent $equipmentComponent)
+    public function update(Request $request, TestMethod $testMethod)
     {
-       dd('updae'.$request->all());
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EquipmentComponent $equipmentComponent)
+    public function destroy(TestMethod $testMethod)
     {
         //
     }
