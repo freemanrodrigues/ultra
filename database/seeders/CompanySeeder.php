@@ -26,14 +26,27 @@ class CompanySeeder extends Seeder
         $csv->setHeaderOffset(0); // First row is header
         	
 
-        foreach ($csv->getRecords() as $record) {
-            DB::table('company_masters')->insert([
-                'company_name'  => $record['company_name'],
-                'pancard'  => $record['pancard'],
-                'status'     => 1,
-            ]);
-        }
-        	
+        // Initialize an empty array to hold your records
+$recordsToInsert = [];
+
+// Loop through the CSV records and prepare the data for a batch insert
+foreach ($csv->getRecords() as $record) {
+    // This is much more efficient than inserting one at a time.
+    $recordsToInsert[] = [
+        'company_name' => $record['company_name'],
+        'pancard'      => $record['pancard'],
+        'status'       => 1,
+        'created_at'   => now(), // It's good practice to add these
+        'updated_at'   => now(),
+    ];
+}
+
+// Now, perform a single, optimized batch insert.
+// Laravel's insertOrIgnore() will use the database's UNIQUE or PRIMARY key
+// to automatically skip any records that would cause a duplicate key error.
+if (!empty($recordsToInsert)) {
+    DB::table('company_masters')->insertOrIgnore($recordsToInsert);
+}
 
         $this->command->info('Compony data seeded successfully!');
     }

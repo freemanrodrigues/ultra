@@ -50,7 +50,8 @@
             <!-- Main Form Card -->
             <div class="card shadow border-0">
                 <div class="card-body p-4">
-                    <form id='create_customer' action="{{ route('customer.store') }}" method="POST" id="customerForm" novalidate>
+                    <form id='create_customer' action="{{ route('customer.store') }}" method="POST" id="customerForm">
+
                         @csrf
                         
                         <!-- Basic Information Section -->
@@ -128,7 +129,7 @@
 
             <div class="col-md-4 mb-2">
                                             <label for="division" class="form-label fw-semibold">
-                                                Division (Optional) <span class="text-danger">*</span>
+                                                Division (Optional)
                                             </label>
                                             <input type="text" id="division" name="division"  class="form-control @error('division') is-invalid @enderror" placeholder="Enter Division Name" value="{{ old('division') }}" autocomplete="off" >
 
@@ -179,28 +180,25 @@
                       <input type="text" class="form-control @error('address2') is-invalid @enderror"
                            id="address2" name="address2"
                            value="{{ old('address2') }}"
-                           placeholder="Enter complete address" autocomplete="off" required>
+                           placeholder="Enter complete address" autocomplete="off" >
                     @error('address2')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                
             </div>
-<div class="row">
+            <div class="row">
                 <div class="col-md-12 mb-2">
                       <input type="text" class="form-control @error('address3') is-invalid @enderror"
                            id="address3" name="address3"
                            value="{{ old('address3') }}"
-                           placeholder="Enter complete address" autocomplete="off" required>
+                           placeholder="Enter complete address" autocomplete="off" >
                     @error('address3')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                
             </div>
 
-
-            <!-- City, State, Country -->
+        <!-- City, State, Country -->
             <div class="row">
                 <div class="col-md-4 mb-2">
                     <label for="city" class="form-label fw-semibold">City/District <span class="text-danger">*</span></label>
@@ -230,7 +228,7 @@
                     <select class="form-select @error('country') is-invalid @enderror" id="country" name="country" required>
                         <option value="">Select Country</option>
                         @foreach($countries as $v => $country)
-                            <option value="{{ $v }}" {{ (old('country') ?? $v) == 71 ? 'selected' : '' }}>
+                            <option value="{{ $v }}" {{ (old('country')??71) == $v  ? 'selected' : '' }}>
                                 {{ $country }}
                             </option>
                         @endforeach
@@ -241,25 +239,37 @@
                 </div>
                 
             </div>
-<div class="col-md-4 mb-2">
-                    <label for="pincode" class="form-label fw-semibold">Pincode <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('pincode') is-invalid @enderror"
-                           id="pincode" name="pincode"
-                           value="{{ old('pincode') }}"
-                           placeholder="Enter pincode" pattern="^$|^\d{6}$" required>
-                    @error('pincode')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            <!-- Billing Checkbox -->
-            <div class="mb-2 form-check">
-                <input type="checkbox" class="form-check-input @error('is_billing') is-invalid @enderror"
-                       id="is_billing" name="is_billing" value="1">
-                <label for="is_billing" class="form-check-label fw-semibold">This is billing address</label>
-                @error('is_billing')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+            <div class="row">
+    <!-- Pincode Input Field -->
+    <div class="col-md-6 mb-2">
+        <label for="pincode" class="form-label fw-semibold">
+            Pincode <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control @error('pincode') is-invalid @enderror"
+               id="pincode" name="pincode"
+               value="{{ old('pincode') }}"
+               placeholder="Enter pincode" pattern="^$|^\d{6}$" required>
+        @error('pincode')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Billing Address Checkbox -->
+    <div class="col-md-6 mb-2">
+        <!-- A vertical spacer to align with the text input field's label -->
+        <div class="mt-4 form-check">
+            <input type="checkbox" class="form-check-input @error('is_billing') is-invalid @enderror"
+                   id="is_billing" name="is_billing" value="1"
+                   {{ old('is_billing') ? 'checked' : '' }}>
+            <label for="is_billing" class="form-check-label fw-semibold">
+                This is billing address
+            </label>
+            @error('is_billing')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+</div>
         </div>
     </div>
 
@@ -273,11 +283,11 @@
             <div class="row">
 <!-- Customer Group -->
                 <div class="col-md-6 mb-2">
-                    <label for="group" class="form-label fw-semibold">Customer Group</label>
+                    <label for="group" class="form-label fw-semibold">Customer Group</label><span class="text-danger">*</span></label>
 
                  </div>
                 <div class="col-md-6 mb-2">    
-                    <select class="form-select @error('group') is-invalid @enderror" id="group" name="group">
+                    <select class="form-select @error('group') is-invalid @enderror" id="group" name="group" required>
                         <option value="">Select Group</option>
                         @foreach(config('constants.CUSTOMER_GROUP') as $k => $val)
                             <option value="{{$k}}" {{ old('group') == $k ? 'selected' : '' }}>{{$val}}</option>
@@ -334,7 +344,9 @@
                     <select class="form-select @error('sales_person_id') is-invalid @enderror"
                             id="sales_person_id" name="sales_person_id">
                         <option value="">Select Sales Person</option>
-                        {{-- Populate dynamically --}}
+                      @foreach($users as $user)
+                      <option value="{{$user->id}}" {{ (old('sales_person_id') ) == $user->id ? 'selected' : '' }}>{{$user->firstname}} {{$user->lastname}}</option>
+                      @endforeach
                     </select>
                     @error('sales_person_id')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -349,9 +361,9 @@
                     <select class="form-select @error('status') is-invalid @enderror"
                             id="status" name="status" required>
                         <option value="">Select Status</option>
-                        <option value="1" {{ old('status', 1) == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ old('status', 1) == 0 ? 'selected' : '' }}>Inactive</option>
-                    </select>
+                        <option value="1" {{ (old('status')??1) == 1  ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ (old('status')??1) == 0  ? 'selected' : '' }}>Inactive</option>
+                    </select> {{ (old('status')??1) == 1  ? 'selected' : '' }}
                     @error('status')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -373,7 +385,7 @@
                                         <i class="bi bi-x-circle me-1"></i>Cancel
                                     </a>
 
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" id="btn-submit">
                                         <i class="bi bi-check-circle me-1"></i>Create Customer
                                     </button>
                                 </div>

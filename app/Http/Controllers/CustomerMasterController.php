@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,CustomerSiteMaster,State};
+use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,CustomerSiteMaster,State,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\{DB,Log};
@@ -24,7 +24,7 @@ class CustomerMasterController
             '=', 
             'customer_site_masters.customer_id'
         )
-        ->select('customer_masters.*', 'customer_site_masters.*', 'customer_masters.state', 'customer_masters.id');
+        ->select('customer_masters.id','customer_name','site','division','customer_masters.company_id','b2c_customer','gst_no','gst_state_code','customer_masters.address','customer_masters.city','customer_masters.state','group','customer_masters.status');
         
         if ($request->filled('company_id')) {
             $query->where('customer_masters.id', $request->get('company_id'));
@@ -64,7 +64,8 @@ class CustomerMasterController
      $companies = CompanyMaster::getCompanyArray();
      $countries = Country::getCountryArray();
      $states = State::getStateArray();
-    return view('masters.customer.create',compact('countries','companies','states'));
+    $users =  User::where('user_role',4)->get(['id', 'firstname', 'lastname']);
+    return view('masters.customer.create',compact('countries','companies','states','users'));
     }
 
     /**
@@ -83,57 +84,54 @@ class CustomerMasterController
             'prohibited_if:b2c_customer,1',          // Must be empty if b2c_customer is 1
             'regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}Z[A-Z\d]{1}$/',
         ],
-     //  "address" => 'required|string|max:255',
-    //    "city" => 'required|string|max:100',
+      "address" => 'required|string|max:255',
+       "city" => 'required|string|max:100',
         "state" => 'required|integer',
         "country" => 'required|integer|min:1|max:999',
-    //    "pincode" => 'required|string|max:6',
+        "pincode" => 'required|string|max:6',
         //   "email" => 'required|email',
         //   "phone" => 'required',
-        //  "billing_cycle" => 'date',
-        //  "credit_cycle" => 'required|date',
+          "billing_cycle" => 'required',
+          "credit_cycle" => 'required',
+          "group" => 'required',
         //    "sales_person_id" => null
         'status' => 'required|in:1,0'
     ]); 
 
         try {
-            //  dd($validated);
-            
           
-                try {
+            try {
 
-                    if (empty($request->gst_no)) {
-                        // GST not provided → No PAN
-                        $cid = CompanyMaster::createCompany([$request->customer_name, null]);
-                    } else {
-                        // Extract PAN from GST
-                        $pan = substr($request->gst_no, 2, 10);
-                    
-                        $company = CompanyMaster::where('pancard', $pan)->first();
-                    
-                        $cid = $company
-                            ? $company->id
-                            : CompanyMaster::createCompany([$request->customer_name, $pan]);
-                    }
-                    
-                } catch (\Exception $e) {
-                    //dd($e->getMessage());
-                    Log::error('An error occurred', ['exception' => $e->getMessage()]); // Log an error
-                    return redirect()->back()
-                    ->withInput()
-                    ->with('error', 'Error creating company ');
+                if (empty($request->gst_no)) {
+                    // GST not provided → No PAN
+                    $cid = CompanyMaster::createCompany([$request->customer_name, null]);
+                } else {
+                    // Extract PAN from GST
+                    $pan = substr($request->gst_no, 2, 10);
+                    $company = CompanyMaster::where('pancard', $pan)->first();
+               
+                    $cid = $company
+                        ? $company->id
+                        : CompanyMaster::createCompany([$request->customer_name, $pan]);
                 }
-           
+                
+            } catch (\Exception $e) {
+                //dd($e->getMessage());
+                Log::error('An error occurred', ['exception' => $e->getMessage()]); // Log an error
+                return redirect()->back()
+                ->withInput()
+                ->with('error', 'Error creating company ');
+            }
             
             $cm = new CustomerMaster();
             $cm->customer_name = $request->customer_name;
-            
             $cm->b2c_customer = $request->b2c_customer??null;
             $cm->division = $request->division??null;
             $cm->company_id = $cid;
-            $cm->gst_no = $request->gst_no??null;;
+            $cm->gst_no = $request->gst_no??null;
             $cm->address = $request->address;
             $cm->address1 = $request->address2??null;
+             $cm->address2 = $request->address3??null;
             $cm->city = $request->city??null;
             $cm->state = $request->state??null;
             $cm->country= $request->country??null;
@@ -141,10 +139,11 @@ class CustomerMasterController
             $cm->gst_state_code = $request->state_code??null;
         //    $cm->email	= $request->email;
          //   $cm->mobile	= $request->mobile;
-            $cm->is_billing = $request->is_billing??null;;
-            $cm->billing_cycle = $request->billing_cycle??null;;
-            $cm->credit_cycle = $request->credit_cycle??null;;
-            $cm->group = $request->group??null;;
+            $cm->is_billing = $request->is_billing??null;
+            $cm->billing_cycle = $request->billing_cycle??null;
+            $cm->credit_cycle = $request->credit_cycle??null;
+            $cm->group = $request->group??null;
+            $cm->sales_person_id = $request->sales_person_id??null;
             $cm->status = $request->status??null;
             $cm->save();
 
@@ -204,7 +203,7 @@ class CustomerMasterController
        
         $request->validate([
             'b2c_customer' => ['nullable', 'boolean'],
-            'customer_name' => 'required|string|max:255|unique:customer_masters,customer_name,' . $customer->id,
+            'customer_name' => 'required|string|max:255',
             'gst_no' => [
                 'nullable',                              // Allows null/empty values
                 'required_unless:b2c_customer,1',        // Required if b2c_customer is not 1
@@ -216,10 +215,9 @@ class CustomerMasterController
             "state" => 'required|integer',
             "country" => 'required|integer|min:1|max:999',
             "pincode" => 'required|string|max:6',
-            //   "email" => 'required|email',
-            //   "phone" => 'required',
-            //  "billing_cycle" => 'date',
-            //  "credit_cycle" => 'required|date',
+               "billing_cycle" => 'required',
+          "credit_cycle" => 'required',
+          "group" => 'required',
             //    "sales_person_id" => null
             'status' => 'required|in:1,0'
         ]); 
@@ -301,7 +299,7 @@ class CustomerMasterController
         $query = $request->input('query');
 
         // Basic validation (optional but recommended)
-        if (empty($query) || strlen($query) < 2) {
+        if (empty($query) || strlen($query) < 1) {
             return response()->json([]); // Return empty array if query is too short
         }
 
@@ -346,7 +344,7 @@ class CustomerMasterController
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
         
-        $sql = "SELECT  customer_masters.id as cus_mas_id,site_name,customer_name, division, customer_masters.group, customer_masters.status, statename
+        $sql = "SELECT  customer_masters.id as cus_mas_id,site_name,customer_name, division, customer_masters.group, customer_masters.status, statename, customer_masters.gst_state_code, division
         FROM customer_masters 
         LEFT JOIN customer_site_masters   ON customer_masters.id = customer_site_masters.customer_id LEFT JOIN site_masters ON customer_site_masters.site_master_id = site_masters.id   LEFT JOIN states on states.id = customer_site_masters.state
         WHERE    customer_masters.customer_name LIKE '%".$query."%'  or site_masters.site_name LIKE '%".$query."%'";

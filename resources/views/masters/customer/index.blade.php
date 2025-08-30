@@ -32,13 +32,17 @@
     <form method="GET" action="{{ route('customer.index') }}">
         <div class="row g-3 mb-3">
             <div class="col-md-4">
-                <label for="id_company" class="form-label">Search</label>
-                <input type="text" class="form-control search" id="id_company" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_site_id" autocomplete="off">
-                    <input type="hidden" id="company_id" name="company_id">
-            </div>
+    <!-- label for="id_company" class="form-label">Search</label -->
+    <div class="input-group">
+        <input type="text" class="form-control search" id="id_company" name="search" value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_site_id" autocomplete="off">
+        <span class="input-group-text">
+            <i class="bi bi-search"></i>
+        </span>
+    </div>
+    <input type="hidden" id="company_id" name="company_id">
+</div>
             <div class="col-md-3">
-                <label for="status" class="form-label">Status</label>
+                <!-- label for="status" class="form-label">Status</label -->
                 <select class="form-select" id="status" name="status">
                     <option value="">All Status</option>
                     <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
@@ -46,7 +50,7 @@
                 </select>
             </div>
             <div class="col-md-5">
-                <label class="form-label">&nbsp;</label>
+                <!-- label class="form-label">&nbsp;</label -->
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-outline-primary">
                         <i class="fas fa-search"></i> Search
@@ -79,41 +83,38 @@
     <div class="card-body p-0">
         @if($customers->count() > 0)
             <div class="table-responsive">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 table-striped">
                     <thead>
                         <tr>
-                            <th width="50">
-                                <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
-                            </th>
                             <th>ID</th>
                             <th>Customer Name</th>
-                            <th>State</th>
-                            <th>Division</th>
                             <th>Group</th>
                             <th>Status</th>
-                         
-                            <th width="150">Actions</th>
+                            <th width="200">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="tbody_customer_index">
                         @foreach($customers as $customer)
                         <tr>
-                            <td>
-                                <input type="checkbox" name="selected_ids[]" value="{{ $customer->id }}" 
-                                       onchange="toggleBulkActions()" class="form-check-input">
-                            </td>
+                            
                             <td><strong>{{ $customer->id }}</strong></td>
                             <td>    <a href="{{ route('customer.show', $customer->id) }}" class="text-decoration-none">
-                                <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}{{ !empty($customer->gst_state_code) ? '-'.$customer->gst_state_code : '' }}
-{{ !empty($customer->division) ? '-'.$customer->division : '' }}
+                                <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}  {{ !empty($customer->gst_state_code) ? ' - '.$customer->gst_state_code : '' }}
+{{ !empty($customer->division) ? ' - '.$customer->division : '' }}
 </code></a>
                             </td>
-                            <td>@if(!empty($states[$customer->state])){{$states[$customer->state] }}@endif</td>
+                        <!--    <td>@if(!empty($states[$customer->state])){{$states[$customer->state] }}@endif</td>-->
                             <!-- td>@if(!empty($customer->site_customer_name)){{$customer->site_customer_name }}@endif</td -->
                            
-                            <td>{{$customer->division}}</td>
+                        <!--    <td>{{$customer->division}}</td>-->
                             <td>{{ config('constants.CUSTOMER_GROUP.' . $customer->group) ?? 'N/A' }}</td>
-                            <td>{{$customer->status}} </td>
+                            <td> 
+                            @if(($customer->status) === 1)
+                                        <span class="badge bg-success">Active</span>
+                                        @else
+                                        <span class="badge bg-secondary">Inactive</span>
+                                        @endif
+                             </td>
                             <!-- td>
                                 <small class="text-muted">@if(!empty($customer->created_at)){{ $customer->created_at->format('M d, Y') }} @endif</small>
                             </td -->

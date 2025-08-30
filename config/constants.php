@@ -2,7 +2,8 @@
 return [
            'CONTACT_TYPE' => array('1' => 'Customer', '2' => 'Site'),
            'USER_TYPE' => array('1' => 'Staff', '2' => 'Customer', '3' => 'Vendor', '4' => 'Delivery Partner'),
-           'USER_ROLE' => array('1' => 'SuperAdmin', '2' => 'Team Leader', '3' => 'Executive', '4' => 'Data Entry'),
+           'USER_ROLE' => array(1 => 'SuperAdmin', 2 => 'DataEntry', 3 => 'DataEntry Lead', 4 => 'Sales',
+5 => 'KAM', 6 => 'Credit Controller', 7 => 'Lab Account Head', 8 => 'Credit Controller Head', 9 => 'Testing Head', 10 => 'Testing Supervisor', 11 => 'Tester ', 12 => 'Technical Analyst', 13 => 'Technical Analyst Head'),
            'SEVERITY' => array('1' => 'Normal', '2' => 'Caution', '3' => 'Critical'),
            'CUSTOMER_GROUP' => array('1' => 'Premium', '2' => 'Standard', '3' => 'Basic'),
            'SITE_TYPE' => array('1' => 'HeadOffice', '2' => 'Manufacturing Plant1', '3' => 'Manufacturing Plant1', '4' => 'WareHouse Delhi', '5' => 'WareHouse Mumbai'),

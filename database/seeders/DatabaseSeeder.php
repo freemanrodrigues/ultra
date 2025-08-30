@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             CustomerSeeder::class,
             UserSeeder::class, 
+            CourierSeeder::class,
         /*   SiteMasterSeeder::class,
             UnitSeeder::class, 
             CourierSeeder::class,

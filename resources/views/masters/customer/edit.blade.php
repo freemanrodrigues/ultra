@@ -56,7 +56,7 @@ class="form-control @error('gst_no') is-invalid @enderror"
 id="gst_no"  name="gst_no" minlength="15"  maxlength="15"
 value="{{ $customer->b2c_customer ? '' : old('gst_no', $customer->gst_no) }}" 
 pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}[1-9A-Za-z]{1}Z[0-9A-Za-z]{1}" 
-autocomplete="off"
+autocomplete="off" readonly
 @if($customer->b2c_customer) disabled @endif>
                                             <div class="form-text">Format: 22AAAAA0000A1Z5</div>
                                             @error('gst_no')
@@ -87,7 +87,7 @@ autocomplete="off"
                                                    name="customer_name" 
                                                    value="{{ old('customer_name')??$customer->customer_name }}" 
                                                    placeholder="Enter customer full name"
-                                                   required>
+                                                   required readonly>
                                             @error('customer_name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

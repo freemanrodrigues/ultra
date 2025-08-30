@@ -11,9 +11,9 @@
 
 <div class="container shadow mb-4">
   <div class="row">
-    <div class="col bordered-cell text-end fw-semibold text-muted">Customer Name</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Customer Name</div>
     <div class="col bordered-cell">{{ $customer->customer_name ?? 'N/A' }}</div>
-    <div class="col bordered-cell text-end fw-semibold text-muted">B2C_Customer:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">B2C Customer</div>
     <div class="col bordered-cell">@if(($customer->b2c_customer ?? '') === 1)
                      <span class="badge bg-success">Yes</span>
                   @else
@@ -21,48 +21,48 @@
                   @endif</div>
   </div>
 <div class="row">
-    <div class="col bordered-cell text-end fw-semibold text-muted">Company</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Company</div>
     <div class="col bordered-cell">{{ $companies[$customer->company_id] ?? 'N/A' }}</div>
-    <div class="col bordered-cell text-end fw-semibold text-muted">GST No.:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">GST No.</div>
     <div class="col bordered-cell">{{ $customer->gst_no ?? 'N/A' }}</div>
   </div>
 <div class="row">
-    <div class="col bordered-cell text-end fw-semibold text-muted">Address Name</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Address Name</div>
     <div class="col bordered-cell">{{ $customer->address ?? 'N/A' }}</div>
-    <div class="col bordered-cell text-end fw-semibold text-muted">Address1:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Address1</div>
     <div class="col bordered-cell">{{ $customer->address1 ?? 'N/A' }}</div>
   </div>
     
       
 <div class="row">
-    <div class="col bordered-cell text-end fw-semibold text-muted">City</div>
+    <div class="col bordered-cell  fw-semibold text-muted">City</div>
     <div class="col bordered-cell">{{ $customer->city ?? 'N/A' }}</div>
-     <div class="col bordered-cell text-end fw-semibold text-muted">Pincode:</div>
+     <div class="col bordered-cell  fw-semibold text-muted">Pincode</div>
     <div class="col bordered-cell">{{ $customer->pincode ?? 'N/A' }}</div>
   </div>
      <div class="row">
-         <div class="col bordered-cell text-end fw-semibold text-muted">State:</div>
+         <div class="col bordered-cell  fw-semibold text-muted">State</div>
     <div class="col bordered-cell">{{ $states[$customer->state]  ?? 'N/A' }}</div>
-    <div class="col bordered-cell text-end fw-semibold text-muted">Country</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Country</div>
     <div class="col bordered-cell">{{ $countries[$customer->country] ?? 'N/A' }}</div>
    
   </div> 
 
   <div class="row">
-    <div class="col bordered-cell text-end fw-semibold text-muted">Billing Cycle:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Billing Cycle</div>
     <div class="col bordered-cell">{{ config('constants.BILLING_CYCLE')[$customer->billing_cycle] ?? 'N/A' }}</div>
-    <div class="col bordered-cell text-end fw-semibold text-muted">Credit Cycle:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Credit Cycle</div>
     <div class="col bordered-cell">{{$customer->credit_cycle ?? 'N/A' }}</div>
   </div> 
 
   <div class="row">
-    <div class="col bordered-cell text-end fw-semibold text-muted">Status:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Status</div>
     <div class="col bordered-cell"> @if(($customer->status ?? '') === 1)
             <span class="badge bg-success">Active</span>
           @else
             <span class="badge bg-secondary">Inactive</span>
           @endif</div>
-    <div class="col bordered-cell text-end fw-semibold text-muted">Group:</div>
+    <div class="col bordered-cell  fw-semibold text-muted">Group</div>
     <div class="col bordered-cell">{{ config('constants.CUSTOMER_GROUP')[$customer->group] ?? 'N/A' }}</div>
   </div> 
 
@@ -77,9 +77,9 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
+                               <th>Site Name</th>
                                 <th>Site Code</th>
                                 <th>Customer Site Name</th>
-                                <th>Site Name</th>
                                 <th>Address</th>
                                 <th>Created Date</th>
                             </tr>
@@ -87,11 +87,11 @@
                         <tbody>
                             @foreach($customerSiteMasters as $customerSiteMaster)
                                 <tr>
+                                    <td>{{ $customerSiteMaster->siteMaster->site_name }}</td>
                                     <td>
                                         <strong>{{$customerSiteMaster->site_customer_code }}</strong>
                                     </td>
                                     <td>{{ $customerSiteMaster->site_customer_name }}</td>
-                                    <td>{{ $customerSiteMaster->siteMaster->site_name }}</td>
                                     <td>{{ $customerSiteMaster->address }}</td>
                                     <td>
                                         <small class="text-muted">

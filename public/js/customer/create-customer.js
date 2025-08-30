@@ -46,28 +46,34 @@ jQuery(function ($) {
 
         if (gstRegex.test(gstNoVal)) {
             $('#pan_no').val(gstNoVal.substring(2, 12));
-
+            $('#pan_no').addClass('readonly-greyed');
             $.post('/ajax/check-gst', { gst_no: gstNoVal }, function (response) {
                 if (response.exists) {
                     if (response.company_name && response.company_name.trim() !== '') {
                         if(response.gst_cnt >0) {
                          $('#gst_success').text('GST number already added').css('color', 'green');
+                         
+                         $("#btn-submit").prop("disabled", true);
                         } else { $('#gst_success').text(''); }
                         $('#customer_name').val(response.company_name);
                      //   $("#customer_name").prop("disabled", true);
                          $("#customer_name").prop('readonly', true);
                          $("#customer_name").addClass('bg-gray-200 cursor-not-allowed');
-                       
+                            $("#btn-submit").prop("disabled", false);
+                           
                     } else{
                         $('#gst_success').text('');
                         $('#customer_name').val('');
                       //  $("#customer_name").prop("disabled", false);
-                       $("#customer_name").prop('readonly', false);
+                       
                        $("#customer_name").removeClass('bg-gray-200 cursor-not-allowed');
                     }   
                     
                     $('#company_id').val(response.company_id);
                     $('#state_code').val(response.state_code);
+                   $('#state_code').addClass('readonly-greyed');
+                   
+                    
                     $('#state').val(response.state_id).change();
                     $('#gst_error').empty();
                    

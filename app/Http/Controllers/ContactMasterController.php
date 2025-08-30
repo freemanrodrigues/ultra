@@ -73,7 +73,7 @@ class ContactMasterController
          ContactMaster::create($validated);
 
         $customer_id = CustomerMaster::getCustomerIdByCompanyId($request->company_id);
-        return redirect()->route('site-masters.index')
+        return redirect()->route('contacts-masters.index')
         ->with('success', [
             'text' => 'Contact created successfully!',
             'link' => route('customer-site-masters.index',['customer_id'=>$customer_id]), 

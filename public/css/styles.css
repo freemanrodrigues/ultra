@@ -98,9 +98,14 @@
 .bordered-cell {
   border: 1px solid #dee2e6; 
   padding: 5px 10px;
-  text-align: center;
+  text-align: left;
 }
 .card-header{
   padding: 0.5rem 1rem;
+}
+.readonly-greyed {
+  background-color: #e9ecef; /* Light grey background */
+  color: #6c757d; /* Darker grey text */
+  cursor: not-allowed; /* Change cursor to indicate it's not editable */
 }
 </style>

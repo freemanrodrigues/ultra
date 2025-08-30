@@ -22,7 +22,7 @@ $(document).ready(function() {
         URL = urlMap[txtbx] || '/ajax/autosuggest-customer';
       
  
-        if (query.length > 2) {
+        if (query.length > 0) {
             $.ajax({
                 url: URL, // The URL to your server-side script
                 method: 'GET',
@@ -77,10 +77,14 @@ resultsHtml += '<tr><td></td><td>' +record.id;
                                     resultsHtml += '</td><td><div class="btn-group" role="group"><a href="/masters/customer-site-masters/create?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"> <i class="bi bi-house-add"></i></a><a href="/masters/customer-site-masters/?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"><i class="bi bi-list"></i></a><a href="/masters/customer/'+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="View"><i class="bi bi-eye"></i></a><a href="/masters/customer/'+record.cus_mas_id+'/edit" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil"></i></a> </td><tr>';
                                         break;
                                 case 'company_site_id':
-                                    resultsHtml += '<tr><td></td><td>' +record.cus_mas_id;
+                                    resultsHtml += '<tr><td>' +record.cus_mas_id;
                                     resultsHtml += '</td><td><a href="/masters/customer/'+record.cus_mas_id+'"> ' + record.customer_name; 
-                                    resultsHtml += '</a></td><td> ' + record.statename; 
-                                    resultsHtml += '</td><td> ' + record.division; 
+                                    if(record.gst_state_code)
+                                    resultsHtml +=' - '+record.gst_state_code;                                           
+                                    if(record.division)
+                                    resultsHtml +=' - '+record.division;                                           
+                                    resultsHtml += '</a>'; 
+                                //    resultsHtml += '</td><td> ' + record.division; 
                                     resultsHtml += '</td><td> ' + record.group; 
                                     resultsHtml += '</td><td><span class="badge status-badge '+statusClass+'"><i class="fas '+statusIcon+'"></i>'+statusText+'</span>'; 
                                     resultsHtml += '</td><td><div class="btn-group" role="group"><a href="/masters/customer-site-masters/create?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"> <i class="bi bi-house-add"></i></a><a href="/masters/customer-site-masters/?customer_id='+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="List Sites"><i class="bi bi-list"></i></a><a href="/masters/customer/'+record.cus_mas_id+'" class="btn btn-sm btn-outline-info" title="View"><i class="bi bi-eye"></i></a><a href="/masters/customer/'+record.cus_mas_id+'/edit" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil"></i></a> </td><tr>';

@@ -142,7 +142,46 @@ class CustomerSiteMasterController
      */
     public function update(Request $request, CustomerSiteMaster $customerSiteMaster)
     {
-        dd("Update Customer Sites");
+        $validated = $request->validate([
+      //      'site_code' => 'required|string|max:50|unique:site_masters,site_code',
+      
+            'site_customer_code' => 'nullable|string',
+            'site_master_id' => 'required',
+            "site_customer_name" => 'nullable|string',
+        //    "contact_type" => 'string',
+            "company_id" => 'integer',
+            "customer_id" => 'integer',
+            "address" => 'nullable|string',
+            "city" => 'required|string',
+            "state" => 'required|string',
+            "country" => 'required|string',
+            "pincode" => 'nullable|string',
+            "lat" => 'nullable|string',
+            "long" => 'nullable|string',
+            "customer_type" => 'nullable|string',
+             'status' => 'required|in:1,0'
+            ]);
+
+
+        try {
+           // $data = $request->validate();
+			
+            $customer = CustomerMaster::getCountryId($request['customer_id']);
+            $validated['company_id'] = $customer[0]->company_id;
+          //  CustomerSiteMaster::create($validated);
+            $customerSiteMaster->update($validated);
+            return redirect()->route('customer-site-masters.index', ['customer_id'=>$request['customer_id']])
+            ->with('success', [
+                'text' => 'Customer Site Master updated successfully!',
+                'link' => route('contacts-masters.create',['company_id'=>$customer[0]->company_id]), // link to customer details
+                'link_text' => ' Next Step : Add Contact'
+            ]);               
+        } catch (\Exception $e) {
+            dd("<br>Error : ".$e->getMessage());
+            return redirect()->back()
+                           ->withInput()
+                           ->with('error', 'Error creating Site Master: ' . $e->getMessage());
+        }
     }
 
     /**
