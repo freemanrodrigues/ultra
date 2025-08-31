@@ -228,9 +228,7 @@
                     <select class="form-select @error('country') is-invalid @enderror" id="country" name="country" required>
                         <option value="">Select Country</option>
                         @foreach($countries as $v => $country)
-                            <option value="{{ $v }}" {{ (old('country')??71) == $v  ? 'selected' : '' }}>
-                                {{ $country }}
-                            </option>
+                            <option value="{{ $v }}" {{ (old('country')??71) == $v  ? 'selected' : '' }}> {{ $country }} </option>
                         @endforeach
                     </select>
                     @error('country')
@@ -363,7 +361,7 @@
                         <option value="">Select Status</option>
                         <option value="1" {{ (old('status')??1) == 1  ? 'selected' : '' }}>Active</option>
                         <option value="0" {{ (old('status')??1) == 0  ? 'selected' : '' }}>Inactive</option>
-                    </select> {{ (old('status')??1) == 1  ? 'selected' : '' }}
+                    </select>
                     @error('status')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

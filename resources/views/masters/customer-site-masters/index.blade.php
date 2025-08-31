@@ -87,11 +87,12 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
+                                <th>Customer</th>
+                         
                                  <th>Customer Site Name</th>
                                <th>Site Name</th>
                                 <th>Site Code</th>
                                
-                                <th>Customer</th>
                                 <th>Contact</th>
                                 
                                 <th>Created Date</th>

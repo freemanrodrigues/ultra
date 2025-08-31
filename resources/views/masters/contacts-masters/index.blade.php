@@ -24,8 +24,11 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <label for="search" class="form-label">Company</label>
+                <div class="input-group"> 
                 <input type="text" class="form-control search" id="search" name="search" 
                        value="{{ request('search') }}" placeholder="Search Company Name..."  data-txt_id="company_id"  autocomplete="off">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                </div> 
                 <input type="hidden" id="company_id" name="company_id">
                 <!-- select class="form-control" id="search" name="search">
                 <option value="">List by Company</option>
@@ -117,11 +120,6 @@
       </main>
       <!--end::App Main-->
 
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div id="modal-search-results"></div>
-    </div>
-</div>      
-<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+    
+<script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
 @stop

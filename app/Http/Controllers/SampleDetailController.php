@@ -143,7 +143,7 @@ class SampleDetailController
                $smd = new SampleDetail();
                 $smd->sample_id = $request->sample_id;
                 $smd->equipment_assignments_id = $device_id;
-                $smd->company_id  = $samples[0]->company_id;
+                $smd->company_id  = 1; //$samples[0]->company_id;
                 $smd->customer_id  = $samples[0]->customer_id;
                 $smd->customer_site_id  = $samples[0]->customer_site_id;
                 $smd->type_of_sample  = $request->sample_type[$k];
@@ -158,17 +158,17 @@ class SampleDetailController
                 $smd->top_up_volume  = $request->top_up_volume[$k];
                 $smd->sump_capacity  = $request->sump_capacity[$k];
                 $smd->sampling_from  = $request->sampling_from[$k];
-                $smd->report_expected_date  = $request->report_expected_date[$k];
+           //     $smd->report_expected_date  = $request->report_expected_date[$k];
                 $smd->qty  = $request->qty[$k];
                 $smd->bottle_types_id  = $request->type_of_bottle[$k];
-                $smd->problem  = $request->problem[$k];
-                $smd->comments  = $request->comments[$k];
-                $smd->customer_note  = $request->customer_note[$k];
+           //     $smd->problem  = $request->problem[$k];
+           //     $smd->comments  = $request->comments[$k];
+            //    $smd->customer_note  = $request->customer_note[$k];
                 $smd->severity  = $request->severity[$k];
                 $smd->oil_drained  = $request->oil_drained[$k];
-                $smd->image  = $image_path;
-                $smd->fir  = $request->fir[$k]??NULL;
-                $smd->invoice  = $request->invoice[$k];
+           //     $smd->image  = $image_path;
+           //     $smd->fir  = $request->fir[$k]??NULL;
+          //      $smd->invoice  = $request->invoice[$k];
                 $smd->save();
             }
             return redirect()->route('sample.index')

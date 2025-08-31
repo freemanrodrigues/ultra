@@ -1,0 +1,1185 @@
+test_name,sample_type_id,minum_rate
+Aldehyde content-ISO 22241-2 Annex F,1,181
+Alkalinity as NH3-ISO 22241-2 Annex D,1,416
+Aluminium (Al)-ISO 22241-2 Annex I,1,311
+Biuret content-ISO 22241-2 Annex E,1,438
+Calcium (Ca)-ISO 22241-2 Annex I,1,408
+Chromium (Cr)-ISO 22241-2 Annex I,1,166
+Copper (Cu)-ISO 22241-2 Annex I,1,473
+Density at 20°C-ISO 3675,1,445
+Insoluble Matter-ISO 22241-2 Annex G,1,432
+Iron (Fe)-ISO 22241-2 Annex I,1,172
+Magnesium (Mg)-ISO 22241-2 Annex I,1,488
+Nickel (Ni)-ISO 22241-2 Annex I,1,203
+Phosphate (PO4)-ISO 22241-2 Annex I,1,478
+Potassium (K)-ISO 22241-2 Annex I,1,449
+Refractive Index at 20°C-ISO 22241-2 Annex C,1,209
+Sodium (Na)-ISO 22241-2 Annex I,1,281
+Urea Content-ISO 22241-2 Annex C,1,265
+Zinc (Zn)-ISO 22241-2 Annex I,1,276
+ Chlorine*-ED XRF,1,317
+ Four Ball Weld Load-ASTM D2596,1,426
+ Freezing Point-ASTM D1177,1,314
+ Gross Calorific Value-ASTM D240,1,363
+>100 um-Differential,1,147
+1.00 - 2.00 um-Differential,1,390
+10.00 - 15.00 um-Differential,1,223
+10000 Strokes(Work Penetration)-ASTM D217,1,266
+100000 Strokes (Work Penetration)-ASTM D217,1,257
+15%-ASTM D86,1,352
+15-25 um-Differential,1,350
+15.00 - 20.00 um-Differential,1,381
+2.00 - 3.00 um-Differential,1,405
+20%-ASTM D86,1,408
+20.00 - 25.00 um-Differential,1,260
+25%-ASTM D86,1,417
+25-50 um-Differential,1,347
+25.00 - 30.00 um-Differential,1,184
+3.00 - 4.00 um-Differential,1,240
+30%-ASTM D86,1,429
+30.00 - 40.00 um-Differential,1,336
+35%-ASTM D86,1,208
+4.00 - 5.00 um-Differential,1,322
+40%-ASTM D86,1,171
+40.00 - 50.00 um-Differential,1,142
+45%-ASTM D86,1,453
+5%-ASTM D86,1,295
+5-15 um-Differential,1,177
+5.00 - 7.00 um-Differential,1,142
+50%-ASTM D86,1,343
+50-100 um-Differential,1,499
+50.00 - 70.00 um-Differential,1,376
+55%-ASTM D86,1,341
+60%-ASTM D86,1,450
+65%-ASTM D86,1,288
+7.00 - 10.00 um-Differential,1,316
+70%-ASTM D86,1,218
+70.00 - 80.00 um-Differential,1,439
+75%-ASTM D86,1,218
+80%-ASTM D86,1,497
+80.00 - 100.00 um-Differential,1,422
+85%-ASTM D86,1,353
+95%-ASTM D86,1,496
+Abel Flash Point-IP 170,1,338
+Abel Flash Point-IS 1448 (P:20),1,431
+Acid Insoluble Matter-Lab procedure,1,148
+Acid Number-ASTM D3242,1,430
+Acid Number-ASTM D974,1,352
+Acidity/Alkalinity-IS 1448 (A),1,137
+Alkalinity -IS 1448,1,368
+Alkalinity -Lab Procedure ,1,258
+Aniline Point-ASTM D611,1,288
+Anti-bacterial test^-JIS Z 2801,1,208
+Anti-bacterial test^-JIS L 1902,1,411
+Appearance-Visual,1,113
+Ash Content-ASTM D482,1,460
+Ash Content-IS 1448 (P:4)Sec 2,1,243
+Ash Content-ASTM D1119,1,127
+Asphaltene^-IP 143,1,123
+Base Oil Density 29.5°C-ASTM D4052,1,113
+Base Oil Viscosity-ASTM D445,1,117
+Benzene Insoluble*-Lab Procedure,1,414
+BOV @ 100°C -ASTM D 445,1,274
+BOV @ 40°C-ASTM D 445,1,378
+Break time seconds-ASTM D1881,1,186
+Brook Field Viscosity @ -20°C-ASTM D2983 (Method D),1,233
+Brookfield Viscosity @ -18°C-ASTM D2983 (Method D),1,112
+Brookfield Viscosity @ -26°C-ASTM D2983,1,118
+Brookfield Viscosity @ -30°C-ASTM D2983 (Method D),1,431
+Brookfield Viscosity @ -35°C-ASTM D2983 (Method D),1,382
+Brookfield Viscosity @ -40°C-ASTM D2983 (Method D),1,375
+Brookfield Viscosity @ -55°C-ASTM D2983,1,476
+Brookfield Viscosity @ 25°C*-ASTM D4878,1,121
+Brookfield Viscosity @-12°C-ASTM D2983,1,460
+Capacitance of Oil ( Dielectric constant)*-LAB SOP,1,383
+Carbon content*-ASTM D6730,1,478
+Cast Iron Corrosion test 20:1with 400ppm as CaCO3^-IS 1115,1,194
+CCAI^-ISO 8217 Annex F-2012,1,131
+CCR-ASTM D189,1,480
+CCS @ -10°C-ASTM D5293,1,462
+CCS @ -15°C-ASTM D5293,1,239
+CCS @ -20°C-ASTM D5293,1,363
+CCS @ -25°C-ASTM D5293,1,197
+CCS @ -30°C-ASTM D5293,1,117
+CCS @ -30°C*-ASTM D5293,1,416
+CCS @ -35°C-ASTM D5293,1,413
+CCS @ -5°C-ASTM D5293,1,253
+CEC L-14-A-88 -ASTM D6278,1,254
+Centrifuge*-Lab Procedure,1,252
+Cetane Index-ASTM D4737,1,429
+Chloride-ASTM D 4929 (B),1,168
+Chloride Content-Lab Procedure,1,426
+Chlorine-ASTM D 4929 (B),1,159
+Chlorine (BOM)-ASTM D 808,1,439
+Chlorine content-ASTM D5808,1,220
+Chlorine content-ASTM D6443,1,478
+Chlorine^-ASTM D 4929 (B),1,466
+Cleanliness (Microscope) -NAS 1638,1,172
+Cleanliness Analysis-ISO 4407,1,126
+Cleanliness Analysis-ISO 16232,1,180
+Cleanliness Analysis ( Microscope)-ISO 16232,1,291
+Cleanliness Code-ISO 4406,1,157
+Cloud Point-ASTM D2500,1,248
+Cold Filter plugging point-IP 309,1,411
+Cold Filter Plugging Point (CFPP)-ASTM D6371,1,105
+Collapse Time Seq IV (after 5 min blowing)-ASTM D 6082,1,143
+Colour-ASTM D1500,1,175
+Colour-Visual (UPL/WI/003/43),1,210
+"Colour, Saybolt-IS 1448 (P:14)",1,475
+Compatibility of Binary mix of Greases-ASTM D6185,1,415
+Compatibility of residual fuel by spot test^-ASTM D4740- B 2019,1,355
+Compatibility test-IS 13656,1,135
+Conductance of Oil*-LAB SOP,1,175
+Consistency Unworked @ 25°C-ASTM D217,1,388
+Consistency Worked at 60 Strokes/25°C-ASTM D217,1,211
+Copper Strip Corrosion For 19hr@140°C-ASTM D130,1,436
+Copper Strip Corrosion For 1hr@121°C-ASTM D130,1,472
+Copper Strip Corrosion For 24hr@100°C-ASTM D4048,1,316
+Copper Strip Corrosion For 3hr@100°C-ASTM D130,1,358
+Copper Strip Corrosion For 3hr@100°C*-DIN 51759,1,374
+Copper Strip Corrosion For 3hr@121°C-ASTM D130 ,1,108
+Copper Strip Corrosion For 3hr@125°C-ASTM D130,1,376
+Copper Strip Corrosion For 3hr@149°C-ASTM D130,1,390
+Copper Strip Corrosion For 3hr@150°C-ASTM D130,1,451
+Copper Strip Corrosion For 3hr@50°C-ASTM D130,1,153
+Copper Strip Corrosion For 3hr@60°C-ASTM D130,1,209
+Copper Strip Corrosion For 4hr@100°C-ASTM D4048,1,496
+Copper Strip Corrosion test at 100 °C-IS 1448 (P:15),1,444
+"Corrosion Preventive Characteristics, Rating-ASTM D1743",1,218
+Crackle Test-UPL/WI/003/,1,380
+Demulsibility-ASTM D1401,1,188
+Density @ 15.5°C-ASTM D4052,1,199
+Density @ 15.6°C-ASTM D4052,1,221
+Density @ 15°C-ASTM D4052,1,463
+Density @ 15°C (Hydrometer)-ASTM D1298,1,445
+Density @ 20°C-ASTM D1298,1,339
+Density @ 29.0°C-ASTM D4052,1,277
+Density @ 29.5°C-ASTM D1298,1,344
+Density @ 29.5°C-ASTM D4052,1,124
+Density @ 40°C-ASTM D4052,1,273
+Density @15°C*-DIN 51757,1,115
+Density @20°C-ASTM D4052,1,259
+Density @20°C(Hydrometer)-ASTM D1122,1,236
+Density @25°C-ASTM D4052,1,414
+Density @30°C-ASTM D4052,1,213
+Density @30°C (Hydrometer)-ASTM D1122,1,267
+Density at 15°C-ISO 3675,1,470
+Density@15°C -ASTM D4052,1,228
+Density@15°C -IS0 12185,1,127
+DieseL Fuel Dilution by GC-ASTM D7593,1,464
+Distillation 10% Recovery-ASTM D86,1,275
+Distillation 90% Recovery-ASTM D86,1,106
+Distillation 95% Recovery-ASTM D86,1,337
+Distillation Recovery @ 350°C-ASTM D86,1,345
+Distillation Recovery @ 370°C-ASTM D86,1,195
+Doctor test*-UOP-41,1,166
+Drop Point-ASTM D566,1,447
+Drop Point-ASTM D2265,1,257
+Drop Point-IS 1448 (P:52),1,426
+Electrical Conductivity-ASTM D2624,1,316
+Electrical Conductivity-ISO 3696(7.2),1,303
+Emulsification Characteristics-ASTM D1401,1,231
+Emulsion test 20:1 in 400 ppm hardness as CaCO3^-IS 1448: Part 98,1,191
+Emulsion test 5:1 in 400 ppm hardness as CaCO3^-IS 1448:Part 98,1,486
+Equilibrium Reflux Boiling Point-ASTM D1120,1,212
+Ethanol Content-By Lab Procedure,1,285
+Ethanol*-ASTM D4815,1,250
+Ethanol^-ASTM D 4815,1,456
+"Evaporation @105°C,3hrs-Inhouse",1,108
+Evaporation Loss at 210°C For 4hrs*-Inhouse,1,462
+Evaporation Loss at 210°C For 8hrs*-Inhouse,1,316
+Evaporation Loss at 220°C For 2hrs*-Inhouse,1,240
+Evaporation Loss at 250°C For 2hrs*-Inhouse,1,408
+FAME Content-EN 14103,1,415
+FAME Content-EN 14078,1,400
+FAME Content-ASTM D 7371,1,226
+FAME Content*-Lab procedure,1,284
+Filtration at 5 micron*-By filtration,1,276
+Final Boiling Point (FBP)-ASTM D86,1,332
+Fire Point (COC)-ASTM D 92,1,131
+Fixed Carbon Content-Lab procedure,1,220
+Flash Point (COC)-ASTM D92,1,159
+Flash Point (COC)-IS 1448 (Part 69),1,296
+Flash Point (PMCC)-IS 1448 (P 21),1,266
+Flash Point (PMCC)-ASTM D93,1,464
+Flash Point (PMCC)-ASTM D93 (PROCEDURE B),1,146
+Flash Point *-ASTM D3828,1,461
+Flash Point COC-IS 1448 (P:68),1,115
+Flash point*-ISO 2592,1,184
+Flash Point*-ASTM D92,1,325
+Flash Point*-ASTM D3278,1,304
+Foam height-ASTM D1881,1,255
+Foaming Characteristics-ASTM D892,1,402
+Foaming Characteristics-IS 1448 (Part 67),1,472
+Foaming Stability Seq IV Option 1- After 5s-ASTM D 6082,1,340
+Foaming Tendency-ASTM D4921,1,133
+Foaming Tendency On 20% Concentration-JIS 2234,1,378
+Foaming Tendency Seq IV-ASTM D 6082,1,214
+Four Ball Weld Load -DIN 51350 - 4,1,385
+Four Ball Weld Load -ASTM D2596,1,431
+Four Ball Weld Load (Weld Point)-ASTM D2783,1,179
+Free Acid as Oleic acid-IS 1448 (Part 53),1,182
+Free alkalinity as Ca(OH)2-IS 1448 (PART 53),1,359
+"Free alkalinity as Ca(OH)2,-IS 1448 (Part 53)",1,139
+Free water--,1,155
+Freedom from Deleterious particles-ASTM D1404,1,270
+Frothing test 20:1 in 200 ppm hardness as CaCO3^-IS 1448:Part 99,1,400
+Frothing test 5:1 in 200 ppm hardness as CaCO3^-IS 1448: Part 99,1,197
+Fuel Dilution by GC-ASTM D7593,1,489
+Fuel Dilution by GC-ASTM D3524,1,490
+Gasoline Fuel Dilution-ASTM D3525,1,391
+Gasoline Fuel Dilution by GC-ASTM D7593,1,466
+Gross Calorific Value-ASTM D4868,1,254
+Gross Calorific Value*-ASTM D4868,1,246
+Heat Stability-ASTM D6184,1,213
+"Heat Stability @ 100°C, 30 hrs-ASTM D6184",1,220
+Heptane Insoluble-ASTM D893,1,310
+Hexane Insoluble-ASTM D893,1,355
+High temperature thermal stability test^-IS 1448:Part 100,1,367
+"High Temperature Wheel Bearing, 160°C-ASTM D3527",1,216
+HTHS-ASTM D4683,1,134
+HTHS@150°C-ASTM D 5481,1,289
+Hydrogen content*-ASTM D6730,1,257
+Hydroxyl No.^-ASTM D1957,1,236
+Initial Boiling Point (IBP)-ASTM D86,1,369
+Initial pH (i-pH)-ASTM D7946,1,188
+Inorganic Acidity-IS 1448 (P2) 2003,1,455
+Inorganic Chloride*-Lab Procedure,1,440
+Insoluble-Lab procedure,1,314
+"IP Dynamic (EMCOR) Antirust test, Rating-ASTM D6138",1,491
+ISO4406-ISO 4406,1,326
+K. V. @ 25°C-ASTM D445,1,245
+K.V. @ 100°C-ASTM D7279,1,341
+K.V. @ 100°C-ASTM D445,1,329
+K.V. @ 100°C-IS 1448 (Part 25),1,184
+K.V. @ 100°F-ASTM D445,1,487
+K.V. @ 20°C-ASTM D7052,1,492
+K.V. @ 20°C-ASTM D445,1,443
+K.V. @ 25°C-ASTM D445,1,209
+K.V. @ 27°C-ASTM D445,1,489
+K.V. @ 30°C-ASTM D445,1,340
+K.V. @ 37.8°C-ASTM D445,1,291
+K.V. @ 38°C-ASTM D445,1,232
+K.V. @ 40°C-ASTM D7279,1,208
+K.V. @ 40°C-IS 1448 (Part 25),1,482
+K.V. @ 40°C-ASTM D445,1,112
+K.V. @ 50°C-ASTM D445,1,238
+K.V. @ 60°C-ASTM D445,1,218
+K.V. @ 70°C-ASTM D445,1,116
+K.V. @ 80°C-ASTM D445,1,173
+K.V. @ 90°C-ASTM D445,1,130
+K.V. @ 98.9°C-ASTM D445,1,400
+Kinematic Viscosity @100°C-ASTM D 7042,1,422
+Kinematic Viscosity @100°C-ASTM D445,1,426
+Kinematic Viscosity @20°C-ASTM D 7042,1,235
+Kinematic Viscosity @25°C-ASTM D 7042,1,408
+Kinematic Viscosity @40°C-ASTM D 7042,1,277
+Kinematic Viscosity @40°C-ASTM D445,1,225
+KV@100°C*-DIN 51562,1,126
+KV@40°C*-DIN 51562,1,258
+Large-DR5,1,110
+Low Temperature Pumping Viscosity @-25°C-ASTM D4684,1,488
+Low temperature thermal stability test^-IS 1448:Part 100,1,353
+Lubricity*-ASTM D6079,1,197
+Lubricity^-ISO 12156,1,385
+Manganese^-SOP USN,1,459
+Micro Biological Test-ASTM D6974,1,153
+Micro Carbon Residue-ASTM D4530,1,326
+Microscopic Cleanliness Analysis-ISO 4406,1,261
+Milipore Filter Test*-By filtration ,1,462
+Miscibility-IS 1118 ANNEX B,1,197
+Miscibility with Water-Lab procedure,1,209
+MPC^-ASTM D 7843,1,432
+NAS 1638-NAS 1638,1,192
+Net Calorific Value^-ASTM D4868,1,448
+Nitrogen-ASTM D5762,1,464
+Nitrogen-ASTM D4629,1,358
+Nitrogen Content-ASTM D3228,1,467
+NLGI GRADE-ASTM D217,1,339
+NOACK Volatility-ASTM D 5800,1,140
+Octane number (RON)*-ASTM D2699,1,164
+Odour-Visual,1,367
+"Oil Separation in Storage Stability(40°C,42 hours)-IP121",1,261
+"Oil Separation, % loss by mass-ASTM D1742",1,298
+Organic Chloride-ASTM D 4929 (C),1,448
+Organic Chloride-ASTM D 4929 ,1,341
+Organic Chloride-ASTM D4929 B,1,368
+"Oxidation Stability (100 hrs), Drop in Pressure-ASTM D942",1,378
+Oxidation Stability at 110°C^-EN 14112,1,247
+Oxidation Stability^-ASTM D2274,1,265
+Oxidation Stability^-ASTM D525,1,480
+Oxidizable Matter-ISO 3696(7.3),1,116
+Oxygen content*-ASTM D4815,1,223
+Particle Count -ASTM D7647,1,434
+Particle Count and Distribution-ASTM D7647,1,258
+Particle count SMS 3010-1 (by Optical Microscope )-ISO 4406,1,349
+Particle Size-Lab procedure,1,166
+Particles >14µm-ASTM D7647,1,344
+Particles >14µm-ISO 4406,1,224
+Particles >15µm-ISO 4406,1,107
+Particles >4µm-ISO 4406,1,236
+Particles >4µm-ASTM D7647,1,364
+Particles >5µm-ISO 4406,1,388
+Particles >6µm-ASTM D7647,1,197
+Particles >6µm-ISO 4406,1,111
+Particles >70µm-ISO 4406,1,414
+Particles >70µm-ASTM D7647,1,116
+Particulate Matter*-ASTM D6217,1,431
+Particulate Matter*-ASTM D5452,1,305
+Pentane Insoluble-ASTM D893,1,350
+Pentane Insoluble (B)-ASTM D893,1,252
+Percent (v/v) Recovered at 250 °C-ASTM D86,1,145
+Percent (v/v) Recovered at 350 °C-ASTM D86,1,260
+pH-Lab procedure,1,474
+pH @ 25°C-ISO 3696(7.1),1,240
+PH of 30% dilution in Distilled Water-pH meter,1,138
+PH of 5% dilution in Distilled Water-pH meter,1,224
+PH of 5% dilution in Distilled Water-ASTM D1287,1,254
+pH Value-pH meter,1,279
+Pour  Point -ASTM D97,1,234
+Pour Point-IS 1448(P:10),1,296
+Pour Point-ASTM D97,1,487
+Pour Point-IS 1448 (Part 10),1,192
+Pour Point*-ISO 3016,1,462
+PQ INDEX-ASTM D8184,1,185
+PQ INDEX*-ASTM D8184,1,125
+RBCR-ASTM D 524,1,381
+RBCR-IS 1448 (P:8),1,292
+Refractive Index @ 20°C-ASTM D1747,1,490
+Refractive Index @20°C-ASTM D1218,1,486
+Relative Density at 15°C-Lab Procedure,1,477
+Reserve Alkalinity (20:80)-ASTM D1121,1,379
+Reserve Alkalinity (5:95)-ASTM D1121,1,477
+Reserve Alkalinity (50:50)-ASTM D1121,1,416
+Residue Evaporation @ 110°C-ISO 3696(7.5),1,386
+Resistance to Water Washout @ 80 ºC-ASTM D1264,1,181
+"Roll Stability test,Penetration Changes after16 hr-ASTM D1831",1,253
+"Roll Stability Test,Penetration Charges%after10hrs-ASTM D1831",1,143
+"Roll Stability16 Hrs at RT,% change in penetration-ASTM D1831",1,140
+"Rust Preventive Characteristics, Rating-ASTM D 1743",1,273
+Salinity Test (Qualitative)-Lab Procedure,1,196
+Salt Spray Test-ASTM B117,1,246
+Saponification Number Method (A)-ASTM D94,1,425
+Saponification Value-IS 1448 (P:55)/Sec 1,1,459
+Sediment content-ASTM D473,1,148
+Sediment Content-lab procedure,1,430
+Sediment Content-IP 75,1,176
+Seq I @ 24°C*-DIN 51566,1,330
+Seq II @ 93.5°C*-DIN 51566,1,112
+Seq III @ 24°C*-DIN 51566,1,382
+Sludge Content -Lab procedure,1,151
+Small-DR5,1,195
+Soot content-Soot meter,1,123
+Specific Gravity @ 15.6°C-ASTM D4052,1,247
+Specific Gravity @ 16°C-ASTM D4052,1,467
+Specific Gravity @ 20° C-ASTM D4052,1,383
+Specific Gravity @ 20°C-ASTM D4052,1,367
+Specific Gravity @ 29.5°C-ASTM D4052,1,226
+Specific Gravity @ 30°C-ASTM D4052,1,149
+Specific Gravity @ 60°F-ASTM D4052,1,264
+Specific Gravity @ at R.T-Lab procedure,1,480
+Stability Test-IS 1448 (B),1,381
+Strong Acid Number-IS:1448 (Pt-2),1,279
+Strong Acid Test-ASTM D664 ,1,426
+Sulfated ash-ASTM D874,1,179
+Sulfated ash-IS 1448 (Part 4),1,180
+Sulfur-ASTM D129,1,346
+Sulphated ash-IS 1448 (P:4),1,134
+Sulphur Content^-ASTM D4294,1,357
+Suspended Matter-Visual,1,195
+TBN-ASTM D2896 B,1,275
+TBN.-ASTM D4739,1,497
+Texture-Physical,1,203
+Thickner type--,1,364
+Toluene Insoluble-ASTM D893,1,254
+Total Acid Number-IS:1448(Pt-1),1,190
+Total Acid Number-ASTM D664 (A),1,361
+Total Acid Number*-DIN 51558,1,354
+Total Acidity-ASTM D 974,1,219
+Total Chlorine-ASTM D4929 C,1,291
+Total contamination -Lab Procedure,1,251
+Total contamination-EN 12662,1,182
+Total contamination*-EN 12662,1,135
+Total RUL (RULER)^-ASTM D6971,1,247
+Total Sulphur-ASTM D2622,1,261
+Type--,1,160
+Unworked Penetration-ASTM D217,1,257
+Vapour lock index-IS 2796 2017,1,428
+Vapour pressure^-ASTM D5191,1,205
+Viscosity grade*-ASTM D2422,1,331
+Viscosity Gravity Constant -ASTM D2501,1,179
+Viscosity Index-IS 1448 (Part 56),1,144
+Viscosity Index-ASTM D2270,1,444
+Volatile matter at 100°C for 16 h-IS 1115 Appendix B,1,287
+Volatile matter at 100°C for 24 h-IS 1115 Appendix B,1,214
+Water-ASTM D6304,1,199
+Water  Content-ASTM D1744,1,182
+Water Ccontent V/V-IS 1448 (P40) ,1,289
+Water Content-ASTM D6304 ,1,464
+Water Content-ASTM D1744,1,223
+Water Content-ASTM E203,1,122
+Water Content-ASTM D95,1,398
+Water Content (by the Karl Fischer Reagent)-ASTM D 1123,1,198
+Water Content--ASTM D1744,1,218
+Water Content^-ISO 12937,1,122
+Water Content^-ASTM D 6304 ,1,178
+Water Separability @54 °C-ASTM D1401,1,265
+Water Separability @82 °C-ASTM D1401,1,319
+Water test-Crackle Test,1,486
+"Water Washout, % loss by mass-ASTM D1264",1,319
+Wear Scar Diameter-ASTM D4172 Method A,1,104
+Wear Scar Diameter-ASTM D2266,1,434
+Wear Scar Diameter-ASTM D4172 Method B,1,215
+Wear Scar Diameter of 10 % Solution-DIN 51350 - 3B,1,484
+Wear Scar Diameter of 15 % Solution-DIN 51350 - 3B,1,488
+Wear Scar Diameter of 5 % Solution-DIN 51350 - 3B,1,359
+Wet ERBP*-SAE J1703,1,267
+Work Penetration-ASTM D217,1,429
+Work Penetration 60 Strokes-ASTM D217,1,153
+WPC-DR5,1,317
+Abel Flash Point-IP 170,2,378
+Acid Number-ASTM D974,2,358
+Appearance-Visual,2,463
+Ash Content-ASTM D482,2,134
+Cetane Index-ASTM D4737,2,171
+Copper Strip Corrosion For 3hr@50°C-ASTM D130,2,424
+Density @ 15°C-ASTM D4052,2,325
+Distillation 95% Recovery-ASTM D86,2,421
+Final Boiling Point (FBP)-ASTM D86,2,174
+Initial Boiling Point (IBP)-ASTM D86,2,379
+Organic Chloride-ASTM D 4929 ,2,166
+Total Sulphur-ASTM D2622,2,247
+Water Content-ASTM D6304 ,2,451
+ Chlorine*-ED XRF,2,123
+ Four Ball Weld Load-ASTM D2596,2,143
+ Freezing Point-ASTM D1177,2,409
+ Gross Calorific Value-ASTM D240,2,270
+>100 um-Differential,2,478
+1.00 - 2.00 um-Differential,2,290
+10.00 - 15.00 um-Differential,2,212
+10000 Strokes(Work Penetration)-ASTM D217,2,227
+100000 Strokes (Work Penetration)-ASTM D217,2,253
+15%-ASTM D86,2,209
+15-25 um-Differential,2,174
+15.00 - 20.00 um-Differential,2,184
+2.00 - 3.00 um-Differential,2,219
+20%-ASTM D86,2,406
+20.00 - 25.00 um-Differential,2,326
+25%-ASTM D86,2,134
+25-50 um-Differential,2,366
+25.00 - 30.00 um-Differential,2,170
+3.00 - 4.00 um-Differential,2,344
+30%-ASTM D86,2,275
+30.00 - 40.00 um-Differential,2,492
+35%-ASTM D86,2,235
+4.00 - 5.00 um-Differential,2,159
+40%-ASTM D86,2,288
+40.00 - 50.00 um-Differential,2,341
+45%-ASTM D86,2,458
+5%-ASTM D86,2,322
+5-15 um-Differential,2,484
+5.00 - 7.00 um-Differential,2,142
+50%-ASTM D86,2,231
+50-100 um-Differential,2,171
+50.00 - 70.00 um-Differential,2,386
+55%-ASTM D86,2,203
+60%-ASTM D86,2,493
+65%-ASTM D86,2,265
+7.00 - 10.00 um-Differential,2,317
+70%-ASTM D86,2,260
+70.00 - 80.00 um-Differential,2,143
+75%-ASTM D86,2,448
+80%-ASTM D86,2,338
+80.00 - 100.00 um-Differential,2,487
+85%-ASTM D86,2,258
+95%-ASTM D86,2,441
+Abel Flash Point-IS 1448 (P:20),2,253
+Acid Insoluble Matter-Lab procedure,2,385
+Acid Number-ASTM D3242,2,498
+Acidity/Alkalinity-IS 1448 (A),2,132
+Aldehyde content-ISO 22241-2 Annex F,2,496
+Alkalinity -IS 1448,2,218
+Alkalinity -Lab Procedure ,2,199
+Alkalinity as NH3-ISO 22241-2 Annex D,2,400
+Aluminium (Al)-ASTM D5185,2,115
+Aluminium (Al)-ISO 22241-2 Annex I,2,258
+Aniline Point-ASTM D611,2,273
+Anti-bacterial test^-JIS Z 2801,2,388
+Anti-bacterial test^-JIS L 1902,2,354
+Antimony (Sb)-ASTM D5185,2,475
+Ash Content-ASTM D1119,2,168
+Ash Content-IS 1448 (P:4)Sec 2,2,398
+Asphaltene^-IP 143,2,237
+Barium (Ba)-ASTM D5185,2,294
+Base Oil Density 29.5°C-ASTM D4052,2,291
+Base Oil Viscosity-ASTM D445,2,207
+Benzene Insoluble*-Lab Procedure,2,289
+Biuret content-ISO 22241-2 Annex E,2,102
+Boron (B)-ASTM D5185,2,290
+BOV @ 100°C -ASTM D 445,2,184
+BOV @ 40°C-ASTM D 445,2,470
+Break time seconds-ASTM D1881,2,390
+Brook Field Viscosity @ -20°C-ASTM D2983 (Method D),2,175
+Brookfield Viscosity @ -18°C-ASTM D2983 (Method D),2,266
+Brookfield Viscosity @ -26°C-ASTM D2983,2,479
+Brookfield Viscosity @ -30°C-ASTM D2983 (Method D),2,404
+Brookfield Viscosity @ -35°C-ASTM D2983 (Method D),2,497
+Brookfield Viscosity @ -40°C-ASTM D2983 (Method D),2,230
+Brookfield Viscosity @ -55°C-ASTM D2983,2,458
+Brookfield Viscosity @ 25°C*-ASTM D4878,2,338
+Brookfield Viscosity @-12°C-ASTM D2983,2,323
+Cadmium (Cd)-ASTM D5185,2,292
+Calcium (Ca)-ASTM D5185,2,476
+Calcium (Ca)-ISO 22241-2 Annex I,2,131
+Capacitance of Oil ( Dielectric constant)*-LAB SOP,2,445
+Carbon content*-ASTM D6730,2,443
+Cast Iron Corrosion test 20:1with 400ppm as CaCO3^-IS 1115,2,231
+CCAI^-ISO 8217 Annex F-2012,2,232
+CCR-ASTM D189,2,285
+CCS @ -10°C-ASTM D5293,2,131
+CCS @ -15°C-ASTM D5293,2,226
+CCS @ -20°C-ASTM D5293,2,282
+CCS @ -25°C-ASTM D5293,2,162
+CCS @ -30°C-ASTM D5293,2,445
+CCS @ -30°C*-ASTM D5293,2,318
+CCS @ -35°C-ASTM D5293,2,191
+CCS @ -5°C-ASTM D5293,2,421
+CEC L-14-A-88 -ASTM D6278,2,495
+Centrifuge*-Lab Procedure,2,152
+Chloride-ASTM D 4929 (B),2,298
+Chloride Content-Lab Procedure,2,197
+Chlorine-ASTM D 4929 (B),2,212
+Chlorine (BOM)-ASTM D 808,2,405
+Chlorine content-ASTM D5808,2,315
+Chlorine^-ASTM D 4929 (B),2,497
+Chromium (Cr)-ISO 22241-2 Annex I,2,231
+Chromium (Cr)-ASTM D5185,2,306
+Cleanliness (Microscope) -NAS 1638,2,411
+Cleanliness Analysis-ISO 16232,2,264
+Cleanliness Analysis-ISO 4407,2,312
+Cleanliness Analysis ( Microscope)-ISO 16232,2,228
+Cleanliness Code-ISO 4406,2,105
+Cloud Point-ASTM D2500,2,215
+Cold Filter plugging point-IP 309,2,450
+Cold Filter Plugging Point (CFPP)-ASTM D6371,2,339
+Collapse Time Seq IV (after 5 min blowing)-ASTM D 6082,2,490
+Colour-Visual (UPL/WI/003/43),2,299
+Colour-ASTM D1500,2,277
+"Colour, Saybolt-IS 1448 (P:14)",2,435
+Compatibility of Binary mix of Greases-ASTM D6185,2,332
+Compatibility of residual fuel by spot test^-ASTM D4740- B 2019,2,182
+Compatibility test-IS 13656,2,389
+Conductance of Oil*-LAB SOP,2,214
+Consistency Unworked @ 25°C-ASTM D217,2,243
+Consistency Worked at 60 Strokes/25°C-ASTM D217,2,220
+Copper (Cu)-ISO 22241-2 Annex I,2,362
+Copper (Cu)-ASTM D5185,2,431
+Copper Strip Corrosion For 19hr@140°C-ASTM D130,2,400
+Copper Strip Corrosion For 1hr@121°C-ASTM D130,2,245
+Copper Strip Corrosion For 24hr@100°C-ASTM D4048,2,278
+Copper Strip Corrosion For 3hr@100°C-ASTM D130,2,431
+Copper Strip Corrosion For 3hr@100°C*-DIN 51759,2,244
+Copper Strip Corrosion For 3hr@121°C-ASTM D130 ,2,424
+Copper Strip Corrosion For 3hr@125°C-ASTM D130,2,362
+Copper Strip Corrosion For 3hr@149°C-ASTM D130,2,354
+Copper Strip Corrosion For 3hr@150°C-ASTM D130,2,257
+Copper Strip Corrosion For 3hr@60°C-ASTM D130,2,474
+Copper Strip Corrosion For 4hr@100°C-ASTM D4048,2,478
+Copper Strip Corrosion test at 100 °C-IS 1448 (P:15),2,161
+"Corrosion Preventive Characteristics, Rating-ASTM D1743",2,155
+Crackle Test-UPL/WI/003/,2,293
+Demulsibility-ASTM D1401,2,332
+Density @ 15.5°C-ASTM D4052,2,452
+Density @ 15.6°C-ASTM D4052,2,299
+Density @ 15°C (Hydrometer)-ASTM D1298,2,309
+Density @ 20°C-ASTM D1298,2,170
+Density @ 29.0°C-ASTM D4052,2,117
+Density @ 29.5°C-ASTM D1298,2,142
+Density @ 29.5°C-ASTM D4052,2,480
+Density @ 40°C-ASTM D4052,2,317
+Density @15°C*-DIN 51757,2,235
+Density @20°C-ASTM D4052,2,132
+Density @20°C(Hydrometer)-ASTM D1122,2,315
+Density @25°C-ASTM D4052,2,436
+Density @30°C-ASTM D4052,2,168
+Density @30°C (Hydrometer)-ASTM D1122,2,470
+Density at 15°C-ISO 3675,2,432
+Density at 20°C-ISO 3675,2,240
+Density@15°C -IS0 12185,2,161
+Density@15°C -ASTM D4052,2,394
+DieseL Fuel Dilution by GC-ASTM D7593,2,386
+Distillation 10% Recovery-ASTM D86,2,240
+Distillation 90% Recovery-ASTM D86,2,255
+Distillation Recovery @ 350°C-ASTM D86,2,324
+Distillation Recovery @ 370°C-ASTM D86,2,295
+Doctor test*-UOP-41,2,453
+Drop Point-ASTM D566,2,174
+Drop Point-IS 1448 (P:52),2,124
+Drop Point-ASTM D2265,2,491
+Electrical Conductivity-ASTM D2624,2,225
+Electrical Conductivity-ISO 3696(7.2),2,229
+Emulsification Characteristics-ASTM D1401,2,158
+Emulsion test 20:1 in 400 ppm hardness as CaCO3^-IS 1448: Part 98,2,232
+Emulsion test 5:1 in 400 ppm hardness as CaCO3^-IS 1448:Part 98,2,417
+Equilibrium Reflux Boiling Point-ASTM D1120,2,112
+Ethanol Content-By Lab Procedure,2,210
+Ethanol*-ASTM D4815,2,421
+Ethanol^-ASTM D 4815,2,337
+"Evaporation @105°C,3hrs-Inhouse",2,329
+Evaporation Loss at 210°C For 4hrs*-Inhouse,2,160
+Evaporation Loss at 210°C For 8hrs*-Inhouse,2,196
+Evaporation Loss at 220°C For 2hrs*-Inhouse,2,451
+Evaporation Loss at 250°C For 2hrs*-Inhouse,2,486
+FAME Content-EN 14103,2,302
+FAME Content-EN 14078,2,479
+FAME Content-ASTM D 7371,2,460
+FAME Content*-Lab procedure,2,277
+Filtration at 5 micron*-By filtration,2,310
+Fire Point (COC)-ASTM D 92,2,416
+Fixed Carbon Content-Lab procedure,2,175
+Flash Point (COC)-ASTM D92,2,106
+Flash Point (COC)-IS 1448 (Part 69),2,170
+Flash Point (PMCC)-IS 1448 (P 21),2,400
+Flash Point (PMCC)-ASTM D93,2,148
+Flash Point (PMCC)-ASTM D93 (PROCEDURE B),2,484
+Flash Point *-ASTM D3828,2,114
+Flash Point COC-IS 1448 (P:68),2,174
+Flash point*-ISO 2592,2,131
+Flash Point*-ASTM D3278,2,267
+Flash Point*-ASTM D92,2,482
+Foam height-ASTM D1881,2,370
+Foaming Characteristics-IS 1448 (Part 67),2,441
+Foaming Characteristics-ASTM D892,2,473
+Foaming Stability Seq IV Option 1- After 5s-ASTM D 6082,2,210
+Foaming Tendency-ASTM D4921,2,487
+Foaming Tendency On 20% Concentration-JIS 2234,2,294
+Foaming Tendency Seq IV-ASTM D 6082,2,101
+Four Ball Weld Load -DIN 51350 - 4,2,248
+Four Ball Weld Load -ASTM D2596,2,183
+Four Ball Weld Load (Weld Point)-ASTM D2783,2,259
+Free Acid as Oleic acid-IS 1448 (Part 53),2,366
+Free alkalinity as Ca(OH)2-IS 1448 (PART 53),2,306
+"Free alkalinity as Ca(OH)2,-IS 1448 (Part 53)",2,216
+Free water--,2,285
+Freedom from Deleterious particles-ASTM D1404,2,134
+Frothing test 20:1 in 200 ppm hardness as CaCO3^-IS 1448:Part 99,2,422
+Frothing test 5:1 in 200 ppm hardness as CaCO3^-IS 1448: Part 99,2,210
+Fuel Dilution by GC-ASTM D7593,2,265
+Fuel Dilution by GC-ASTM D3524,2,496
+Gasoline Fuel Dilution-ASTM D3525,2,399
+Gasoline Fuel Dilution by GC-ASTM D7593,2,352
+Gross Calorific Value-ASTM D4868,2,299
+Gross Calorific Value*-ASTM D4868,2,438
+Heat Stability-ASTM D6184,2,156
+"Heat Stability @ 100°C, 30 hrs-ASTM D6184",2,219
+Heptane Insoluble-ASTM D893,2,107
+Hexane Insoluble-ASTM D893,2,439
+High temperature thermal stability test^-IS 1448:Part 100,2,286
+"High Temperature Wheel Bearing, 160°C-ASTM D3527",2,364
+HTHS-ASTM D4683,2,477
+HTHS@150°C-ASTM D 5481,2,102
+Hydrogen content*-ASTM D6730,2,129
+Hydroxyl No.^-ASTM D1957,2,432
+Initial pH (i-pH)-ASTM D7946,2,110
+Inorganic Acidity-IS 1448 (P2) 2003,2,208
+Inorganic Chloride*-Lab Procedure,2,494
+Insoluble-Lab procedure,2,140
+Insoluble Matter-ISO 22241-2 Annex G,2,439
+"IP Dynamic (EMCOR) Antirust test, Rating-ASTM D6138",2,410
+Iron (Fe)-ISO 22241-2 Annex I,2,444
+Iron (Fe)-ASTM D5185,2,152
+ISO4406-ISO 4406,2,444
+K. V. @ 25°C-ASTM D445,2,305
+K.V. @ 100°C-ASTM D7279,2,142
+K.V. @ 100°C-IS 1448 (Part 25),2,140
+K.V. @ 100°C-ASTM D445,2,499
+K.V. @ 100°F-ASTM D445,2,123
+K.V. @ 20°C-ASTM D445,2,471
+K.V. @ 20°C-ASTM D7052,2,322
+K.V. @ 25°C-ASTM D445,2,107
+K.V. @ 27°C-ASTM D445,2,470
+K.V. @ 30°C-ASTM D445,2,111
+K.V. @ 37.8°C-ASTM D445,2,281
+K.V. @ 38°C-ASTM D445,2,432
+K.V. @ 40°C-ASTM D7279,2,217
+K.V. @ 40°C-IS 1448 (Part 25),2,201
+K.V. @ 40°C-ASTM D445,2,459
+K.V. @ 50°C-ASTM D445,2,494
+K.V. @ 60°C-ASTM D445,2,495
+K.V. @ 70°C-ASTM D445,2,331
+K.V. @ 80°C-ASTM D445,2,254
+K.V. @ 90°C-ASTM D445,2,311
+K.V. @ 98.9°C-ASTM D445,2,333
+Kinematic Viscosity @100°C-ASTM D445,2,224
+Kinematic Viscosity @100°C-ASTM D 7042,2,344
+Kinematic Viscosity @20°C-ASTM D 7042,2,143
+Kinematic Viscosity @25°C-ASTM D 7042,2,361
+Kinematic Viscosity @40°C-ASTM D445,2,237
+Kinematic Viscosity @40°C-ASTM D 7042,2,484
+KV@100°C*-DIN 51562,2,476
+KV@40°C*-DIN 51562,2,317
+Large-DR5,2,180
+Lead (Pb)-ASTM D5185,2,234
+Lithium (Li)-ASTM D5185,2,496
+Low Temperature Pumping Viscosity @-25°C-ASTM D4684,2,449
+Low temperature thermal stability test^-IS 1448:Part 100,2,457
+Lubricity*-ASTM D6079,2,462
+Lubricity^-ISO 12156,2,481
+Magnesium (Mg)-ISO 22241-2 Annex I,2,448
+Magnesium (Mg)-ASTM D5185,2,442
+Manganese (Mn)-ASTM D5185,2,284
+Manganese^-SOP USN,2,350
+Micro Biological Test-ASTM D6974,2,170
+Micro Carbon Residue-ASTM D4530,2,130
+Microscopic Cleanliness Analysis-ISO 4406,2,271
+Milipore Filter Test*-By filtration ,2,126
+Miscibility-IS 1118 ANNEX B,2,172
+Miscibility with Water-Lab procedure,2,231
+Molybdenum (Mo)-ASTM D5185,2,364
+MPC^-ASTM D 7843,2,268
+NAS 1638-NAS 1638,2,168
+Net Calorific Value^-ASTM D4868,2,110
+Nickel (Ni)-ASTM D5185,2,235
+Nickel (Ni)-ISO 22241-2 Annex I,2,102
+Nitrogen-ASTM D5762,2,220
+Nitrogen-ASTM D4629,2,400
+Nitrogen Content-ASTM D3228,2,140
+NLGI GRADE-ASTM D217,2,474
+NOACK Volatility-ASTM D 5800,2,374
+Octane number (RON)*-ASTM D2699,2,432
+Odour-Visual,2,412
+"Oil Separation in Storage Stability(40°C,42 hours)-IP121",2,162
+"Oil Separation, % loss by mass-ASTM D1742",2,327
+Organic Chloride-ASTM D4929 B,2,365
+Organic Chloride-ASTM D 4929 (C),2,131
+Oxidation (Direct)-ASTM E2412-10,2,361
+"Oxidation Stability (100 hrs), Drop in Pressure-ASTM D942",2,329
+Oxidation Stability at 110°C^-EN 14112,2,418
+Oxidation Stability^-ASTM D2274,2,222
+Oxidation Stability^-ASTM D525,2,338
+Oxidizable Matter-ISO 3696(7.3),2,159
+Oxygen content*-ASTM D4815,2,365
+Particle Count -ASTM D7647,2,361
+Particle Count and Distribution-ASTM D7647,2,118
+Particle count SMS 3010-1 (by Optical Microscope )-ISO 4406,2,379
+Particle Size-Lab procedure,2,283
+Particles >14µm-ISO 4406,2,161
+Particles >14µm-ASTM D7647,2,267
+Particles >15µm-ISO 4406,2,289
+Particles >4µm-ISO 4406,2,156
+Particles >4µm-ASTM D7647,2,361
+Particles >5µm-ISO 4406,2,268
+Particles >6µm-ASTM D7647,2,264
+Particles >6µm-ISO 4406,2,415
+Particles >70µm-ASTM D7647,2,495
+Particles >70µm-ISO 4406,2,171
+Particulate Matter*-ASTM D6217,2,271
+Particulate Matter*-ASTM D5452,2,320
+Pentane Insoluble-ASTM D893,2,196
+Pentane Insoluble (B)-ASTM D893,2,152
+Percent (v/v) Recovered at 250 °C-ASTM D86,2,174
+Percent (v/v) Recovered at 350 °C-ASTM D86,2,410
+pH-Lab procedure,2,420
+pH @ 25°C-ISO 3696(7.1),2,447
+PH of 30% dilution in Distilled Water-pH meter,2,400
+PH of 5% dilution in Distilled Water-ASTM D1287,2,404
+PH of 5% dilution in Distilled Water-pH meter,2,453
+pH Value-pH meter,2,463
+Phosphate (PO4)-ISO 22241-2 Annex I,2,339
+Phosphorus (P)-ASTM D5185,2,377
+Potassium (K)-ASTM D5185,2,385
+Potassium (K)-ISO 22241-2 Annex I,2,459
+Pour  Point -ASTM D97,2,435
+Pour Point-IS 1448(P:10),2,381
+Pour Point-IS 1448 (Part 10),2,249
+Pour Point-ASTM D97,2,230
+Pour Point*-ISO 3016,2,478
+PQ INDEX-ASTM D8184,2,444
+PQ INDEX*-ASTM D8184,2,456
+RBCR-ASTM D 524,2,344
+RBCR-IS 1448 (P:8),2,351
+Refractive Index @ 20°C-ASTM D1747,2,278
+Refractive Index @20°C-ASTM D1218,2,363
+Refractive Index at 20°C-ISO 22241-2 Annex C,2,232
+Relative Density at 15°C-Lab Procedure,2,455
+Reserve Alkalinity (20:80)-ASTM D1121,2,347
+Reserve Alkalinity (5:95)-ASTM D1121,2,286
+Reserve Alkalinity (50:50)-ASTM D1121,2,151
+Residue Evaporation @ 110°C-ISO 3696(7.5),2,272
+Resistance to Water Washout @ 80 ºC-ASTM D1264,2,170
+"Roll Stability test,Penetration Changes after16 hr-ASTM D1831",2,450
+"Roll Stability Test,Penetration Charges%after10hrs-ASTM D1831",2,363
+"Roll Stability16 Hrs at RT,% change in penetration-ASTM D1831",2,330
+"Rust Preventive Characteristics, Rating-ASTM D 1743",2,375
+Salinity Test (Qualitative)-Lab Procedure,2,347
+Salt Spray Test-ASTM B117,2,151
+Saponification Number Method (A)-ASTM D94,2,493
+Saponification Value-IS 1448 (P:55)/Sec 1,2,238
+Sediment content-ASTM D473,2,363
+Sediment Content-lab procedure,2,313
+Sediment Content-IP 75,2,378
+Seq I @ 24°C*-DIN 51566,2,407
+Seq II @ 93.5°C*-DIN 51566,2,458
+Seq III @ 24°C*-DIN 51566,2,487
+Silica(SiO2)-By Calculation,2,412
+Silicon (Si)-ASTM D5185,2,467
+Silver (Ag)-ASTM D5185,2,467
+Sludge Content -Lab procedure,2,422
+Small-DR5,2,134
+Sodium (Na)-ISO 22241-2 Annex I,2,228
+Sodium (Na)-ASTM D5185,2,317
+Soot content-Soot meter,2,305
+Specific Gravity @ 15.6°C-ASTM D4052,2,469
+Specific Gravity @ 16°C-ASTM D4052,2,415
+Specific Gravity @ 20° C-ASTM D4052,2,500
+Specific Gravity @ 20°C-ASTM D4052,2,290
+Specific Gravity @ 29.5°C-ASTM D4052,2,410
+Specific Gravity @ 30°C-ASTM D4052,2,475
+Specific Gravity @ 60°F-ASTM D4052,2,348
+Specific Gravity @ at R.T-Lab procedure,2,318
+Stability Test-IS 1448 (B),2,306
+Strong Acid Number-IS:1448 (Pt-2),2,183
+Strong Acid Test-ASTM D664 ,2,190
+Sulfated ash-IS 1448 (Part 4),2,239
+Sulfated ash-ASTM D874,2,308
+Sulfur-ASTM D129,2,485
+Sulphated ash-IS 1448 (P:4),2,112
+Sulphur Content^-ASTM D4294,2,224
+Suspended Matter-Visual,2,252
+TBN-ASTM D2896 B,2,422
+TBN.-ASTM D4739,2,286
+Texture-Physical,2,105
+Thickner type--,2,406
+Tin (Sn)-ASTM D5185,2,455
+Titanium (Ti)-ASTM D5185,2,497
+Toluene Insoluble-ASTM D893,2,400
+Total Acid Number-ASTM D664 (A),2,287
+Total Acid Number-IS:1448(Pt-1),2,474
+Total Acid Number*-DIN 51558,2,423
+Total Acidity-ASTM D 974,2,393
+Total Chlorine-ASTM D4929 C,2,496
+Total contamination-EN 12662,2,301
+Total contamination -Lab Procedure,2,164
+Total contamination*-EN 12662,2,456
+Total RUL (RULER)^-ASTM D6971,2,157
+Type--,2,441
+Unworked Penetration-ASTM D217,2,284
+Urea Content-ISO 22241-2 Annex C,2,466
+Vanadium (V)-ASTM D5185,2,218
+Vapour lock index-IS 2796 2017,2,285
+Vapour pressure^-ASTM D5191,2,252
+Viscosity grade*-ASTM D2422,2,139
+Viscosity Gravity Constant -ASTM D2501,2,177
+Viscosity Index-ASTM D2270,2,493
+Viscosity Index-IS 1448 (Part 56),2,344
+Volatile matter at 100°C for 16 h-IS 1115 Appendix B,2,389
+Volatile matter at 100°C for 24 h-IS 1115 Appendix B,2,151
+Water-ASTM D6304,2,445
+Water  Content-ASTM D1744,2,216
+Water Ccontent V/V-IS 1448 (P40) ,2,378
+Water Content-ASTM D95,2,482
+Water Content-ASTM D1744,2,442
+Water Content-ASTM E203,2,110
+Water Content (by the Karl Fischer Reagent)-ASTM D 1123,2,404
+Water Content--ASTM D1744,2,310
+Water Content^-ASTM D 6304 ,2,330
+Water Content^-ISO 12937,2,244
+Water Separability @54 °C-ASTM D1401,2,209
+Water Separability @82 °C-ASTM D1401,2,331
+Water test-Crackle Test,2,276
+"Water Washout, % loss by mass-ASTM D1264",2,390
+Wear Scar Diameter-ASTM D4172 Method A,2,416
+Wear Scar Diameter-ASTM D2266,2,490
+Wear Scar Diameter-ASTM D4172 Method B,2,309
+Wear Scar Diameter of 10 % Solution-DIN 51350 - 3B,2,232
+Wear Scar Diameter of 15 % Solution-DIN 51350 - 3B,2,484
+Wear Scar Diameter of 5 % Solution-DIN 51350 - 3B,2,332
+Wet ERBP*-SAE J1703,2,395
+Work Penetration-ASTM D217,2,134
+Work Penetration 60 Strokes-ASTM D217,2,188
+WPC-DR5,2,246
+Zinc (Zn)-ASTM D5185,2,246
+Zinc (Zn)-ISO 22241-2 Annex I,2,263
+Aluminium (Al)-ASTM D5185,3,234
+Barium (Ba)-ASTM D5185,3,210
+Boron (B)-ASTM D5185,3,481
+Cadmium (Cd)-ASTM D5185,3,352
+Calcium (Ca)-ASTM D5185,3,152
+Chromium (Cr)-ASTM D5185,3,229
+Copper (Cu)-ASTM D5185,3,327
+Flash Point (COC)-ASTM D92,3,327
+Iron (Fe)-ASTM D5185,3,336
+K.V. @ 100°C-ASTM D445,3,344
+K.V. @ 40°C-ASTM D445,3,191
+Lead (Pb)-ASTM D5185,3,443
+Magnesium (Mg)-ASTM D5185,3,176
+Manganese (Mn)-ASTM D5185,3,351
+Molybdenum (Mo)-ASTM D5185,3,392
+Nickel (Ni)-ASTM D5185,3,172
+Oxidation (Direct)-ASTM E2412-10,3,272
+Phosphorus (P)-ASTM D5185,3,369
+Potassium (K)-ASTM D5185,3,475
+PQ INDEX-ASTM D8184,3,414
+Silicon (Si)-ASTM D5185,3,149
+Silver (Ag)-ASTM D5185,3,383
+Sodium (Na)-ASTM D5185,3,462
+Soot.-ASTM E2412-10,3,470
+TBN.-ASTM D4739,3,431
+Tin (Sn)-ASTM D5185,3,473
+Titanium (Ti)-ASTM D5185,3,379
+Total Acid Number-ASTM D664 (A),3,110
+Vanadium (V)-ASTM D5185,3,179
+Viscosity Index-ASTM D2270,3,226
+Water Content-ASTM D6304 ,3,372
+Zinc (Zn)-ASTM D5185,3,462
+ Four Ball Weld Load-ASTM D2596,3,291
+ Freezing Point-ASTM D1177,3,394
+ Gross Calorific Value-ASTM D240,3,456
+10000 Strokes(Work Penetration)-ASTM D217,3,205
+100000 Strokes (Work Penetration)-ASTM D217,3,160
+15%-ASTM D86,3,230
+20%-ASTM D86,3,337
+25%-ASTM D86,3,401
+30%-ASTM D86,3,216
+35%-ASTM D86,3,472
+40%-ASTM D86,3,155
+45%-ASTM D86,3,189
+5%-ASTM D86,3,155
+50%-ASTM D86,3,453
+55%-ASTM D86,3,286
+60%-ASTM D86,3,412
+65%-ASTM D86,3,398
+70%-ASTM D86,3,103
+75%-ASTM D86,3,359
+80%-ASTM D86,3,109
+85%-ASTM D86,3,198
+95%-ASTM D86,3,310
+Acid Number-ASTM D974,3,452
+Acid Number-ASTM D3242,3,378
+Aniline Point-ASTM D611,3,393
+Ash Content-ASTM D482,3,262
+Ash Content-ASTM D1119,3,337
+Base Oil Density 29.5°C-ASTM D4052,3,213
+Base Oil Viscosity-ASTM D445,3,264
+BOV @ 100°C -ASTM D 445,3,219
+BOV @ 40°C-ASTM D 445,3,432
+Break time seconds-ASTM D1881,3,260
+Brook Field Viscosity @ -20°C-ASTM D2983 (Method D),3,392
+Brookfield Viscosity @ -18°C-ASTM D2983 (Method D),3,392
+Brookfield Viscosity @ -26°C-ASTM D2983,3,496
+Brookfield Viscosity @ -30°C-ASTM D2983 (Method D),3,197
+Brookfield Viscosity @ -35°C-ASTM D2983 (Method D),3,433
+Brookfield Viscosity @ -40°C-ASTM D2983 (Method D),3,246
+Brookfield Viscosity @ -55°C-ASTM D2983,3,497
+Brookfield Viscosity @ 25°C*-ASTM D4878,3,132
+Brookfield Viscosity @-12°C-ASTM D2983,3,477
+Carbon content*-ASTM D6730,3,142
+CCR-ASTM D189,3,325
+CCS @ -10°C-ASTM D5293,3,177
+CCS @ -15°C-ASTM D5293,3,213
+CCS @ -20°C-ASTM D5293,3,178
+CCS @ -25°C-ASTM D5293,3,131
+CCS @ -30°C-ASTM D5293,3,173
+CCS @ -30°C*-ASTM D5293,3,228
+CCS @ -35°C-ASTM D5293,3,150
+CCS @ -5°C-ASTM D5293,3,280
+CEC L-14-A-88 -ASTM D6278,3,119
+Cetane Index-ASTM D4737,3,329
+Chloride-ASTM D 4929 (B),3,486
+Chlorine-ASTM D 4929 (B),3,350
+Chlorine (BOM)-ASTM D 808,3,152
+Chlorine content-ASTM D5808,3,312
+Chlorine^-ASTM D 4929 (B),3,219
+Cloud Point-ASTM D2500,3,439
+Cold Filter Plugging Point (CFPP)-ASTM D6371,3,395
+Collapse Time Seq IV (after 5 min blowing)-ASTM D 6082,3,480
+Colour-ASTM D1500,3,293
+Compatibility of Binary mix of Greases-ASTM D6185,3,122
+Compatibility of residual fuel by spot test^-ASTM D4740- B 2019,3,240
+Consistency Unworked @ 25°C-ASTM D217,3,275
+Consistency Worked at 60 Strokes/25°C-ASTM D217,3,152
+Copper Strip Corrosion For 19hr@140°C-ASTM D130,3,268
+Copper Strip Corrosion For 1hr@121°C-ASTM D130,3,265
+Copper Strip Corrosion For 24hr@100°C-ASTM D4048,3,255
+Copper Strip Corrosion For 3hr@100°C-ASTM D130,3,421
+Copper Strip Corrosion For 3hr@121°C-ASTM D130 ,3,110
+Copper Strip Corrosion For 3hr@125°C-ASTM D130,3,340
+Copper Strip Corrosion For 3hr@149°C-ASTM D130,3,375
+Copper Strip Corrosion For 3hr@150°C-ASTM D130,3,176
+Copper Strip Corrosion For 3hr@50°C-ASTM D130,3,296
+Copper Strip Corrosion For 3hr@60°C-ASTM D130,3,106
+Copper Strip Corrosion For 4hr@100°C-ASTM D4048,3,273
+"Corrosion Preventive Characteristics, Rating-ASTM D1743",3,306
+Demulsibility-ASTM D1401,3,150
+Density @ 15.5°C-ASTM D4052,3,280
+Density @ 15.6°C-ASTM D4052,3,159
+Density @ 15°C-ASTM D4052,3,153
+Density @ 15°C (Hydrometer)-ASTM D1298,3,263
+Density @ 20°C-ASTM D1298,3,227
+Density @ 29.0°C-ASTM D4052,3,456
+Density @ 29.5°C-ASTM D1298,3,311
+Density @ 29.5°C-ASTM D4052,3,258
+Density @ 40°C-ASTM D4052,3,484
+Density @20°C-ASTM D4052,3,336
+Density @20°C(Hydrometer)-ASTM D1122,3,165
+Density @25°C-ASTM D4052,3,142
+Density @30°C-ASTM D4052,3,370
+Density @30°C (Hydrometer)-ASTM D1122,3,274
+Density@15°C -ASTM D4052,3,132
+DieseL Fuel Dilution by GC-ASTM D7593,3,197
+Distillation 10% Recovery-ASTM D86,3,355
+Distillation 90% Recovery-ASTM D86,3,148
+Distillation 95% Recovery-ASTM D86,3,196
+Distillation Recovery @ 350°C-ASTM D86,3,256
+Distillation Recovery @ 370°C-ASTM D86,3,303
+Drop Point-ASTM D566,3,302
+Drop Point-ASTM D2265,3,169
+Electrical Conductivity-ASTM D2624,3,469
+Emulsification Characteristics-ASTM D1401,3,387
+Equilibrium Reflux Boiling Point-ASTM D1120,3,352
+Ethanol*-ASTM D4815,3,383
+Ethanol^-ASTM D 4815,3,260
+FAME Content-ASTM D 7371,3,489
+Final Boiling Point (FBP)-ASTM D86,3,151
+Fire Point (COC)-ASTM D 92,3,183
+Flash Point (PMCC)-ASTM D93 (PROCEDURE B),3,220
+Flash Point (PMCC)-ASTM D93,3,284
+Flash Point *-ASTM D3828,3,111
+Flash Point*-ASTM D92,3,422
+Flash Point*-ASTM D3278,3,460
+Foam height-ASTM D1881,3,212
+Foaming Characteristics-ASTM D892,3,276
+Foaming Stability Seq IV Option 1- After 5s-ASTM D 6082,3,333
+Foaming Tendency-ASTM D4921,3,277
+Foaming Tendency Seq IV-ASTM D 6082,3,316
+Four Ball Weld Load -ASTM D2596,3,110
+Four Ball Weld Load (Weld Point)-ASTM D2783,3,352
+Freedom from Deleterious particles-ASTM D1404,3,168
+Fuel Dilution by GC-ASTM D7593,3,496
+Fuel Dilution by GC-ASTM D3524,3,497
+Gasoline Fuel Dilution-ASTM D3525,3,254
+Gasoline Fuel Dilution by GC-ASTM D7593,3,223
+Gross Calorific Value-ASTM D4868,3,313
+Gross Calorific Value*-ASTM D4868,3,184
+Heat Stability-ASTM D6184,3,240
+"Heat Stability @ 100°C, 30 hrs-ASTM D6184",3,361
+Heptane Insoluble-ASTM D893,3,293
+Hexane Insoluble-ASTM D893,3,122
+"High Temperature Wheel Bearing, 160°C-ASTM D3527",3,424
+HTHS-ASTM D4683,3,268
+HTHS@150°C-ASTM D 5481,3,417
+Hydrogen content*-ASTM D6730,3,149
+Hydroxyl No.^-ASTM D1957,3,470
+Initial Boiling Point (IBP)-ASTM D86,3,421
+Initial pH (i-pH)-ASTM D7946,3,258
+"IP Dynamic (EMCOR) Antirust test, Rating-ASTM D6138",3,400
+K. V. @ 25°C-ASTM D445,3,459
+K.V. @ 100°C-ASTM D7279,3,161
+K.V. @ 100°F-ASTM D445,3,125
+K.V. @ 20°C-ASTM D7052,3,269
+K.V. @ 20°C-ASTM D445,3,332
+K.V. @ 25°C-ASTM D445,3,147
+K.V. @ 27°C-ASTM D445,3,265
+K.V. @ 30°C-ASTM D445,3,490
+K.V. @ 37.8°C-ASTM D445,3,222
+K.V. @ 38°C-ASTM D445,3,461
+K.V. @ 40°C-ASTM D7279,3,292
+K.V. @ 50°C-ASTM D445,3,310
+K.V. @ 60°C-ASTM D445,3,174
+K.V. @ 70°C-ASTM D445,3,153
+K.V. @ 80°C-ASTM D445,3,348
+K.V. @ 90°C-ASTM D445,3,436
+K.V. @ 98.9°C-ASTM D445,3,470
+Kinematic Viscosity @100°C-ASTM D 7042,3,270
+Kinematic Viscosity @100°C-ASTM D445,3,403
+Kinematic Viscosity @20°C-ASTM D 7042,3,350
+Kinematic Viscosity @25°C-ASTM D 7042,3,193
+Kinematic Viscosity @40°C-ASTM D445,3,113
+Kinematic Viscosity @40°C-ASTM D 7042,3,157
+Low Temperature Pumping Viscosity @-25°C-ASTM D4684,3,281
+Lubricity*-ASTM D6079,3,232
+Micro Biological Test-ASTM D6974,3,348
+Micro Carbon Residue-ASTM D4530,3,381
+MPC^-ASTM D 7843,3,321
+Net Calorific Value^-ASTM D4868,3,102
+Nitrogen-ASTM D5762,3,141
+Nitrogen-ASTM D4629,3,185
+Nitrogen Content-ASTM D3228,3,292
+NLGI GRADE-ASTM D217,3,223
+NOACK Volatility-ASTM D 5800,3,221
+Octane number (RON)*-ASTM D2699,3,232
+"Oil Separation, % loss by mass-ASTM D1742",3,267
+Organic Chloride-ASTM D4929 B,3,175
+Organic Chloride-ASTM D 4929 (C),3,145
+Organic Chloride-ASTM D 4929 ,3,344
+"Oxidation Stability (100 hrs), Drop in Pressure-ASTM D942",3,405
+Oxidation Stability^-ASTM D525,3,457
+Oxidation Stability^-ASTM D2274,3,268
+Oxygen content*-ASTM D4815,3,219
+Particle Count -ASTM D7647,3,211
+Particle Count and Distribution-ASTM D7647,3,456
+Particles >14µm-ASTM D7647,3,485
+Particles >4µm-ASTM D7647,3,374
+Particles >6µm-ASTM D7647,3,125
+Particles >70µm-ASTM D7647,3,317
+Particulate Matter*-ASTM D5452,3,119
+Particulate Matter*-ASTM D6217,3,295
+Pentane Insoluble-ASTM D893,3,303
+Pentane Insoluble (B)-ASTM D893,3,248
+Percent (v/v) Recovered at 250 °C-ASTM D86,3,314
+Percent (v/v) Recovered at 350 °C-ASTM D86,3,215
+PH of 5% dilution in Distilled Water-ASTM D1287,3,455
+Pour  Point -ASTM D97,3,256
+Pour Point-ASTM D97,3,266
+PQ INDEX*-ASTM D8184,3,275
+RBCR-ASTM D 524,3,196
+Refractive Index @ 20°C-ASTM D1747,3,373
+Refractive Index @20°C-ASTM D1218,3,320
+Reserve Alkalinity (20:80)-ASTM D1121,3,468
+Reserve Alkalinity (5:95)-ASTM D1121,3,245
+Reserve Alkalinity (50:50)-ASTM D1121,3,231
+Resistance to Water Washout @ 80 ºC-ASTM D1264,3,425
+"Roll Stability test,Penetration Changes after16 hr-ASTM D1831",3,135
+"Roll Stability Test,Penetration Charges%after10hrs-ASTM D1831",3,368
+"Roll Stability16 Hrs at RT,% change in penetration-ASTM D1831",3,158
+"Rust Preventive Characteristics, Rating-ASTM D 1743",3,275
+Salt Spray Test-ASTM B117,3,172
+Saponification Number Method (A)-ASTM D94,3,311
+Sediment content-ASTM D473,3,219
+Specific Gravity @ 15.6°C-ASTM D4052,3,216
+Specific Gravity @ 16°C-ASTM D4052,3,113
+Specific Gravity @ 20° C-ASTM D4052,3,124
+Specific Gravity @ 20°C-ASTM D4052,3,318
+Specific Gravity @ 29.5°C-ASTM D4052,3,452
+Specific Gravity @ 30°C-ASTM D4052,3,156
+Specific Gravity @ 60°F-ASTM D4052,3,392
+Strong Acid Test-ASTM D664 ,3,331
+Sulfated ash-ASTM D874,3,327
+Sulfur-ASTM D129,3,488
+Sulphur Content^-ASTM D4294,3,161
+TBN-ASTM D2896 B,3,342
+Toluene Insoluble-ASTM D893,3,156
+Total Acidity-ASTM D 974,3,414
+Total Chlorine-ASTM D4929 C,3,490
+Total RUL (RULER)^-ASTM D6971,3,257
+Total Sulphur-ASTM D2622,3,407
+Unworked Penetration-ASTM D217,3,153
+Vapour pressure^-ASTM D5191,3,459
+Viscosity grade*-ASTM D2422,3,238
+Viscosity Gravity Constant -ASTM D2501,3,446
+Water-ASTM D6304,3,346
+Water  Content-ASTM D1744,3,304
+Water Content-ASTM E203,3,290
+Water Content-ASTM D95,3,150
+Water Content-ASTM D1744,3,466
+Water Content (by the Karl Fischer Reagent)-ASTM D 1123,3,213
+Water Content--ASTM D1744,3,304
+Water Content^-ASTM D 6304 ,3,100
+Water Separability @54 °C-ASTM D1401,3,394
+Water Separability @82 °C-ASTM D1401,3,151
+"Water Washout, % loss by mass-ASTM D1264",3,245
+Wear Scar Diameter-ASTM D2266,3,274
+Wear Scar Diameter-ASTM D4172 Method A,3,308
+Wear Scar Diameter-ASTM D4172 Method B,3,123
+Work Penetration-ASTM D217,3,170
+Work Penetration 60 Strokes-ASTM D217,3,289

@@ -35,9 +35,14 @@
         <form method="GET" action="{{ route('site-masters.index') }}" class="row g-3">
             <div class="col-md-3">
                 <label for="id_site_master" class="form-label">Search</label>
-                <input type="text" class="form-control search" id="id_site_master" name="search" 
+  <div class="input-group">    
+            <input type="text" class="form-control search" id="id_site_master" name="search" 
                        value="{{ request('search') }}" placeholder="Search by Site Name..."  data-txt_id="site_master_id"  autocomplete="off">
-                <input type="hidden" id="site_master_id" name="site_master_id">    
+        <span class="input-group-text">
+            <i class="bi bi-search"></i>
+        </span>
+    </div>                
+<input type="hidden" id="site_master_id" name="site_master_id">    
             </div>
             <div class="col-md-2">
                 <label for="status" class="form-label">Status</label>
@@ -47,6 +52,7 @@
                     <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Inactive</option>
                 </select>
             </div>
+            <!--
             <div class="col-md-2">
                 <label for="sort_by" class="form-label">Sort By</label>
                 <select class="form-select" id="sort_by" name="sort_by">
@@ -60,7 +66,7 @@
                     <option value="desc" {{ request('sort_order') === 'desc' ? 'selected' : '' }}>Descending</option>
                     <option value="asc" {{ request('sort_order') === 'asc' ? 'selected' : '' }}>Ascending</option>
                 </select>
-            </div>
+            </div> -->
             <div class="col-md-2">
                 <label class="form-label">&nbsp;</label>
                 <div class="d-flex gap-2">
@@ -76,6 +82,7 @@
     </div>
 
     <!-- Results Info -->
+    <!--
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <small class="text-muted">
@@ -84,6 +91,7 @@
             </small>
         </div>
     </div>
+    -->
     <!-- Table -->
     <div class="card  shadow mb-4">
         <div class="card-body p-0">

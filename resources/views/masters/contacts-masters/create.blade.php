@@ -69,9 +69,14 @@
                         </select>
                         @else
                         <label for="id_company">Company</label>
-                         <input type="text" class="form-control search" id="id_company" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id"  autocomplete="off">
-                <input type="hidden" id="company_id" name="company_id">    
+
+<div class="myDropdownCover"> 
+<input type="text" class="form-control search" id="id_company" name="search" 
+value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id"  autocomplete="off">
+<input type="hidden" id="company_id" name="company_id">   
+<div id="myDropdown_company_id" class="myDropdown"></div>
+</div>
+
 
                         @endif
                     </div>
@@ -96,13 +101,8 @@
         <!--end::App Content-->
       </main>
       <!--end::App Main-->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div id="modal-search-results"></div>
-    </div>
-</div>  
-<script src="/js/customer/function_autosuggest3.js?{{date('mmss')}}"></script>
+
+<script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
 
 @endsection
 

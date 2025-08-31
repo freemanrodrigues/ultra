@@ -159,4 +159,32 @@ class UserController
                        ->with('error', 'Error creating User: ' . $e->getMessage());
     }
     }
+
+
+    public function testing():View
+    {
+        $countries = Country::all();
+        $customers = CustomerMaster::all();
+        //dd($companies);
+        return view('testing2');
+    }
+
+    public function getCountryAddress(Request $request)
+    {
+        //return($request->all());
+        $request->validate([
+            'query' => 'required|string',
+        ]);
+        $query = $request->input('query');
+        $customer = CompanyMaster::where('company_name',  'LIKE', '%' .$query. '%')->get(['company_name','id']);
+        
+        
+         if ($customer) {
+            return response()->json([
+                'customer' => $customer, 
+               
+            ]);
+        }
+        return response()->json([]);
+    }
 }

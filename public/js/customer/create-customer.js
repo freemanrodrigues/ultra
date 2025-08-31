@@ -52,21 +52,18 @@ jQuery(function ($) {
                     if (response.company_name && response.company_name.trim() !== '') {
                         if(response.gst_cnt >0) {
                          $('#gst_success').text('GST number already added').css('color', 'green');
-                         
                          $("#btn-submit").prop("disabled", true);
                         } else { $('#gst_success').text(''); }
                         $('#customer_name').val(response.company_name);
-                     //   $("#customer_name").prop("disabled", true);
-                         $("#customer_name").prop('readonly', true);
-                         $("#customer_name").addClass('bg-gray-200 cursor-not-allowed');
-                            $("#btn-submit").prop("disabled", false);
+                        $("#customer_name").prop('readonly', true);
+                         $('#customer_name').addClass('readonly-greyed');
+                        $("#btn-submit").prop("disabled", false);
                            
                     } else{
                         $('#gst_success').text('');
                         $('#customer_name').val('');
                       //  $("#customer_name").prop("disabled", false);
-                       
-                       $("#customer_name").removeClass('bg-gray-200 cursor-not-allowed');
+                        $('#customer_name').removeClass('readonly-greyed');
                     }   
                     
                     $('#company_id').val(response.company_id);
