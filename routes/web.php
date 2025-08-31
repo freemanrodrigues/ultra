@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController,BrandMasterController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, FerrographyMasterController,GradeMasterController, ItemMasterController,MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController, StateController,SiteMasterController,SubAssemblyController,TestMasterController,UnitMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController, StateController,SiteMasterController,TestMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -106,22 +106,16 @@ Route::any('/masters/assign-contact-assignments', [ContactAssignmentController::
 
 Route::resource('/masters/contacts-masters', ContactMasterController::class);
 Route::resource('/masters/contact-assignments', ContactAssignmentController::class);     
-Route::resource('/masters/brand', BrandMasterController::class);
-Route::any('/masters/brand/bulk_delete', [BrandMasterController::class,'bulkDelete'])->name('brand.bulk_delete');
 
 
-Route::resource('/masters/unit-masters', UnitMasterController::class);
-Route::patch('/masters/unit-masters/toggle-status', [UnitMasterController::class, 'toggleStatus'])
-         ->name('unit-masters.toggle-status');
-Route::resource('/masters/ferrography', FerrographyMasterController::class);
-Route::any('/masters/ferrography/bulk_delete', [FerrographyMasterController::class,'bulkDelete'])->name('ferrography.bulk_delete');
+
+
 Route::resource('/masters/sample-nature', SampleNatureController::class);
 Route::any('/masters/ferrography/bulk_delete', [SampleNatureController::class,'bulkDelete'])->name('sample-nature.bulk_delete');
 
 Route::any('/masters/bottle-type/bulk_delete', [BottleTypeController::class,'bulkDelete'])->name('bottle-type.bulk_delete');
 Route::resource('/masters/bottle-type', BottleTypeController::class);
-Route::resource('/masters/grade', GradeMasterController::class);
-Route::any('/masters/grade/bulk_delete', [GradeMasterController::class,'bulkDelete'])->name('grade.bulk_delete');
+
 
 Route::get('/generate-sales-report', [SampleMasterController::class, 'generateSalesReport'])->name('reports.sales');
 Route::get('/generate-sales-report1', [SampleMasterController::class, 'generateSalesReport1'])->name('reports.sales1');
@@ -158,12 +152,7 @@ Route::any('/masters/make/bulk_delete', [MakeMasterController::class,'bulkDelete
 Route::resource('/masters/model', ModelMasterController::class);
 Route::any('/masters/model/bulk_delete', [ModelMasterController::class,'bulkDelete'])->name('model.bulk_delete');
 
-Route::resource('/masters/subassembly', SubAssemblyController::class);
-Route::any('/masters/subassembly/bulk_delete', [SubAssemblyController::class,'bulkDelete'])->name('subassembly.bulk_delete');
 
-
-Route::resource('/masters/item', ItemMasterController::class);
-Route::any('/masters/item/bulk_delete', [ItemMasterController::class,'bulkDelete'])->name('item.bulk_delete');
 
 // Sample details
 Route::get('/sample-details_x/{id}', [SampleDetailController::class,'addSampleDetialsX'])->name('sample-details');

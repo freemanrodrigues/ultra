@@ -4,6 +4,21 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
+<style>
+    .site-name-link {
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+    }
+    .site-name-link:hover {
+        color: #1d4ed8 !important;
+        border-bottom-color: #1d4ed8;
+        text-decoration: none !important;
+        transform: translateY(-1px);
+    }
+    .site-name-link:active {
+        transform: translateY(0);
+    }
+</style>
 <div class="container mt-4">
 
  <!-- Search and Filter Form -->
@@ -105,7 +120,13 @@
                             @foreach($siteMasters as $siteMaster)
                                 <tr>
                                     
-                                    <td>{{ $siteMaster->site_name }}</td>
+                                    <td>
+                                        <a href="{{ route('site-masters.show', $siteMaster) }}" 
+                                           class="text-primary text-decoration-none fw-semibold site-name-link"
+                                           title="Click to view site details">
+                                            {{ $siteMaster->site_name }}
+                                        </a>
+                                    </td>
                                    <td>{{ $siteMaster->city }}</td>
                                    <td>{{ $siteMaster->state_table->statename }}</td>
                                    <td>{!! $siteMaster->status_badge !!}

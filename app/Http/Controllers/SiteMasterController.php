@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,CustomerMaster,SiteContact,State,SiteMaster,User};
+use App\Models\{Country,CompanyMaster,CustomerMaster,CustomerSiteMaster,SiteContact,State,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\{DB,Log};
@@ -98,8 +98,12 @@ class SiteMasterController
      */
     public function show(SiteMaster $siteMaster): View
     {
-       // dd("view full details");
-        return view('masters.site-masters.show', compact('siteMaster'));
+        // Load customers linked to this site
+        $customers = CustomerSiteMaster::where('site_master_id', $siteMaster->id)
+            ->with(['customer', 'siteMaster'])
+            ->get();
+            
+        return view('masters.site-masters.show', compact('siteMaster', 'customers'));
     }
 
     /**
