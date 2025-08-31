@@ -373,27 +373,7 @@ Type Of Bottle</p>
 Nature Of Sample</p>
 </a>
 </li>
-<!--
 
-<li class="nav-item">
-<a href="{{ route('subassembly.index') }}" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Sub Assembly</p>
-</a>
-</li>
-<li class="nav-item">
-<a href="{{ route('ferrography.index') }}" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Ferrography Master</p>
-</a>
-</li>
-<li class="nav-item">
-<a href="{{ route('unit-masters.index') }}" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>
-Unit Master</p>
-</a>
-</li>
--->
 <li class="nav-item">
 <a href="{{ route('users.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>
