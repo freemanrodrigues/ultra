@@ -16,56 +16,56 @@ class CustomerMasterController
     public function index(Request $request): View
     {
        
-        $query = CustomerMaster::query();
-
-        $query->leftJoin(
-            'customer_site_masters', 
-            'customer_masters.id', 
-            '=', 
-            'customer_site_masters.customer_id'
-        )
-        ->select('customer_masters.id','customer_name','site','division','customer_masters.company_id','b2c_customer','gst_no','gst_state_code','customer_masters.address','customer_masters.city','customer_masters.state','group','customer_masters.status');
-        
-        if ($request->filled('company_id')) {
-            $query->where('customer_masters.id', $request->get('company_id'));
-        }elseif ($request->filled('search')) {
-            $search = $request->get('search');
-            $query->where(function($q) use ($search) {
-                $q->where('customer_masters.gst_no', 'like', "%{$search}%")
-                  ->orWhere('customer_masters.customer_name', 'like', "%{$search}%");
-            });
-        }	
-
-        // Filter by status
-        if ($request->filled('status')) {
-            $query->where('customer_masters.status', $request->get('status'));
-        } else {
-            $query->where('customer_masters.status', 1);
-        }
-       
-        // Sort by
-        $sortBy = $request->get('sort_by', 'customer_masters.customer_name');
-        $sortOrder = $request->get('sort_order', 'asc');
-        $query->orderBy($sortBy, $sortOrder);
-
-        $customers = $query->paginate(10)->appends($request->query());
-       
-/*
-        $customers = DB::table('customer_site_masters')
-    ->select(
-        'customer_masters.id',
-        'customer_masters.customer_name',
+$query = CustomerMaster::select(
+        'customer_masters.id as cus_mas_id',
+        'site_name',
+        'customer_name',
         'customer_masters.division',
-        'customer_masters.gst_state_code',
-        'customer_masters.status',
         'customer_masters.group',
-        'site_masters.site_name'
+        'customer_masters.status',
+        'states.statename',
+        'customer_masters.gst_state_code'
     )
-    ->join('customer_masters', 'customer_site_masters.customer_id', '=', 'customer_masters.id')
-    ->join('site_masters', 'customer_site_masters.site_master_id', '=', 'site_masters.id')
- //   ->where('customer_site_masters.customer_id', 578)
-    ->get(); */
-        //dd($customers);
+    ->leftJoin(
+        'customer_site_masters',
+        'customer_masters.id',
+        '=',
+        'customer_site_masters.customer_id'
+    )
+    ->leftJoin(
+        'site_masters',
+        'customer_site_masters.site_master_id',
+        '=',
+        'site_masters.id'
+    )
+    ->leftJoin(
+        'states',
+        'customer_site_masters.state',
+        '=',
+        'states.id'
+    );
+
+if ($request->filled('company_id')) {
+		 $query->where('customer_masters.id', $request->get('company_id'));
+
+}elseif ($request->filled('search')) {
+			$query->where(function($q) use ($search) {
+	$q->where('site_masters.site_name', 'like', "%{$search}%")
+	  ->orWhere('customer_masters.customer_name', 'like', "%{$search}%");
+});
+}
+    // Filter by status
+if ($request->filled('status')) {
+             $query->where('customer_masters.status', $request->get('status'));
+        } else {
+           $query->where('customer_masters.status', 1);
+        }
+$sortBy = $request->get('sort_by', 'customer_masters.customer_name');
+$sortOrder = $request->get('sort_order', 'asc');
+$query->orderBy($sortBy, $sortOrder);
+        
+$customers = $query->paginate(10)->appends($request->query());
+
         $states = State::getStateArray();
         return view('masters.customer.index',compact('customers', 'states'));
     }
@@ -350,6 +350,7 @@ class CustomerMasterController
 
     public function autoSuggestCustomer1(Request $request)
     {
+        
         $query = $request->input('query');
 
         // Basic validation (optional but recommended)

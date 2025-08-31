@@ -97,10 +97,10 @@
                         @foreach($customers as $customer)
                         <tr>
                             
-                            <td><strong>{{ $customer->id }}</strong></td>
-                            <td>    <a href="{{ route('customer.show', $customer->id) }}" class="text-decoration-none">
+                            <td><strong>{{ $customer->cus_mas_id }}</strong></td>
+                            <td>    <a href="{{ route('customer.show', $customer->cus_mas_id) }}" class="text-decoration-none">
                                 <code class="bg-light px-2 py-1 rounded">{{ $customer->customer_name }}  {{ !empty($customer->gst_state_code) ? ' - '.$customer->gst_state_code : '' }}
-{{ !empty($customer->division) ? ' - '.$customer->division : '' }}
+{{ !empty($customer->division) ? ' - '.$customer->division : '' }} {{ !empty($customer->site_name) ? ' - '.$customer->site_name : '' }}
 </code></a>
                             </td>
                         <!--    <td>@if(!empty($states[$customer->state])){{$states[$customer->state] }}@endif</td>-->
@@ -121,25 +121,25 @@
                             <td>
                                 <div class="btn-group" role="group">
 
-<a href="{{ route('customer-site-masters.create', ['customer_id' => $customer->id]) }}" 
+<a href="{{ route('customer-site-masters.create', ['customer_id' => $customer->cus_mas_id]) }}" 
                                        class="btn btn-sm btn-outline-info" title="Assign Site">
                                         <i class="bi bi-house-add"></i>
                                     </a>
 
-<a href="{{ route('customer-site-masters.index', ['customer_id' => $customer->id]) }}" 
+<a href="{{ route('customer-site-masters.index', ['customer_id' => $customer->cus_mas_id]) }}" 
                                        class="btn btn-sm btn-outline-info" title="List Sites">
                                         <i class="bi bi-list"></i>
                                     </a>
                                
-                                    <a href="{{ route('customer.show', $customer->id) }}" 
+                                    <a href="{{ route('customer.show', $customer->cus_mas_id) }}" 
                                        class="btn btn-sm btn-outline-info" title="View">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('customer.edit', $customer->id) }}" 
+                                    <a href="{{ route('customer.edit', $customer->cus_mas_id) }}" 
                                        class="btn btn-sm btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
-                                    <form action="{{ route('customer.destroy',  $customer->id) }}" method="POST" 
+                                    <form action="{{ route('customer.destroy',  $customer->cus_mas_id) }}" method="POST" 
                                           style="display: inline;" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')
