@@ -1,157 +1,279 @@
 @extends('/layouts/master-layout')
 @section('content')
-<link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 
-<div class="container mt-4">
- <!-- Search and Filter Form -->
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3 mb-0">
-        <i class="fas fa-building text-primary"></i> PO Master
-        <small class="text-muted">({{ $po_datas->total() }} total)</small>
-    </h1>
-    <a href="{{ route('po.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add New PO
-    </a>
-  </div>
+<style>
+    /* Consistent styling with customer list page */
+    .po-page {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    
+    .po-page h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .po-page .form-control,
+    .po-page .form-select,
+    .po-page .btn {
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+    
+    /* Bold, larger headers (14px, weight 700) for better visibility */
+    .po-page .table th {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        padding: 0.2rem 0.5rem !important;
+        vertical-align: middle;
+        background-color: #3b82f6;
+        color: white;
+        border-bottom: 2px solid #1d4ed8;
+        height: 2.2rem;
+    }
+    
+    .po-page .table td {
+        font-size: 13px !important;
+        padding: 0.2rem 0.5rem !important;
+        vertical-align: middle;
+    }
+    
+    /* Distinct header background */
+    .page-header {
+        background: linear-gradient(135deg, #667eef 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Compact spacing */
+    .compact-form {
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-body {
+        padding: 0.5rem !important;
+    }
+    
+    /* Small action buttons */
+    .btn-xs {
+        padding: 0.1rem 0.2rem;
+        font-size: 10px;
+        line-height: 1;
+        min-width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-xs i {
+        font-size: 12px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .po-page h1 {
+            font-size: 1.1rem;
+        }
+        
+        .page-header {
+            padding: 0.4rem 0.75rem;
+        }
+    }
+</style>
 
-@if (session('success'))
+<div class="container-fluid po-page">
+    <!-- Page Header with distinct background -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>
+                <i class="fas fa-file-invoice me-2"></i> Purchase Orders
+                <small class="d-block d-md-inline ms-md-2 opacity-75">({{ $pos->total() }} total)</small>
+            </h1>
+        </div>
+    </div>
+
+    @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-@endif
+    @endif
 
-<!-- Search and Filter Form -->
-<div class="search-form">
-    <form method="GET" action="{{ route('po.index') }}">
-        <div class="row g-3 mb-3">
-            <div class="col-md-4">
-                <label for="id_company" class="form-label">Search</label>
-                <input type="text" class="form-control search" id="id_company" name="search" 
-                       value="{{ request('search') }}" placeholder="Search by customer name..." data-txt_id="company_site_id" autocomplete="off">
-                    <input type="hidden" id="company_id" name="company_id">
-            </div>
-            <div class="col-md-3">
-                <label for="status" class="form-label">Status</label>
-                <select class="form-select" id="status" name="status">
-                    <option value="">All Status</option>
-                        @foreach(config('constants.PO_STATUS') as $k => $val)
-                            <option value="{{$k}}" {{ request('status') == $k ? 'selected' : '' }}>{{$val}}</option>
-                        @endforeach
-                </select>
-            </div>
-            <div class="col-md-5">
-                <label class="form-label">&nbsp;</label>
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-outline-primary">
-                        <i class="fas fa-search"></i> Search
-                    </button>
-                    <a href="{{ route('po.index') }}" class="btn btn-outline-secondary">
-                        <i class="fas fa-times"></i> Clear
-                    </a>
+    <!-- Add New PO Button -->
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('po.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>
+            <i class="fas fa-file-invoice me-1"></i> Create New PO
+        </a>
+    </div>
+
+    <!-- PO List Table -->
+    <div class="card shadow">
+        <div class="card-body p-0">
+            @if($pos->count() > 0)
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="12%">PO Number</th>
+                                <th width="20%">Customer</th>
+                                <th width="15%">Site</th>
+                                <th width="10%">PO Date</th>
+                                <th width="10%">Start Date</th>
+                                <th width="10%">End Date</th>
+                                <th width="10%">Total Amount</th>
+                                <th width="8%">Status</th>
+                                <th width="15%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($pos as $po)
+                            <tr>
+                                <td>
+                                    <strong>{{ $po->po_number }}</strong>
+                                </td>
+                                <td>
+                                    {{ $po->party_name }}
+                                </td>
+                                <td>
+                                    @if($po->site_name)
+                                        {{ $po->site_name }}
+                                    @else
+                                        <span class="text-muted">N/A</span>
+                                    @endif
+                                </td>
+                                <td>{{ $po->po_date ? \Carbon\Carbon::parse($po->po_date)->format('M d, Y') : 'N/A' }}</td>
+                                <td>{{ $po->valid_from ? date('M d, Y', strtotime($po->valid_from)) : 'N/A' }}</td>
+                                <td>{{ $po->valid_to ? date('M d, Y', strtotime($po->valid_to)) : 'N/A' }} </td>
+                                <td>
+                                    @if(!empty($po->test_rate) &&  !empty($po->test_limit))
+                                        ₹{{ number_format(($po->test_rate * $po->test_limit), 2) }}
+                                    @else
+                                        <span class="text-muted">₹0.00</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($po->status === 'active')
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-secondary">{{ ucfirst($po->status) }}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ route('po.show', $po->id) }}" 
+                                           class="btn btn-xs btn-outline-info" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-xs btn-info view-tests-btn" data-po-id="{{ $po->id }}" title="View Tests">
+                                            <i class="bi bi-card-list"></i>
+                                        </button>
+                                        <a href="{{ route('po.edit', $po->id) }}" 
+                                           class="btn btn-xs btn-outline-warning" title="Edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <form action="{{ route('po.destroy', $po->id) }}" method="POST" 
+                                              style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this PO?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-xs btn-outline-danger" title="Delete">
+                                               <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-
-<!-- Data Table -->
-<div class="card shadow mb-4">
-    <div class="card-body p-0">
-        @if($po_datas->count() > 0)
-            <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead>
-                        <tr>
-       
-                            <th>ID</th>
-                            <th>Party Name</th>
-                            <th>PO Number</th>
-                            <th>Date</th>
-                            <th>Valid From</th>
-                            <th>Valid To</th>
-                         <th>Status</th>
-                         
-                            <th width="150">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody_customer_index">
-                        @foreach($po_datas as $po_data)
-                        <tr>
-                               <td><strong>{{ $po_data->id }}</strong></td>
-                            <td>    {{$po_data->party_id}}</a>
-                            </td>
-                            <td>{{$po_data->po_number}}</td>
-                             <td>{{date('d-m-Y', strtotime($po_data->po_date))}}</td>
-                             <td>{{date('d-m-Y', strtotime($po_data->valid_from))}}</td>
-                             <td>{{date('d-m-Y', strtotime($po_data->valid_to))}}</td>
-                            <td>{{ config('constants.PO_STATUS.' . $po_data->status) ?? 'N/A' }}</td>
-
-
-                            <td>
-                                <div class="btn-group" role="group">
-                              
-                                    <a href="{{ route('po.show', $po_data->id) }}" 
-                                       class="btn btn-sm btn-outline-info" title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('po.edit', $po_data->id) }}" 
-                                       class="btn btn-sm btn-outline-warning" title="Edit">
-                                       <i class="bi bi-pencil"></i>
-                                    </a>
-                                    
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- Pagination -->
-           
-            @if($po_datas->hasPages())
-                <div class="card-footer">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-muted">
-                            Showing {{ $po_datas->firstItem() }} to {{ $po_datas->lastItem() }} 
-                            of {{ $po_datas->total() }} results
+                
+                <!-- Pagination -->
+                @if($pos->hasPages())
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-muted">
+                                Showing {{ $pos->firstItem() }} to {{ $pos->lastItem() }} 
+                                of {{ $pos->total() }} results
+                            </div>
+                            {{ $pos->links('pagination::bootstrap-5') }}
                         </div>
-                        {{ $po_datas->links('pagination::bootstrap-5') }}
                     </div>
-                </div>
-            @endif 
-        @else
-            <div class="text-center py-5">
-                <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
-                <h4 class="text-muted">No Site Masters Found</h4>
-                <p class="text-muted mb-4">
-                    @if(request()->hasAny(['search', 'status']))
-                        No sites match your search criteria.
-                    @else
-                        Start by creating your first site master.
-                    @endif
-                </p>
-                @if(request()->hasAny(['search', 'status']))
-                    <a href="{{ route('po.index') }}" class="btn btn-outline-primary me-2">
-                        <i class="fas fa-times"></i> Clear Filters
+                @endif 
+            @else
+                <div class="text-center py-4">
+                    <i class="fas fa-file-invoice fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No Purchase Orders found</h5>
+                    <p class="text-muted mb-3">
+                        Start by creating your first Purchase Order.
+                    </p>
+                    <a href="{{ route('po.create') }}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        <i class="fas fa-file-invoice me-1"></i> Create New PO
                     </a>
-                @endif
-                <a href="{{ route('po.create') }}" class="btn btn-primary new-customer">
-                    <i class="fas fa-plus"></i> Add New Customer
-                </a>
-            </div>
-        @endif
-    </div>
-</div>
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div id="modal-search-results">
+                </div>
+            @endif
         </div>
     </div>
 </div>
-<script src="/js/customer/tbody_customer_index.js?{{date('mmss')}}"></script>
+
+<!-- Test Details Modal -->
+<div class="modal fade" id="testDetailsModal" tabindex="-1" aria-labelledby="testDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="testDetailsModalLabel">Test Details for PO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="testDetailsContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const testDetailsModal = new bootstrap.Modal(document.getElementById('testDetailsModal'));
+        const testDetailsContent = document.getElementById('testDetailsContent');
+
+        document.querySelectorAll('.view-tests-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const poId = this.dataset.poId;
+                const modalTitle = document.getElementById('testDetailsModalLabel');
+                modalTitle.textContent = `Test Details for PO #${poId}`;
+
+                fetch(`/ajax/po-tests/${poId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let html = '<div class="row mb-3 bg-primary text-white border"><div class="col-md-6 text-center"><strong>Sample Type</strong></div><div class="col-md-6"><strong>Test List</strong></div></div>';
+                        for (const sampleType in data) {
+                            html += `<div class="row mb-3 border"><div class="col-md-6 text-center"><strong>${sampleType}</strong></div><div class="col-md-6"><ul>`;
+                            data[sampleType].forEach(test => {
+                                html += `<li>${test.test_name}</li>`;
+                            });
+                            html += `</ul></div></div>`;
+                        }
+                        testDetailsContent.innerHTML = html;
+                        testDetailsModal.show();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching test details:', error);
+                        testDetailsContent.innerHTML = '<p class="text-danger">Error loading test details.</p>';
+                        testDetailsModal.show();
+                    });
+            });
+        });
+    });
+</script>
+@endpush

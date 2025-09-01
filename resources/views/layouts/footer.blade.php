@@ -96,6 +96,7 @@
    
         <script
       src="/js/jquery.js"></script>
+@stack('scripts')
   </body>
   <!--end::Body-->
 </html>
