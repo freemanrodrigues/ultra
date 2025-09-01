@@ -89,9 +89,7 @@ class SampleNatureController
    
     public function edit(SampleNature $sampleNature):view
     {
-        dd("XX");
-       die("Id: ".$sampleNature->id);
-        //return view('masters.sample-nature.edit', compact('sampleNature'));
+        return view('masters.sample-nature.edit', compact('sampleNature'));
     }
     
     /**
@@ -99,7 +97,6 @@ class SampleNatureController
      */
     public function update(Request $request, SampleNature $sampleNature)
     {
-        die("Update");
         $validated = $request->validate([
             'sample_nature_code' => 'required|string|max:50|unique:sample_natures,sample_nature_code,'.$sampleNature->id,
             'sample_nature_name' => 'required|string|max:255',

@@ -26,15 +26,27 @@ class TestSeeder extends Seeder
         $csv->setHeaderOffset(0); // First row is header
         					
 
-        foreach ($csv->getRecords() as $record) {
-            DB::table('test_masters')->insert([
-                'test_name'  => $record['bottle_code'],
-                'bottle_name'  => $record['bottle_name'],
-                'status'     => 1,
-            ]);
-        }
-        		default_unit	tat_hours_default	status
+        //		default_unit	tat_hours_default	status
+ // Initialize an empty array to hold your records
+$recordsToInsert = [];
 
-        $this->command->info('Bottle data seeded successfully!');
+// Loop through the CSV records and prepare the data for a batch insert
+foreach ($csv->getRecords() as $record) {
+    // This is much more efficient than inserting one at a time.
+    $recordsToInsert[] = [
+       'test_name'  => $record['test_name'],
+        'status'       => 1,
+    ];
+}
+
+// Now, perform a single, optimized batch insert.
+// Laravel's insertOrIgnore() will use the database's UNIQUE or PRIMARY key
+// to automatically skip any records that would cause a duplicate key error.
+if (!empty($recordsToInsert)) {
+    DB::table('test_masters')->insertOrIgnore($recordsToInsert);
+}
+
+
+        $this->command->info('Test data seeded successfully!');
     }
 }

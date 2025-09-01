@@ -72,7 +72,7 @@ class SampleDetailController
         $make_models =MakeModelMaster::getMakeModel();
         $makes = MakeModelMaster::select('make')->distinct()->pluck('make');
         //dd($makes);
-        $sample = SampleMaster::where('id',$id)->with('customer')->with('customer_site_masters')->first();  
+        $sample = SampleMaster::where('id',$id)->with('customer', 'customer_site_masters.siteMaster')->first();  
 
       // echo "<br> Customer  Id: ". $sample[0]->customer_id;
      //s  echo "<br> Customer Site Id: ". $sample[0]->customer_site_id;

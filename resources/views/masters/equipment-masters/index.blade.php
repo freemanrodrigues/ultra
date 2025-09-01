@@ -198,7 +198,8 @@
                                         <th>Equipment Name</th>
                                         
                                         <th>Serial Number</th>
-                                        <th>Make Model</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
                                         <th width="100">Status</th>
                                         <th width="120">Created</th>
                                         <th width="120">Updated</th>
@@ -219,7 +220,8 @@
                                                        title="View Details"> {{ $equipment->equipment_name }}</a>
                                             </td>
                                             <td>{{ $equipment->serial_number }}</td>
-                                            <td>{{-- $equipment->make_model->make --}} {{-- $equipment->make_model->model --}}</td>
+                                            <td>{{ $equipment->make_model->make ?? '' }}</td>
+                                            <td>{{ $equipment->make_model->model ?? '' }}</td>
                                             <td>
                                                 <span class="badge bg-{{ $equipment->status ? 'success' : 'danger' }}">
                                                     {{ $equipment->status ? 'Active' : 'Inactive' }}

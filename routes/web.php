@@ -69,6 +69,7 @@ Route::any('/ajax/autosuggest-make', [MakeMasterController::class,'autoSuggestMa
 Route::any('/ajax/list-sitemaster', [SiteMasterController::class,'ajaxListSitemaster'])->name('list-sitemaster');
 Route::any('/ajax/list-courier', [CourierMasterController::class,'ajaxListCourier'])->name('list-courier');
 Route::any('/ajax/save-equipment-n-more', [EquipmentMasterController::class,'ajaxSaveEquipmentAndMore'])->name('save-equipment-n-more');
+Route::any('/ajax/get-customer-address', [SampleMasterController::class,'getCustomerAddress'])->name('get-customer-address');
 
 //Route::resource('/master/state', SiteMasterController::class);
 Route::get('profile', [UserController::class,'userProfile'])->name('profile');

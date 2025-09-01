@@ -141,4 +141,15 @@ class SampleMasterController
     {
         //
     }
+
+    public function getCustomerAddress(Request $request): JsonResponse
+    {
+        $customer = CustomerMaster::find($request->customer_id);
+    
+        if ($customer) {
+            return response()->json($customer);
+        }
+    
+        return response()->json(['error' => 'Customer not found'], 404);
+    }
 }
