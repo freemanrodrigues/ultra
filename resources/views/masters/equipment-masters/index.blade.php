@@ -161,30 +161,7 @@
                             <span class="badge bg-secondary ms-2">Filtered</span>
                         @endif
                     </h6>
-                    <div class="d-flex gap-2">
-                        <!-- Bulk Actions -->
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" 
-                                    type="button" 
-                                    id="bulkActions" 
-                                    data-bs-toggle="dropdown" 
-                                    aria-expanded="false">
-                                <i class="fas fa-cogs me-2"></i>Bulk Actions
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="bulkActions">
-                                <li><a class="dropdown-item" href="#" onclick="bulkAction('activate')">
-                                    <i class="fas fa-check me-2"></i>Activate Selected
-                                </a></li>
-                                <li><a class="dropdown-item" href="#" onclick="bulkAction('deactivate')">
-                                    <i class="fas fa-times me-2"></i>Deactivate Selected
-                                </a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="#" onclick="bulkAction('delete')">
-                                    <i class="fas fa-trash me-2"></i>Delete Selected
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
+                   
                 </div>
                 <div class="card-body p-0">
                     @if($equipmentMasters->count() > 0)
@@ -192,11 +169,7 @@
                             <table class="table table-hover mb-0">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th width="40">
-                                            <input type="checkbox" id="selectAll" class="form-check-input">
-                                        </th>
-                                        <th>Equipment Name</th>
-                                        
+                                         <th>Equipment Name</th>
                                         <th>Serial Number</th>
                                         <th>Make</th>
                                         <th>Model</th>
@@ -209,16 +182,7 @@
                                 <tbody> 
                                     @foreach($equipmentMasters as $equipment)
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" 
-                                                       class="form-check-input row-checkbox" 
-                                                       value="{{ $equipment->id }}">
-                                            </td>
-                                            <td>
-                                              <a href="{{ route('equipment-masters.show', $equipment) }}" 
-                                                       
-                                                       title="View Details"> {{ $equipment->equipment_name }}</a>
-                                            </td>
+                                              <td>{{ $equipment->equipment_name }} </td>
                                             <td>{{ $equipment->serial_number }}</td>
                                             <td>{{ $equipment->make_model->make ?? '' }}</td>
                                             <td>{{ $equipment->make_model->model ?? '' }}</td>
@@ -252,12 +216,6 @@
                                                        <i class="bi bi-eye"></i>
                                                     </a>
                                                     
-                                                    <!-- Edit Button -->
-                                                    <a href="{{ route('equipment-masters.edit', $equipment) }}" 
-                                                       class="btn btn-outline-primary btn-sm" 
-                                                       title="Edit">
-                                                       <i class="bi bi-pencil"></i>
-                                                    </a>
                                                     
                                                     <!-- Delete/Restore Button -->
                                                     <button type="button" 

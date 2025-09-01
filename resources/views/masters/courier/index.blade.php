@@ -50,19 +50,7 @@ value="{{ request('search') }}" placeholder="Search by code or name..." data-txt
     </form>
 </div>
 
-<!-- Bulk Actions -->
-<div id="bulk-actions" style="display: none;" class="mb-3">
-    <form method="POST" action="{{ route('courier.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">
-        @csrf
-        <div class="d-flex align-items-center gap-2">
-            <span class="text-muted">With selected:</span>
-            <button type="submit" class="btn btn-sm btn-danger">
-                <i class="fas fa-trash"></i> Delete
-            </button>
-        </div>
-        <input type="hidden" name="ids" id="bulk-ids">
-    </form>
-</div>
+
 
 <!-- Data Table -->
 <div class="card">
@@ -72,9 +60,6 @@ value="{{ request('search') }}" placeholder="Search by code or name..." data-txt
                 <table class="table table-hover mb-0">
                     <thead>
                         <tr>
-                            <th width="50">
-                                <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
-                            </th>
                             <th>ID</th>
                             <th>Courier Code</th>
                             <th>Courier Name</th>
@@ -86,11 +71,7 @@ value="{{ request('search') }}" placeholder="Search by code or name..." data-txt
                     <tbody id="tbody_customer_index">
                         @foreach($couriers as $courier)
                         <tr>
-                            <td>
-                                <input type="checkbox" name="selected_ids[]" value="{{ $courier->id }}" 
-                                       onchange="toggleBulkActions()" class="form-check-input">
-                            </td>
-                            <td><strong>{{ $courier->id }}</strong></td>
+                             <td><strong>{{ $courier->id }}</strong></td>
                             <td>
                                 <code class="bg-light px-2 py-1 rounded">{{ $courier->courier_code }}</code>
                             </td>
@@ -106,10 +87,7 @@ value="{{ request('search') }}" placeholder="Search by code or name..." data-txt
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('courier.show', $courier) }}" 
-                                       class="btn btn-sm btn-outline-info" title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
+                                  
                                     <a href="{{ route('courier.edit', $courier) }}" 
                                        class="btn btn-sm btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>

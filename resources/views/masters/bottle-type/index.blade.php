@@ -49,19 +49,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 @endif
-<!-- Bulk Actions -->
-<div id="bulk-actions" style="display: none;" class="mb-3">
-    <form method="POST" action="{{ route('bottle-type.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">
-        @csrf
-        <div class="d-flex align-items-center gap-2">
-            <span class="text-muted">With selected:</span>
-            <button type="submit" class="btn btn-sm btn-danger">
-                <i class="fas fa-trash"></i> Delete
-            </button>
-        </div>
-        <input type="hidden" name="ids" id="bulk-ids">
-    </form>
-</div>
+
 
 <!-- Data Table -->
 <div class="card">
@@ -71,9 +59,6 @@
                 <table class="table table-hover mb-0">
                     <thead>
                         <tr>
-                            <th width="50">
-                                <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
-                            </th>
                             <th>ID</th>
                             <th>Bottle Code</th>
                             <th>Bottle Name</th>
@@ -85,10 +70,6 @@
                     <tbody>
                         @foreach($bottle_types as $bottle_type)
                         <tr>
-                            <td>
-                                <input type="checkbox" name="selected_ids[]" value="{{ $bottle_type->id }}" 
-                                       onchange="toggleBulkActions()" class="form-check-input">
-                            </td>
                             <td><strong>{{ $bottle_type->id }}</strong></td>
                             <td>
                                 <code class="bg-light px-2 py-1 rounded">{{ $bottle_type->bottle_code }}</code>
@@ -105,11 +86,7 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('bottle-type.show', $bottle_type) }}" 
-                                       class="btn btn-sm btn-outline-info" title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('bottle-type.edit', $bottle_type) }}" 
+                                      <a href="{{ route('bottle-type.edit', $bottle_type) }}" 
                                        class="btn btn-sm btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
