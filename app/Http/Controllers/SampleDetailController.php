@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{BottleType,EquipmentAssignment,SampleDetail,SampleMaster,SampleNature,SampleOilType,MakeModelMaster};
+use App\Models\{BottleType,EquipmentAssignment,SampleDetail,SampleMaster,SampleNature,SampleType,MakeModelMaster,SampleDetailTestAssignment};
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -81,36 +81,14 @@ class SampleDetailController
 
         $equipments = EquipmentAssignment::getSiteEquipmentList($sample->customer_site_id);
         $sample_natures = SampleNature::getSampleNatureArray();
-        $sample_types = SampleOilType::getSampleOilTypeArray();
+        $sample_types = SampleType::getSampleTypeArray();
         $bottle_types = BottleType::getBottleTypeArray();
 
         return view('add-sample-details',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
         // ,'devices','sample_types','sample_natures','bottle_types'
     }
     // Delete 
-     public function addSampleDetialsX($id):View
-    {
-
-        $make_models =MakeModelMaster::getMakeModel();
-        $makes = MakeModelMaster::select('make')->distinct()->pluck('make');
-        //dd($makes);
-        $sample = SampleMaster::where('id',$id)->get();
-
-      // echo "<br> Customer  Id: ". $sample[0]->customer_id;
-     //s  echo "<br> Customer Site Id: ". $sample[0]->customer_site_id;
-     //  echo "<br> Customer Site Id: ". $sample[0]->customer_id;
-        //die();
-
-        $equipments = EquipmentAssignment::getSiteEquipmentList($sample[0]->customer_site_id);
-
-       // dd($equipments);
-        $sample_natures = SampleNature::getSampleNatureArray();
-        $sample_types = SampleOilType::getSampleOilTypeArray();
-        $bottle_types = BottleType::getBottleTypeArray();
-
-        return view('add-sample-details_x',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
-        // ,'devices','sample_types','sample_natures','bottle_types'
-    }
+    
 
     public function saveSampleDetials(Request $request)
     {
@@ -170,6 +148,10 @@ class SampleDetailController
            //     $smd->fir  = $request->fir[$k]??NULL;
           //      $smd->invoice  = $request->invoice[$k];
                 $smd->save();
+
+                // Assign the test for the Sample
+                
+                SampleDetailTestAssignment::create(['sample_details_id' =>$smd->id,'test_id']);
             }
             return redirect()->route('sample.index')
                            ->with('success', 'SampleDetails added successfully!');

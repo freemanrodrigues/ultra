@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="row g-2">
                 <div class="col-md-6">
                     <label class="form-label">Sample Type *</label>
-                    <select class="form-select" name="samples[${sampleCounter}][sample_type_id]" required>
+                    <select class="form-select " name="samples[${sampleCounter}][sample_type_id]" required>
                         <option value="">Select Sample Type</option>
                         @foreach($sampleTypes as $sampleType)
                             <option value="{{ $sampleType->id }}">{{ $sampleType->sample_type_name }}</option>
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="row g-2">
                     <div class="col-md-12">
                         <label class="form-label">Tests *</label>
-                        <select class="form-select" name="samples[${sampleCounter}][tests][]" multiple required size="10">
+                        <select class="form-select test-select" name="samples[${sampleCounter}][tests][]" multiple required size="10">
                             @foreach($tests as $test)
                                 <option value="{{ $test->id }}" data-price="{{ $test->default_price ?? 0 }}">
                                     {{ $test->test_name }}

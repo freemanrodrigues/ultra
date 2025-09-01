@@ -5,6 +5,9 @@ td {
   white-space: nowrap;
   padding: 0 10px; /* Adjust 10px to your desired spacing */
 }
+.selwidth {
+  width: 150px;
+}
 </style>
 <form method="POST" action="{{ route('save-sample-details') }}" id="sampleForm"  enctype="multipart/form-data">
       @csrf
@@ -36,15 +39,11 @@ td {
                     <th>Top Up Volume (Ltr)</th>
                     <th>Sump Capacity</th>
                     <th>Sampling From</th>
-                  
                     <th>Qty</th>
                     <th>Type Of Bottle</th>
-                     <th>Customer Note</th>
-                    <th>Severity</th>
                     <th>Oil Drained</th>
-                    <th>Image Attachment</th>
-                    <th>FTR Attachment</th>
-                    <th></th>
+                   
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,37 +77,38 @@ td {
                     </td>
                     <td><input type="text" name="running_hrs[{{ $i+1 }}]"></td>
                     <td><input type="text" name="sub_asy_no[{{ $i+1 }}]"></td>
-                    <td><input type="text" name="sub_asy_hrs[{{ $i+1 }}]"></td>
+                    <td><input type="text" name="sub_asy_hrs[{{ $i+1 }}]" placeholder="Sub Asy. Hrs"></td>
                     <td>
-                        <input type="text" name="sampling_date[{{ $i+1 }}]" style="width:60px">
+                        <input type="date" name="sampling_date[{{ $i+1 }}]" style="width:110px">
                     </td>
                     <td>
                         <select name="brand_of_oil[{{ $i+1 }}]" class="form-select selwidth">
+                         <option value="">Select Oil</option>
                             @foreach(config('constants.BRAND_OF_OIL') as $k => $val)
                             <option value="{{$k}}">{{$val}}</option>
                             @endforeach 
                         </select>
                     </td>
                     <td>
-                        <input type="text" name="grade[{{ $i+1 }}]">
+                        <input type="text" name="grade[{{ $i+1 }}]" placeholder="Grade">
                     </td>
                     <td>
-                        <input type="text" name="lube_oil_running_hrs[{{ $i+1 }}]">
+                        <input type="text" name="lube_oil_running_hrs[{{ $i+1 }}]" placeholder="Lube Oil Hs">
                     </td>
                     <td>
                         <input type="text" name="top_up_volume[{{ $i+1 }}]">
                     </td>
                     <td>
-                        <input type="text" name="sump_capacity[{{ $i+1 }}]">
+                        <input type="text" name="sump_capacity[{{ $i+1 }}]" placeholder="Sump Capacity">
                     </td>
                     <td>
                         <input type="text" name="sampling_from[{{ $i+1 }}]">
                     </td>
                     <td>
-                        <input type="text" name="qty[{{ $i+1 }}]">
+                        <input type="text" name="qty[{{ $i+1 }}]"  placeholder="Qty">
                     </td>
                     <td>
-                        <select name="type_of_bottle[{{ $i+1 }}]" class="form-control">
+                        <select name="type_of_bottle[{{ $i+1 }}]" class="form-control selwidth">
                             <option value="">Select BottleType</option>
                             @foreach($bottle_types as $k => $v)
                             <option value="{{$k}}">{{$v }}</option> 
@@ -116,25 +116,13 @@ td {
                         </select>
                     </td>
                     
-                    <td>
-                        <select name="severity[{{ $i+1 }}]" class="form-control">
-                            @foreach(config('constants.SEVERITY') as $k => $val)
-                            <option value="{{$k}}">{{$val}}</option>
-                            @endforeach 
-                        </select>
-                    </td>
-                    <td>
-                        <select name="oil_drained[{{ $i+1 }}]" class="form-control">
+                     <td class="">
+                        <select name="oil_drained[{{ $i+1 }}]" class="form-control selwidth">
                             <option value="Y">Yes</option>
                             <option value="N">No</option>
                         </select>
                     </td>
-                    <td>
-                        <input class="form-control image" type="file" name="image[{{ $i+1 }}]" value="Upload Image">
-                    </td>
-                    <td>
-                        <input class="form-control fir" type="file" name="fir[{{ $i+1 }}]" value="Upload Image">
-                    </td>
+                   
                    <td><button type="button">Save</button></td>
                 </tr>
                 @endfor 
