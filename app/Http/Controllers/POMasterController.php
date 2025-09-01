@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{POMaster,SampleType};
+use App\Models\{CompanyMaster,POMaster,SampleType,TestMaster};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
@@ -41,8 +41,10 @@ class POMasterController
      */
     public function create()
     {
-       $sample_types = SampleType::getSampleType();
-        return view('masters.po.create',compact('sample_types'));
+       $sampleTypes = SampleType::getSampleType();
+       $tests = TestMaster::where('status',1)->get();
+       $companies= CompanyMaster::where('status',1)->get();
+        return view('masters.po.create',compact('sampleTypes','tests','companies'));
     }
 
     /**

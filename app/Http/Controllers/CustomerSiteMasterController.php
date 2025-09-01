@@ -239,4 +239,10 @@ class CustomerSiteMasterController
         }
         return response()->json([]);
     }
+
+    public function getSitesByCompany($id)
+    {
+        $sites = CustomerSiteMaster::where('company_id', $id)->get(['id', 'site_customer_name as site_name']);
+        return response()->json($sites);
+    }
 }

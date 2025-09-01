@@ -137,6 +137,7 @@ Route::any('/masters/courier/bulk_delete', [CourierMasterController::class,'bulk
 Route::any('/ajax-get-customer-address', [CustomerMasterController::class,'getCustomerAddress'])->name('ajax-get-customer-address');
 
 Route::any('/ajax-get-customer-sites', [CustomerSiteMasterController::class,'getCustomerSites'])->name('ajax-get-customer-sites');
+Route::get('/ajax/company-sites/{id}', [CustomerSiteMasterController::class,'getSitesByCompany'])->name('company-sites');
 Route::any('/ajax-get-site-contact-details', [UserController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
 
 Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])->name('ajax-get-contacts');
