@@ -1,66 +1,316 @@
 @extends('/layouts/master-layout')
 @section('content')
-      <!--begin::App Main-->
-      <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
-          
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Users</h3>
-        <a href="{{ route('users.create')}}" class="btn btn-primary">Add User</a>
+<style>
+    /* Consistent styling for user page - Optimized for viewport */
+    .user-page {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.2;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    
+    .user-page h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .user-page .form-control,
+    .user-page .form-select,
+    .user-page .btn {
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+    
+    /* Bold, larger headers (14px, weight 700) for better visibility */
+    .user-page .table th {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        padding: 0.2rem 0.5rem !important;
+        vertical-align: middle;
+        background-color: #3b82f6;
+        color: white;
+        border-bottom: 2px solid #1d4ed8;
+        height: 2.2rem;
+    }
+    
+    .user-page .table td {
+        font-size: 13px !important;
+        padding: 0.2rem 0.5rem !important;
+        vertical-align: middle;
+    }
+    
+    /* Distinct header background */
+    .page-header {
+        background: linear-gradient(135deg, #667eef 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Compact layout */
+    .compact-form {
+        margin-bottom: 0.5rem;
+    }
+    
+    .compact-table {
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    /* Compact table rows - Consistent height with header */
+    .table-compact tbody tr {
+        height: 2.2rem;
+    }
+    
+    /* Small action buttons with reduced size */
+    .btn-xs {
+        padding: 0.1rem 0.2rem;
+        font-size: 10px;
+        line-height: 1;
+        min-width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-xs i {
+        font-size: 12px;
+    }
+    
+    /* Form elements height consistency - Reduced height */
+    .form-control, .form-select, .btn {
+        height: 32px !important;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    /* Input group alignment */
+    .input-group .form-control {
+        height: 32px !important;
+    }
+    
+    .input-group .input-group-text {
+        height: 32px !important;
+        padding: 0.25rem 0.5rem;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-left: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Row alignment */
+    .form-row-aligned {
+        align-items: center;
+    }
+    
+    /* Search loading indicator */
+    .search-loading {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+        display: none;
+    }
+    
+    /* Compact card and spacing */
+    .card-body {
+        padding: 0.5rem !important;
+    }
+    
+    .card-footer {
+        padding: 0.5rem !important;
+    }
+    
+    /* Reduced margins and padding */
+    .mb-2 {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .mb-3 {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .py-2 {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .user-page h1 {
+            font-size: 1.1rem;
+        }
+        
+        .page-header {
+            padding: 0.4rem 0.75rem;
+        }
+    }
+</style>
+
+<div class="container-fluid user-page">
+    <!-- Page Header with distinct background -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>
+                <i class="fas fa-users me-2"></i> User Management
+                <small class="d-block d-md-inline ms-md-2 opacity-75">({{ $users->total() }} total)</small>
+            </h1>
+        </div>
     </div>
 
-    <!-- Alert -->
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
-    <!-- Users Table -->
-    <table class="table table-bordered table-striped align-middle">
+    <!-- Search and Filter Form with Add New User inline -->
+    <div class="card shadow-sm compact-form">
+        <div class="card-body py-2">
+            <form method="GET" action="{{ route('users.index') }}" class="row g-2 form-row-aligned">
+                <div class="col-md-4">
+                    <div class="input-group position-relative">
+                        <input type="text" class="form-control" id="search" name="search" 
+                               value="{{ request('search') }}" placeholder="Search by name or email..." 
+                               autocomplete="off">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <div class="search-loading" id="search-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="status" name="status">
+                        <option value="">All Status</option>
+                        <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                        <a href="{{ route('users.index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times"></i> Clear
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('users.create') }}" class="btn btn-primary w-100">
+                        <i class="fas fa-plus me-2"></i>
+                        <i class="fas fa-user me-1"></i> Add New User
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="card shadow">
+        <div class="card-body p-0">
+            @if($users->count() > 0)
+                <div class="table-responsive compact-table">
+                    <table class="table table-hover mb-0 table-striped table-compact">
         <thead class="table-light">
             <tr>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>User Type</th>
-                <th>Status</th>
-                <th >Actions</th>
+                                <th width="25%">Email</th>
+                                <th width="20%">Name</th>
+                                <th width="15%">Phone</th>
+                                <th width="15%">User Type</th>
+                                <th width="10%">Status</th>
+                                <th width="15%">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user)
-            <tr data-id="{{ $user->id }}">
+                            <tr>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                 <td>{{ $user->phone }}</td>
                 <td>{{ ucfirst($user->user_type) }}</td>
-                <td><span class="badge bg-{{ $user->status ? 'success' : 'secondary' }}">{{ $user->status ? 'Active' : 'Inactive' }}</span></td>
-                <td>
-                    <!-- button class="btn btn-sm btn-warning editUserBtn">Edit</button -->
-   
-                     <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-outline-warning" title="Edit">
+                                <td> 
+                                    @if($user->status)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ route('users.edit', $user) }}" 
+                                           class="btn btn-xs btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
-                    <form method="POST" action="{{ route('users.destroy', $user->id) }}" class="d-inline" onsubmit="return confirm('Delete this user?')">
-                        @csrf @method('DELETE')
-                        <button class="btn btn-sm btn-danger">Del</button>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" 
+                                              style="display: inline;" onsubmit="return confirm('Are you sure?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-xs btn-outline-danger" title="Delete">
+                                               <i class="bi bi-trash"></i>
+                                            </button>
                     </form>
-                   
-                    
+                                    </div>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
-
-
-          <!--end::Container-->
+                </div>
+                
+                <!-- Pagination -->
+                @if($users->hasPages())
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-muted pagination-info">
+                                Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} 
+                                of {{ $users->total() }} results
+                            </div>
+                            {{ $users->links('pagination::bootstrap-5') }}
+                        </div>
+                    </div>
+                @endif 
+            @else
+                <div class="text-center py-4">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No users found</h5>
+                    <p class="text-muted mb-3">
+                        @if(request()->hasAny(['search', 'status']))
+                            No users match your search criteria.
+                        @else
+                            Start by adding your first user.
+                        @endif
+                    </p>
+                    @if(request()->hasAny(['search', 'status']))
+                        <a href="{{ route('users.index') }}" class="btn btn-outline-primary me-2">
+                            <i class="fas fa-times"></i> Clear Filters
+                        </a>
+                    @endif
+                    <a href="{{ route('users.create') }}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        <i class="fas fa-user me-1"></i> Add New User
+                    </a>
+                </div>
+            @endif
         </div>
-        <!--end::App Content-->
-      </main>
-      <!--end::App Main-->
+    </div>
+</div>
 
-@stop
+@endsection

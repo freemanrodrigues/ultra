@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
-        Schema::create('po_test_lines', function (Blueprint $table) {
+        Schema::create('po_samples', function (Blueprint $table) {
             $table->id();
-             $table->integer('po_master_id');
-            $table->integer('sample_type_id');
-            $table->string('test_id')->nullable();
-            $table->boolean('status')->default(1);
+            $table->unsignedBigInteger('po_id');
+            $table->unsignedBigInteger('sample_type_id');
+            $table->text('description')->nullable();
             $table->timestamps();
-            $table->foreign('po_id')->references('id')->on('po_masters')->onDelete('cascade');
-        });
 
-        
+            $table->foreign('po_id')->references('id')->on('po_masters')->onDelete('cascade');
+            $table->foreign('sample_type_id')->references('id')->on('sample_types')->onDelete('restrict');
+        });
     }
 
     /**
@@ -30,8 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('po_test_lines');
-
-        
+        Schema::dropIfExists('po_samples');
     }
 };
+

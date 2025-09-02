@@ -28,7 +28,7 @@ class CustomerMaster extends Model
 	} 
 	
 	public static function getCountryId($id) {
-		return CustomerMaster::where('id',$id)->get(['company_id']);
+		return CustomerMaster::where('id', $id)->first(['company_id']);
 	}
 
 	public static function getCustomerIdByCompanyId($id) {

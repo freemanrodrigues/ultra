@@ -321,8 +321,8 @@ $customers = $query->paginate(10)->appends($request->query());
 
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
-        $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'company_name as name') // Select only necessary columns
+        $suggestions = CustomerMaster::where('customer_name', 'LIKE', '%' . $query . '%')
+                                ->select('id', 'customer_name as name') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 
@@ -331,20 +331,29 @@ $customers = $query->paginate(10)->appends($request->query());
 
     public function getCustomerAddress(Request $request)
     {
+       // dd($request->all());
         $request->validate([
             'customerid' => 'required|integer',
         ]);
 
         
-        $customer = CustomerMaster::where('id', $request->customerid)->first();
+        $customer = CustomerMaster::where('customer_masters.id', $request->customerid)
+            ->leftJoin('states', 'customer_masters.state', '=', 'states.id')
+            ->leftJoin('countries', 'customer_masters.country', '=', 'countries.id')
+            ->select('customer_masters.*', 'states.statename', 'countries.countryname')
+            ->first();
+    
         $sitemaster = SiteMaster::getSite($request->customerid);
-        
+      
+        // get PO Master
+
         if ($customer) {
             return response()->json([
                 'customer' => $customer, 
                 'sitemaster' => $sitemaster, 
             ]);
         }
+        
         return response()->json([]);
     }
 
@@ -375,5 +384,80 @@ $customers = $query->paginate(10)->appends($request->query());
 
 
         return response()->json($customers);
+    }
+
+    /**
+     * Search customers for real-time search functionality
+     */
+    public function search(Request $request): JsonResponse
+    {
+        $search = $request->get('search', '');
+        $status = $request->get('status', '');
+        
+        $query = CustomerMaster::select(
+            'customer_masters.id as cus_mas_id',
+            'site_name',
+            'customer_name',
+            'customer_masters.division',
+            'customer_masters.group',
+            'customer_masters.status',
+            'states.statename',
+            'customer_masters.gst_state_code'
+        )
+        ->leftJoin(
+            'customer_site_masters',
+            'customer_masters.id',
+            '=',
+            'customer_site_masters.customer_id'
+        )
+        ->leftJoin(
+            'site_masters',
+            'customer_site_masters.site_master_id',
+            '=',
+            'site_masters.id'
+        )
+        ->leftJoin(
+            'states',
+            'customer_site_masters.state',
+            '=',
+            'states.id'
+        );
+
+        // Apply search filter
+        if (!empty($search)) {
+            $query->where(function($q) use ($search) {
+                $q->where('customer_masters.customer_name', 'like', "%{$search}%")
+                  ->orWhere('site_masters.site_name', 'like', "%{$search}%")
+                  ->orWhere('customer_masters.division', 'like', "%{$search}%");
+            });
+        }
+
+        // Apply status filter
+        if (!empty($status)) {
+            $query->where('customer_masters.status', $status);
+        } else {
+            $query->where('customer_masters.status', 1);
+        }
+
+        $query->orderBy('customer_masters.customer_name', 'asc');
+        
+        $customers = $query->get();
+        $total = CustomerMaster::count();
+
+        // Process group names for display
+        foreach ($customers as $customer) {
+            if (!empty($customer->group)) {
+                $customer->group_name = config('constants.CUSTOMER_GROUP.' . $customer->group) ?? 'N/A';
+            } else {
+                $customer->group_name = 'N/A';
+            }
+        }
+
+        return response()->json([
+            'customers' => $customers,
+            'total' => $total,
+            'search' => $search,
+            'status' => $status
+        ]);
     }
 }

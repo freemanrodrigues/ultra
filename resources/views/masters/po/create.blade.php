@@ -1,263 +1,167 @@
-@extends('/layouts/master-layout')
-@section('content')
+<?php
 
-<link rel="stylesheet" href="{{ asset('css/po/po.css')}}">
+namespace App\Http\Controllers;
 
-<div class="container-fluid po-page">
-    <!-- Page Header with distinct background -->
-    <div class="page-header">
-        <div class="d-flex justify-content-between align-items-center">
-            <h1>
-                <i class="fas fa-file-invoice me-2"></i> Create Purchase Order
-            </h1>
-        </div>
-    </div>
+use App\Models\{BottleType,CustomerMaster,EquipmentAssignment,POTestLine, SampleDetail,SampleMaster,SampleNature,SampleType,MakeModelMaster,SampleDetailTestAssignment};
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi bi-check-circle-fill me-2"></i>
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('po.store') }}" id="poForm">
-        @csrf
-        
-        <!-- PO Basic Information -->
-        <div class="card shadow-sm compact-form">
-            <div class="card-header">
-                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>PO Information</h5>
-            </div>
-            <div class="card-body">
-                <div class="row g-3">
-                    <!-- Customer Selection -->
-                    <div class="col-md-6">
-                        <label for="customer_id" class="form-label">Customer Name *</label>
-                        <select class="form-select" id="customer_id" name="customer_id" required>
-                            <option value="">Select Customer</option>
-                            @foreach($companies as $customer)
-	<option value="{{ $customer->id }}" 
-			data-customer-name="{{ $customer->company_name }}">
-		{{ $customer->company_name }}
-		
-	</option>
-@endforeach
-                        </select>
-                    </div>
-                    
-                    <!-- Customer Site Selection -->
-                    <div class="col-md-6">
-                        <label for="site_id" class="form-label">Customer Site *</label>
-                        <select class="form-select" id="site_id" name="site_id"  disabled>
-                            <option value="">Select Customer First</option>
-                        </select>
-                    </div>
-                    
-                    <!-- PO Number -->
-                    <div class="col-md-6">
-                        <label for="po_number" class="form-label">PO Number *</label>
-                        <input type="text" class="form-control" id="po_number" name="po_number" 
-                               placeholder="Enter PO Number" required>
-                    </div>
-                    
-                    <!-- PO Date -->
-                    <div class="col-md-6">
-                        <label for="po_date" class="form-label">PO Date *</label>
-                        <input type="date" class="form-control" id="po_date" name="po_date" required>
-                    </div>
-                    
-                    <!-- PO Start Date -->
-                    <div class="col-md-6">
-                        <label for="po_start_date" class="form-label">PO Start Date *</label>
-                        <input type="date" class="form-control" id="po_start_date" name="po_start_date" required>
-                    </div>
-                    
-                    <!-- PO End Date -->
-                    <div class="col-md-6">
-                        <label for="po_end_date" class="form-label">PO End Date *</label>
-                        <input type="date" class="form-control" id="po_end_date" name="po_end_date" required>
-                    </div>
-
-                                    <!-- PO Start Date -->
-                    <div class="col-md-6">
-                        <label for="test_rate" class="form-label">Test Rate *</label>
-                        <input type="text" class="form-control" id="test_rate" name="test_rate" required>
-                    </div>
-                    
-                    <!-- PO End Date -->
-                    <div class="col-md-6">
-                        <label for="test_limit" class="form-label">Test Limit *</label>
-                        <input type="text" class="form-control" id="test_limit" name="test_limit" required>
-                    </div>
-                     <!-- PO End Date -->
-                    <div class="col-md-6">
-                        <label for="currency" class="form-label">Currency *</label>
-                        <input type="text" class="form-control" id="currency" name="currency" required>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Samples Section -->
-        <div class="card shadow-sm compact-form">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0"><i class="fas fa-flask me-2"></i>Samples</h5>
-                <button type="button" class="btn btn-primary btn-add" id="addSampleBtn">
-                    <i class="fas fa-plus me-1"></i>Add Sample
-                </button>
-            </div>
-            <div class="card-body">
-                <div id="samplesContainer">
-                    <!-- Sample items will be added here dynamically -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="d-flex justify-content-end gap-2 mt-3">
-            <a href="{{ route('po.index') }}" class="btn btn-secondary">
-                <i class="fas fa-times me-1"></i>Cancel
-            </a>
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save me-1"></i>Create PO
-            </button>
-        </div>
-    </form>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const customerSelect = document.getElementById('customer_id');
-    const siteSelect = document.getElementById('site_id');
-    const addSampleBtn = document.getElementById('addSampleBtn');
-    const samplesContainer = document.getElementById('samplesContainer');
-    
-    let sampleCounter = 0;
-    
-    // Customer change event - load sites
-    customerSelect.addEventListener('change', function() {
-        const customerId = this.value;
-        siteSelect.disabled = !customerId;
-        siteSelect.innerHTML = '<option value="">Loading sites...</option>';
-        
-        if (customerId) {
-            fetch(`/ajax/company-sites/${customerId}`)
-                .then(response => response.json())
-                .then(sites => {
-                    siteSelect.innerHTML = '<option value="">Select Site</option>';
-                    sites.forEach(site => {
-                        const option = document.createElement('option');
-                        option.value = site.id;
-                        option.textContent = site.site_name;
-                        siteSelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error loading sites:', error);
-                    siteSelect.innerHTML = '<option value="">Error loading sites</option>';
-                });
-        } else {
-            siteSelect.innerHTML = '<option value="">Select Customer First</option>';
-        }
-    });
-    
-    // Add sample button click
-    addSampleBtn.addEventListener('click', function() {
-        addSample();
-    });
-    
-    // Function to add a new sample
-    function addSample() {
-        sampleCounter++;
-        const sampleDiv = document.createElement('div');
-        sampleDiv.className = 'sample-item';
-        sampleDiv.innerHTML = `
-            <div class="sample-item-header">
-                <h6 class="mb-0">Sample ${sampleCounter}</h6>
-                <button type="button" class="btn btn-danger btn-remove" onclick="removeSample(this)">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-            <div class="row g-2">
-                <div class="col-md-6">
-                    <label class="form-label">Sample Type *</label>
-                    <select class="form-select " name="samples[${sampleCounter}][sample_type_id]" required>
-                        <option value="">Select Sample Type</option>
-                        @foreach($sampleTypes as $sampleType)
-                            <option value="{{ $sampleType->id }}">{{ $sampleType->sample_type_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Sample Description</label>
-                    <input type="text" class="form-control" name="samples[${sampleCounter}][description]" 
-                           placeholder="Sample description">
-                </div>
-            </div>
-            <div class="tests-container mt-2">
-                <div class="row g-2">
-                    <div class="col-md-12">
-                        <label class="form-label">Tests *</label>
-                        <select class="form-select test-select" name="samples[${sampleCounter}][tests][]" multiple required size="10">
-                            @foreach($tests as $test)
-                                <option value="{{ $test->id }}" data-price="{{ $test->default_price ?? 0 }}">
-                                    {{ $test->test_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            </div>
-        `;
-        samplesContainer.appendChild(sampleDiv);
+class SampleDetailController
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(SampleDetail $sampleDetail)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(SampleDetail $sampleDetail)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, SampleDetail $sampleDetail)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(SampleDetail $sampleDetail)
+    {
+        //
+    }
+
+    public function addSampleDetials($id):View
+    {
+
+        $make_models =MakeModelMaster::getMakeModel();
+        $makes = MakeModelMaster::select('make')->distinct()->pluck('make');
+        //dd($makes);
+        $sample = SampleMaster::where('id',$id)->with('customer', 'customer_site_masters.siteMaster')->first();  
+
+      // echo "<br> Customer  Id: ". $sample[0]->customer_id;
+     //s  echo "<br> Customer Site Id: ". $sample[0]->customer_site_id;
+     //  echo "<br> Customer Site Id: ". $sample[0]->customer_id;
+        //die();
+
+        $equipments = EquipmentAssignment::getSiteEquipmentList($sample->customer_site_id);
+        $sample_natures = SampleNature::getSampleNatureArray();
+        $sample_types = SampleType::getSampleTypeArray();
+        $bottle_types = BottleType::getBottleTypeArray();
+
+        return view('add-sample-details',compact('sample','equipments','sample_types','sample_natures','bottle_types','make_models','makes'));
+        // ,'devices','sample_types','sample_natures','bottle_types'
+    }
+    // Delete 
     
-    // Function to remove a sample
-    window.removeSample = function(button) {
-        button.closest('.sample-item').remove();
-        updateSampleNumbers();
-    };
-    
-    // Function to update sample numbers
-    function updateSampleNumbers() {
-        const samples = samplesContainer.querySelectorAll('.sample-item');
-        samples.forEach((sample, index) => {
-            const header = sample.querySelector('.sample-item-header h6');
-            header.textContent = `Sample ${index + 1}`;
+
+    public function saveSampleDetials(Request $request)
+    {
+       // dd($request->all());
+        
+       
+        if(!empty($request['device_id'])) {
+            $samples =  SampleMaster::where('id', $request->sample_id)->get();
+            foreach($request['device_id'] as $k => $device_id){
+
+           if($device_id == 'New') {
+            // Add Device
+           }
             
-            // Update sample index in form names
-            const sampleInputs = sample.querySelectorAll('select, input');
-            sampleInputs.forEach(input => {
-                if (input.name) {
-                    input.name = input.name.replace(/samples\[\d+\]/, `samples[${index + 1}]`);
-                }
-            });
-        });
-        sampleCounter = samples.length;
+            if(!empty($request->image[$k])) {
+               
+                $image = $request->image[$k];
+                $fileName = Str::uuid() . '.' . $image->getClientOriginalExtension();
+                $uploadPath = 'images/uploads'; // This will be storage/app/public/images/uploads
+                $image_path = $image->storeAs($uploadPath, $fileName, 'public');
+        
+                // 6. Get the public URL for display
+               // $imageUrl = Storage::url($path); 
+            } else {
+                $image_path = '';
+            }
+            if(!empty($request->invoice[$k])) {
+                
+            }
+            $customer =  CustomerMaster::getCountryId($samples[0]->customer_id);
+               $smd = new SampleDetail();
+                $smd->sample_id = $request->sample_id;
+                $smd->equipment_assignments_id = $device_id;
+                $smd->company_id  = $customer->company_id; 
+                $smd->customer_id  = $samples[0]->customer_id;
+                $smd->customer_site_id  = $samples[0]->customer_site_id;
+                $smd->type_of_sample  = $request->sample_type[$k];
+                $smd->nature_of_sample  = $request->nature_of_Sample[$k]??NULL;
+                $smd->running_hrs  = $request->running_hrs[$k]??NULL;
+                $smd->sub_asy_no  = $request->sub_asy_no[$k]??NULL;
+                $smd->sub_asy_hrs  = $request->sub_asy_hrs[$k]??NULL;
+                $smd->sampling_date  = $request->sampling_date[$k]??NULL;
+                $smd->brand_of_oil  = $request->brand_of_oil[$k]??NULL;
+                $smd->grade  = $request->grade[$k]??NULL;
+                $smd->lube_oil_running_hrs  = $request->lube_oil_running_hrs[$k]??NULL;
+                $smd->top_up_volume  = $request->top_up_volume[$k]??NULL;
+                $smd->sump_capacity  = $request->sump_capacity[$k]??NULL;
+                $smd->sampling_from  = $request->sampling_from[$k]??NULL;
+           //     $smd->report_expected_date  = $request->report_expected_date[$k];
+                $smd->qty  = $request->qty[$k]??NULL;
+                $smd->bottle_types_id  = $request->type_of_bottle[$k]??NULL;
+           //     $smd->problem  = $request->problem[$k];
+           //     $smd->comments  = $request->comments[$k];
+            //    $smd->customer_note  = $request->customer_note[$k];
+                $smd->severity  = $request->severity[$k]??NULL;
+                $smd->oil_drained  = $request->oil_drained[$k]??NULL;
+           //     $smd->image  = $image_path;
+           //     $smd->fir  = $request->fir[$k]??NULL;
+          //      $smd->invoice  = $request->invoice[$k];
+                $smd->save();
+
+                // Assign the test for the Sample
+                $po_id = $samples[0]->work_order;
+              
+               $test_lists = POTestLine::getTestList($po_id, $customer->company_id, $request->sample_id );
+              
+               foreach($test_lists as $test) {
+                SampleDetailTestAssignment::create(['sample_details_id' =>$smd->id,'test_id' => $test->test_id]);
+            }
+            return redirect()->route('sample.index')
+                           ->with('success', 'SampleDetails added successfully!');
+        }
+
     }
-    
-    // Set default dates
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('po_date').value = today;
-    document.getElementById('po_start_date').value = today;
-    
-    // Add one sample by default
-    addSample();
-});
-</script>
-
-@endsection
-
+    }
+}
