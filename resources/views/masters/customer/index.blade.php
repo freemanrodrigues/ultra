@@ -212,10 +212,10 @@
                 <div class="col-md-3">
                     <div class="d-flex gap-2">
                         <button type="button" class="btn btn-outline-primary" id="test-search">
-                            <i class="fas fa-search"></i> Test Search
+                            <i class="fas fa-search"></i> Search
                         </button>
                         <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary clear-search">
-                            <i class="fas fa-times"></i> Clear Search
+                            <i class="fas fa-times"></i> Clear
                         </a>
                     </div>
                 </div>
@@ -229,19 +229,7 @@
         </div>
     </div>
 
-    <!-- Bulk Actions -->
-    <div id="bulk-actions" style="display: none;" class="mb-2">
-        <form method="POST" action="{{ route('customer.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">
-            @csrf
-            <div class="d-flex align-items-center gap-2">
-                <span class="text-muted">With selected:</span>
-                <button type="submit" class="btn btn-sm btn-danger">
-                    <i class="fas fa-trash"></i> Delete
-                </button>
-            </div>
-            <input type="hidden" name="ids" id="bulk-ids">
-        </form>
-    </div>
+
 
     <!-- Data Table -->
     <div class="card shadow">
@@ -361,7 +349,7 @@
     </div>
 </div>
 
-<script src="/js/customer/tbody_customer_index.js?{{date('mmss')}}"></script>
+
 
 <script>
 // Real-time search functionality

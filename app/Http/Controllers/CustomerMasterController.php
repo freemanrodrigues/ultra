@@ -433,7 +433,7 @@ $customers = $query->paginate(10)->appends($request->query());
         }
 
         // Apply status filter
-        if ($status !== '') {
+        if (!empty($status)) {
             $query->where('customer_masters.status', $status);
         } else {
             $query->where('customer_masters.status', 1);
