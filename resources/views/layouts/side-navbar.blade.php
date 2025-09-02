@@ -324,11 +324,6 @@
 </a>
 </li>
 <li class="nav-item">
-<a href="{{ route('sample-oil-type.index') }}" class="nav-link">                  
-<i class="nav-icon bi bi-circle"></i><p>Type of Sample</p>
-</a>
-</li>
-<li class="nav-item">
 <a href="{{ route('sample-type.index') }}" class="nav-link">                  
 <i class="nav-icon bi bi-circle"></i><p>Type of Sample</p>
 </a>
