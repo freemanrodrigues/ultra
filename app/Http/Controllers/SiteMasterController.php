@@ -16,7 +16,7 @@ class SiteMasterController
     {
        //dd("Site Master Index");
      //  DB::enableQueryLog();
-        $query = SiteMaster::query()->with('state_table');
+        $query = SiteMaster::query()->with(['state_table', 'customerSiteMasters.customer']);
        
         // Search functionality
         if($request->filled('site_master_id')) { 
@@ -41,9 +41,49 @@ class SiteMasterController
         $query->orderBy($sortBy, $sortOrder);
 
         $siteMasters = $query->paginate(100)->appends($request->query());
+        
+        // Check if user wants list view
+        if ($request->get('view') === 'list') {
+            return view('masters.site-masters.list', compact('siteMasters'));
+        }
+        
+        // Get all sites with coordinates for map
+        $mapSites = SiteMaster::where('status', 1)
+            ->whereNotNull('lat')
+            ->whereNotNull('long')
+            ->where('lat', '!=', '')
+            ->where('long', '!=', '')
+            ->with(['customerSiteMasters.customer', 'state_table'])
+            ->get();
+        
+        // Convert coordinates to numeric values
+        $mapSites = $mapSites->map(function($site) {
+            $site->lat = floatval($site->lat);
+            $site->long = floatval($site->long);
+            return $site;
+        });
+        
+        // Calculate statistics
+        $sitesWithCustomers = $mapSites->filter(function($site) {
+            return $site->customerSiteMasters && $site->customerSiteMasters->count() > 0;
+        })->count();
+        
+        $totalCustomerSites = $mapSites->sum(function($site) {
+            return $site->customerSiteMasters ? $site->customerSiteMasters->count() : 0;
+        });
+        
+        $sitesMissingCoordinates = SiteMaster::where('status', 1)
+            ->where(function($query) {
+                $query->whereNull('lat')
+                      ->orWhere('lat', '')
+                      ->orWhereNull('long')
+                      ->orWhere('long', '');
+            })
+            ->count();
+        
        // $logs = DB::getQueryLog();
       //  dd($logs); 
-        return view('masters.site-masters.index', compact('siteMasters'));
+        return view('masters.site-masters.index', compact('siteMasters', 'mapSites', 'sitesWithCustomers', 'totalCustomerSites', 'sitesMissingCoordinates'));
     }
 
     /**

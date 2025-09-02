@@ -102,6 +102,9 @@ Route::resource('/masters/equipment-components', EquipmentComponentController::c
 Route::resource('/masters/po', POMasterController::class);
 Route::resource('/masters/po-test', POTestLineController::class);
 
+// API route for getting customer sites
+Route::get('/api/customers/{customerId}/sites', [POMasterController::class, 'getCustomerSites'])->name('api.customer.sites');
+
 Route::any('/masters/assign-contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('assign-contact-assignments');
 
 Route::resource('/masters/contacts-masters', ContactMasterController::class);
@@ -142,7 +145,8 @@ Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])
 Route::any('/ajax/get-assigned-contact', [ContactAssignmentController::class,'getAssignedContacts'])->name('ajax-get-contacts');
 
 Route::resource('/masters/customer', CustomerMasterController::class);
-Route::any('/masters/customer/bulk_delete', [CustomerMasterController::class,'bulkDelete'])->name('customer.bulk_delete');
+Route::any('/masters/customer/bulk_delete', [CustomerMasterController::class,'bulk_delete'])->name('customer.bulk_delete');
+Route::get('/masters/customer/search', [CustomerMasterController::class,'search'])->name('customer.search');
 
 
 Route::resource('/masters/make', MakeMasterController::class);
