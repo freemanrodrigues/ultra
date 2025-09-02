@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         Schema::table('test_masters', function (Blueprint $table) {
             // Add new fields
             $table->unsignedBigInteger('sample_type_id')->nullable()->after('default_unit');
@@ -24,6 +25,7 @@ return new class extends Migration
                 $table->dropColumn('status');
             }
         });
+        
     }
 
     /**
@@ -41,5 +43,6 @@ return new class extends Migration
             // Recreate the old status column
             $table->boolean('status')->default(1)->after('tat_hours_default');
         });
+        
     }
 };
