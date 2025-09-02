@@ -1,125 +1,320 @@
 @extends('/layouts/master-layout')
 @section('content')
-      <!--begin::App Main-->
-      <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
 <link rel="stylesheet" href="/css/customer/autosuggest_pop.css?{{date('mmss')}}" />
 
+<style>
+    /* Consistent styling for contact page - Optimized for viewport */
+    .contact-page {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.2;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    
+    .contact-page h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .contact-page .form-control,
+    .contact-page .form-select,
+    .contact-page .btn {
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+    
+    /* Bold, larger headers (14px, weight 700) for better visibility */
+    .contact-page .table th {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        padding: 0.2rem 0.5rem !important;
+        vertical-align: middle;
+        background-color: #3b82f6;
+        color: white;
+        border-bottom: 2px solid #1d4ed8;
+        height: 2.2rem;
+    }
+    
+    .contact-page .table td {
+        font-size: 13px !important;
+        padding: 0.2rem 0.5rem !important;
+        vertical-align: middle;
+    }
+    
+    /* Distinct header background */
+    .page-header {
+        background: linear-gradient(135deg, #667eef 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Compact layout */
+    .compact-form {
+        margin-bottom: 0.5rem;
+    }
+    
+    .compact-table {
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    /* Compact table rows - Consistent height with header */
+    .table-compact tbody tr {
+        height: 2.2rem;
+    }
+    
+    /* Small action buttons with reduced size */
+    .btn-xs {
+        padding: 0.1rem 0.2rem;
+        font-size: 10px;
+        line-height: 1;
+        min-width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-xs i {
+        font-size: 12px;
+    }
+    
+    /* Form elements height consistency - Reduced height */
+    .form-control, .form-select, .btn {
+        height: 32px !important;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    /* Input group alignment */
+    .input-group .form-control {
+        height: 32px !important;
+    }
+    
+    .input-group .input-group-text {
+        height: 32px !important;
+        padding: 0.25rem 0.5rem;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-left: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Row alignment */
+    .form-row-aligned {
+        align-items: center;
+    }
+    
+    /* Search loading indicator */
+    .search-loading {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+        display: none;
+    }
+    
+    /* Compact card and spacing */
+    .card-body {
+        padding: 0.5rem !important;
+    }
+    
+    .card-footer {
+        padding: 0.5rem !important;
+    }
+    
+    /* Reduced margins and padding */
+    .mb-2 {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .mb-3 {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .py-2 {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .contact-page h1 {
+            font-size: 1.1rem;
+        }
+        
+        .page-header {
+            padding: 0.4rem 0.75rem;
+        }
+    }
+</style>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Contact Master</h3>
-        <a href="{{ route('contacts-masters.create')}}" class="btn btn-primary">Add Contact</a>
+<div class="container-fluid contact-page">
+    <!-- Page Header with distinct background -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>
+                <i class="fas fa-address-book me-2"></i> Contact Management
+                <small class="d-block d-md-inline ms-md-2 opacity-75">({{ $users->total() }} total)</small>
+            </h1>
+        </div>
     </div>
 
-    <!-- Alert -->
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
-<!-- Search and Filter Form -->
-<div class="search-form">
-    <form method="GET" action="{{ route('contacts-masters.index') }}">
-        <div class="row g-3">
-            <div class="col-md-4">
-                <label for="search" class="form-label">Company</label>
-                <div class="input-group"> 
-                <input type="text" class="form-control search" id="search" name="search" 
-                       value="{{ request('search') }}" placeholder="Search Company Name..."  data-txt_id="company_id"  autocomplete="off">
-                <span class="input-group-text"><i class="bi bi-search"></i></span>
-                </div> 
-                <input type="hidden" id="company_id" name="company_id">
-                <!-- select class="form-control" id="search" name="search">
-                <option value="">List by Company</option>
-                @foreach($companies as $company)
-                <option value="{{$company->id}}">{{$company->company_name}}</option>
-                @endforeach
-                </select --> 
-                      
-
-            </div>
-            <div class="col-md-3">
-                <label for="status" class="form-label">Status</label>
-                <select class="form-select" id="status" name="status">
-                    <option value="">All Status</option>
-                    <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
-                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
-                </select>
-            </div>
-            <div class="col-md-5">
-                <label class="form-label">&nbsp;</label>
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-outline-primary">
-                        <i class="fas fa-search"></i> Search
-                    </button>
-                    <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">
-                        <i class="fas fa-times"></i> Clear
+    <!-- Search and Filter Form with Add New Contact inline -->
+    <div class="card shadow-sm compact-form">
+        <div class="card-body py-2">
+            <form method="GET" action="{{ route('contacts-masters.index') }}" class="row g-2 form-row-aligned">
+                <div class="col-md-4">
+                    <div class="input-group position-relative">
+                        <input type="text" class="form-control search" id="search" name="search" 
+                               value="{{ request('search') }}" placeholder="Search by company name..." 
+                               data-txt_id="company_id" autocomplete="off">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <div class="search-loading" id="search-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                    <input type="hidden" id="company_id" name="company_id">
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="status" name="status">
+                        <option value="">All Status</option>
+                        <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                        <a href="{{ route('contacts-masters.index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times"></i> Clear
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('contacts-masters.create') }}" class="btn btn-primary w-100">
+                        <i class="fas fa-plus me-2"></i>
+                        <i class="fas fa-user me-1"></i> Add New Contact
                     </a>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
 
-    <!-- Users Table -->
-        <div class="card">
+    <!-- Data Table -->
+    <div class="card shadow">
         <div class="card-body p-0">
             @if($users->count() > 0)
-    <table class="table table-bordered table-striped align-middle">
-        <thead class="table-light">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>company</th>
-                <th>Status</th>
-                <th >Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($users as $user)
-            <tr data-id="{{ $user->id }}">
-                <td>{{ $user->firstname }} {{ $user->lastname }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->phone }}</td>
-                <td>{{  $user->company->company_name; }}</td>
-                <td><span class="badge bg-{{ $user->status ? 'success' : 'secondary' }}">{{ $user->status ? 'Active' : 'Inactive' }}</span></td>
-                <td>
-                    <!-- button class="btn btn-sm btn-warning editUserBtn">Edit</button -->
-   
-                     <a href="{{ route('contacts-masters.edit', $user) }}" class="btn btn-sm btn-outline-warning" title="Edit">
-                                       <i class="bi bi-pencil"></i>
-                                    </a>
-                    <form method="POST" action="{{ route('contacts-masters.destroy', $user->id) }}" class="d-inline" onsubmit="return confirm('Delete this user?')">
-                        @csrf @method('DELETE')
-                        <button class="btn btn-sm btn-danger">Del</button>
-                    </form>
-                   
-                    
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-@else
-                <div class="text-center py-3">
-                    <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
-                    <h5 class="mt-3 text-muted">No Contact found</h5>
-                    <p class="text-muted">Get started by adding your first contact.</p>
+                <div class="table-responsive compact-table">
+                    <table class="table table-hover mb-0 table-striped table-compact">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Name</th>
+                                <th width="25%">Email</th>
+                                <th width="15%">Phone</th>
+                                <th width="20%">Company</th>
+                                <th width="10%">Status</th>
+                                <th width="15%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $user)
+                            <tr>
+                                <td>{{ $user->firstname }} {{ $user->lastname }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>{{ $user->company->company_name ?? 'N/A' }}</td>
+                                <td> 
+                                    @if($user->status)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ route('contacts-masters.edit', $user) }}" 
+                                           class="btn btn-xs btn-outline-warning" title="Edit">
+                                           <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <form action="{{ route('contacts-masters.destroy', $user->id) }}" method="POST" 
+                                              style="display: inline;" onsubmit="return confirm('Are you sure?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-xs btn-outline-danger" title="Delete">
+                                               <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                @if($users->hasPages())
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-muted pagination-info">
+                                Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} 
+                                of {{ $users->total() }} results
+                            </div>
+                            {{ $users->links('pagination::bootstrap-5') }}
+                        </div>
+                    </div>
+                @endif 
+            @else
+                <div class="text-center py-4">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No contacts found</h5>
+                    <p class="text-muted mb-3">
+                        @if(request()->hasAny(['search', 'status']))
+                            No contacts match your search criteria.
+                        @else
+                            Start by adding your first contact.
+                        @endif
+                    </p>
+                    @if(request()->hasAny(['search', 'status']))
+                        <a href="{{ route('contacts-masters.index') }}" class="btn btn-outline-primary me-2">
+                            <i class="fas fa-times"></i> Clear Filters
+                        </a>
+                    @endif
                     <a href="{{ route('contacts-masters.create') }}" class="btn btn-primary">
-                        <i class="bi bi-plus-circle"></i> Add New Contact
+                        <i class="fas fa-plus me-2"></i>
+                        <i class="fas fa-user me-1"></i> Add New Contact
                     </a>
                 </div>
-@endif
-
-
-          <!--end::Container-->
+            @endif
         </div>
-        <!--end::App Content-->
-      </main>
-      <!--end::App Main-->
+    </div>
+</div>
 
-    
 <script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
-@stop
+
+@endsection
