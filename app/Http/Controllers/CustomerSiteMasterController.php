@@ -69,7 +69,7 @@ class CustomerSiteMasterController
     public function store(Request $request): RedirectResponse
     {
         //dd("Save Customer Sites");
-        //dd($request->all());
+       
         $validated = $request->validate([
       //      'site_code' => 'required|string|max:50|unique:site_masters,site_code',
       
@@ -95,7 +95,9 @@ class CustomerSiteMasterController
            // $data = $request->validate();
 			
             $customer = CustomerMaster::getCountryId($request['customer_id']);
-            $validated['company_id'] = $customer[0]->company_id;
+
+            // dd($request->all());
+            $validated['company_id'] = $customer->company_id;
             CustomerSiteMaster::create($validated);
             
             return redirect()->route('customer-site-masters.index', ['customer_id'=>$request['customer_id']])
@@ -167,7 +169,7 @@ class CustomerSiteMasterController
            // $data = $request->validate();
 			
             $customer = CustomerMaster::getCountryId($request['customer_id']);
-            $validated['company_id'] = $customer[0]->company_id;
+            $validated['company_id'] = $customer->company_id;
           //  CustomerSiteMaster::create($validated);
             $customerSiteMaster->update($validated);
             return redirect()->route('customer-site-masters.index', ['customer_id'=>$request['customer_id']])
@@ -245,4 +247,15 @@ class CustomerSiteMasterController
         $sites = CustomerSiteMaster::where('company_id', $id)->get(['id', 'site_customer_name as site_name']);
         return response()->json($sites);
     }
+
+    
+    public static function getSite($company_id){
+
+    return   CustomerSiteMaster::query()
+    ->select('customer_site_masters.*', 'site_masters.site_name')
+    ->join('site_masters', 'site_masters.id', '=', 'customer_site_masters.site_master_id')
+    ->where('customer_site_masters.customer_id', $company_id)
+    ->get();
+    }
+
 }

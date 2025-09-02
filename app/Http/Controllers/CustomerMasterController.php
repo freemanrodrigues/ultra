@@ -321,8 +321,8 @@ $customers = $query->paginate(10)->appends($request->query());
 
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
-        $suggestions = CompanyMaster::where('company_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'company_name as name') // Select only necessary columns
+        $suggestions = CustomerMaster::where('customer_name', 'LIKE', '%' . $query . '%')
+                                ->select('id', 'customer_name as name') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 
@@ -331,20 +331,29 @@ $customers = $query->paginate(10)->appends($request->query());
 
     public function getCustomerAddress(Request $request)
     {
+       // dd($request->all());
         $request->validate([
             'customerid' => 'required|integer',
         ]);
 
         
-        $customer = CustomerMaster::where('id', $request->customerid)->first();
+        $customer = CustomerMaster::where('customer_masters.id', $request->customerid)
+            ->leftJoin('states', 'customer_masters.state', '=', 'states.id')
+            ->leftJoin('countries', 'customer_masters.country', '=', 'countries.id')
+            ->select('customer_masters.*', 'states.statename', 'countries.countryname')
+            ->first();
+    
         $sitemaster = SiteMaster::getSite($request->customerid);
-        
+      
+        // get PO Master
+
         if ($customer) {
             return response()->json([
                 'customer' => $customer, 
                 'sitemaster' => $sitemaster, 
             ]);
         }
+        
         return response()->json([]);
     }
 
