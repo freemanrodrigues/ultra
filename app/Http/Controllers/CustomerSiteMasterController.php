@@ -31,7 +31,7 @@ class CustomerSiteMasterController
             $query->where('status', $request->get('status'));
         }
         if (isset($_GET['customer_id']) && !empty(isset($_GET['customer_id']))) {
-           $query->where('customer_id', $_GET['customer_id']);
+        //   $query->where('customer_id', $_GET['customer_id']);
         }
         
         // Sort by
