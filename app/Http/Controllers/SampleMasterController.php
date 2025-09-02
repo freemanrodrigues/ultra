@@ -72,8 +72,8 @@ class SampleMasterController
        
         try {
             //  dd($validated);
-            $customer = CustomerMaster::getCountryId($request['customer_id']);
-            $company_id = $customer[0]->company_id;
+         //   $customer = CustomerMaster::getCountryId($request['customer_id']);
+          //  $company_id = $customer->company_id;
             
             $sam = new SampleMaster();
            // $sam->lot_no = $request->lot_no;
@@ -140,5 +140,16 @@ class SampleMasterController
     public function destroy(SampleMaster $sampleMaster)
     {
         //
+    }
+
+    public function getCustomerAddress(Request $request): JsonResponse
+    {
+        $customer = CustomerMaster::find($request->customer_id);
+    
+        if ($customer) {
+            return response()->json($customer);
+        }
+    
+        return response()->json(['error' => 'Customer not found'], 404);
     }
 }

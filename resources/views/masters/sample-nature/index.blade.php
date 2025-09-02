@@ -44,19 +44,6 @@
     </form>
 </div>
 
-<!-- Bulk Actions -->
-<div id="bulk-actions" style="display: none;" class="mb-3">
-    <form method="POST" action="{{ route('sample-nature.bulk_delete') }}" onsubmit="return confirm('Are you sure you want to delete selected items?')">
-        @csrf
-        <div class="d-flex align-items-center gap-2">
-            <span class="text-muted">With selected:</span>
-            <button type="submit" class="btn btn-sm btn-danger">
-                <i class="fas fa-trash"></i> Delete
-            </button>
-        </div>
-        <input type="hidden" name="ids" id="bulk-ids">
-    </form>
-</div>
 
 <!-- Data Table -->
 <div class="card">
@@ -66,10 +53,7 @@
                 <table class="table table-hover mb-0">
                     <thead>
                         <tr>
-                            <th width="50">
-                                <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
-                            </th>
-                            <th>ID</th>
+                             <th>ID</th>
                             <th>Nature of Sample Code</th>
                             <th>Nature of Sample Name</th>
                             <th>Status</th>
@@ -80,10 +64,6 @@
                     <tbody>
                         @foreach($sample_natures as $sample_nature)
                         <tr>
-                            <td>
-                                <input type="checkbox" name="selected_ids[]" value="{{ $sample_nature->id }}" 
-                                       onchange="toggleBulkActions()" class="form-check-input">
-                            </td>
                             <td><strong>{{ $sample_nature->id }}</strong></td>
                             <td>
                                 <code class="bg-light px-2 py-1 rounded">{{ $sample_nature->sample_nature_code }}</code>
@@ -100,11 +80,7 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('sample-nature.show', $sample_nature) }}" 
-                                       class="btn btn-sm btn-outline-info" title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('sample-nature.edit', $sample_nature) }}" 
+                                     <a href="{{ route('sample-nature.edit', $sample_nature) }}" 
                                        class="btn btn-sm btn-outline-warning" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
@@ -139,10 +115,10 @@
         @else
             <div class="text-center py-5">
                 <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
-                <h4 class="text-muted">No Site Masters Found</h4>
+                <h4 class="text-muted">No Nature Of Sample Found</h4>
                 <p class="text-muted mb-4">
                     @if(request()->hasAny(['search', 'status']))
-                        No sites match your search criteria.
+                        No Nature Of Sample match your search criteria.
                     @else
                         Start by creating your first site master.
                     @endif
@@ -153,7 +129,7 @@
                     </a>
                 @endif
                 <a href="{{ route('sample-nature.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> Add New Site
+                    <i class="fas fa-plus"></i> Add New Nature Of Sample
                 </a>
             </div>
         @endif

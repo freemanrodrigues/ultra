@@ -103,27 +103,11 @@
                                     </td>
                                     <td class="table-actions">
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('make-model-masters.show', $make_model) }}" 
-                                               class="btn btn-sm btn-outline-primary" title="View">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="{{ route('make-model-masters.edit', $make_model) }}" 
+                                             <a href="{{ route('make-model-masters.edit', $make_model) }}" 
                                                class="btn btn-sm btn-outline-secondary" title="Edit">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <!-- Toggle Status -->
-                                            <form method="POST" action="{{ route('make-model-masters.toggle-status', $make_model) }}" 
-                                                  style="display: inline;" id="toggle-form-{{ $make_model->id }}">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="button" 
-                                                        class="btn btn-sm btn-outline-{{ $make_model->status === 'active' ? 'warning' : 'success' }}"
-                                                        title="{{ $make_model->status === 1 ? 'Deactivate' : 'Activate' }}"
-                                                        onclick="confirmToggle(document.getElementById('toggle-form-{{ $make_model->id }}'), '{{ $make_model->status }}')">
-                                                    <i class="bi bi-{{ $make_model->status === 0 ? 'pause-circle' : 'play-circle' }}"></i>
-                                                </button>
-                                            </form>
-                                            
+                                           
                                             <!-- Delete -->
                                             <form method="POST" action="{{ route('make-model-masters.destroy', $make_model) }}" 
                                                   style="display: inline;" id="delete-form-{{ $make_model->id }}"  onsubmit="return confirm('Are you sure?')">

@@ -13,7 +13,7 @@ class EquipmentMasterController
      */
     public function index(Request $request): View
     {
-        $query = EquipmentMaster::query();
+        $query = EquipmentMaster::query()->with('make_model');
        
         // Filter by status if provided
         if ($request->has('status') && !empty($request->status)) {

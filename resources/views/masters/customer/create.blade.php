@@ -115,13 +115,12 @@
                                             <label for="customer_name" class="form-label fw-semibold">
                                                 Customer Name <span class="text-danger">*</span>
                                             </label>
-        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="customer_name" name="customer_name" value="{{ old('customer_name')}}"  placeholder="Enter customer full name" autocomplete="off" required>
-             <div id="suggestions" class="suggestion-list d-none">
-            </div>
-
-
-            <div id="loading" class="loading-indicator">Loading...</div>
-                                            @error('customer_name')
+<div class="myDropdownCover"> 
+<input type="text" class="form-control search" id="id_company" name="search" 
+value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id"  autocomplete="off">
+<input type="hidden" id="company_id" name="company_id">   
+<div id="myDropdown_company_id" class="myDropdown"></div>
+</div>                                            @error('customer_name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -398,5 +397,5 @@
 
 
 <script src="/js/customer/create-customer.js?{{date('mmss')}}"></script>
-<script src="/js/customer/autosuggest.js?{{date('mmss')}}"></script>
+<script src="/js/customer/autosuggest33.js?{{date('mmss')}}"></script>
 @endsection

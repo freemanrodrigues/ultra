@@ -66,10 +66,7 @@
                 <table class="table table-hover mb-0">
                     <thead>
                         <tr>
-                            <th width="50">
-                                <input type="checkbox" id="select-all" onchange="selectAll()" class="form-check-input">
-                            </th>
-                            <th>ID</th>
+                              <th>ID</th>
                             <th>Sample Type Name</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -80,11 +77,7 @@
                     <tbody>
                         @foreach($sample_types as $sample_type)
                         <tr>
-                            <td>
-                                <input type="checkbox" name="selected_ids[]" value="{{ $sample_type->id }}" 
-                                       onchange="toggleBulkActions()" class="form-check-input">
-                            </td>
-                            <td><strong>{{ $sample_type->id }}</strong></td>
+                             <td><strong>{{ $sample_type->id }}</strong></td>
                             <td>{{ $sample_type->sample_type_name }}</td>
                             <td>{{ $sample_type->description }}</td>
                             <td>
@@ -102,11 +95,7 @@
                                        class="btn btn-sm btn-outline-info" title="View">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('sample-type.edit', $sample_type) }}" 
-                                       class="btn btn-sm btn-outline-warning" title="Edit">
-                                       <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <form action="{{ route('sample-type.destroy',  $sample_type) }}" method="POST" 
+                                      <form action="{{ route('sample-type.destroy',  $sample_type) }}" method="POST" 
                                           style="display: inline;" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')

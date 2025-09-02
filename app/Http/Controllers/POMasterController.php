@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{CustomerMaster, CustomerSiteMaster, SampleType, TestMaster, POMaster, POSample, POTest};
+
+use App\Models\{CompanyMaster,CustomerMaster, CustomerSiteMaster, SampleType, TestMaster, POMaster, POSample, POTest};
 use Illuminate\Http\{Request, RedirectResponse, JsonResponse};
+
 use Illuminate\View\View;
 use Illuminate\Support\Facades\{DB, Log};
 
@@ -26,19 +28,14 @@ class POMasterController
      */
     public function create(): View
     {
-        $customers = CustomerMaster::where('status', 1)
+       $sampleTypes = SampleType::getSampleType();
+       $tests = TestMaster::where('status',1)->get();
+       $companies= CompanyMaster::where('status',1)->get();
+            $customers = CustomerMaster::where('status', 1)
             ->orderBy('customer_name')
             ->get();
-            
-        $sampleTypes = SampleType::where('status', 1)
-            ->orderBy('sample_type_name')
-            ->get();
-            
-        $tests = TestMaster::where('active', 1)
-            ->orderBy('test_name')
-            ->get();
-            
-        return view('masters.po.create', compact('customers', 'sampleTypes', 'tests'));
+        return view('masters.po.create',compact('sampleTypes','tests','companies','customers'));
+
     }
 
     /**
