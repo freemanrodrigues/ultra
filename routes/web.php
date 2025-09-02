@@ -146,9 +146,10 @@ Route::any('/ajax-get-site-contact-details', [UserController::class,'getSiteCont
 Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])->name('ajax-get-contacts');
 Route::any('/ajax/get-assigned-contact', [ContactAssignmentController::class,'getAssignedContacts'])->name('ajax-get-contacts');
 
+Route::get('/masters/customer/search', [CustomerMasterController::class,'search'])->name('customer.search');
+
 Route::resource('/masters/customer', CustomerMasterController::class);
 Route::any('/masters/customer/bulk_delete', [CustomerMasterController::class,'bulk_delete'])->name('customer.bulk_delete');
-Route::get('/masters/customer/search', [CustomerMasterController::class,'search'])->name('customer.search');
 
 
 Route::resource('/masters/make', MakeMasterController::class);
