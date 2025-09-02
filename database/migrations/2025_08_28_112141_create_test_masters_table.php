@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('tat_hours_default')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
+            
+            
+            
+        
+            
         });
     }
 
