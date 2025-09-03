@@ -233,10 +233,7 @@
                         <td class="fw-semibold text-muted">Country</td>
                         <td>{{ $countries[$customer->country] ?? 'N/A' }}</td>
                     </tr>
-                    <tr>
-                        <td class="fw-semibold text-muted">Pincode</td>
-                        <td>{{ $customer->pincode ?? 'N/A' }}</td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -269,7 +266,7 @@
                     </tr>
                     <tr>
                         <td class="fw-semibold text-muted">Sales Person</td>
-                        <td>{{ $states[$customer->state] ?? 'N/A' }}</td>
+                        <td>{{ optional($customer->salesPerson)->firstname }} {{ optional($customer->salesPerson)->lastname }}</td>
                     </tr>
                 </tbody>
             </table>

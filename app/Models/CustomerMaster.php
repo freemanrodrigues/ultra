@@ -34,4 +34,9 @@ class CustomerMaster extends Model
 	public static function getCustomerIdByCompanyId($id) {
 		return CustomerMaster::where('company_id',$id)->value('id');
 	}
+
+	public function salesPerson()
+	{
+		return $this->belongsTo(User::class, 'sales_person_id');
+	}
 }
