@@ -1,6 +1,6 @@
 @extends('/layouts/master-layout') 
 @section('content')
-<link rel="stylesheet" href="/css/customer/autosuggest.css?{{date('mmss')}}" />
+<link rel="stylesheet" href="{{asset('/css/customer/autosuggest_pop.css')}}?{{date('mmss')}}" />
 <div class="container-fluid py-4">
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
@@ -396,6 +396,7 @@ value="{{ request('search') }}" placeholder="Search by Company Name..."  data-tx
 </div>
 
 
-<script src="/js/customer/create-customer.js?{{date('mmss')}}"></script>
-<script src="/js/customer/autosuggest33.js?{{date('mmss')}}"></script>
+<script src="{{asset('/js/customer/create-customer.js')}}?{{date('mmss')}}"></script>
+<script src="{{asset('/js/customer/function_autosuggest33.js')}}?{{date('mmss')}}"></script>
+
 @endsection
