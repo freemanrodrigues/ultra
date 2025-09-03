@@ -31,7 +31,7 @@
             @method('PUT')
             <div class="card m-3 p-4 rounded-4 shadow">
                 <div class="modal-header m-1 p-1 bg-primary text-white">
-                    <h5 class="modal-title">User Form</h5>
+                    <h5 class="modal-title">Edit Contact Master</h5>
                     
                 </div>
                 <div class="modal-body row g-3">
@@ -73,7 +73,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="justify-content-center align-items-center">
+                <div class="justify-content-center align-items-center mt-3 text-center">
                     <button class="btn btn-secondary mr-4" data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-success" type="submit">Save</button>
                 </div>

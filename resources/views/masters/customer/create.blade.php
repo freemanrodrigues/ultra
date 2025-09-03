@@ -112,11 +112,11 @@
 
                                     <div class="row">
                                         <div class="col-md-8 mb-2">
-                                            <label for="customer_name" class="form-label fw-semibold">
+                                            <label for="id_company" class="form-label fw-semibold">
                                                 Customer Name <span class="text-danger">*</span>
                                             </label>
 <div class="myDropdownCover"> 
-<input type="text" class="form-control search" id="id_company" name="search" 
+<input type="text" class="form-control search" id="id_company" name="customer_name" 
 value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id"  autocomplete="off">
 <input type="hidden" id="company_id" name="company_id">   
 <div id="myDropdown_company_id" class="myDropdown"></div>
