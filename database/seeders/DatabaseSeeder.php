@@ -18,17 +18,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountrySeeder::class,
             StateSeeder::class,
-            CompanySeeder::class,
-            CustomerSeeder::class,
             UserSeeder::class, 
-            CourierSeeder::class,
+            CompanySeeder::class,
+            CustomerSeeder::class, 
+            SiteMasterSeeder::class,
+           CourierSeeder::class,
             SampleTypeSeeder::class,
-         /*   TestSeeder::class,
-           SiteMasterSeeder::class,
+            NatureOfSampleSeeder::class,
+            BottleSeeder::class, 
+               TestSeeder::class,
+         /*
+            
             UnitSeeder::class, 
-            CourierSeeder::class,
             BrandSeeder::class,
-            BottleSeeder::class,
+            
             FerrographySeeder::class,
             MakeSeeder::class, */
         ]);

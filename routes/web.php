@@ -108,6 +108,7 @@ Route::get('/api/customers/{customerId}/sites', [POMasterController::class, 'get
 
 Route::any('/masters/assign-contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('assign-contact-assignments');
 
+Route::get('/masters/contacts-masters/search', [ContactMasterController::class,'search'])->name('contacts-masters.search');
 Route::resource('/masters/contacts-masters', ContactMasterController::class);
 Route::resource('/masters/contact-assignments', ContactAssignmentController::class);     
 

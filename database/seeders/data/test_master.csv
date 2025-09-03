@@ -6,14 +6,14 @@ Biuret content-ISO 22241-2 Annex E,1,438
 Calcium (Ca)-ISO 22241-2 Annex I,1,408
 Chromium (Cr)-ISO 22241-2 Annex I,1,166
 Copper (Cu)-ISO 22241-2 Annex I,1,473
-Density at 20캜-ISO 3675,1,445
+Density at 20째C-ISO 3675,1,445
 Insoluble Matter-ISO 22241-2 Annex G,1,432
 Iron (Fe)-ISO 22241-2 Annex I,1,172
 Magnesium (Mg)-ISO 22241-2 Annex I,1,488
 Nickel (Ni)-ISO 22241-2 Annex I,1,203
 Phosphate (PO4)-ISO 22241-2 Annex I,1,478
 Potassium (K)-ISO 22241-2 Annex I,1,449
-Refractive Index at 20캜-ISO 22241-2 Annex C,1,209
+Refractive Index at 20째C-ISO 22241-2 Annex C,1,209
 Sodium (Na)-ISO 22241-2 Annex I,1,281
 Urea Content-ISO 22241-2 Annex C,1,265
 Zinc (Zn)-ISO 22241-2 Annex I,1,276
@@ -76,34 +76,34 @@ Ash Content-ASTM D482,1,460
 Ash Content-IS 1448 (P:4)Sec 2,1,243
 Ash Content-ASTM D1119,1,127
 Asphaltene^-IP 143,1,123
-Base Oil Density 29.5캜-ASTM D4052,1,113
+Base Oil Density 29.5째C-ASTM D4052,1,113
 Base Oil Viscosity-ASTM D445,1,117
 Benzene Insoluble*-Lab Procedure,1,414
-BOV @ 100캜 -ASTM D 445,1,274
-BOV @ 40캜-ASTM D 445,1,378
+BOV @ 100째C -ASTM D 445,1,274
+BOV @ 40째C-ASTM D 445,1,378
 Break time seconds-ASTM D1881,1,186
-Brook Field Viscosity @ -20캜-ASTM D2983 (Method D),1,233
-Brookfield Viscosity @ -18캜-ASTM D2983 (Method D),1,112
-Brookfield Viscosity @ -26캜-ASTM D2983,1,118
-Brookfield Viscosity @ -30캜-ASTM D2983 (Method D),1,431
-Brookfield Viscosity @ -35캜-ASTM D2983 (Method D),1,382
-Brookfield Viscosity @ -40캜-ASTM D2983 (Method D),1,375
-Brookfield Viscosity @ -55캜-ASTM D2983,1,476
-Brookfield Viscosity @ 25캜*-ASTM D4878,1,121
-Brookfield Viscosity @-12캜-ASTM D2983,1,460
+Brook Field Viscosity @ -20째C-ASTM D2983 (Method D),1,233
+Brookfield Viscosity @ -18째C-ASTM D2983 (Method D),1,112
+Brookfield Viscosity @ -26째C-ASTM D2983,1,118
+Brookfield Viscosity @ -30째C-ASTM D2983 (Method D),1,431
+Brookfield Viscosity @ -35째C-ASTM D2983 (Method D),1,382
+Brookfield Viscosity @ -40째C-ASTM D2983 (Method D),1,375
+Brookfield Viscosity @ -55째C-ASTM D2983,1,476
+Brookfield Viscosity @ 25째C*-ASTM D4878,1,121
+Brookfield Viscosity @-12째C-ASTM D2983,1,460
 Capacitance of Oil ( Dielectric constant)*-LAB SOP,1,383
 Carbon content*-ASTM D6730,1,478
 Cast Iron Corrosion test 20:1with 400ppm as CaCO3^-IS 1115,1,194
 CCAI^-ISO 8217 Annex F-2012,1,131
 CCR-ASTM D189,1,480
-CCS @ -10캜-ASTM D5293,1,462
-CCS @ -15캜-ASTM D5293,1,239
-CCS @ -20캜-ASTM D5293,1,363
-CCS @ -25캜-ASTM D5293,1,197
-CCS @ -30캜-ASTM D5293,1,117
-CCS @ -30캜*-ASTM D5293,1,416
-CCS @ -35캜-ASTM D5293,1,413
-CCS @ -5캜-ASTM D5293,1,253
+CCS @ -10째C-ASTM D5293,1,462
+CCS @ -15째C-ASTM D5293,1,239
+CCS @ -20째C-ASTM D5293,1,363
+CCS @ -25째C-ASTM D5293,1,197
+CCS @ -30째C-ASTM D5293,1,117
+CCS @ -30째C*-ASTM D5293,1,416
+CCS @ -35째C-ASTM D5293,1,413
+CCS @ -5째C-ASTM D5293,1,253
 CEC L-14-A-88 -ASTM D6278,1,254
 Centrifuge*-Lab Procedure,1,252
 Cetane Index-ASTM D4737,1,429
@@ -130,48 +130,48 @@ Compatibility of Binary mix of Greases-ASTM D6185,1,415
 Compatibility of residual fuel by spot test^-ASTM D4740- B 2019,1,355
 Compatibility test-IS 13656,1,135
 Conductance of Oil*-LAB SOP,1,175
-Consistency Unworked @ 25캜-ASTM D217,1,388
-Consistency Worked at 60 Strokes/25캜-ASTM D217,1,211
-Copper Strip Corrosion For 19hr@140캜-ASTM D130,1,436
-Copper Strip Corrosion For 1hr@121캜-ASTM D130,1,472
-Copper Strip Corrosion For 24hr@100캜-ASTM D4048,1,316
-Copper Strip Corrosion For 3hr@100캜-ASTM D130,1,358
-Copper Strip Corrosion For 3hr@100캜*-DIN 51759,1,374
-Copper Strip Corrosion For 3hr@121캜-ASTM D130 ,1,108
-Copper Strip Corrosion For 3hr@125캜-ASTM D130,1,376
-Copper Strip Corrosion For 3hr@149캜-ASTM D130,1,390
-Copper Strip Corrosion For 3hr@150캜-ASTM D130,1,451
-Copper Strip Corrosion For 3hr@50캜-ASTM D130,1,153
-Copper Strip Corrosion For 3hr@60캜-ASTM D130,1,209
-Copper Strip Corrosion For 4hr@100캜-ASTM D4048,1,496
-Copper Strip Corrosion test at 100 캜-IS 1448 (P:15),1,444
+Consistency Unworked @ 25째C-ASTM D217,1,388
+Consistency Worked at 60 Strokes/25째C-ASTM D217,1,211
+Copper Strip Corrosion For 19hr@140째C-ASTM D130,1,436
+Copper Strip Corrosion For 1hr@121째C-ASTM D130,1,472
+Copper Strip Corrosion For 24hr@100째C-ASTM D4048,1,316
+Copper Strip Corrosion For 3hr@100째C-ASTM D130,1,358
+Copper Strip Corrosion For 3hr@100째C*-DIN 51759,1,374
+Copper Strip Corrosion For 3hr@121째C-ASTM D130 ,1,108
+Copper Strip Corrosion For 3hr@125째C-ASTM D130,1,376
+Copper Strip Corrosion For 3hr@149째C-ASTM D130,1,390
+Copper Strip Corrosion For 3hr@150째C-ASTM D130,1,451
+Copper Strip Corrosion For 3hr@50째C-ASTM D130,1,153
+Copper Strip Corrosion For 3hr@60째C-ASTM D130,1,209
+Copper Strip Corrosion For 4hr@100째C-ASTM D4048,1,496
+Copper Strip Corrosion test at 100 째C-IS 1448 (P:15),1,444
 "Corrosion Preventive Characteristics, Rating-ASTM D1743",1,218
 Crackle Test-UPL/WI/003/,1,380
 Demulsibility-ASTM D1401,1,188
-Density @ 15.5캜-ASTM D4052,1,199
-Density @ 15.6캜-ASTM D4052,1,221
-Density @ 15캜-ASTM D4052,1,463
-Density @ 15캜 (Hydrometer)-ASTM D1298,1,445
-Density @ 20캜-ASTM D1298,1,339
-Density @ 29.0캜-ASTM D4052,1,277
-Density @ 29.5캜-ASTM D1298,1,344
-Density @ 29.5캜-ASTM D4052,1,124
-Density @ 40캜-ASTM D4052,1,273
-Density @15캜*-DIN 51757,1,115
-Density @20캜-ASTM D4052,1,259
-Density @20캜(Hydrometer)-ASTM D1122,1,236
-Density @25캜-ASTM D4052,1,414
-Density @30캜-ASTM D4052,1,213
-Density @30캜 (Hydrometer)-ASTM D1122,1,267
-Density at 15캜-ISO 3675,1,470
-Density@15캜 -ASTM D4052,1,228
-Density@15캜 -IS0 12185,1,127
+Density @ 15.5째C-ASTM D4052,1,199
+Density @ 15.6째C-ASTM D4052,1,221
+Density @ 15째C-ASTM D4052,1,463
+Density @ 15째C (Hydrometer)-ASTM D1298,1,445
+Density @ 20째C-ASTM D1298,1,339
+Density @ 29.0째C-ASTM D4052,1,277
+Density @ 29.5째C-ASTM D1298,1,344
+Density @ 29.5째C-ASTM D4052,1,124
+Density @ 40째C-ASTM D4052,1,273
+Density @15째C*-DIN 51757,1,115
+Density @20째C-ASTM D4052,1,259
+Density @20째C(Hydrometer)-ASTM D1122,1,236
+Density @25째C-ASTM D4052,1,414
+Density @30째C-ASTM D4052,1,213
+Density @30째C (Hydrometer)-ASTM D1122,1,267
+Density at 15째C-ISO 3675,1,470
+Density@15째C -ASTM D4052,1,228
+Density@15째C -IS0 12185,1,127
 DieseL Fuel Dilution by GC-ASTM D7593,1,464
 Distillation 10% Recovery-ASTM D86,1,275
 Distillation 90% Recovery-ASTM D86,1,106
 Distillation 95% Recovery-ASTM D86,1,337
-Distillation Recovery @ 350캜-ASTM D86,1,345
-Distillation Recovery @ 370캜-ASTM D86,1,195
+Distillation Recovery @ 350째C-ASTM D86,1,345
+Distillation Recovery @ 370째C-ASTM D86,1,195
 Doctor test*-UOP-41,1,166
 Drop Point-ASTM D566,1,447
 Drop Point-ASTM D2265,1,257
@@ -185,11 +185,11 @@ Equilibrium Reflux Boiling Point-ASTM D1120,1,212
 Ethanol Content-By Lab Procedure,1,285
 Ethanol*-ASTM D4815,1,250
 Ethanol^-ASTM D 4815,1,456
-"Evaporation @105캜,3hrs-Inhouse",1,108
-Evaporation Loss at 210캜 For 4hrs*-Inhouse,1,462
-Evaporation Loss at 210캜 For 8hrs*-Inhouse,1,316
-Evaporation Loss at 220캜 For 2hrs*-Inhouse,1,240
-Evaporation Loss at 250캜 For 2hrs*-Inhouse,1,408
+"Evaporation @105째C,3hrs-Inhouse",1,108
+Evaporation Loss at 210째C For 4hrs*-Inhouse,1,462
+Evaporation Loss at 210째C For 8hrs*-Inhouse,1,316
+Evaporation Loss at 220째C For 2hrs*-Inhouse,1,240
+Evaporation Loss at 250째C For 2hrs*-Inhouse,1,408
 FAME Content-EN 14103,1,415
 FAME Content-EN 14078,1,400
 FAME Content-ASTM D 7371,1,226
@@ -232,13 +232,13 @@ Gasoline Fuel Dilution by GC-ASTM D7593,1,466
 Gross Calorific Value-ASTM D4868,1,254
 Gross Calorific Value*-ASTM D4868,1,246
 Heat Stability-ASTM D6184,1,213
-"Heat Stability @ 100캜, 30 hrs-ASTM D6184",1,220
+"Heat Stability @ 100째C, 30 hrs-ASTM D6184",1,220
 Heptane Insoluble-ASTM D893,1,310
 Hexane Insoluble-ASTM D893,1,355
 High temperature thermal stability test^-IS 1448:Part 100,1,367
-"High Temperature Wheel Bearing, 160캜-ASTM D3527",1,216
+"High Temperature Wheel Bearing, 160째C-ASTM D3527",1,216
 HTHS-ASTM D4683,1,134
-HTHS@150캜-ASTM D 5481,1,289
+HTHS@150째C-ASTM D 5481,1,289
 Hydrogen content*-ASTM D6730,1,257
 Hydroxyl No.^-ASTM D1957,1,236
 Initial Boiling Point (IBP)-ASTM D86,1,369
@@ -248,37 +248,37 @@ Inorganic Chloride*-Lab Procedure,1,440
 Insoluble-Lab procedure,1,314
 "IP Dynamic (EMCOR) Antirust test, Rating-ASTM D6138",1,491
 ISO4406-ISO 4406,1,326
-K. V. @ 25캜-ASTM D445,1,245
-K.V. @ 100캜-ASTM D7279,1,341
-K.V. @ 100캜-ASTM D445,1,329
-K.V. @ 100캜-IS 1448 (Part 25),1,184
-K.V. @ 100캟-ASTM D445,1,487
-K.V. @ 20캜-ASTM D7052,1,492
-K.V. @ 20캜-ASTM D445,1,443
-K.V. @ 25캜-ASTM D445,1,209
-K.V. @ 27캜-ASTM D445,1,489
-K.V. @ 30캜-ASTM D445,1,340
-K.V. @ 37.8캜-ASTM D445,1,291
-K.V. @ 38캜-ASTM D445,1,232
-K.V. @ 40캜-ASTM D7279,1,208
-K.V. @ 40캜-IS 1448 (Part 25),1,482
-K.V. @ 40캜-ASTM D445,1,112
-K.V. @ 50캜-ASTM D445,1,238
-K.V. @ 60캜-ASTM D445,1,218
-K.V. @ 70캜-ASTM D445,1,116
-K.V. @ 80캜-ASTM D445,1,173
-K.V. @ 90캜-ASTM D445,1,130
-K.V. @ 98.9캜-ASTM D445,1,400
-Kinematic Viscosity @100캜-ASTM D 7042,1,422
-Kinematic Viscosity @100캜-ASTM D445,1,426
-Kinematic Viscosity @20캜-ASTM D 7042,1,235
-Kinematic Viscosity @25캜-ASTM D 7042,1,408
-Kinematic Viscosity @40캜-ASTM D 7042,1,277
-Kinematic Viscosity @40캜-ASTM D445,1,225
-KV@100캜*-DIN 51562,1,126
-KV@40캜*-DIN 51562,1,258
+K. V. @ 25째C-ASTM D445,1,245
+K.V. @ 100째C-ASTM D7279,1,341
+K.V. @ 100째C-ASTM D445,1,329
+K.V. @ 100째C-IS 1448 (Part 25),1,184
+K.V. @ 100째F-ASTM D445,1,487
+K.V. @ 20째C-ASTM D7052,1,492
+K.V. @ 20째C-ASTM D445,1,443
+K.V. @ 25째C-ASTM D445,1,209
+K.V. @ 27째C-ASTM D445,1,489
+K.V. @ 30째C-ASTM D445,1,340
+K.V. @ 37.8째C-ASTM D445,1,291
+K.V. @ 38째C-ASTM D445,1,232
+K.V. @ 40째C-ASTM D7279,1,208
+K.V. @ 40째C-IS 1448 (Part 25),1,482
+K.V. @ 40째C-ASTM D445,1,112
+K.V. @ 50째C-ASTM D445,1,238
+K.V. @ 60째C-ASTM D445,1,218
+K.V. @ 70째C-ASTM D445,1,116
+K.V. @ 80째C-ASTM D445,1,173
+K.V. @ 90째C-ASTM D445,1,130
+K.V. @ 98.9째C-ASTM D445,1,400
+Kinematic Viscosity @100째C-ASTM D 7042,1,422
+Kinematic Viscosity @100째C-ASTM D445,1,426
+Kinematic Viscosity @20째C-ASTM D 7042,1,235
+Kinematic Viscosity @25째C-ASTM D 7042,1,408
+Kinematic Viscosity @40째C-ASTM D 7042,1,277
+Kinematic Viscosity @40째C-ASTM D445,1,225
+KV@100째C*-DIN 51562,1,126
+KV@40째C*-DIN 51562,1,258
 Large-DR5,1,110
-Low Temperature Pumping Viscosity @-25캜-ASTM D4684,1,488
+Low Temperature Pumping Viscosity @-25째C-ASTM D4684,1,488
 Low temperature thermal stability test^-IS 1448:Part 100,1,353
 Lubricity*-ASTM D6079,1,197
 Lubricity^-ISO 12156,1,385
@@ -299,13 +299,13 @@ NLGI GRADE-ASTM D217,1,339
 NOACK Volatility-ASTM D 5800,1,140
 Octane number (RON)*-ASTM D2699,1,164
 Odour-Visual,1,367
-"Oil Separation in Storage Stability(40캜,42 hours)-IP121",1,261
+"Oil Separation in Storage Stability(40째C,42 hours)-IP121",1,261
 "Oil Separation, % loss by mass-ASTM D1742",1,298
 Organic Chloride-ASTM D 4929 (C),1,448
 Organic Chloride-ASTM D 4929 ,1,341
 Organic Chloride-ASTM D4929 B,1,368
 "Oxidation Stability (100 hrs), Drop in Pressure-ASTM D942",1,378
-Oxidation Stability at 110캜^-EN 14112,1,247
+Oxidation Stability at 110째C^-EN 14112,1,247
 Oxidation Stability^-ASTM D2274,1,265
 Oxidation Stability^-ASTM D525,1,480
 Oxidizable Matter-ISO 3696(7.3),1,116
@@ -314,24 +314,24 @@ Particle Count -ASTM D7647,1,434
 Particle Count and Distribution-ASTM D7647,1,258
 Particle count SMS 3010-1 (by Optical Microscope )-ISO 4406,1,349
 Particle Size-Lab procedure,1,166
-Particles >14탆-ASTM D7647,1,344
-Particles >14탆-ISO 4406,1,224
-Particles >15탆-ISO 4406,1,107
-Particles >4탆-ISO 4406,1,236
-Particles >4탆-ASTM D7647,1,364
-Particles >5탆-ISO 4406,1,388
-Particles >6탆-ASTM D7647,1,197
-Particles >6탆-ISO 4406,1,111
-Particles >70탆-ISO 4406,1,414
-Particles >70탆-ASTM D7647,1,116
+Particles >14째m-ASTM D7647,1,344
+Particles >14째m-ISO 4406,1,224
+Particles >15째m-ISO 4406,1,107
+Particles >4째m-ISO 4406,1,236
+Particles >4째m-ASTM D7647,1,364
+Particles >5째m-ISO 4406,1,388
+Particles >6째m-ASTM D7647,1,197
+Particles >6째m-ISO 4406,1,111
+Particles >70째m-ISO 4406,1,414
+Particles >70째m-ASTM D7647,1,116
 Particulate Matter*-ASTM D6217,1,431
 Particulate Matter*-ASTM D5452,1,305
 Pentane Insoluble-ASTM D893,1,350
 Pentane Insoluble (B)-ASTM D893,1,252
-Percent (v/v) Recovered at 250 캜-ASTM D86,1,145
-Percent (v/v) Recovered at 350 캜-ASTM D86,1,260
+Percent (v/v) Recovered at 250 째C-ASTM D86,1,145
+Percent (v/v) Recovered at 350 째C-ASTM D86,1,260
 pH-Lab procedure,1,474
-pH @ 25캜-ISO 3696(7.1),1,240
+pH @ 25째C-ISO 3696(7.1),1,240
 PH of 30% dilution in Distilled Water-pH meter,1,138
 PH of 5% dilution in Distilled Water-pH meter,1,224
 PH of 5% dilution in Distilled Water-ASTM D1287,1,254
@@ -345,14 +345,14 @@ PQ INDEX-ASTM D8184,1,185
 PQ INDEX*-ASTM D8184,1,125
 RBCR-ASTM D 524,1,381
 RBCR-IS 1448 (P:8),1,292
-Refractive Index @ 20캜-ASTM D1747,1,490
-Refractive Index @20캜-ASTM D1218,1,486
-Relative Density at 15캜-Lab Procedure,1,477
+Refractive Index @ 20째C-ASTM D1747,1,490
+Refractive Index @20째C-ASTM D1218,1,486
+Relative Density at 15째C-Lab Procedure,1,477
 Reserve Alkalinity (20:80)-ASTM D1121,1,379
 Reserve Alkalinity (5:95)-ASTM D1121,1,477
 Reserve Alkalinity (50:50)-ASTM D1121,1,416
-Residue Evaporation @ 110캜-ISO 3696(7.5),1,386
-Resistance to Water Washout @ 80 튏-ASTM D1264,1,181
+Residue Evaporation @ 110째C-ISO 3696(7.5),1,386
+Resistance to Water Washout @ 80 째C-ASTM D1264,1,181
 "Roll Stability test,Penetration Changes after16 hr-ASTM D1831",1,253
 "Roll Stability Test,Penetration Charges%after10hrs-ASTM D1831",1,143
 "Roll Stability16 Hrs at RT,% change in penetration-ASTM D1831",1,140
@@ -364,19 +364,19 @@ Saponification Value-IS 1448 (P:55)/Sec 1,1,459
 Sediment content-ASTM D473,1,148
 Sediment Content-lab procedure,1,430
 Sediment Content-IP 75,1,176
-Seq I @ 24캜*-DIN 51566,1,330
-Seq II @ 93.5캜*-DIN 51566,1,112
-Seq III @ 24캜*-DIN 51566,1,382
+Seq I @ 24째C*-DIN 51566,1,330
+Seq II @ 93.5째C*-DIN 51566,1,112
+Seq III @ 24째C*-DIN 51566,1,382
 Sludge Content -Lab procedure,1,151
 Small-DR5,1,195
 Soot content-Soot meter,1,123
-Specific Gravity @ 15.6캜-ASTM D4052,1,247
-Specific Gravity @ 16캜-ASTM D4052,1,467
-Specific Gravity @ 20� C-ASTM D4052,1,383
-Specific Gravity @ 20캜-ASTM D4052,1,367
-Specific Gravity @ 29.5캜-ASTM D4052,1,226
-Specific Gravity @ 30캜-ASTM D4052,1,149
-Specific Gravity @ 60캟-ASTM D4052,1,264
+Specific Gravity @ 15.6째C-ASTM D4052,1,247
+Specific Gravity @ 16째C-ASTM D4052,1,467
+Specific Gravity @ 20째 C-ASTM D4052,1,383
+Specific Gravity @ 20째C-ASTM D4052,1,367
+Specific Gravity @ 29.5째C-ASTM D4052,1,226
+Specific Gravity @ 30째C-ASTM D4052,1,149
+Specific Gravity @ 60째F-ASTM D4052,1,264
 Specific Gravity @ at R.T-Lab procedure,1,480
 Stability Test-IS 1448 (B),1,381
 Strong Acid Number-IS:1448 (Pt-2),1,279
@@ -410,8 +410,8 @@ Viscosity grade*-ASTM D2422,1,331
 Viscosity Gravity Constant -ASTM D2501,1,179
 Viscosity Index-IS 1448 (Part 56),1,144
 Viscosity Index-ASTM D2270,1,444
-Volatile matter at 100캜 for 16 h-IS 1115 Appendix B,1,287
-Volatile matter at 100캜 for 24 h-IS 1115 Appendix B,1,214
+Volatile matter at 100째C for 16 h-IS 1115 Appendix B,1,287
+Volatile matter at 100째C for 24 h-IS 1115 Appendix B,1,214
 Water-ASTM D6304,1,199
 Water  Content-ASTM D1744,1,182
 Water Ccontent V/V-IS 1448 (P40) ,1,289
@@ -423,8 +423,8 @@ Water Content (by the Karl Fischer Reagent)-ASTM D 1123,1,198
 Water Content--ASTM D1744,1,218
 Water Content^-ISO 12937,1,122
 Water Content^-ASTM D 6304 ,1,178
-Water Separability @54 캜-ASTM D1401,1,265
-Water Separability @82 캜-ASTM D1401,1,319
+Water Separability @54 째C-ASTM D1401,1,265
+Water Separability @82 째C-ASTM D1401,1,319
 Water test-Crackle Test,1,486
 "Water Washout, % loss by mass-ASTM D1264",1,319
 Wear Scar Diameter-ASTM D4172 Method A,1,104
@@ -442,8 +442,8 @@ Acid Number-ASTM D974,2,358
 Appearance-Visual,2,463
 Ash Content-ASTM D482,2,134
 Cetane Index-ASTM D4737,2,171
-Copper Strip Corrosion For 3hr@50캜-ASTM D130,2,424
-Density @ 15캜-ASTM D4052,2,325
+Copper Strip Corrosion For 3hr@50째C-ASTM D130,2,424
+Density @ 15째C-ASTM D4052,2,325
 Distillation 95% Recovery-ASTM D86,2,421
 Final Boiling Point (FBP)-ASTM D86,2,174
 Initial Boiling Point (IBP)-ASTM D86,2,379
@@ -511,23 +511,23 @@ Ash Content-ASTM D1119,2,168
 Ash Content-IS 1448 (P:4)Sec 2,2,398
 Asphaltene^-IP 143,2,237
 Barium (Ba)-ASTM D5185,2,294
-Base Oil Density 29.5캜-ASTM D4052,2,291
+Base Oil Density 29.5째C-ASTM D4052,2,291
 Base Oil Viscosity-ASTM D445,2,207
 Benzene Insoluble*-Lab Procedure,2,289
 Biuret content-ISO 22241-2 Annex E,2,102
 Boron (B)-ASTM D5185,2,290
-BOV @ 100캜 -ASTM D 445,2,184
-BOV @ 40캜-ASTM D 445,2,470
+BOV @ 100째C -ASTM D 445,2,184
+BOV @ 40째C-ASTM D 445,2,470
 Break time seconds-ASTM D1881,2,390
-Brook Field Viscosity @ -20캜-ASTM D2983 (Method D),2,175
-Brookfield Viscosity @ -18캜-ASTM D2983 (Method D),2,266
-Brookfield Viscosity @ -26캜-ASTM D2983,2,479
-Brookfield Viscosity @ -30캜-ASTM D2983 (Method D),2,404
-Brookfield Viscosity @ -35캜-ASTM D2983 (Method D),2,497
-Brookfield Viscosity @ -40캜-ASTM D2983 (Method D),2,230
-Brookfield Viscosity @ -55캜-ASTM D2983,2,458
-Brookfield Viscosity @ 25캜*-ASTM D4878,2,338
-Brookfield Viscosity @-12캜-ASTM D2983,2,323
+Brook Field Viscosity @ -20째C-ASTM D2983 (Method D),2,175
+Brookfield Viscosity @ -18째C-ASTM D2983 (Method D),2,266
+Brookfield Viscosity @ -26째C-ASTM D2983,2,479
+Brookfield Viscosity @ -30째C-ASTM D2983 (Method D),2,404
+Brookfield Viscosity @ -35째C-ASTM D2983 (Method D),2,497
+Brookfield Viscosity @ -40째C-ASTM D2983 (Method D),2,230
+Brookfield Viscosity @ -55째C-ASTM D2983,2,458
+Brookfield Viscosity @ 25째C*-ASTM D4878,2,338
+Brookfield Viscosity @-12째C-ASTM D2983,2,323
 Cadmium (Cd)-ASTM D5185,2,292
 Calcium (Ca)-ASTM D5185,2,476
 Calcium (Ca)-ISO 22241-2 Annex I,2,131
@@ -536,14 +536,14 @@ Carbon content*-ASTM D6730,2,443
 Cast Iron Corrosion test 20:1with 400ppm as CaCO3^-IS 1115,2,231
 CCAI^-ISO 8217 Annex F-2012,2,232
 CCR-ASTM D189,2,285
-CCS @ -10캜-ASTM D5293,2,131
-CCS @ -15캜-ASTM D5293,2,226
-CCS @ -20캜-ASTM D5293,2,282
-CCS @ -25캜-ASTM D5293,2,162
-CCS @ -30캜-ASTM D5293,2,445
-CCS @ -30캜*-ASTM D5293,2,318
-CCS @ -35캜-ASTM D5293,2,191
-CCS @ -5캜-ASTM D5293,2,421
+CCS @ -10째C-ASTM D5293,2,131
+CCS @ -15째C-ASTM D5293,2,226
+CCS @ -20째C-ASTM D5293,2,282
+CCS @ -25째C-ASTM D5293,2,162
+CCS @ -30째C-ASTM D5293,2,445
+CCS @ -30째C*-ASTM D5293,2,318
+CCS @ -35째C-ASTM D5293,2,191
+CCS @ -5째C-ASTM D5293,2,421
 CEC L-14-A-88 -ASTM D6278,2,495
 Centrifuge*-Lab Procedure,2,152
 Chloride-ASTM D 4929 (B),2,298
@@ -570,48 +570,48 @@ Compatibility of Binary mix of Greases-ASTM D6185,2,332
 Compatibility of residual fuel by spot test^-ASTM D4740- B 2019,2,182
 Compatibility test-IS 13656,2,389
 Conductance of Oil*-LAB SOP,2,214
-Consistency Unworked @ 25캜-ASTM D217,2,243
-Consistency Worked at 60 Strokes/25캜-ASTM D217,2,220
+Consistency Unworked @ 25째C-ASTM D217,2,243
+Consistency Worked at 60 Strokes/25째C-ASTM D217,2,220
 Copper (Cu)-ISO 22241-2 Annex I,2,362
 Copper (Cu)-ASTM D5185,2,431
-Copper Strip Corrosion For 19hr@140캜-ASTM D130,2,400
-Copper Strip Corrosion For 1hr@121캜-ASTM D130,2,245
-Copper Strip Corrosion For 24hr@100캜-ASTM D4048,2,278
-Copper Strip Corrosion For 3hr@100캜-ASTM D130,2,431
-Copper Strip Corrosion For 3hr@100캜*-DIN 51759,2,244
-Copper Strip Corrosion For 3hr@121캜-ASTM D130 ,2,424
-Copper Strip Corrosion For 3hr@125캜-ASTM D130,2,362
-Copper Strip Corrosion For 3hr@149캜-ASTM D130,2,354
-Copper Strip Corrosion For 3hr@150캜-ASTM D130,2,257
-Copper Strip Corrosion For 3hr@60캜-ASTM D130,2,474
-Copper Strip Corrosion For 4hr@100캜-ASTM D4048,2,478
-Copper Strip Corrosion test at 100 캜-IS 1448 (P:15),2,161
+Copper Strip Corrosion For 19hr@140째C-ASTM D130,2,400
+Copper Strip Corrosion For 1hr@121째C-ASTM D130,2,245
+Copper Strip Corrosion For 24hr@100째C-ASTM D4048,2,278
+Copper Strip Corrosion For 3hr@100째C-ASTM D130,2,431
+Copper Strip Corrosion For 3hr@100째C*-DIN 51759,2,244
+Copper Strip Corrosion For 3hr@121째C-ASTM D130 ,2,424
+Copper Strip Corrosion For 3hr@125째C-ASTM D130,2,362
+Copper Strip Corrosion For 3hr@149째C-ASTM D130,2,354
+Copper Strip Corrosion For 3hr@150째C-ASTM D130,2,257
+Copper Strip Corrosion For 3hr@60째C-ASTM D130,2,474
+Copper Strip Corrosion For 4hr@100째C-ASTM D4048,2,478
+Copper Strip Corrosion test at 100 째C-IS 1448 (P:15),2,161
 "Corrosion Preventive Characteristics, Rating-ASTM D1743",2,155
 Crackle Test-UPL/WI/003/,2,293
 Demulsibility-ASTM D1401,2,332
-Density @ 15.5캜-ASTM D4052,2,452
-Density @ 15.6캜-ASTM D4052,2,299
-Density @ 15캜 (Hydrometer)-ASTM D1298,2,309
-Density @ 20캜-ASTM D1298,2,170
-Density @ 29.0캜-ASTM D4052,2,117
-Density @ 29.5캜-ASTM D1298,2,142
-Density @ 29.5캜-ASTM D4052,2,480
-Density @ 40캜-ASTM D4052,2,317
-Density @15캜*-DIN 51757,2,235
-Density @20캜-ASTM D4052,2,132
-Density @20캜(Hydrometer)-ASTM D1122,2,315
-Density @25캜-ASTM D4052,2,436
-Density @30캜-ASTM D4052,2,168
-Density @30캜 (Hydrometer)-ASTM D1122,2,470
-Density at 15캜-ISO 3675,2,432
-Density at 20캜-ISO 3675,2,240
-Density@15캜 -IS0 12185,2,161
-Density@15캜 -ASTM D4052,2,394
+Density @ 15.5째C-ASTM D4052,2,452
+Density @ 15.6째C-ASTM D4052,2,299
+Density @ 15째C (Hydrometer)-ASTM D1298,2,309
+Density @ 20째C-ASTM D1298,2,170
+Density @ 29.0째C-ASTM D4052,2,117
+Density @ 29.5째C-ASTM D1298,2,142
+Density @ 29.5째C-ASTM D4052,2,480
+Density @ 40째C-ASTM D4052,2,317
+Density @15째C*-DIN 51757,2,235
+Density @20째C-ASTM D4052,2,132
+Density @20째C(Hydrometer)-ASTM D1122,2,315
+Density @25째C-ASTM D4052,2,436
+Density @30째C-ASTM D4052,2,168
+Density @30째C (Hydrometer)-ASTM D1122,2,470
+Density at 15째C-ISO 3675,2,432
+Density at 20째C-ISO 3675,2,240
+Density@15째C -IS0 12185,2,161
+Density@15째C -ASTM D4052,2,394
 DieseL Fuel Dilution by GC-ASTM D7593,2,386
 Distillation 10% Recovery-ASTM D86,2,240
 Distillation 90% Recovery-ASTM D86,2,255
-Distillation Recovery @ 350캜-ASTM D86,2,324
-Distillation Recovery @ 370캜-ASTM D86,2,295
+Distillation Recovery @ 350째C-ASTM D86,2,324
+Distillation Recovery @ 370째C-ASTM D86,2,295
 Doctor test*-UOP-41,2,453
 Drop Point-ASTM D566,2,174
 Drop Point-IS 1448 (P:52),2,124
@@ -625,11 +625,11 @@ Equilibrium Reflux Boiling Point-ASTM D1120,2,112
 Ethanol Content-By Lab Procedure,2,210
 Ethanol*-ASTM D4815,2,421
 Ethanol^-ASTM D 4815,2,337
-"Evaporation @105캜,3hrs-Inhouse",2,329
-Evaporation Loss at 210캜 For 4hrs*-Inhouse,2,160
-Evaporation Loss at 210캜 For 8hrs*-Inhouse,2,196
-Evaporation Loss at 220캜 For 2hrs*-Inhouse,2,451
-Evaporation Loss at 250캜 For 2hrs*-Inhouse,2,486
+"Evaporation @105째C,3hrs-Inhouse",2,329
+Evaporation Loss at 210째C For 4hrs*-Inhouse,2,160
+Evaporation Loss at 210째C For 8hrs*-Inhouse,2,196
+Evaporation Loss at 220째C For 2hrs*-Inhouse,2,451
+Evaporation Loss at 250째C For 2hrs*-Inhouse,2,486
 FAME Content-EN 14103,2,302
 FAME Content-EN 14078,2,479
 FAME Content-ASTM D 7371,2,460
@@ -671,13 +671,13 @@ Gasoline Fuel Dilution by GC-ASTM D7593,2,352
 Gross Calorific Value-ASTM D4868,2,299
 Gross Calorific Value*-ASTM D4868,2,438
 Heat Stability-ASTM D6184,2,156
-"Heat Stability @ 100캜, 30 hrs-ASTM D6184",2,219
+"Heat Stability @ 100째C, 30 hrs-ASTM D6184",2,219
 Heptane Insoluble-ASTM D893,2,107
 Hexane Insoluble-ASTM D893,2,439
 High temperature thermal stability test^-IS 1448:Part 100,2,286
-"High Temperature Wheel Bearing, 160캜-ASTM D3527",2,364
+"High Temperature Wheel Bearing, 160째C-ASTM D3527",2,364
 HTHS-ASTM D4683,2,477
-HTHS@150캜-ASTM D 5481,2,102
+HTHS@150째C-ASTM D 5481,2,102
 Hydrogen content*-ASTM D6730,2,129
 Hydroxyl No.^-ASTM D1957,2,432
 Initial pH (i-pH)-ASTM D7946,2,110
@@ -689,39 +689,39 @@ Insoluble Matter-ISO 22241-2 Annex G,2,439
 Iron (Fe)-ISO 22241-2 Annex I,2,444
 Iron (Fe)-ASTM D5185,2,152
 ISO4406-ISO 4406,2,444
-K. V. @ 25캜-ASTM D445,2,305
-K.V. @ 100캜-ASTM D7279,2,142
-K.V. @ 100캜-IS 1448 (Part 25),2,140
-K.V. @ 100캜-ASTM D445,2,499
-K.V. @ 100캟-ASTM D445,2,123
-K.V. @ 20캜-ASTM D445,2,471
-K.V. @ 20캜-ASTM D7052,2,322
-K.V. @ 25캜-ASTM D445,2,107
-K.V. @ 27캜-ASTM D445,2,470
-K.V. @ 30캜-ASTM D445,2,111
-K.V. @ 37.8캜-ASTM D445,2,281
-K.V. @ 38캜-ASTM D445,2,432
-K.V. @ 40캜-ASTM D7279,2,217
-K.V. @ 40캜-IS 1448 (Part 25),2,201
-K.V. @ 40캜-ASTM D445,2,459
-K.V. @ 50캜-ASTM D445,2,494
-K.V. @ 60캜-ASTM D445,2,495
-K.V. @ 70캜-ASTM D445,2,331
-K.V. @ 80캜-ASTM D445,2,254
-K.V. @ 90캜-ASTM D445,2,311
-K.V. @ 98.9캜-ASTM D445,2,333
-Kinematic Viscosity @100캜-ASTM D445,2,224
-Kinematic Viscosity @100캜-ASTM D 7042,2,344
-Kinematic Viscosity @20캜-ASTM D 7042,2,143
-Kinematic Viscosity @25캜-ASTM D 7042,2,361
-Kinematic Viscosity @40캜-ASTM D445,2,237
-Kinematic Viscosity @40캜-ASTM D 7042,2,484
-KV@100캜*-DIN 51562,2,476
-KV@40캜*-DIN 51562,2,317
+K. V. @ 25째C-ASTM D445,2,305
+K.V. @ 100째C-ASTM D7279,2,142
+K.V. @ 100째C-IS 1448 (Part 25),2,140
+K.V. @ 100째C-ASTM D445,2,499
+K.V. @ 100째F-ASTM D445,2,123
+K.V. @ 20째C-ASTM D445,2,471
+K.V. @ 20째C-ASTM D7052,2,322
+K.V. @ 25째C-ASTM D445,2,107
+K.V. @ 27째C-ASTM D445,2,470
+K.V. @ 30째C-ASTM D445,2,111
+K.V. @ 37.8째C-ASTM D445,2,281
+K.V. @ 38째C-ASTM D445,2,432
+K.V. @ 40째C-ASTM D7279,2,217
+K.V. @ 40째C-IS 1448 (Part 25),2,201
+K.V. @ 40째C-ASTM D445,2,459
+K.V. @ 50째C-ASTM D445,2,494
+K.V. @ 60째C-ASTM D445,2,495
+K.V. @ 70째C-ASTM D445,2,331
+K.V. @ 80째C-ASTM D445,2,254
+K.V. @ 90째C-ASTM D445,2,311
+K.V. @ 98.9째C-ASTM D445,2,333
+Kinematic Viscosity @100째C-ASTM D445,2,224
+Kinematic Viscosity @100째C-ASTM D 7042,2,344
+Kinematic Viscosity @20째C-ASTM D 7042,2,143
+Kinematic Viscosity @25째C-ASTM D 7042,2,361
+Kinematic Viscosity @40째C-ASTM D445,2,237
+Kinematic Viscosity @40째C-ASTM D 7042,2,484
+KV@100째C*-DIN 51562,2,476
+KV@40째C*-DIN 51562,2,317
 Large-DR5,2,180
 Lead (Pb)-ASTM D5185,2,234
 Lithium (Li)-ASTM D5185,2,496
-Low Temperature Pumping Viscosity @-25캜-ASTM D4684,2,449
+Low Temperature Pumping Viscosity @-25째C-ASTM D4684,2,449
 Low temperature thermal stability test^-IS 1448:Part 100,2,457
 Lubricity*-ASTM D6079,2,462
 Lubricity^-ISO 12156,2,481
@@ -748,13 +748,13 @@ NLGI GRADE-ASTM D217,2,474
 NOACK Volatility-ASTM D 5800,2,374
 Octane number (RON)*-ASTM D2699,2,432
 Odour-Visual,2,412
-"Oil Separation in Storage Stability(40캜,42 hours)-IP121",2,162
+"Oil Separation in Storage Stability(40째C,42 hours)-IP121",2,162
 "Oil Separation, % loss by mass-ASTM D1742",2,327
 Organic Chloride-ASTM D4929 B,2,365
 Organic Chloride-ASTM D 4929 (C),2,131
 Oxidation (Direct)-ASTM E2412-10,2,361
 "Oxidation Stability (100 hrs), Drop in Pressure-ASTM D942",2,329
-Oxidation Stability at 110캜^-EN 14112,2,418
+Oxidation Stability at 110째C^-EN 14112,2,418
 Oxidation Stability^-ASTM D2274,2,222
 Oxidation Stability^-ASTM D525,2,338
 Oxidizable Matter-ISO 3696(7.3),2,159
@@ -763,24 +763,24 @@ Particle Count -ASTM D7647,2,361
 Particle Count and Distribution-ASTM D7647,2,118
 Particle count SMS 3010-1 (by Optical Microscope )-ISO 4406,2,379
 Particle Size-Lab procedure,2,283
-Particles >14탆-ISO 4406,2,161
-Particles >14탆-ASTM D7647,2,267
-Particles >15탆-ISO 4406,2,289
-Particles >4탆-ISO 4406,2,156
-Particles >4탆-ASTM D7647,2,361
-Particles >5탆-ISO 4406,2,268
-Particles >6탆-ASTM D7647,2,264
-Particles >6탆-ISO 4406,2,415
-Particles >70탆-ASTM D7647,2,495
-Particles >70탆-ISO 4406,2,171
+Particles >14째m-ISO 4406,2,161
+Particles >14째m-ASTM D7647,2,267
+Particles >15째m-ISO 4406,2,289
+Particles >4째m-ISO 4406,2,156
+Particles >4째m-ASTM D7647,2,361
+Particles >5째m-ISO 4406,2,268
+Particles >6째m-ASTM D7647,2,264
+Particles >6째m-ISO 4406,2,415
+Particles >70째m-ASTM D7647,2,495
+Particles >70째m-ISO 4406,2,171
 Particulate Matter*-ASTM D6217,2,271
 Particulate Matter*-ASTM D5452,2,320
 Pentane Insoluble-ASTM D893,2,196
 Pentane Insoluble (B)-ASTM D893,2,152
-Percent (v/v) Recovered at 250 캜-ASTM D86,2,174
-Percent (v/v) Recovered at 350 캜-ASTM D86,2,410
+Percent (v/v) Recovered at 250 째C-ASTM D86,2,174
+Percent (v/v) Recovered at 350 째C-ASTM D86,2,410
 pH-Lab procedure,2,420
-pH @ 25캜-ISO 3696(7.1),2,447
+pH @ 25째C-ISO 3696(7.1),2,447
 PH of 30% dilution in Distilled Water-pH meter,2,400
 PH of 5% dilution in Distilled Water-ASTM D1287,2,404
 PH of 5% dilution in Distilled Water-pH meter,2,453
@@ -798,15 +798,15 @@ PQ INDEX-ASTM D8184,2,444
 PQ INDEX*-ASTM D8184,2,456
 RBCR-ASTM D 524,2,344
 RBCR-IS 1448 (P:8),2,351
-Refractive Index @ 20캜-ASTM D1747,2,278
-Refractive Index @20캜-ASTM D1218,2,363
-Refractive Index at 20캜-ISO 22241-2 Annex C,2,232
-Relative Density at 15캜-Lab Procedure,2,455
+Refractive Index @ 20째C-ASTM D1747,2,278
+Refractive Index @20째C-ASTM D1218,2,363
+Refractive Index at 20째C-ISO 22241-2 Annex C,2,232
+Relative Density at 15째C-Lab Procedure,2,455
 Reserve Alkalinity (20:80)-ASTM D1121,2,347
 Reserve Alkalinity (5:95)-ASTM D1121,2,286
 Reserve Alkalinity (50:50)-ASTM D1121,2,151
-Residue Evaporation @ 110캜-ISO 3696(7.5),2,272
-Resistance to Water Washout @ 80 튏-ASTM D1264,2,170
+Residue Evaporation @ 110째C-ISO 3696(7.5),2,272
+Resistance to Water Washout @ 80 째C-ASTM D1264,2,170
 "Roll Stability test,Penetration Changes after16 hr-ASTM D1831",2,450
 "Roll Stability Test,Penetration Charges%after10hrs-ASTM D1831",2,363
 "Roll Stability16 Hrs at RT,% change in penetration-ASTM D1831",2,330
@@ -818,9 +818,9 @@ Saponification Value-IS 1448 (P:55)/Sec 1,2,238
 Sediment content-ASTM D473,2,363
 Sediment Content-lab procedure,2,313
 Sediment Content-IP 75,2,378
-Seq I @ 24캜*-DIN 51566,2,407
-Seq II @ 93.5캜*-DIN 51566,2,458
-Seq III @ 24캜*-DIN 51566,2,487
+Seq I @ 24째C*-DIN 51566,2,407
+Seq II @ 93.5째C*-DIN 51566,2,458
+Seq III @ 24째C*-DIN 51566,2,487
 Silica(SiO2)-By Calculation,2,412
 Silicon (Si)-ASTM D5185,2,467
 Silver (Ag)-ASTM D5185,2,467
@@ -829,13 +829,13 @@ Small-DR5,2,134
 Sodium (Na)-ISO 22241-2 Annex I,2,228
 Sodium (Na)-ASTM D5185,2,317
 Soot content-Soot meter,2,305
-Specific Gravity @ 15.6캜-ASTM D4052,2,469
-Specific Gravity @ 16캜-ASTM D4052,2,415
-Specific Gravity @ 20� C-ASTM D4052,2,500
-Specific Gravity @ 20캜-ASTM D4052,2,290
-Specific Gravity @ 29.5캜-ASTM D4052,2,410
-Specific Gravity @ 30캜-ASTM D4052,2,475
-Specific Gravity @ 60캟-ASTM D4052,2,348
+Specific Gravity @ 15.6째C-ASTM D4052,2,469
+Specific Gravity @ 16째C-ASTM D4052,2,415
+Specific Gravity @ 20째 C-ASTM D4052,2,500
+Specific Gravity @ 20째C-ASTM D4052,2,290
+Specific Gravity @ 29.5째C-ASTM D4052,2,410
+Specific Gravity @ 30째C-ASTM D4052,2,475
+Specific Gravity @ 60째F-ASTM D4052,2,348
 Specific Gravity @ at R.T-Lab procedure,2,318
 Stability Test-IS 1448 (B),2,306
 Strong Acid Number-IS:1448 (Pt-2),2,183
@@ -872,8 +872,8 @@ Viscosity grade*-ASTM D2422,2,139
 Viscosity Gravity Constant -ASTM D2501,2,177
 Viscosity Index-ASTM D2270,2,493
 Viscosity Index-IS 1448 (Part 56),2,344
-Volatile matter at 100캜 for 16 h-IS 1115 Appendix B,2,389
-Volatile matter at 100캜 for 24 h-IS 1115 Appendix B,2,151
+Volatile matter at 100째C for 16 h-IS 1115 Appendix B,2,389
+Volatile matter at 100째C for 24 h-IS 1115 Appendix B,2,151
 Water-ASTM D6304,2,445
 Water  Content-ASTM D1744,2,216
 Water Ccontent V/V-IS 1448 (P40) ,2,378
@@ -884,8 +884,8 @@ Water Content (by the Karl Fischer Reagent)-ASTM D 1123,2,404
 Water Content--ASTM D1744,2,310
 Water Content^-ASTM D 6304 ,2,330
 Water Content^-ISO 12937,2,244
-Water Separability @54 캜-ASTM D1401,2,209
-Water Separability @82 캜-ASTM D1401,2,331
+Water Separability @54 째C-ASTM D1401,2,209
+Water Separability @82 째C-ASTM D1401,2,331
 Water test-Crackle Test,2,276
 "Water Washout, % loss by mass-ASTM D1264",2,390
 Wear Scar Diameter-ASTM D4172 Method A,2,416
@@ -909,8 +909,8 @@ Chromium (Cr)-ASTM D5185,3,229
 Copper (Cu)-ASTM D5185,3,327
 Flash Point (COC)-ASTM D92,3,327
 Iron (Fe)-ASTM D5185,3,336
-K.V. @ 100캜-ASTM D445,3,344
-K.V. @ 40캜-ASTM D445,3,191
+K.V. @ 100째C-ASTM D445,3,344
+K.V. @ 40째C-ASTM D445,3,191
 Lead (Pb)-ASTM D5185,3,443
 Magnesium (Mg)-ASTM D5185,3,176
 Manganese (Mn)-ASTM D5185,3,351
@@ -959,30 +959,30 @@ Acid Number-ASTM D3242,3,378
 Aniline Point-ASTM D611,3,393
 Ash Content-ASTM D482,3,262
 Ash Content-ASTM D1119,3,337
-Base Oil Density 29.5캜-ASTM D4052,3,213
+Base Oil Density 29.5째C-ASTM D4052,3,213
 Base Oil Viscosity-ASTM D445,3,264
-BOV @ 100캜 -ASTM D 445,3,219
-BOV @ 40캜-ASTM D 445,3,432
+BOV @ 100째C -ASTM D 445,3,219
+BOV @ 40째C-ASTM D 445,3,432
 Break time seconds-ASTM D1881,3,260
-Brook Field Viscosity @ -20캜-ASTM D2983 (Method D),3,392
-Brookfield Viscosity @ -18캜-ASTM D2983 (Method D),3,392
-Brookfield Viscosity @ -26캜-ASTM D2983,3,496
-Brookfield Viscosity @ -30캜-ASTM D2983 (Method D),3,197
-Brookfield Viscosity @ -35캜-ASTM D2983 (Method D),3,433
-Brookfield Viscosity @ -40캜-ASTM D2983 (Method D),3,246
-Brookfield Viscosity @ -55캜-ASTM D2983,3,497
-Brookfield Viscosity @ 25캜*-ASTM D4878,3,132
-Brookfield Viscosity @-12캜-ASTM D2983,3,477
+Brook Field Viscosity @ -20째C-ASTM D2983 (Method D),3,392
+Brookfield Viscosity @ -18째C-ASTM D2983 (Method D),3,392
+Brookfield Viscosity @ -26째C-ASTM D2983,3,496
+Brookfield Viscosity @ -30째C-ASTM D2983 (Method D),3,197
+Brookfield Viscosity @ -35째C-ASTM D2983 (Method D),3,433
+Brookfield Viscosity @ -40째C-ASTM D2983 (Method D),3,246
+Brookfield Viscosity @ -55째C-ASTM D2983,3,497
+Brookfield Viscosity @ 25째C*-ASTM D4878,3,132
+Brookfield Viscosity @-12째C-ASTM D2983,3,477
 Carbon content*-ASTM D6730,3,142
 CCR-ASTM D189,3,325
-CCS @ -10캜-ASTM D5293,3,177
-CCS @ -15캜-ASTM D5293,3,213
-CCS @ -20캜-ASTM D5293,3,178
-CCS @ -25캜-ASTM D5293,3,131
-CCS @ -30캜-ASTM D5293,3,173
-CCS @ -30캜*-ASTM D5293,3,228
-CCS @ -35캜-ASTM D5293,3,150
-CCS @ -5캜-ASTM D5293,3,280
+CCS @ -10째C-ASTM D5293,3,177
+CCS @ -15째C-ASTM D5293,3,213
+CCS @ -20째C-ASTM D5293,3,178
+CCS @ -25째C-ASTM D5293,3,131
+CCS @ -30째C-ASTM D5293,3,173
+CCS @ -30째C*-ASTM D5293,3,228
+CCS @ -35째C-ASTM D5293,3,150
+CCS @ -5째C-ASTM D5293,3,280
 CEC L-14-A-88 -ASTM D6278,3,119
 Cetane Index-ASTM D4737,3,329
 Chloride-ASTM D 4929 (B),3,486
@@ -996,42 +996,42 @@ Collapse Time Seq IV (after 5 min blowing)-ASTM D 6082,3,480
 Colour-ASTM D1500,3,293
 Compatibility of Binary mix of Greases-ASTM D6185,3,122
 Compatibility of residual fuel by spot test^-ASTM D4740- B 2019,3,240
-Consistency Unworked @ 25캜-ASTM D217,3,275
-Consistency Worked at 60 Strokes/25캜-ASTM D217,3,152
-Copper Strip Corrosion For 19hr@140캜-ASTM D130,3,268
-Copper Strip Corrosion For 1hr@121캜-ASTM D130,3,265
-Copper Strip Corrosion For 24hr@100캜-ASTM D4048,3,255
-Copper Strip Corrosion For 3hr@100캜-ASTM D130,3,421
-Copper Strip Corrosion For 3hr@121캜-ASTM D130 ,3,110
-Copper Strip Corrosion For 3hr@125캜-ASTM D130,3,340
-Copper Strip Corrosion For 3hr@149캜-ASTM D130,3,375
-Copper Strip Corrosion For 3hr@150캜-ASTM D130,3,176
-Copper Strip Corrosion For 3hr@50캜-ASTM D130,3,296
-Copper Strip Corrosion For 3hr@60캜-ASTM D130,3,106
-Copper Strip Corrosion For 4hr@100캜-ASTM D4048,3,273
+Consistency Unworked @ 25째C-ASTM D217,3,275
+Consistency Worked at 60 Strokes/25째C-ASTM D217,3,152
+Copper Strip Corrosion For 19hr@140째C-ASTM D130,3,268
+Copper Strip Corrosion For 1hr@121째C-ASTM D130,3,265
+Copper Strip Corrosion For 24hr@100째C-ASTM D4048,3,255
+Copper Strip Corrosion For 3hr@100째C-ASTM D130,3,421
+Copper Strip Corrosion For 3hr@121째C-ASTM D130 ,3,110
+Copper Strip Corrosion For 3hr@125째C-ASTM D130,3,340
+Copper Strip Corrosion For 3hr@149째C-ASTM D130,3,375
+Copper Strip Corrosion For 3hr@150째C-ASTM D130,3,176
+Copper Strip Corrosion For 3hr@50째C-ASTM D130,3,296
+Copper Strip Corrosion For 3hr@60째C-ASTM D130,3,106
+Copper Strip Corrosion For 4hr@100째C-ASTM D4048,3,273
 "Corrosion Preventive Characteristics, Rating-ASTM D1743",3,306
 Demulsibility-ASTM D1401,3,150
-Density @ 15.5캜-ASTM D4052,3,280
-Density @ 15.6캜-ASTM D4052,3,159
-Density @ 15캜-ASTM D4052,3,153
-Density @ 15캜 (Hydrometer)-ASTM D1298,3,263
-Density @ 20캜-ASTM D1298,3,227
-Density @ 29.0캜-ASTM D4052,3,456
-Density @ 29.5캜-ASTM D1298,3,311
-Density @ 29.5캜-ASTM D4052,3,258
-Density @ 40캜-ASTM D4052,3,484
-Density @20캜-ASTM D4052,3,336
-Density @20캜(Hydrometer)-ASTM D1122,3,165
-Density @25캜-ASTM D4052,3,142
-Density @30캜-ASTM D4052,3,370
-Density @30캜 (Hydrometer)-ASTM D1122,3,274
-Density@15캜 -ASTM D4052,3,132
+Density @ 15.5째C-ASTM D4052,3,280
+Density @ 15.6째C-ASTM D4052,3,159
+Density @ 15째C-ASTM D4052,3,153
+Density @ 15째C (Hydrometer)-ASTM D1298,3,263
+Density @ 20째C-ASTM D1298,3,227
+Density @ 29.0째C-ASTM D4052,3,456
+Density @ 29.5째C-ASTM D1298,3,311
+Density @ 29.5째C-ASTM D4052,3,258
+Density @ 40째C-ASTM D4052,3,484
+Density @20째C-ASTM D4052,3,336
+Density @20째C(Hydrometer)-ASTM D1122,3,165
+Density @25째C-ASTM D4052,3,142
+Density @30째C-ASTM D4052,3,370
+Density @30째C (Hydrometer)-ASTM D1122,3,274
+Density@15째C -ASTM D4052,3,132
 DieseL Fuel Dilution by GC-ASTM D7593,3,197
 Distillation 10% Recovery-ASTM D86,3,355
 Distillation 90% Recovery-ASTM D86,3,148
 Distillation 95% Recovery-ASTM D86,3,196
-Distillation Recovery @ 350캜-ASTM D86,3,256
-Distillation Recovery @ 370캜-ASTM D86,3,303
+Distillation Recovery @ 350째C-ASTM D86,3,256
+Distillation Recovery @ 370째C-ASTM D86,3,303
 Drop Point-ASTM D566,3,302
 Drop Point-ASTM D2265,3,169
 Electrical Conductivity-ASTM D2624,3,469
@@ -1062,41 +1062,41 @@ Gasoline Fuel Dilution by GC-ASTM D7593,3,223
 Gross Calorific Value-ASTM D4868,3,313
 Gross Calorific Value*-ASTM D4868,3,184
 Heat Stability-ASTM D6184,3,240
-"Heat Stability @ 100캜, 30 hrs-ASTM D6184",3,361
+"Heat Stability @ 100째C, 30 hrs-ASTM D6184",3,361
 Heptane Insoluble-ASTM D893,3,293
 Hexane Insoluble-ASTM D893,3,122
-"High Temperature Wheel Bearing, 160캜-ASTM D3527",3,424
+"High Temperature Wheel Bearing, 160째C-ASTM D3527",3,424
 HTHS-ASTM D4683,3,268
-HTHS@150캜-ASTM D 5481,3,417
+HTHS@150째C-ASTM D 5481,3,417
 Hydrogen content*-ASTM D6730,3,149
 Hydroxyl No.^-ASTM D1957,3,470
 Initial Boiling Point (IBP)-ASTM D86,3,421
 Initial pH (i-pH)-ASTM D7946,3,258
 "IP Dynamic (EMCOR) Antirust test, Rating-ASTM D6138",3,400
-K. V. @ 25캜-ASTM D445,3,459
-K.V. @ 100캜-ASTM D7279,3,161
-K.V. @ 100캟-ASTM D445,3,125
-K.V. @ 20캜-ASTM D7052,3,269
-K.V. @ 20캜-ASTM D445,3,332
-K.V. @ 25캜-ASTM D445,3,147
-K.V. @ 27캜-ASTM D445,3,265
-K.V. @ 30캜-ASTM D445,3,490
-K.V. @ 37.8캜-ASTM D445,3,222
-K.V. @ 38캜-ASTM D445,3,461
-K.V. @ 40캜-ASTM D7279,3,292
-K.V. @ 50캜-ASTM D445,3,310
-K.V. @ 60캜-ASTM D445,3,174
-K.V. @ 70캜-ASTM D445,3,153
-K.V. @ 80캜-ASTM D445,3,348
-K.V. @ 90캜-ASTM D445,3,436
-K.V. @ 98.9캜-ASTM D445,3,470
-Kinematic Viscosity @100캜-ASTM D 7042,3,270
-Kinematic Viscosity @100캜-ASTM D445,3,403
-Kinematic Viscosity @20캜-ASTM D 7042,3,350
-Kinematic Viscosity @25캜-ASTM D 7042,3,193
-Kinematic Viscosity @40캜-ASTM D445,3,113
-Kinematic Viscosity @40캜-ASTM D 7042,3,157
-Low Temperature Pumping Viscosity @-25캜-ASTM D4684,3,281
+K. V. @ 25째C-ASTM D445,3,459
+K.V. @ 100째C-ASTM D7279,3,161
+K.V. @ 100째F-ASTM D445,3,125
+K.V. @ 20째C-ASTM D7052,3,269
+K.V. @ 20째C-ASTM D445,3,332
+K.V. @ 25째C-ASTM D445,3,147
+K.V. @ 27째C-ASTM D445,3,265
+K.V. @ 30째C-ASTM D445,3,490
+K.V. @ 37.8째C-ASTM D445,3,222
+K.V. @ 38째C-ASTM D445,3,461
+K.V. @ 40째C-ASTM D7279,3,292
+K.V. @ 50째C-ASTM D445,3,310
+K.V. @ 60째C-ASTM D445,3,174
+K.V. @ 70째C-ASTM D445,3,153
+K.V. @ 80째C-ASTM D445,3,348
+K.V. @ 90째C-ASTM D445,3,436
+K.V. @ 98.9째C-ASTM D445,3,470
+Kinematic Viscosity @100째C-ASTM D 7042,3,270
+Kinematic Viscosity @100째C-ASTM D445,3,403
+Kinematic Viscosity @20째C-ASTM D 7042,3,350
+Kinematic Viscosity @25째C-ASTM D 7042,3,193
+Kinematic Viscosity @40째C-ASTM D445,3,113
+Kinematic Viscosity @40째C-ASTM D 7042,3,157
+Low Temperature Pumping Viscosity @-25째C-ASTM D4684,3,281
 Lubricity*-ASTM D6079,3,232
 Micro Biological Test-ASTM D6974,3,348
 Micro Carbon Residue-ASTM D4530,3,381
@@ -1118,27 +1118,27 @@ Oxidation Stability^-ASTM D2274,3,268
 Oxygen content*-ASTM D4815,3,219
 Particle Count -ASTM D7647,3,211
 Particle Count and Distribution-ASTM D7647,3,456
-Particles >14탆-ASTM D7647,3,485
-Particles >4탆-ASTM D7647,3,374
-Particles >6탆-ASTM D7647,3,125
-Particles >70탆-ASTM D7647,3,317
+Particles >14째m-ASTM D7647,3,485
+Particles >4째m-ASTM D7647,3,374
+Particles >6째m-ASTM D7647,3,125
+Particles >70째m-ASTM D7647,3,317
 Particulate Matter*-ASTM D5452,3,119
 Particulate Matter*-ASTM D6217,3,295
 Pentane Insoluble-ASTM D893,3,303
 Pentane Insoluble (B)-ASTM D893,3,248
-Percent (v/v) Recovered at 250 캜-ASTM D86,3,314
-Percent (v/v) Recovered at 350 캜-ASTM D86,3,215
+Percent (v/v) Recovered at 250 째C-ASTM D86,3,314
+Percent (v/v) Recovered at 350 째C-ASTM D86,3,215
 PH of 5% dilution in Distilled Water-ASTM D1287,3,455
 Pour  Point -ASTM D97,3,256
 Pour Point-ASTM D97,3,266
 PQ INDEX*-ASTM D8184,3,275
 RBCR-ASTM D 524,3,196
-Refractive Index @ 20캜-ASTM D1747,3,373
-Refractive Index @20캜-ASTM D1218,3,320
+Refractive Index @ 20째C-ASTM D1747,3,373
+Refractive Index @20째C-ASTM D1218,3,320
 Reserve Alkalinity (20:80)-ASTM D1121,3,468
 Reserve Alkalinity (5:95)-ASTM D1121,3,245
 Reserve Alkalinity (50:50)-ASTM D1121,3,231
-Resistance to Water Washout @ 80 튏-ASTM D1264,3,425
+Resistance to Water Washout @ 80 째C-ASTM D1264,3,425
 "Roll Stability test,Penetration Changes after16 hr-ASTM D1831",3,135
 "Roll Stability Test,Penetration Charges%after10hrs-ASTM D1831",3,368
 "Roll Stability16 Hrs at RT,% change in penetration-ASTM D1831",3,158
@@ -1146,13 +1146,13 @@ Resistance to Water Washout @ 80 튏-ASTM D1264,3,425
 Salt Spray Test-ASTM B117,3,172
 Saponification Number Method (A)-ASTM D94,3,311
 Sediment content-ASTM D473,3,219
-Specific Gravity @ 15.6캜-ASTM D4052,3,216
-Specific Gravity @ 16캜-ASTM D4052,3,113
-Specific Gravity @ 20� C-ASTM D4052,3,124
-Specific Gravity @ 20캜-ASTM D4052,3,318
-Specific Gravity @ 29.5캜-ASTM D4052,3,452
-Specific Gravity @ 30캜-ASTM D4052,3,156
-Specific Gravity @ 60캟-ASTM D4052,3,392
+Specific Gravity @ 15.6째C-ASTM D4052,3,216
+Specific Gravity @ 16째C-ASTM D4052,3,113
+Specific Gravity @ 20째 C-ASTM D4052,3,124
+Specific Gravity @ 20째C-ASTM D4052,3,318
+Specific Gravity @ 29.5째C-ASTM D4052,3,452
+Specific Gravity @ 30째C-ASTM D4052,3,156
+Specific Gravity @ 60째F-ASTM D4052,3,392
 Strong Acid Test-ASTM D664 ,3,331
 Sulfated ash-ASTM D874,3,327
 Sulfur-ASTM D129,3,488
@@ -1175,8 +1175,8 @@ Water Content-ASTM D1744,3,466
 Water Content (by the Karl Fischer Reagent)-ASTM D 1123,3,213
 Water Content--ASTM D1744,3,304
 Water Content^-ASTM D 6304 ,3,100
-Water Separability @54 캜-ASTM D1401,3,394
-Water Separability @82 캜-ASTM D1401,3,151
+Water Separability @54 째C-ASTM D1401,3,394
+Water Separability @82 째C-ASTM D1401,3,151
 "Water Washout, % loss by mass-ASTM D1264",3,245
 Wear Scar Diameter-ASTM D2266,3,274
 Wear Scar Diameter-ASTM D4172 Method A,3,308
