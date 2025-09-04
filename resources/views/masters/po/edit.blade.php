@@ -66,7 +66,7 @@ value="{{ request('search')??$po->party_id }}" placeholder="Search by companynam
                         
                         <select name="sample_type_id" class="form-select"  id="sample_type_id">
                         <option value="">Select</option>
-                            @foreach($sample_types as $sample_type)
+                            @foreach($sampleTypes as $sample_type)
                             <option value="{{$sample_type->id}}" {{ (old('sample_type_id')??$po->sample_type_id) == $sample_type->id ? 'selected' : '' }}>{{$sample_type->sample_type_name }}</option> 
                             @endforeach
                             

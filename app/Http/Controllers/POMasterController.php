@@ -178,7 +178,7 @@ class POMasterController
             ->orderBy('sample_type_name')
             ->get();
             
-        $tests = TestMaster::where('active', 1)
+        $tests = TestMaster::where('status', 1)
             ->orderBy('test_name')
             ->get();
             
