@@ -158,9 +158,9 @@
                                         <span class="text-muted">N/A</span>
                                     @endif
                                 </td>
-                                <td>{{ $po->po_date ? $po->po_date->format('M d, Y') : 'N/A' }}</td>
-                                <td>{{ $po->po_start_date ? $po->po_start_date->format('M d, Y') : 'N/A' }}</td>
-                                <td>{{ $po->po_end_date ? $po->po_end_date->format('M d, Y') : 'N/A' }}</td>
+                                <td>{{ $po->po_date ? date('M d, Y',strtotime($po->po_date)) : 'N/A' }}</td>
+                                <td>{{ $po->valid_from ? date('M d, Y',strtotime($po->valid_from)) : 'N/A' }}</td>
+                                <td>{{ $po->valid_to ? date('M d, Y',strtotime($po->valid_to)) : 'N/A' }}</td>
                                 <td>
                                     @if($po->total_amount)
                                         ₹{{ number_format($po->total_amount, 2) }}

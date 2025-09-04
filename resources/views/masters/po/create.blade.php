@@ -7,8 +7,6 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         font-size: 12px;
         line-height: 1.2;
-        max-height: 100vh;
-        overflow: hidden;
     }
     
     .po-page h1 {

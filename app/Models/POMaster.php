@@ -15,10 +15,10 @@ class POMaster extends Model
     protected $fillable = [
         'po_number',
         'po_date',
-        'customer_id',
+        'customer_id','company_id',
         'site_id',
-        'po_start_date',
-        'po_end_date',
+        'valid_from',
+        'valid_to','currency',	'test_rate','test_limit','total_amount',
         'status',
         'total_amount',
     ];

@@ -76,6 +76,7 @@ class POMasterController
      */
     public function store(Request $request): RedirectResponse
     {
+       
         $request->validate([
             'company_id' => 'required|exists:company_masters,id',
             'site_id' => 'nullable|exists:site_masters,id',
@@ -103,7 +104,7 @@ class POMasterController
                 'po_date' => $request->po_date,
                 'valid_from' => $request->valid_from,
                 'valid_to' => $request->valid_to,
-                'status' => 'active',
+                'status' => 1,
                 'total_amount' => 0,
             ]);
 
