@@ -20,7 +20,6 @@ return new class extends Migration
             $table->datetime('valid_from');
             $table->datetime('valid_to');
             $table->string('currency',3)->default('INR');
-        //    $table->integer('sample_type_id')->nullable();
             $table->string('test_rate');
             $table->integer('test_limit')->default(0);
             $table->decimal('total_amount', 10, 2)->default(0);

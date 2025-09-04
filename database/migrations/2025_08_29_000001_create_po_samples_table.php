@@ -16,6 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('po_id');
             $table->unsignedBigInteger('sample_type_id');
             $table->text('description')->nullable();
+            $table->integer('sample_count')->default(1);
+            $table->decimal('sample_rate', 10, 2)->default(0.00);
+            $table->decimal('sample_total', 10, 2)->default(0.00);
+   
             $table->timestamps();
 
             $table->foreign('po_id')->references('id')->on('po_masters')->onDelete('cascade');
