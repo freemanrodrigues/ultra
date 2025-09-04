@@ -387,16 +387,16 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`/api/sample-type-rates?sample_type_id=${sampleTypeId}`)
             .then(response => response.json())
             .then(data => {
-                if (data.success && data.rates.length > 0) {
-                    testsContainer.innerHTML = data.rates.map(rate => `
+                if (data.success && data.tests.length > 0) {
+                    testsContainer.innerHTML = data.tests.map(test => `
                         <div class="form-check mb-2">
                             <input class="form-check-input test-checkbox" type="checkbox" 
-                                   name="samples[${sampleIndex}][tests][${rate.test_id}][test_id]" 
-                                   value="${rate.test_id}" 
-                                   id="test_${sampleIndex}_${rate.test_id}"
+                                   name="samples[${sampleIndex}][tests][${test.id}][test_id]" 
+                                   value="${test.id}" 
+                                   id="test_${sampleIndex}_${test.id}"
                                    onchange="updateBillingSummary()">
-                            <label class="form-check-label" for="test_${sampleIndex}_${rate.test_id}">
-                                <strong>${rate.test_name}</strong>
+                            <label class="form-check-label" for="test_${sampleIndex}_${test.id}">
+                                <strong>${test.test_name}</strong>
                             </label>
                         </div>
                     `).join('');

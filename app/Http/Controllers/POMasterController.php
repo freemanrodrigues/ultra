@@ -55,17 +55,16 @@ class POMasterController
             return response()->json(['error' => 'Sample type ID is required'], 400);
         }
 
-        $rates = SampleTypeRate::getRatesForSampleType($sampleTypeId);
-        
+       // $rates = SampleTypeRate::getRatesForSampleType($sampleTypeId);
+         $tests = TestMaster::where('status',1)->where('sample_type_id', $sampleTypeId)->get(['id','test_name']);
         return response()->json([
             'success' => true,
-            'rates' => $rates->map(function($rate) {
+            'tests' => $tests->map(function($test) {
                 return [
-                    'id' => $rate->id,
-                    'test_id' => $rate->test_id,
-                    'test_name' => $rate->test->test_name,
-                    'rate' => $rate->rate,
-                    'notes' => $rate->notes,
+                    'id' => $test->id,
+                    'test_name' => $test->test_name,
+               //     'rate' => $rate->rate,
+                    
                 ];
             })
         ]);
@@ -76,7 +75,7 @@ class POMasterController
      */
     public function store(Request $request): RedirectResponse
     {
-       
+       //dd($request->all());
         $request->validate([
             'company_id' => 'required|exists:company_masters,id',
             'site_id' => 'nullable|exists:site_masters,id',
@@ -128,6 +127,7 @@ class POMasterController
                 foreach ($sampleData['tests'] as $testData) {
                     // Process tests (no rates, just test selection)
                     POTest::create([
+                        'po_id' => $po->id,
                         'po_sample_id' => $sample->id,
                         'test_id' => $testData['test_id'],
                         'price' => 0, // No test rates
@@ -141,7 +141,7 @@ class POMasterController
             $po->update(['total_amount' => $totalAmount]);
 
             DB::commit();
-
+//  dd($request->all());
             return redirect()->route('po.show', $po)
                 ->with('success', 'Purchase Order created successfully!');
 
@@ -149,6 +149,7 @@ class POMasterController
             DB::rollBack();
             Log::error('PO creation failed: ' . $e->getMessage());
             
+      //      dd($request->all());
             return back()->withInput()
                 ->withErrors(['error' => 'Failed to create Purchase Order. Please try again.']);
         }
