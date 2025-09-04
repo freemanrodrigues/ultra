@@ -105,6 +105,7 @@ Route::resource('/masters/po-test', POTestLineController::class);
 
 // API route for getting customer sites
 Route::get('/api/customers/{customerId}/sites', [POMasterController::class, 'getCustomerSites'])->name('api.customer.sites');
+Route::get('/api/sample-type-rates', [POMasterController::class, 'getSampleTypeRates'])->name('api.sample-type-rates');
 
 Route::any('/masters/assign-contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('assign-contact-assignments');
 
