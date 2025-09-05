@@ -56,15 +56,14 @@ class POMasterController
         }
 
        // $rates = SampleTypeRate::getRatesForSampleType($sampleTypeId);
-         $tests = TestMaster::where('status',1)->where('sample_type_id', $sampleTypeId)->get(['id','test_name']);
+         $tests = TestMaster::where('status',1)->where('sample_type_id', $sampleTypeId)->get(['id','test_name','standard_test_rate']);
         return response()->json([
             'success' => true,
             'tests' => $tests->map(function($test) {
                 return [
                     'id' => $test->id,
                     'test_name' => $test->test_name,
-               //     'rate' => $rate->rate,
-                    
+                    'standard_test_rate' => $test->standard_test_rate,
                 ];
             })
         ]);
@@ -88,6 +87,7 @@ class POMasterController
             'samples.*.description' => 'nullable|string|max:500',
             'samples.*.sample_count' => 'required|integer|min:1',
             'samples.*.sample_rate' => 'required|numeric|min:0',
+            'samples.*.standard_test_total' => 'nullable|numeric|min:0',
             'samples.*.tests' => 'required|array|min:1',
             'samples.*.tests.*.test_id' => 'required|exists:test_masters,id',
         ]);
@@ -121,6 +121,7 @@ class POMasterController
                     'sample_count' => $sampleData['sample_count'],
                     'sample_rate' => $sampleData['sample_rate'],
                     'sample_total' => $sampleTotal,
+                    'standard_test_total' => $sampleData['standard_test_total'] ?? 0,
                 ]);
 
                 // Process tests for this sample
@@ -170,8 +171,8 @@ class POMasterController
      */
     public function edit(POMaster $po): View
     {
-        $customers = CustomerMaster::where('status', 1)
-            ->orderBy('customer_name')
+        $companies = CompanyMaster::where('status', 1)
+            ->orderBy('company_name')
             ->get();
             
         $sampleTypes = SampleType::where('status', 1)
@@ -182,9 +183,9 @@ class POMasterController
             ->orderBy('test_name')
             ->get();
             
-        $po->load(['samples.tests.test', 'samples.sampleType']);
+        $po->load(['samples.tests.test', 'samples.sampleType', 'company', 'site']);
         
-        return view('masters.po.edit', compact('po', 'customers', 'sampleTypes', 'tests'));
+        return view('masters.po.edit', compact('po', 'companies', 'sampleTypes', 'tests'));
     }
 
     /**
@@ -204,6 +205,7 @@ class POMasterController
             'samples.*.description' => 'nullable|string|max:500',
             'samples.*.sample_count' => 'required|integer|min:1',
             'samples.*.sample_rate' => 'required|numeric|min:0',
+            'samples.*.standard_test_total' => 'nullable|numeric|min:0',
             'samples.*.tests' => 'required|array|min:1',
             'samples.*.tests.*.test_id' => 'required|exists:test_masters,id',
         ]);
@@ -241,6 +243,7 @@ class POMasterController
                     'sample_count' => $sampleData['sample_count'],
                     'sample_rate' => $sampleData['sample_rate'],
                     'sample_total' => $sampleTotal,
+                    'standard_test_total' => $sampleData['standard_test_total'] ?? 0,
                 ]);
 
                 // Process tests for this sample

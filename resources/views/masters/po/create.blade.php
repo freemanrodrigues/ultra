@@ -324,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sampleCounter++;
         const sampleDiv = document.createElement('div');
         sampleDiv.className = 'sample-item';
+        sampleDiv.setAttribute('data-sample-index', sampleCounter);
         sampleDiv.innerHTML = `
             <div class="sample-item-header">
                 <h6 class="mb-0">Sample ${sampleCounter}</h6>
@@ -354,6 +355,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="col-md-2">
                     <label class="form-label">Sample Total</label>
                     <input type="text" class="form-control sample-total" readonly value="0.00">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Standard Test Total</label>
+                    <input type="number" class="form-control standard-test-total" name="samples[${sampleCounter}][standard_test_total]" 
+                           step="0.01" min="0" value="0.00" onchange="updateBillingSummary()">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label">Description</label>
@@ -394,9 +400,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                    name="samples[${sampleIndex}][tests][${test.id}][test_id]" 
                                    value="${test.id}" 
                                    id="test_${sampleIndex}_${test.id}"
-                                   onchange="updateBillingSummary()">
+                                   data-standard-rate="${test.standard_test_rate}"
+                                   onchange="updateStandardTestTotal(${sampleIndex}); updateBillingSummary()">
                             <label class="form-check-label" for="test_${sampleIndex}_${test.id}">
-                                <strong>${test.test_name}</strong>
+                                <strong>${test.test_name}</strong> <span class="text-muted">(₹${parseFloat(test.standard_test_rate).toFixed(2)})</span>
                             </label>
                         </div>
                     `).join('');
@@ -427,6 +434,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const total = count * rate;
         sampleItem.querySelector('.sample-total').value = total.toFixed(2);
         updateBillingSummary();
+    };
+
+    // Function to update standard test total
+    window.updateStandardTestTotal = function(sampleIndex) {
+        const sampleItem = document.querySelector(`[data-sample-index="${sampleIndex}"]`);
+        if (!sampleItem) return;
+        
+        const testCheckboxes = sampleItem.querySelectorAll('.test-checkbox:checked');
+        let total = 0;
+        
+        testCheckboxes.forEach(checkbox => {
+            const standardRate = parseFloat(checkbox.getAttribute('data-standard-rate')) || 0;
+            total += standardRate;
+        });
+        
+        const standardTestTotalInput = sampleItem.querySelector('.standard-test-total');
+        if (standardTestTotalInput) {
+            standardTestTotalInput.value = total.toFixed(2);
+        }
     };
 
     // Function to handle sample type change
