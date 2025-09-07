@@ -34,7 +34,7 @@
             @csrf
             <div class="card m-3 p-4 rounded-4 shadow">
                 <div class="modal-header m-1 p-1 bg-primary text-white">
-                    <h5 class="modal-title">Contact Master</h5>
+                    <h5 class="modal-title">Add Contact Master</h5>
                     
                 </div>
                 <div class="modal-body row g-3">

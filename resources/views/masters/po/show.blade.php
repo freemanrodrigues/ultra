@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">PO Date:</label>
-                    <p class="mb-0">{{ $po->po_date ? $po->po_date->format('M d, Y') : 'N/A' }}</p>
+                    <p class="mb-0">{{ $po->po_date ? date('M d, Y',strtotime($po->po_date)) : 'N/A' }}</p>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Customer:</label>
@@ -131,11 +131,11 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Start Date:</label>
-                    <p class="mb-0">{{ $po->po_start_date ? $po->po_start_date->format('M d, Y') : 'N/A' }}</p>
+                    <p class="mb-0">{{ $po->valid_from ? date('M d, Y',strtotime($po->valid_from)) : 'N/A' }}</p>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">End Date:</label>
-                    <p class="mb-0">{{ $po->po_end_date ? $po->po_end_date->format('M d, Y') : 'N/A' }}</p>
+                    <p class="mb-0">{{ $po->valid_to ? date('M d, Y',strtotime($po->valid_to)) : 'N/A' }}</p>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Status:</label>

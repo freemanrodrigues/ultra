@@ -1,6 +1,6 @@
 @extends('/layouts/master-layout') 
 @section('content')
-<link rel="stylesheet" href="/css/customer/autosuggest.css?{{date('mmss')}}" />
+<link rel="stylesheet" href="{{asset('/css/customer/autosuggest_pop.css')}}?{{date('mmss')}}" />
 <div class="container-fluid py-4">
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
@@ -112,11 +112,11 @@
 
                                     <div class="row">
                                         <div class="col-md-8 mb-2">
-                                            <label for="customer_name" class="form-label fw-semibold">
+                                            <label for="id_company" class="form-label fw-semibold">
                                                 Customer Name <span class="text-danger">*</span>
                                             </label>
 <div class="myDropdownCover"> 
-<input type="text" class="form-control search" id="id_company" name="search" 
+<input type="text" class="form-control search" id="id_company" name="customer_name" 
 value="{{ request('search') }}" placeholder="Search by Company Name..."  data-txt_id="company_id"  autocomplete="off">
 <input type="hidden" id="company_id" name="company_id">   
 <div id="myDropdown_company_id" class="myDropdown"></div>
@@ -396,6 +396,7 @@ value="{{ request('search') }}" placeholder="Search by Company Name..."  data-tx
 </div>
 
 
-<script src="/js/customer/create-customer.js?{{date('mmss')}}"></script>
-<script src="/js/customer/autosuggest33.js?{{date('mmss')}}"></script>
+<script src="{{asset('/js/customer/create-customer.js')}}?{{date('mmss')}}"></script>
+<script src="{{asset('/js/customer/function_autosuggest33.js')}}?{{date('mmss')}}"></script>
+
 @endsection

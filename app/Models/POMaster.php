@@ -13,14 +13,21 @@ class POMaster extends Model
     protected $table = 'po_masters';
 
     protected $fillable = [
-       'customer_id','po_number','po_date','po_start_date','po_end_date','total_amount','party_id','site_id','valid_from','valid_to','currency','test_rate','test_limit','status'
+        'po_number',
+        'po_date',
+        'customer_id','company_id',
+        'site_id',
+        'valid_from',
+        'valid_to','currency','test_rate','test_limit',
+        'status',
+        'total_amount',
     ];
 
     protected $casts = [
         'po_date' => 'date',
-        'po_start_date' => 'date',
-        'po_end_date' => 'date',
-        'total_amount' => 'decimal:2',s
+        'valid_from' => 'date',
+        'valid_to' => 'date',
+        'total_amount' => 'decimal:2',
     ];
 
     /**
@@ -29,6 +36,15 @@ class POMaster extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(CustomerMaster::class, 'customer_id');
+    }
+
+
+    /**
+     * Get the company for this PO
+     */
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(CompanyMaster::class, 'company_id');
     }
 
     /**

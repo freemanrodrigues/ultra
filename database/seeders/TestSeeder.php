@@ -35,6 +35,7 @@ foreach ($csv->getRecords() as $record) {
     // This is much more efficient than inserting one at a time.
     $recordsToInsert[] = [
        'test_name'  => $record['test_name'],
+       'sample_type_id'  => $record['sample_type_id'],
         'status'       => 1,
     ];
 }

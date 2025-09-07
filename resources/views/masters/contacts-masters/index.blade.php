@@ -172,13 +172,22 @@
         </div>
     </div>
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi bi-check-circle-fill me-2"></i>
+@if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        @if (is_array(session('success')))
+            {{-- This runs if it's the "create" message --}}
+            <span>{{ session('success')['text'] ?? '' }}</span>
+            @if(session('success')['link'] ?? '')
+                <a href="{{ session('success')['link'] }}" class="alert-link ms-2">{{ session('success')['link_text'] ?? '' }}</a>
+            @endif
+        @else
+            {{-- This runs if it's the "update" message --}}
             {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+        @endif
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
     <!-- Search and Filter Form with Add New Contact inline -->
     <div class="card shadow-sm compact-form">

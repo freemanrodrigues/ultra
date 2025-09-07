@@ -12,7 +12,7 @@ class POTest extends Model
 
     protected $table = 'po_tests';
 
-    protected $fillable = [
+    protected $fillable = ['po_id',
         'po_sample_id',
         'test_id',
         'price',

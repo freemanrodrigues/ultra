@@ -86,7 +86,7 @@ Route::patch('site-masters/{siteMaster}/toggle-status', [SiteMasterController::c
 
 Route::any('/masters/customer-site-masters/assign-contact/{id}', [CustomerSiteMasterController::class,'assignContact'])->name('customer-site-masters.assign-contact');  
 Route::any('/masters/customer-site-masters/save-assign-contact', [CustomerSiteMasterController::class, 'saveAssignContact'])->name('customer-site-masters.save-assign-contact'); 
-         
+Route::get('/masters/customer-site-masters/export-csv', [CustomerSiteMasterController::class, 'exportCsv'])->name('customer-site-masters.export-csv');
 Route::resource('/masters/customer-site-masters', CustomerSiteMasterController::class);
 
 Route::patch('/masters/make-model-masters/toggle-status', [MakeModelMasterController::class, 'toggleStatus'])->name('make-model-masters.toggle-status');
@@ -105,9 +105,11 @@ Route::resource('/masters/po-test', POTestLineController::class);
 
 // API route for getting customer sites
 Route::get('/api/customers/{customerId}/sites', [POMasterController::class, 'getCustomerSites'])->name('api.customer.sites');
+Route::get('/api/sample-type-rates', [POMasterController::class, 'getSampleTypeRates'])->name('api.sample-type-rates');
 
 Route::any('/masters/assign-contact-assignments', [ContactAssignmentController::class,'contactAssignment'])->name('assign-contact-assignments');
 
+Route::get('/masters/contacts-masters/search', [ContactMasterController::class,'search'])->name('contacts-masters.search');
 Route::resource('/masters/contacts-masters', ContactMasterController::class);
 Route::resource('/masters/contact-assignments', ContactAssignmentController::class);     
 
@@ -164,6 +166,7 @@ Route::any('/masters/model/bulk_delete', [ModelMasterController::class,'bulkDele
 
 // Sample details
 Route::get('/sample-details_x/{id}', [SampleDetailController::class,'addSampleDetialsX'])->name('sample-details');
+// Sample details
 Route::get('/sample-details/{id}', [SampleDetailController::class,'addSampleDetials'])->name('sample-details');
 Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDetials'])->name('save-sample-details');
 

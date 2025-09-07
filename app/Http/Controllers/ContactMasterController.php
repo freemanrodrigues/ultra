@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Country,ContactMaster,CompanyMaster,CustomerMaster,SiteContact,User};
-use Illuminate\Http\{Request,RedirectResponse};
+use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 
 class ContactMasterController
@@ -169,5 +169,46 @@ class ContactMasterController
             return response()->json($data);
         }
         return response()->json();
+    }
+
+    /**
+     * Search contacts for real-time search functionality
+     */
+    public function search(Request $request): JsonResponse
+    {
+        $search = $request->get('search', '');
+        
+        $query = ContactMaster::with('company');
+
+        // Apply search filter
+        if (!empty($search)) {
+            $query->where(function($q) use ($search) {
+                $q->where('firstname', 'like', "%{$search}%")
+                  ->orWhere('lastname', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhereHas('company', function ($companyQuery) use ($search) {
+                      $companyQuery->where('company_name', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        // Apply status filter
+        if ($request->filled('status')) {
+            $query->where('status', $request->get('status'));
+        } else {
+            $query->where('status', 1); // Default to active
+        }
+
+        $query->orderBy('firstname', 'asc');
+        
+        $contacts = $query->get();
+        $total = ContactMaster::count();
+
+        return response()->json([
+            'users' => $contacts, // Matching variable name in index view
+            'total' => $total,
+            'search' => $search,
+            'status' => $request->get('status')
+        ]);
     }
 }

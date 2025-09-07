@@ -10,7 +10,7 @@ jQuery(function ($) {
     const $gstNo = $('#gst_no');
     const $pincode = $('#pincode');
     const $state = $('#state');
-    const $customerName = $('#customer_name');
+    const $customerName = $('#id_company');
     const $b2cCheckbox = $('#b2c_customer');
     const $createCustomer = $('#create_customer');
 
@@ -54,16 +54,17 @@ jQuery(function ($) {
                          $('#gst_success').text('GST number already added').css('color', 'green');
                          $("#btn-submit").prop("disabled", true);
                         } else { $('#gst_success').text(''); }
-                        $('#customer_name').val(response.company_name);
-                        $("#customer_name").prop('readonly', true);
-                         $('#customer_name').addClass('readonly-greyed');
+                         $('#id_company').val(response.company_name);
+                        $('#id_company').prop('readonly', true);
+                         $('#id_company').addClass('readonly-greyed');
                         $("#btn-submit").prop("disabled", false);
                            
                     } else{
+                        
                         $('#gst_success').text('');
-                        $('#customer_name').val('');
-                      //  $("#customer_name").prop("disabled", false);
-                        $('#customer_name').removeClass('readonly-greyed');
+                        $('#id_company').val('');
+                        $("#id_company").prop("disabled", false).prop("readonly", false);
+                        $('#id_company').removeClass('readonly-greyed');
                     }   
                     
                     $('#company_id').val(response.company_id);
@@ -74,6 +75,8 @@ jQuery(function ($) {
                     $('#state').val(response.state_id).change();
                     $('#gst_error').empty();
                    
+                } else {
+                    alert('No Exist');
                 }
             }).fail(function () {
                 $('#gst_error').text('Error validating GST number').css('color', 'red');
@@ -81,6 +84,7 @@ jQuery(function ($) {
 
         } else {
             $('#gst_error').text('Please enter a valid 15-digit GST number.').css('color', 'red');
+            $('#gst_success').text('');
         }
     });
 

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 
-
-use App\Models\{CompanyMaster,CustomerMaster, CustomerSiteMaster, SampleType, TestMaster, POMaster, POSample, POTest};
+use App\Models\{CompanyMaster,CustomerMaster, CustomerSiteMaster, SampleType, TestMaster, POMaster, POSample, POTest, SampleTypeRate};
 use Illuminate\Http\{Request, RedirectResponse, JsonResponse};
 
 use Illuminate\View\View;
@@ -58,11 +57,42 @@ class POMasterController
        $sampleTypes = SampleType::getSampleType();
        $tests = TestMaster::where('status',1)->get();
        $companies= CompanyMaster::where('status',1)->get();
-            $customers = CustomerMaster::where('status', 1)
+       $customers = CustomerMaster::where('status', 1)
             ->orderBy('customer_name')
             ->get();
-        return view('masters.po.create',compact('sampleTypes','tests','companies','customers'));
+        
+        // Get sample type rates for each sample type
+        $sampleTypeRates = [];
+        foreach ($sampleTypes as $sampleType) {
+            $sampleTypeRates[$sampleType->id] = SampleTypeRate::getRatesForSampleType($sampleType->id);
+        }
+        
+        return view('masters.po.create',compact('sampleTypes','tests','companies','customers','sampleTypeRates'));
+    }
 
+    /**
+     * Get sample type rates for a specific sample type
+     */
+    public function getSampleTypeRates(Request $request): JsonResponse
+    {
+        $sampleTypeId = $request->input('sample_type_id');
+        
+        if (!$sampleTypeId) {
+            return response()->json(['error' => 'Sample type ID is required'], 400);
+        }
+
+       // $rates = SampleTypeRate::getRatesForSampleType($sampleTypeId);
+         $tests = TestMaster::where('status',1)->where('sample_type_id', $sampleTypeId)->get(['id','test_name','standard_test_rate']);
+        return response()->json([
+            'success' => true,
+            'tests' => $tests->map(function($test) {
+                return [
+                    'id' => $test->id,
+                    'test_name' => $test->test_name,
+                    'standard_test_rate' => $test->standard_test_rate,
+                ];
+            })
+        ]);
     }
 
     /**
@@ -70,24 +100,23 @@ class POMasterController
      */
    public function store(Request $request): RedirectResponse
     {
+       //dd($request->all());
         $request->validate([
-            'customer_id' => 'required|exists:customer_masters,id',
+
+            'company_id' => 'required|exists:company_masters,id',
             'site_id' => 'nullable|exists:site_masters,id',
             'po_number' => 'required|string|max:255|unique:po_masters,po_number',
             'po_date' => 'required|date',
-            'po_start_date' => 'required|date',
-            'po_end_date' => 'required|date|after:po_start_date',
- 	   'currency' => 'nullable|string',
-            'test_rate' => 'nullable|integer',
-            'test_limit' => 'nullable|integer',
-           
+            'valid_from' => 'required|date',
+            'valid_to' => 'required|date|after:valid_from',
             'samples' => 'required|array|min:1',
             'samples.*.sample_type_id' => 'required|exists:sample_types,id',
             'samples.*.description' => 'nullable|string|max:500',
+            'samples.*.sample_count' => 'required|integer|min:1',
+            'samples.*.sample_rate' => 'required|numeric|min:0',
+            'samples.*.standard_test_total' => 'nullable|numeric|min:0',
             'samples.*.tests' => 'required|array|min:1',
             'samples.*.tests.*.test_id' => 'required|exists:test_masters,id',
-           'samples.*.tests.*.price' => 'required|numeric|min:0',
-            'samples.*.tests.*.quantity' => 'required|integer|min:1',
         ]);
 
         try {
@@ -95,13 +124,13 @@ class POMasterController
 
             // Create PO
             $po = POMaster::create([
-                'customer_id' => $request->customer_id,
-                'site_id' => $request->site_id,
+                'company_id' => $request->company_id,
+                'site_id' => $request->site_id ?: null,
                 'po_number' => $request->po_number,
                 'po_date' => $request->po_date,
-                'po_start_date' => $request->po_start_date,
-                'po_end_date' => $request->po_end_date,
-                'status' => 'active',
+                'valid_from' => $request->valid_from,
+                'valid_to' => $request->valid_to,
+                'status' => 1,
                 'total_amount' => 0,
             ]);
 
@@ -109,23 +138,29 @@ class POMasterController
 
             // Process samples and tests
             foreach ($request->samples as $sampleData) {
+                $sampleTotal = $sampleData['sample_count'] * $sampleData['sample_rate'];
+                $totalAmount += $sampleTotal;
+
                 $sample = POSample::create([
                     'po_id' => $po->id,
                     'sample_type_id' => $sampleData['sample_type_id'],
                     'description' => $sampleData['description'] ?? null,
+                    'sample_count' => $sampleData['sample_count'],
+                    'sample_rate' => $sampleData['sample_rate'],
+                    'sample_total' => $sampleTotal,
+                    'standard_test_total' => $sampleData['standard_test_total'] ?? 0,
                 ]);
 
                 // Process tests for this sample
                 foreach ($sampleData['tests'] as $testData) {
-                    $testTotal = $testData['price'] * $testData['quantity'];
-                    $totalAmount += $testTotal;
-
+                    // Process tests (no rates, just test selection)
                     POTest::create([
+                        'po_id' => $po->id,
                         'po_sample_id' => $sample->id,
                         'test_id' => $testData['test_id'],
-                        'price' => $testData['price'],
-                        'quantity' => $testData['quantity'],
-                        'total' => $testTotal,
+                        'price' => 0, // No test rates
+                        'quantity' => 1,
+                        'total' => 0, // No test rates
                     ]);
                 }
             }
@@ -134,7 +169,7 @@ class POMasterController
             $po->update(['total_amount' => $totalAmount]);
 
             DB::commit();
-
+//  dd($request->all());
             return redirect()->route('po.show', $po)
                 ->with('success', 'Purchase Order created successfully!');
 
@@ -142,6 +177,7 @@ class POMasterController
             DB::rollBack();
             Log::error('PO creation failed: ' . $e->getMessage());
             
+      //      dd($request->all());
             return back()->withInput()
                 ->withErrors(['error' => 'Failed to create Purchase Order. Please try again.']);
         }
@@ -162,21 +198,21 @@ class POMasterController
      */
     public function edit(POMaster $po): View
     {
-        $customers = CustomerMaster::where('status', 1)
-            ->orderBy('customer_name')
+        $companies = CompanyMaster::where('status', 1)
+            ->orderBy('company_name')
             ->get();
             
         $sampleTypes = SampleType::where('status', 1)
             ->orderBy('sample_type_name')
             ->get();
             
-        $tests = TestMaster::where('active', 1)
+        $tests = TestMaster::where('status', 1)
             ->orderBy('test_name')
             ->get();
             
-        $po->load(['samples.tests.test', 'samples.sampleType']);
+        $po->load(['samples.tests.test', 'samples.sampleType', 'company', 'site']);
         
-        return view('masters.po.edit', compact('po', 'customers', 'sampleTypes', 'tests'));
+        return view('masters.po.edit', compact('po', 'companies', 'sampleTypes', 'tests'));
     }
 
     /**
@@ -185,19 +221,20 @@ class POMasterController
     public function update(Request $request, POMaster $po): RedirectResponse
     {
         $request->validate([
-            'customer_id' => 'required|exists:customer_masters,id',
-            'site_id' => 'required|exists:site_masters,id',
+            'company_id' => 'required|exists:company_masters,id',
+            'site_id' => 'nullable|exists:site_masters,id',
             'po_number' => 'required|string|max:255|unique:po_masters,po_number,' . $po->id,
             'po_date' => 'required|date',
-            'po_start_date' => 'required|date',
-            'po_end_date' => 'required|date|after:po_start_date',
+            'valid_from' => 'required|date',
+            'valid_to' => 'required|date|after:valid_from',
             'samples' => 'required|array|min:1',
             'samples.*.sample_type_id' => 'required|exists:sample_types,id',
             'samples.*.description' => 'nullable|string|max:500',
+            'samples.*.sample_count' => 'required|integer|min:1',
+            'samples.*.sample_rate' => 'required|numeric|min:0',
+            'samples.*.standard_test_total' => 'nullable|numeric|min:0',
             'samples.*.tests' => 'required|array|min:1',
             'samples.*.tests.*.test_id' => 'required|exists:test_masters,id',
-            'samples.*.tests.*.price' => 'required|numeric|min:0',
-            'samples.*.tests.*.quantity' => 'required|integer|min:1',
         ]);
 
         try {
@@ -205,12 +242,12 @@ class POMasterController
 
             // Update PO basic info
             $po->update([
-                'customer_id' => $request->customer_id,
-                'site_id' => $request->site_id,
+                'company_id' => $request->company_id,
+                'site_id' => $request->site_id ?: null,
                 'po_number' => $request->po_number,
                 'po_date' => $request->po_date,
-                'po_start_date' => $request->po_start_date,
-                'po_end_date' => $request->po_end_date,
+                'valid_from' => $request->valid_from,
+                'valid_to' => $request->valid_to,
             ]);
 
             // Delete existing samples and tests
@@ -223,23 +260,28 @@ class POMasterController
 
             // Process new samples and tests
             foreach ($request->samples as $sampleData) {
+                $sampleTotal = $sampleData['sample_count'] * $sampleData['sample_rate'];
+                $totalAmount += $sampleTotal;
+
                 $sample = POSample::create([
                     'po_id' => $po->id,
                     'sample_type_id' => $sampleData['sample_type_id'],
                     'description' => $sampleData['description'] ?? null,
+                    'sample_count' => $sampleData['sample_count'],
+                    'sample_rate' => $sampleData['sample_rate'],
+                    'sample_total' => $sampleTotal,
+                    'standard_test_total' => $sampleData['standard_test_total'] ?? 0,
                 ]);
 
                 // Process tests for this sample
                 foreach ($sampleData['tests'] as $testData) {
-                    $testTotal = $testData['price'] * $testData['quantity'];
-                    $totalAmount += $testTotal;
-
+                    // Process tests (no rates, just test selection)
                     POTest::create([
                         'po_sample_id' => $sample->id,
                         'test_id' => $testData['test_id'],
-                        'price' => $testData['price'],
-                        'quantity' => $testData['quantity'],
-                        'total' => $testTotal,
+                        'price' => 0, // No test rates
+                        'quantity' => 1,
+                        'total' => 0, // No test rates
                     ]);
                 }
             }

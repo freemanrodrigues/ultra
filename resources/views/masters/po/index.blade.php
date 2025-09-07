@@ -153,8 +153,23 @@
                                 <td>{{ $po->valid_from ? date('M d, Y', strtotime($po->valid_from)) : 'N/A' }}</td>
                                 <td>{{ $po->valid_to ? date('M d, Y', strtotime($po->valid_to)) : 'N/A' }} </td>
                                 <td>
+<<<<<<< HEAD
                                     @if(!empty($po->test_rate) &&  !empty($po->test_limit))
                                         ₹{{ number_format(($po->test_rate * $po->test_limit), 2) }}
+=======
+                                    @if($po->site)
+                                        {{ $po->site->site_name }}
+                                    @else
+                                        <span class="text-muted">N/A</span>
+                                    @endif
+                                </td>
+                                <td>{{ $po->po_date ? date('M d, Y',strtotime($po->po_date)) : 'N/A' }}</td>
+                                <td>{{ $po->valid_from ? date('M d, Y',strtotime($po->valid_from)) : 'N/A' }}</td>
+                                <td>{{ $po->valid_to ? date('M d, Y',strtotime($po->valid_to)) : 'N/A' }}</td>
+                                <td>
+                                    @if($po->total_amount)
+                                        ₹{{ number_format($po->total_amount, 2) }}
+>>>>>>> 8dd86ed2aa0174eb2cdc67a417ff01e85e33211b
                                     @else
                                         <span class="text-muted">₹0.00</span>
                                     @endif

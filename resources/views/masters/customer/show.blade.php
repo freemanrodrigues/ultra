@@ -166,7 +166,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h1>
                 <i class="fas fa-building me-2"></i> Customer Details
-                <small class="d-block d-md-inline ms-md-2 opacity-75">ID: {{ str_pad($customer->cus_mas_id, 5, '0', STR_PAD_LEFT) }}</small>
+                <small class="d-block d-md-inline ms-md-2 opacity-75">ID: {{ str_pad($customer->id, 5, '0', STR_PAD_LEFT) }}</small>
             </h1>
             <a href="{{ route('customer.index') }}" class="btn btn-outline-light btn-sm">
                 <i class="fas fa-arrow-left me-1"></i> Back to List
@@ -204,41 +204,77 @@
                             <td>{{ $customer->gst_no ?? 'N/A' }}</td>
                         </tr>
                         <tr>
-                            <td class="fw-semibold text-muted">Address Name</td>
-                            <td>{{ $customer->address ?? 'N/A' }}</td>
-                            <td class="fw-semibold text-muted">Address1</td>
-                            <td>{{ $customer->address1 ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-muted">City</td>
-                            <td>{{ $customer->city ?? 'N/A' }}</td>
-                            <td class="fw-semibold text-muted">Pincode</td>
-                            <td>{{ $customer->pincode ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-muted">State</td>
-                            <td>{{ $states[$customer->state] ?? 'N/A' }}</td>
-                            <td class="fw-semibold text-muted">Country</td>
-                            <td>{{ $countries[$customer->country] ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-muted">Billing Cycle</td>
-                            <td>{{ config('constants.BILLING_CYCLE')[$customer->billing_cycle] ?? 'N/A' }}</td>
-                            <td class="fw-semibold text-muted">Credit Cycle</td>
-                            <td>{{ $customer->credit_cycle ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-muted">Status</td>
-                            <td>
-                                @if(($customer->status ?? '') === 1)
-                                    <span class="badge bg-success">Active</span>
-                                @else
-                                    <span class="badge bg-secondary">Inactive</span>
-                                @endif
-                            </td>
-                            <td class="fw-semibold text-muted">Group</td>
-                            <td>{{ config('constants.CUSTOMER_GROUP')[$customer->group] ?? 'N/A' }}</td>
-                        </tr>
+    <td colspan="2" class="align-top">
+        <h6 class="fw-semibold text-muted mb-2 text-center">Address Details</h6>
+        <div class="table-responsive">
+            <table class="table mb-0 table-sm">
+                <tbody>
+                    <tr>
+                        <td class="fw-semibold text-muted">Address Name</td>
+                        <td>{{ $customer->address ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Address2</td>
+                        <td>{{ $customer->address1 ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Address3</td>
+                        <td>{{ $customer->address2 ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">City</td>
+                        <td>{{ $customer->city ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">State</td>
+                        <td>{{ $states[$customer->state] ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Country</td>
+                        <td>{{ $countries[$customer->country] ?? 'N/A' }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </td>
+
+    <td colspan="2" class="align-top">
+        <h6 class="fw-semibold text-muted mb-2 text-center">Billing Details</h6>
+        <div class="table-responsive">
+            <table class="table mb-0 table-sm">
+                <tbody>
+                    <tr>
+                        <td class="fw-semibold text-muted">Group</td>
+                        <td>{{ config('constants.CUSTOMER_GROUP')[$customer->group] ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Billing Cycle</td>
+                        <td>{{ config('constants.BILLING_CYCLE')[$customer->billing_cycle] ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Credit Cycle</td>
+                        <td>{{ $customer->credit_cycle ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Status</td>
+                        <td>
+                            <span class="badge {{ ($customer->status ?? '') === 1 ? 'bg-success' : 'bg-secondary' }}">
+                                {{ ($customer->status ?? '') === 1 ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold text-muted">Sales Person</td>
+                        <td>{{ optional($customer->salesPerson)->firstname }} {{ optional($customer->salesPerson)->lastname }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>
+                          
+                        
                     </tbody>
                 </table>
             </div>
