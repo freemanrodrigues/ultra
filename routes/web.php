@@ -86,7 +86,7 @@ Route::patch('site-masters/{siteMaster}/toggle-status', [SiteMasterController::c
 
 Route::any('/masters/customer-site-masters/assign-contact/{id}', [CustomerSiteMasterController::class,'assignContact'])->name('customer-site-masters.assign-contact');  
 Route::any('/masters/customer-site-masters/save-assign-contact', [CustomerSiteMasterController::class, 'saveAssignContact'])->name('customer-site-masters.save-assign-contact'); 
-         
+Route::get('/masters/customer-site-masters/export-csv', [CustomerSiteMasterController::class, 'exportCsv'])->name('customer-site-masters.export-csv');
 Route::resource('/masters/customer-site-masters', CustomerSiteMasterController::class);
 
 Route::patch('/masters/make-model-masters/toggle-status', [MakeModelMasterController::class, 'toggleStatus'])->name('make-model-masters.toggle-status');
@@ -165,6 +165,7 @@ Route::any('/masters/model/bulk_delete', [ModelMasterController::class,'bulkDele
 
 // Sample details
 Route::get('/sample-details_x/{id}', [SampleDetailController::class,'addSampleDetialsX'])->name('sample-details');
+// Sample details
 Route::get('/sample-details/{id}', [SampleDetailController::class,'addSampleDetials'])->name('sample-details');
 Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDetials'])->name('save-sample-details');
 
