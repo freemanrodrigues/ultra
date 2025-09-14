@@ -19,16 +19,12 @@ class SampleMasterController
         $courier_mst = CourierMaster::getCourierArray();
         $company_mst = CompanyMaster::getCompanyArray();
         $customer_mst = CustomerMaster::getCustomerArray();
-      //  $sitemaster = SiteMaster::getSiteMasterArray();
-       // $users = User::getUserArray();
-       $users = array(1 =>'Ram');
-       $sitemaster = array(1 =>'Solapur');
+        $sitemaster = SiteMaster::getSiteMasterArray();
+        $users = User::getUserArray();
+       
         return view('sample-list',compact('samples','courier_mst','company_mst','customer_mst','users','sitemaster'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $courier_mst = CourierMaster::getCourierArray();

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('customer_masters', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
-            $table->string('site')->nullable();
             $table->string('division')->nullable();
             $table->integer('company_id')->nullable();
             $table->boolean('b2c_customer')->default(0);
