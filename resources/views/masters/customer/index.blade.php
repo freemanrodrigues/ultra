@@ -257,6 +257,7 @@
                                             {{ !empty($customer->gst_state_code) ? ' - '.$customer->gst_state_code : '' }}
                                             {{ !empty($customer->division) ? ' - '.$customer->division : '' }} 
                                             {{ !empty($customer->site_name) ? ' - '.$customer->site_name : '' }}
+                                            {{ !empty($customer->site_customer_name) ? ' - ('.$customer->site_customer_name.')' : '' }}
                                             </code>
                                         </a>
                                     </td>

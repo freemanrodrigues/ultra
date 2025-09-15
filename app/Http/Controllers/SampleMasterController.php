@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{CourierMaster,CompanyMaster,CustomerMaster,SampleMaster};
+use App\Models\{CourierMaster,CompanyMaster,CustomerMaster,SampleMaster,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 use Pdf; // Use the Pdf Facade

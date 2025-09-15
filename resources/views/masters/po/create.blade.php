@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="sample-item-header">
                 <h6 class="mb-0">Sample ${sampleCounter}</h6>
                 <button type="button" class="btn btn-danger btn-remove" onclick="removeSample(this)">
-                    <i class="fas fa-trash"></i>
+                    <i class="bi bi-trash"></i>
                 </button>
             </div>
             <div class="row g-2">

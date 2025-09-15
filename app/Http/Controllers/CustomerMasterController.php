@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,CustomerSiteMaster,State,SiteMaster,User};
+use App\Models\{Country,CompanyMaster,ContactMaster,CustomerMaster,CustomerSiteMaster,POMaster,State,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse,JsonResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\{DB,Log};
@@ -24,7 +24,9 @@ $query = CustomerMaster::select(
         'customer_masters.group',
         'customer_masters.status',
         'states.statename',
-        'customer_masters.gst_state_code'
+        'customer_masters.gst_state_code',
+        'customer_site_masters.site_customer_code',
+        'customer_site_masters.site_customer_name'
     )
     ->leftJoin(
         'customer_site_masters',
@@ -322,7 +324,7 @@ $customers = $query->paginate(10)->appends($request->query());
         // Fetch data from your database
         // Replace 'YourModel' and 'name' with your actual model and column name
         $suggestions = CustomerMaster::where('customer_name', 'LIKE', '%' . $query . '%')
-                                ->select('id', 'customer_name as name') // Select only necessary columns
+                                ->select('id', 'customer_name as name','gst_state_code as statecode') // Select only necessary columns
                                 ->limit(10) // Limit the number of suggestions
                                 ->get();
 
@@ -331,7 +333,7 @@ $customers = $query->paginate(10)->appends($request->query());
 
     public function getCustomerAddress(Request $request)
     {
-       // dd($request->all());
+        dd($request->all());
         $request->validate([
             'customerid' => 'required|integer',
         ]);
@@ -346,11 +348,14 @@ $customers = $query->paginate(10)->appends($request->query());
         $sitemaster = SiteMaster::getSite($request->customerid);
       
         // get PO Master
+   //     $cus = CustomerMaster::getCountryId($request->customerid);
+   //     $po_masters =  POMaster::getPoForACustomer($$cus[0]->company_id);
 
         if ($customer) {
             return response()->json([
                 'customer' => $customer, 
                 'sitemaster' => $sitemaster, 
+      //          'po_master' => $po_masters, 
             ]);
         }
         

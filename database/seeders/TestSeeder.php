@@ -36,6 +36,7 @@ foreach ($csv->getRecords() as $record) {
     $recordsToInsert[] = [
        'test_name'  => $record['test_name'],
        'sample_type_id'  => $record['sample_type_id'],
+       'standard_test_rate'  => $record['standard_test_rate'],
         'status'       => 1,
     ];
 }
