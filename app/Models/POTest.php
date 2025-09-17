@@ -40,5 +40,10 @@ class POTest extends Model
     {
         return $this->belongsTo(TestMaster::class, 'test_id');
     }
+
+    
+    public static function getTestList($po_id, $sample_id) {
+        return   POTest::where(['po_id'=>$po_id , 'po_sample_id'=> $sample_id])->get();
+    }
 }
 

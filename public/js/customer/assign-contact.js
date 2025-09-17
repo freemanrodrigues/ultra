@@ -56,7 +56,7 @@ jQuery(function ($) {
         });
     });
 
-    $('.m3').click(function() {
+    $('.get_contacts').click(function() {
         const site_id = $(this).data('id');
         const company_id = $(this).data('company_id');
         const customer_id = $(this).data('customer_id');

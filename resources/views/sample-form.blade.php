@@ -3,7 +3,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
 
-
+<link rel="stylesheet" href="{{asset('/css/customer/autosuggest_pop.css')}}?{{date('mmss')}}" />
 
     <div class="container-fluid py-4">
         <div class="row justify-content-center">
@@ -123,9 +123,9 @@ value="{{ old('search') }}" placeholder="Search by code or name..."  autocomplet
                                             <label for="contact_id" class="form-label fw-semibold">Contact</label><br>
                                             
                                             <div class="icon-input" >
-                                               <select name="contact_id" id="c" class="form-control">
-                                               <option value="">Select Contact</option> 
-                                               </select>
+                                               <div id="contact_place_holder">
+                                            
+                                            </div>
                                                 <i class="bi bi-person-badge"></i>
                                             </div>
      
@@ -155,6 +155,13 @@ value="{{ old('search') }}" placeholder="Search by code or name..."  autocomplet
                                         <div class="mb-3">
                                             <label for="workOrder" class="form-label fw-semibold">Work Order</label>
                                             <input type="text" class="form-control" id="workOrder" name="work_order" value="{{ old('work_order') }}">
+
+                                             <div class="icon-input" >
+                                               <select name="workOrder_desc" id="workOrder_desc" class="form-control" required>
+                                               <option value="">Select Work Order</option> 
+                                               </select>
+                                                <i class="bi bi-person-badge"></i>
+                                            </div>
                                         </div>
 
                                         <div class="mb-3">
@@ -233,7 +240,7 @@ value="{{ old('search') }}" placeholder="Search by code or name..."  autocomplet
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/customer/function_autosuggest33.js?{{date('mmss')}}"></script>
-    <script src="/js/sample/create-sample.js"></script>
+    <script src="{{asset('/js/customer/function_autosuggest33.js')}}?{{date('mmss')}}"></script>
+    <script src="{{asset('/js/sample/create-sample.js')}}?{{date('mmss')}}"></script>
     
 @endsection

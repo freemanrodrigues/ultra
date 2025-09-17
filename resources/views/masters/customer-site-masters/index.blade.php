@@ -263,7 +263,7 @@
                                 </td>
                                 <td>{{ $customerSiteMaster->site_customer_name }}</td>
                                 <td>
-                                    <a class="btn btn-xs btn-outline-secondary m-1" 
+                                    <a class="btn btn-xs btn-outline-secondary m-1 get_contacts" 
                                        data-id="{{ $customerSiteMaster->id }}" 
                                        data-customer_id="{{ $customerSiteMaster->customer_id }}"  
                                        data-company_id="{{ $customerSiteMaster->company_id }}"  
@@ -272,7 +272,7 @@
                                        title="Assign Contact">
                                         <i class="bi bi-person-plus"></i>
                                     </a>
-                                    <a class="btn btn-xs btn-outline-info m-1" 
+                                    <a class="btn btn-xs btn-outline-info m-1 assigned_contact" 
                                        data-id="{{ $customerSiteMaster->site_master_id }}" 
                                        data-bs-toggle="modal" 
                                        data-bs-target="#assigned_contact_Modal" 

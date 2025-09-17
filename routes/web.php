@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController, StateController,SiteMasterController,TestMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController,SampleDetailTestAssignmentController, StateController,SiteMasterController,TestMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -163,11 +163,12 @@ Route::any('/masters/model/bulk_delete', [ModelMasterController::class,'bulkDele
 
 
 
-// Sample details
-Route::get('/sample-details_x/{id}', [SampleDetailController::class,'addSampleDetialsX'])->name('sample-details');
+
 // Sample details
 Route::get('/sample-details/{id}', [SampleDetailController::class,'addSampleDetials'])->name('sample-details');
 Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDetials'])->name('save-sample-details');
+
+Route::get('/test-assigned/{id}', [SampleDetailTestAssignmentController::class,'assginedTestForSample'])->name('test-assigned');
 
 
 

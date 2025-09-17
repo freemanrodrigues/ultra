@@ -33,9 +33,12 @@ $(document).ready(function() {
                       
                         $.each(data, function(index, record) {
                             // Option 1: Clickable to fill a textbox and a hidden input
-                           resultsHtml += '<div class="dropdown-item" data-id="' + record.id + '" data-clickid="' + clickedId + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  >';
+                           resultsHtml += '<div class="dropdown-item" data-id="' + record.id + '" data-clickid="' + clickedId + '" data-name="' + record.name + '" data-txtbx="' + txtbx + '"  data-statecode="' + record.statecode + '"  >';
                             
                             resultsHtml += ' ' + record.name; // Checkmark icon
+                            if(txtbx == 'customer_id') {
+                                 resultsHtml += ' [' + record.statecode+']'; // Checkmark icon
+                            }
                             resultsHtml += '</div>';
 
                          	 $('.myDropdown_'+ txtbx).html(resultsHtml);
@@ -80,7 +83,13 @@ $(document).ready(function() {
     const clickid = $(this).data('clickid');
   //  alert("Final"+txtbx);
     // Assuming your input box is '#search' and your hidden input is '#record-id'
-    $('#' + clickid).val(name);
+     if(txtbx == 'customer_id') {
+        const statecode = $(this).data('statecode');
+        $('#' + clickid).val(name+' ['+statecode+']');
+    } else {
+        $('#' + clickid).val(name);
+     }
+    
     $('#' + txtbx).val(id);
     $('#' + txtbx).trigger('change');
 

@@ -91,7 +91,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="justify-content-center align-items-center">
+               <div class="justify-content-center align-items-center mt-3 text-center">
                     <button class="btn btn-secondary mr-4" data-bs-dismiss="modal">Cancel</button>
                     <button class="btn btn-success" type="submit">Save</button>
                 </div>

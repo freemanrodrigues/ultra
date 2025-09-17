@@ -179,6 +179,15 @@ $(document).ready(function () {
             console.log('Site ' + index + ':', user.firstname);
            optHtml+= '<option value="'+user.id+'">'+user.firstname+' '+user.lastname+'</option>';
        });
+
+        var optHtml = '<option value="">Select Work Order</option>';
+         $.each(response.pos, function(index, po) {
+              //  console.log('Site ' + index + ':', site.site_customer_name);
+                optHtml+= '<option value="'+po.id+'">'+po.po_number+'</option>';
+            });
+            //alert("OP :"+optHtml);
+             $('#workOrder_desc').html(optHtml);
+ 
         $('#contact_id').html(optHtml);
       //  $('#siteAddress').html(site_address);
         },
@@ -187,4 +196,10 @@ $(document).ready(function () {
         }
         });
     });
+
+    // 
+    $('#workOrder_desc').on('change', function() {
+          const po_id = $('#workOrder_desc').val().trim();
+            $('#workOrder').val(po_id);
+     });
 });

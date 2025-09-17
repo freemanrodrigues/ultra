@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\{Country,CompanyMaster, ContactMaster,ContactAssignment, CustomerMaster,CustomerSiteMaster,State,SiteContact,SiteMaster,User};
+use App\Models\{Country,CompanyMaster, ContactMaster,ContactAssignment, CustomerMaster,CustomerSiteMaster,POMaster,State,SiteContact,SiteMaster,User};
 use Illuminate\Http\{Request,RedirectResponse};
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
@@ -170,12 +170,13 @@ class CustomerSiteMasterController
 			
             $customer = CustomerMaster::getCountryId($request['customer_id']);
             $validated['company_id'] = $customer->company_id;
+         
           //  CustomerSiteMaster::create($validated);
             $customerSiteMaster->update($validated);
             return redirect()->route('customer-site-masters.index', ['customer_id'=>$request['customer_id']])
             ->with('success', [
                 'text' => 'Customer Site Master updated successfully!',
-                'link' => route('contacts-masters.create',['company_id'=>$customer[0]->company_id]), // link to customer details
+                'link' => route('contacts-masters.create',['company_id'=>$customer->company_id]), // link to customer details
                 'link_text' => ' Next Step : Add Contact'
             ]);               
         } catch (\Exception $e) {
@@ -233,10 +234,14 @@ class CustomerSiteMasterController
     )
     ->get(); 
 
+    // get PO Master
+        $cus = CustomerMaster::getCountryId($request->customerid);
+        $po_masters =  POMaster::getPoForACustomer($cus->company_id);
         if ($customers) {
             return response()->json([
                 'customer' => $customers, 
                 'contacts' => $contacts, 
+                'pos' => $po_masters, 
             ]);
         }
         return response()->json([]);

@@ -147,7 +147,7 @@ class UserController
         $userId = $user->id;
         $customer = CustomerMaster::getCountryId($request['customer_id']);
         
-        User::where('id',$userId)->update(['company_id'=>$customer[0]->company_id, 'customer_id' =>$request->customer_id]);
+        User::where('id',$userId)->update(['company_id'=>$customer->company_id, 'customer_id' =>$request->customer_id]);
 
 
         return redirect()->route('users.index')

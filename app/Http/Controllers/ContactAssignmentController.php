@@ -29,7 +29,7 @@ class ContactAssignmentController
         //dd($_GET['customer_id']);
         $customer_id = $_GET['customer_id'];
         $customers = CustomerMaster::getCountryId($customer_id);
-        $company_id = $customers[0]->company_id;
+        $company_id = $customers->company_id;
 
         $contacts = ContactMaster::where('company_id', $company_id)->orderby(['firstname'])->get();
 
@@ -154,9 +154,9 @@ class ContactAssignmentController
             'company_id' => 'required|integer',
         ]);
        */
-        //$data = ContactAssignment::where('customer_site_id', $request->site_id)->get();
-
-        $results = DB::table('contact_assignments as ca')
+        $data = ContactAssignment::where('company_id', $request->site_id)->get();
+/*
+        $data = DB::table('contact_assignments as ca')
         ->join('contact_masters as cm', 'ca.contact_id', '=', 'cm.id')
         ->where('ca.customer_site_id', $request->site_id)
         ->select(
@@ -164,11 +164,11 @@ class ContactAssignmentController
             'ca.send_bill',
             'ca.send_report',
             'ca.whatsapp',
-            'ca.is_primary'
+            '@ca.is_primary'
         )
-        ->get();
-        if ($results) {
-            return response()->json($results);
+        ->get(); */
+        if ($data) {
+            return response()->json($data);
         }
         return response()->json();
     }

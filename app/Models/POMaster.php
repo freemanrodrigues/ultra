@@ -62,4 +62,12 @@ class POMaster extends Model
     {
         return $this->hasMany(POSample::class, 'po_id');
     }
+
+     public static function getPoForACustomer($company_id) {
+       return  POMaster::where('company_id', $company_id)->get(['id','po_number'] );
+     }   
+
+
+
+
 }
