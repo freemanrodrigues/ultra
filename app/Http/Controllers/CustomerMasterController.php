@@ -333,7 +333,7 @@ $customers = $query->paginate(10)->appends($request->query());
 
     public function getCustomerAddress(Request $request)
     {
-        dd($request->all());
+       // dd($request->all());
         $request->validate([
             'customerid' => 'required|integer',
         ]);
@@ -349,7 +349,7 @@ $customers = $query->paginate(10)->appends($request->query());
       
         // get PO Master
    //     $cus = CustomerMaster::getCountryId($request->customerid);
-   //     $po_masters =  POMaster::getPoForACustomer($$cus[0]->company_id);
+   //     $po_masters =  POMaster::getPoForACustomer($$cus->company_id);
 
         if ($customer) {
             return response()->json([
