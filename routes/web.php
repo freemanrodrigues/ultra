@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController,SampleDetailTestAssignmentController, StateController,SiteMasterController,TestMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController,HomeController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController,SampleDetailTestAssignmentController, StateController,SiteMasterController,TestMasterController,UserController};
 
 
 Route::get('/', function () {
     if (Auth::check()) { 
-         return view('dashboard');
+         return redirect()->route('dashboard');
     } else{ return view('login');}
-    
+
 });
 
 // Original file
@@ -39,7 +39,7 @@ Route::get('/blank1', function () {
 });
 */
    
-Route::get('/dashboard', function () {  return view('dashboard');})->name('dashboard');;
+Route::get('/dashboard', [HomeController::class,'dashboard'])->name('dashboard');
 Route::get('login', [UserController::class,'loginHtml'])->name('login');;
 Route::get('logout', [UserController::class,'logout'])->name('logout');;
 Route::get('register', [UserController::class,'registerHtml'])->name('register');;
@@ -143,7 +143,7 @@ Route::any('/ajax-get-customer-address', [CustomerMasterController::class,'getCu
 
 Route::any('/ajax-get-customer-sites', [CustomerSiteMasterController::class,'getCustomerSites'])->name('ajax-get-customer-sites');
 Route::get('/ajax/company-sites/{id}', [CustomerSiteMasterController::class,'getSitesByCompany'])->name('company-sites');
-Route::any('/ajax-get-site-contact-details', [UserController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
+Route::any('/ajax-get-site-contact-details', [ContactAssignmentController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
 
 Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])->name('ajax-get-contacts');
 Route::any('/ajax/get-assigned-contact', [ContactAssignmentController::class,'getAssignedContacts'])->name('ajax-get-contacts');

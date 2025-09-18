@@ -76,36 +76,36 @@ td {
                             @endforeach
                         </select>
                     </td>
-                    <td><input type="text" name="running_hrs[{{ $i+1 }}]"></td>
-                    <td><input type="text" name="sub_asy_no[{{ $i+1 }}]"></td>
-                    <td><input type="text" name="sub_asy_hrs[{{ $i+1 }}]"></td>
+                    <td><input type="text" name="running_hrs[{{ $i+1 }}]" value="{{$sample_details[$i]['running_hrs']?? '' }}"></td>
+                    <td><input type="text" name="sub_asy_no[{{ $i+1 }}]" value="{{$sample_details[$i]['sub_asy_no']?? '' }}"></td>
+                    <td><input type="text" name="sub_asy_hrs[{{ $i+1 }}]" value="{{$sample_details[$i]['sub_asy_hrs']?? '' }}"></td>
                     <td>
-                        <input type="text" name="sampling_date[{{ $i+1 }}]" style="width:60px">
+                        <input type="text" name="sampling_date[{{ $i+1 }}]" value="{{$sample_details[$i]['sampling_date']?? '' }}" style="width:60px" >
                     </td>
                     <td>
                         <select name="brand_of_oil[{{ $i+1 }}]" class="form-select selwidth">
                             @foreach(config('constants.BRAND_OF_OIL') as $k => $val)
-                            <option value="{{$k}}">{{$val}}</option>
+                            <option value="{{$k}}" >{{$val}}</option>
                             @endforeach 
                         </select>
                     </td>
                     <td>
-                        <input type="text" name="grade[{{ $i+1 }}]">
+                        <input type="text" name="grade[{{ $i+1 }}]" value="{{$sample_details[$i]['grade']?? '' }}">
                     </td>
                     <td>
-                        <input type="text" name="lube_oil_running_hrs[{{ $i+1 }}]">
+                        <input type="text" name="lube_oil_running_hrs[{{ $i+1 }}]"  value="{{$sample_details[$i]['lube_oil_running_hrs']?? '' }}">
                     </td>
                     <td>
-                        <input type="text" name="top_up_volume[{{ $i+1 }}]">
+                        <input type="text" name="top_up_volume[{{ $i+1 }}]"  value="{{$sample_details[$i]['top_up_volume']?? '' }}">
                     </td>
                     <td>
-                        <input type="text" name="sump_capacity[{{ $i+1 }}]">
+                        <input type="text" name="sump_capacity[{{ $i+1 }}]"  value="{{$sample_details[$i]['sump_capacity']?? '' }}">
                     </td>
                     <td>
-                        <input type="text" name="sampling_from[{{ $i+1 }}]">
+                        <input type="text" name="sampling_from[{{ $i+1 }}]"  value="{{$sample_details[$i]['sampling_from']?? '' }}">
                     </td>
                     <td>
-                        <input type="text" name="qty[{{ $i+1 }}]">
+                        <input type="text" name="qty[{{ $i+1 }}]"  value="{{$sample_details[$i]['qty']?? '' }}">
                     </td>
                     <td>
                         <select name="type_of_bottle[{{ $i+1 }}]" class="form-control">

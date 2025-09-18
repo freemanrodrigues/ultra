@@ -126,7 +126,7 @@ $(document).ready(function () {
             }
         });
     });
-    /*
+    
     $('#site_master_id').change(function() {
           
           const site_master_id = $(this).val().trim();
@@ -137,16 +137,18 @@ $(document).ready(function () {
                   'site_master_id': site_master_id,
               },
               success: function (response) {
+               // alert(response.firstname);
                   var site_address = '';
-                  $.each(response.sitemasters, function(index, sitemasters) { 
-                    site_address = sitemasters.address+'<br>'+sitemasters.address1+'<br> '+sitemasters.city+'<br>'+sitemasters.state;
+                  $.each(response.site_address, function(index, sitemasters) { 
+                    site_address = sitemasters.address+'<br>'+sitemasters.city;
                 });
                 
+              //  firstname: "Vinod", lastname: "Patil", phone: "9845645654", email
                   var optHtml = '';
-                   $.each(response.user, function(index, user) {
-                      optHtml+= '<option value="'+user.id+'">'+user.firstname+' '+user.lastname+'</option>';
+                   $.each(response.contacts, function(index, user) {
+                      optHtml+= '<div>'+ user.firstname +' '+ user.lastname+'<br> Phone: '+ user.phone +' <br> Email: '+ user.email +' </div>';
                   });
-                   $('#cus_site_contact_person_id').html(optHtml);
+                   $('#contact_place_holder').html(optHtml);
                    $('#siteAddress').html(site_address);
               },
               error: function () {
@@ -154,12 +156,11 @@ $(document).ready(function () {
               }
           });
       });
-*/
+
       $('#customer_id').on('change', function() {
        // handleHiddenFieldValueChange();
        const customerid = $('#customer_id').val().trim();
-      
-       $.ajax({
+        $.ajax({
         url: "/ajax-get-customer-sites", // {{ route('ajax-get-customer-address') }}
         method: 'POST',
         data: {

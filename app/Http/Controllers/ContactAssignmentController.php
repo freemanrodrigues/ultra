@@ -173,4 +173,29 @@ class ContactAssignmentController
         return response()->json();
     }
     
+    public function getSiteContactDetails(Request $request)
+    {
+      //  dd("XXX");
+     /*   $request->validate([
+            'company_id' => 'required|integer',
+        ]);
+       */
+     // dd($request->company_id);
+       // $data = ContactMaster::where('company_id', $request->company_id)->get();
+        $data = DB::table('contact_assignments as ca')
+            ->join('contact_masters as cm', 'ca.contact_id', '=', 'cm.id')
+            ->where('ca.customer_site_id', $request->site_master_id)
+            ->select('cm.firstname', 'cm.lastname', 'cm.phone', 'cm.email')
+            ->get();
+
+        $customer_site_master =   CustomerSiteMaster::where('id', $request->site_master_id)->get(['address','city']);  
+        if ($data) {
+           return response()->json([
+                'contacts' => $data,
+                'site_address' => $customer_site_master
+                
+				]);		
+        }
+        return response()->json();
+    }
 }

@@ -154,7 +154,7 @@ value="{{ old('search') }}" placeholder="Search by code or name..."  autocomplet
 
                                         <div class="mb-3">
                                             <label for="workOrder" class="form-label fw-semibold">Work Order</label>
-                                            <input type="text" class="form-control" id="workOrder" name="work_order" value="{{ old('work_order') }}">
+                                            <input type="hidden" class="form-control" id="workOrder" name="work_order" value="{{ old('work_order') }}">
 
                                              <div class="icon-input" >
                                                <select name="workOrder_desc" id="workOrder_desc" class="form-control" required>
