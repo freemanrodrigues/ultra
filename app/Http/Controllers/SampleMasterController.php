@@ -15,7 +15,11 @@ class SampleMasterController
      */
     public function index()
     {
-        $samples = SampleMaster::all();
+        $samples = SampleMaster::with([
+            'customer.company',
+            'customer_site_masters.siteMaster',
+            'customer_site_masters.contactAssignments.contactMaster'
+        ])->get();
         $courier_mst = CourierMaster::getCourierArray();
         $company_mst = CompanyMaster::getCompanyArray();
         $customer_mst = CustomerMaster::getCustomerArray();

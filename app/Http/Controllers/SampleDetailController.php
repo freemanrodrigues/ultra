@@ -96,12 +96,13 @@ class SampleDetailController
 
     public function saveSampleDetials(Request $request)
     {
-       // dd($request->all());
+     //   dd($request->all());
         
        
         if(!empty($request['device_id'])) {
             $samples =  SampleMaster::where('id', $request->sample_id)->get();
-            foreach($request['device_id'] as $k => $device_id){
+
+            foreach($request['device_id'] as $k => $device_id) {
 
            if($device_id == 'New') {
             // Add Device
@@ -164,11 +165,10 @@ class SampleDetailController
                 SampleDetailTestAssignment::create(['sample_details_id' =>$smd->id,'test_id' => $test->test_id]);
             }
 ///
-
-            return redirect()->route('sample.index')
-                           ->with('success', 'SampleDetails added successfully!');
         }
-	}
+         return redirect()->route('sample.index')
+                           ->with('success', 'SampleDetails added successfully!');
+    }
     }
     
 

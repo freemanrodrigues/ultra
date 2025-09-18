@@ -39,4 +39,9 @@ class CustomerMaster extends Model
 	{
 		return $this->belongsTo(User::class, 'sales_person_id');
 	}
+
+	public function company()
+	{
+		return $this->belongsTo(CompanyMaster::class, 'company_id');
+	}
 }

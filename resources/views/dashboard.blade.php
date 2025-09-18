@@ -32,8 +32,9 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>Total Lots: {{$data['sample_lot']}}</h3>
-                     <p>sample count: {{$data['total_samples']}}</p>
+                    <h3>Total Samples</h3>
+                    <h4>{{$data['total_samples']}}</h4>
+                     
                   </div>
                   <svg
                     class="small-box-icon"

@@ -45,11 +45,18 @@
                             <td>{{ date('H:i:s',strtotime($sample->sample_date)) }}</td>
                             <td>@if(!empty($courier_mst[$sample->courier_id])){{ $courier_mst[$sample->courier_id] }} @endif</td>
                             <td>@if(!empty($customer_mst[$sample->customer_id])){{ $customer_mst[$sample->customer_id] }}@endif</td>
-                            <td>@if(!empty($company_mst[$sample->company_id])){{ $company_mst[$sample->company_id] }}@endif</td>
+                            <td>@if(!empty($company_mst[$sample->company_id])){{ $company_mst[$sample->company_id] }}@endif  {{ $sample->customer->company->company_name ?? 'N/A' }}</td>
                             <td>{{ $sample->pod_no }}</td>
                             <td>{{ $sample->no_of_samples }}</td>
-                            <td>@if(!empty($users[$sample->cus_site_contact_person_id])){{ $users[$sample->cus_site_contact_person_id] }} @endif  </td>
-                            <td>{{-- $sitemaster[$sample->site_master_id] --}}</td>
+                            <td>
+                            @if ($sample->customer_site_masters && $sample->customer_site_masters->contactAssignments->isNotEmpty())
+      {{ $sample->customer_site_masters->contactAssignments->first()->contactMaster->firstname ?? '' }}
+      {{ $sample->customer_site_masters->contactAssignments->first()->contactMaster->lastname ?? '' }}
+  @else
+      N/A
+  @endif
+                             </td>
+                            <td> {{ $sample->customer_site_masters->siteMaster->site_name ?? 'N/A' }}</td>
                             <td>{{ $sample->additional_info }}</td>
                             <td>{{ $sample->work_order }}</td>
                         </tr>

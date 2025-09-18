@@ -17,4 +17,9 @@ class CustomerSiteMaster extends Model
     {
         return $this->belongsTo(CustomerMaster::class, 'customer_id');
     }
+
+    public function contactAssignments()
+    {
+        return $this->hasMany(ContactAssignment::class, 'customer_site_id');
+    }
 }
