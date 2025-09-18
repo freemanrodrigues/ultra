@@ -104,9 +104,7 @@ class SampleDetailController
 
             foreach($request['device_id'] as $k => $device_id) {
 
-           if($device_id == 'New') {
-            // Add Device
-           }
+           
             
             if(!empty($request->image[$k])) {
                
@@ -123,8 +121,9 @@ class SampleDetailController
             if(!empty($request->invoice[$k])) {
                 
             }
+            if(empty($request->sd_id[$k])) {
             $customer =  CustomerMaster::getCountryId($samples[0]->customer_id);
-               $smd = new SampleDetail();
+                $smd = new SampleDetail();
                 $smd->sample_id = $request->sample_id;
                 $smd->equipment_assignments_id = $device_id;
                 $smd->company_id  = $customer->company_id; 
@@ -164,7 +163,9 @@ class SampleDetailController
             foreach($test_lists as $test) {
                 SampleDetailTestAssignment::create(['sample_details_id' =>$smd->id,'test_id' => $test->test_id]);
             }
-///
+        } else {
+            //edit
+        }
         }
          return redirect()->route('sample.index')
                            ->with('success', 'SampleDetails added successfully!');

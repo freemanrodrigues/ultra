@@ -5,6 +5,10 @@ td {
   white-space: nowrap;
   padding: 0 10px; /* Adjust 10px to your desired spacing */
 }
+.selwidth{
+  width: auto;  
+    min-width: 200px; 
+}
 </style>
 <form method="POST" action="{{ route('save-sample-details') }}" id="sampleForm"  enctype="multipart/form-data">
       @csrf
@@ -50,12 +54,14 @@ td {
             <tbody>
                 @for($i =0;$i<$sample->no_of_samples;$i++)
                 <tr style="width: 1500px;" id="tr{{ $i+1 }}">
-                    <td><i class="bi bi-plus"></i></td>
+                    <td><i class="bi bi-plus"></i>
+                    <input type="hidden" name="sd_id[{{ $i+1 }}]" value = "@if(isset($sample_details[$i]['id'])){{$sample_details[$i]['id']?? ''}} @endif">
+                    </td>
                     <td style="width:200px">
                         <select name="device_id[{{ $i+1 }}]" class="form-select selwidth equipment" data-id="{{ $i+1 }}" data-customer_id="{{ $sample->customer_id }}" data-customer_site_id="{{ $sample->customer_site_id }}"required>
                         <option value="">Select</option>
                             @foreach($equipments as $device)
-                            <option value="{{$device->id}}">{{$device->machine_number." ". $device->customer_site_equiment_name }}</option> 
+                            <option value="{{$device->id}}" @if(isset( $sample_details[$i]['equipment_assignments_id']) && $sample_details[$i]['equipment_assignments_id'] == $device->id) selected @endif>{{$device->machine_number." ". $device->customer_site_equiment_name }}</option> 
                             @endforeach
                             <option value="New">New</option>
                         </select>
@@ -64,7 +70,7 @@ td {
                         <select name="sample_type[{{ $i+1 }}]" class="form-select selwidth">
                             <option value="">Select Sample Type</option>
                             @foreach($sample_types as $k => $v)
-                            <option value="{{$k}}">{{$v }}</option> 
+                            <option value="{{$k}}" @if(isset($sample_details[$i]['type_of_sample']) && $sample_details[$i]['type_of_sample'] == $k ) selected @endif>{{$v }}</option> 
                             @endforeach
                         </select>
                     </td>
@@ -72,7 +78,7 @@ td {
                         <select name="nature_of_Sample[{{ $i+1 }}]" class="form-select selwidth">
                             <option value="">Select Nature Of Sample</option>
                             @foreach($sample_natures as $k => $v)
-                            <option value="{{$k}}">{{$v }}</option> 
+                            <option value="{{$k}}" @if(isset($sample_details[$i]['nature_of_sample']) && $sample_details[$i]['nature_of_sample'] == $k ) selected @endif>{{$v }}</option> 
                             @endforeach
                         </select>
                     </td>
@@ -80,12 +86,13 @@ td {
                     <td><input type="text" name="sub_asy_no[{{ $i+1 }}]" value="{{$sample_details[$i]['sub_asy_no']?? '' }}"></td>
                     <td><input type="text" name="sub_asy_hrs[{{ $i+1 }}]" value="{{$sample_details[$i]['sub_asy_hrs']?? '' }}"></td>
                     <td>
-                        <input type="text" name="sampling_date[{{ $i+1 }}]" value="{{$sample_details[$i]['sampling_date']?? '' }}" style="width:60px" >
+                        <input type="date" name="sampling_date[{{ $i+1 }}]" value="{{ !empty($sample_details[$i]['sampling_date']) ? \Carbon\Carbon::parse($sample_details[$i]['sampling_date'])->format('Y-m-d') : '' }}" style="width:110px" >
+                        
                     </td>
                     <td>
                         <select name="brand_of_oil[{{ $i+1 }}]" class="form-select selwidth">
                             @foreach(config('constants.BRAND_OF_OIL') as $k => $val)
-                            <option value="{{$k}}" >{{$val}}</option>
+                            <option value="{{$k}}"  @if(isset($sample_details[$i]['brand_of_oil']) && $sample_details[$i]['brand_of_oil'] == $k ) selected @endif>{{$val}}</option>
                             @endforeach 
                         </select>
                     </td>
@@ -108,25 +115,25 @@ td {
                         <input type="text" name="qty[{{ $i+1 }}]"  value="{{$sample_details[$i]['qty']?? '' }}">
                     </td>
                     <td>
-                        <select name="type_of_bottle[{{ $i+1 }}]" class="form-control">
+                        <select name="type_of_bottle[{{ $i+1 }}]" class="form-control selwidth">
                             <option value="">Select BottleType</option>
                             @foreach($bottle_types as $k => $v)
-                            <option value="{{$k}}">{{$v }}</option> 
+                            <option value="{{$k}}" @if(isset($sample_details[$i]['bottle_types_id']) && $sample_details[$i]['bottle_types_id'] == $k ) selected @endif>{{$v }}</option> 
                             @endforeach
                         </select>
                     </td>
-                    
+                     <td></td>
                     <td>
-                        <select name="severity[{{ $i+1 }}]" class="form-control">
+                        <select name="severity[{{ $i+1 }}]" class="form-control selwidth">
                             @foreach(config('constants.SEVERITY') as $k => $val)
-                            <option value="{{$k}}">{{$val}}</option>
+                            <option value="{{$k}}" @if(isset($sample_details[$i]['severity']) && $sample_details[$i]['severity'] == $k ) selected @endif>{{$val}}</option>
                             @endforeach 
                         </select>
                     </td>
                     <td>
-                        <select name="oil_drained[{{ $i+1 }}]" class="form-control">
-                            <option value="Y">Yes</option>
-                            <option value="N">No</option>
+                        <select name="oil_drained[{{ $i+1 }}]" class="form-control selwidth">
+                            <option value="Y" @if(isset($sample_details[$i]['severity']) && $sample_details[$i]['severity'] == 'Y' ) selected @endif>Yes</option>
+                            <option value="N" @if(isset($sample_details[$i]['severity']) && $sample_details[$i]['severity'] == 'N' ) selected @endif>No</option>
                         </select>
                     </td>
                     <td>
@@ -135,7 +142,10 @@ td {
                     <td>
                         <input class="form-control fir" type="file" name="fir[{{ $i+1 }}]" value="Upload Image">
                     </td>
+                    <td></td>
                    <td><button type="button">Save</button></td>
+                   @if(isset($sample_details[$i]['id']) && $sample_details[$i]['id']) 
+                   <td><a href="{{route('test-assigned', $sample_details[$i]['id'] )}}">Test</a></td> @endif
                 </tr>
                 @endfor 
                 <tr class="save-row">

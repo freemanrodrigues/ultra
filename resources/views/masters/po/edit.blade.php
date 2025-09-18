@@ -208,19 +208,19 @@
                     <!-- PO Date -->
                     <div class="col-md-4">
                         <label for="po_date" class="form-label">PO Date *</label>
-                        <input type="date" class="form-control" id="po_date" name="po_date" required value="{{ $po->po_date }}">
+                        <input type="date" class="form-control" id="po_date" name="po_date" required value="{{ !empty($po->po_date) ? \Carbon\Carbon::parse($po->po_date)->format('Y-m-d') : '' }}">
                     </div>
                     
                     <!-- Valid From Date -->
                     <div class="col-md-4">
                         <label for="valid_from" class="form-label">Valid From *</label>
-                        <input type="date" class="form-control" id="valid_from" name="valid_from" required value="{{ $po->valid_from }}">
+                        <input type="date" class="form-control" id="valid_from" name="valid_from" required value="{{ !empty($po->valid_from) ? \Carbon\Carbon::parse($po->valid_from)->format('Y-m-d') : '' }}">
                     </div>
 
                     <!-- Valid To Date -->
                     <div class="col-md-4">
                         <label for="valid_to" class="form-label">Valid To *</label>
-                        <input type="date" class="form-control" id="valid_to" name="valid_to" required value="{{ $po->valid_to }}">
+                        <input type="date" class="form-control" id="valid_to" name="valid_to" required value="{{ !empty($po->valid_to) ? \Carbon\Carbon::parse($po->valid_to)->format('Y-m-d') : '' }}">
                     </div>
                 </div>
             </div>
