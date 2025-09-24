@@ -146,7 +146,7 @@ Route::get('/ajax/company-sites/{id}', [CustomerSiteMasterController::class,'get
 Route::any('/ajax-get-site-contact-details', [ContactAssignmentController::class,'getSiteContactDetails'])->name('ajax-get-site-contact-details');
 
 Route::any('/ajax/get-contacts', [ContactMasterController::class,'getContacts'])->name('ajax-get-contacts');
-Route::any('/ajax/get-assigned-contact', [ContactAssignmentController::class,'getAssignedContacts'])->name('ajax-get-contacts');
+Route::any('/ajax/get-assigned-contact', [ContactAssignmentController::class,'getAssignedContacts'])->name('get-assigned-contact');
 
 Route::get('/masters/customer/search', [CustomerMasterController::class,'search'])->name('customer.search');
 

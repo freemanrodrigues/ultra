@@ -154,8 +154,8 @@ class ContactAssignmentController
             'company_id' => 'required|integer',
         ]);
        */
-        $data = ContactAssignment::where('company_id', $request->site_id)->get();
-/*
+     //   $data = ContactAssignment::where('company_id', $request->site_id)->get();
+
         $data = DB::table('contact_assignments as ca')
         ->join('contact_masters as cm', 'ca.contact_id', '=', 'cm.id')
         ->where('ca.customer_site_id', $request->site_id)
@@ -164,9 +164,9 @@ class ContactAssignmentController
             'ca.send_bill',
             'ca.send_report',
             'ca.whatsapp',
-            '@ca.is_primary'
+            'ca.is_primary'
         )
-        ->get(); */
+        ->get(); 
         if ($data) {
             return response()->json($data);
         }

@@ -381,6 +381,7 @@
 <!-- The Modal -->
 <div class="modal fade" id="m3" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
+     <form id="assignContact">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header text-center">
@@ -389,10 +390,10 @@
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
-                <form id="assignContact">
+              
                     <div class="container my-4" id="m3_div">
                     </div>
-                </form>
+                
             </div>
             <div id="formErrors" class="text-danger"></div>
             <div class="modal-footer">
@@ -402,6 +403,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
+        </form>
     </div>
 </div>
 
