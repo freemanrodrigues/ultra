@@ -399,4 +399,20 @@ value="{{ request('search') }}" placeholder="Search by Company Name..."  data-tx
 <script src="{{asset('/js/customer/create-customer.js')}}?{{date('mmss')}}"></script>
 <script src="{{asset('/js/customer/function_autosuggest33.js')}}?{{date('mmss')}}"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const customerInput = document.getElementById('id_company');
+        const suggestionsContainer = document.getElementById('myDropdown_company_id');
+
+        if (customerInput && suggestionsContainer) {
+            customerInput.addEventListener('blur', function () {
+                // We delay hiding to allow click on suggestion to register
+                setTimeout(() => {
+                    suggestionsContainer.style.display = 'none';
+                }, 200);
+            });
+        }
+    });
+</script>
+
 @endsection

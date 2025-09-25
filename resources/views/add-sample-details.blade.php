@@ -295,7 +295,7 @@ $(document).ready(function() {
 
     // 3. Handle the Make dropdown inside the modal
     $('#makeSelect').on('change', function() {
-    // alert("New Make");
+    
         if ($(this).val() === 'New') {
             // Show the 'Add Make' row when 'New' is selected
             $('#newMakeRow').show();
@@ -306,7 +306,7 @@ $(document).ready(function() {
     });
     
     $('#make').on('change', function() {
-     alert("New Make");
+     
         if ($(this).val() === 'New') {
             // Show the 'Add Make' row when 'New' is selected
             $('#newMakeRow').show();

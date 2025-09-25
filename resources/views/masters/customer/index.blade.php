@@ -424,7 +424,7 @@ function updateCustomerTable(customers, total, searchTerm, status) {
                 <td>${String(customer.cus_mas_id).padStart(5, '0')}</td>
                 <td>
                     <a href="/masters/customer/${customer.cus_mas_id}" class="text-decoration-none">
-                        <code class="bg-light px-2 py-1 rounded">${customer.customer_name}
+                        <code class="px-2 py-1 rounded">${customer.customer_name}
                         ${customer.gst_state_code ? ' - ' + customer.gst_state_code : ''}
                         ${customer.division ? ' - ' + customer.division : ''} 
                         ${customer.site_name ? ' - ' + customer.site_name : ''}
