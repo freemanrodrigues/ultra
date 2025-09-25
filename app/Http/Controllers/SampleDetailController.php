@@ -158,7 +158,7 @@ class SampleDetailController
                 // Assign the test for the Sample
                 $po_id = $samples[0]->work_order;
               
-               $test_lists = POTest::getTestList($po_id, $customer->company_id, $request->sample_id );
+               $test_lists = POTest::getTestList($po_id, $customer->company_id,  $request->sample_type[$k] );
               
             foreach($test_lists as $test) {
                 SampleDetailTestAssignment::create(['sample_details_id' =>$smd->id,'test_id' => $test->test_id]);

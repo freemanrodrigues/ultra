@@ -44,10 +44,9 @@ td {
                     <th>Qty</th>
                     <th>Type Of Bottle</th>
                      <th>Customer Note</th>
-                    <th>Severity</th>
+             
                     <th>Oil Drained</th>
-                    <th>Image Attachment</th>
-                    <th>FTR Attachment</th>
+      
                     <th></th>
                 </tr>
             </thead>
@@ -123,26 +122,13 @@ td {
                         </select>
                     </td>
                      <td></td>
-                    <td>
-                        <select name="severity[{{ $i+1 }}]" class="form-control selwidth">
-                            @foreach(config('constants.SEVERITY') as $k => $val)
-                            <option value="{{$k}}" @if(isset($sample_details[$i]['severity']) && $sample_details[$i]['severity'] == $k ) selected @endif>{{$val}}</option>
-                            @endforeach 
-                        </select>
-                    </td>
-                    <td>
+                      <td>
                         <select name="oil_drained[{{ $i+1 }}]" class="form-control selwidth">
                             <option value="Y" @if(isset($sample_details[$i]['severity']) && $sample_details[$i]['severity'] == 'Y' ) selected @endif>Yes</option>
                             <option value="N" @if(isset($sample_details[$i]['severity']) && $sample_details[$i]['severity'] == 'N' ) selected @endif>No</option>
                         </select>
                     </td>
-                    <td>
-                        <input class="form-control image" type="file" name="image[{{ $i+1 }}]" value="Upload Image">
-                    </td>
-                    <td>
-                        <input class="form-control fir" type="file" name="fir[{{ $i+1 }}]" value="Upload Image">
-                    </td>
-                    <td></td>
+                     <td></td>
                    <td><button type="button">Save</button></td>
                    @if(isset($sample_details[$i]['id']) && $sample_details[$i]['id']) 
                    <td><a href="{{route('test-assigned', $sample_details[$i]['id'] )}}">Test</a></td> @endif
