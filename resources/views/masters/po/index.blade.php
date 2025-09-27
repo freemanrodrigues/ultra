@@ -125,7 +125,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th width="12%">PO Number</th>
-                                <th width="20%">Customer</th>
+                                <th width="20%">Company</th>
                                 <th width="15%">Site</th>
                                 <th width="10%">PO Date</th>
                                 <th width="10%">Start Date</th>
@@ -142,11 +142,8 @@
                                     <strong>{{ $po->po_number }}</strong>
                                 </td>
                                 <td>
-                                    @if($po->customer)
-                                        {{ $po->customer->customer_name }}
-                                        @if($po->customer->division)
-                                            - {{ $po->customer->division }}
-                                        @endif
+                                    @if($po->company)
+                                        {{ $po->company->company_name }}
                                     @else
                                         <span class="text-muted">N/A</span>
                                     @endif
@@ -169,7 +166,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($po->status === 'active')
+                                    @if($po->status === 1)
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-secondary">{{ ucfirst($po->status) }}</span>

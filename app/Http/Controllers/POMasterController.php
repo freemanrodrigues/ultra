@@ -16,7 +16,7 @@ class POMasterController
      */
     public function index(): View
     {
-        $pos = POMaster::with(['customer', 'site'])
+        $pos = POMaster::with(['company', 'site'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
             
@@ -161,7 +161,7 @@ class POMasterController
      */
     public function show(POMaster $po): View
     {
-        $po->load(['customer', 'site', 'samples.tests.test', 'samples.sampleType']);
+        $po->load(['company', 'site', 'samples.tests.test', 'samples.sampleType']);
         
         return view('masters.po.show', compact('po'));
     }

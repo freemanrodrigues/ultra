@@ -115,11 +115,8 @@
                 </div>
                 <div class="col-md-4">  
                     <p class="mb-0">
-                        @if($po->customer)
-                            {{ $po->customer->customer_name }}
-                            @if($po->customer->division)
-                                - {{ $po->customer->division }}
-                            @endif
+                        @if($po->company)
+                            {{ $po->company->company_name }}
                         @else
                             <span class="text-muted">N/A</span>
                         @endif
@@ -154,7 +151,7 @@
                 </div>
                 <div class="col-md-4">  
                     <p class="mb-0">
-                        @if($po->status === 'active')
+                        @if($po->status === 1)
                             <span class="badge bg-success">Active</span>
                         @else
                             <span class="badge bg-secondary">{{ ucfirst($po->status) }}</span>
