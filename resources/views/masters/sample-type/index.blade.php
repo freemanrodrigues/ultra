@@ -260,7 +260,7 @@
                                 <td>{{ $sample_type->sample_type_name }}</td>
                                 <td>{{ $sample_type->description }}</td>
                                 <td> 
-                                    @if($sample_type->status == 'active')
+                                    @if($sample_type->status == 1)
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-secondary">Inactive</span>

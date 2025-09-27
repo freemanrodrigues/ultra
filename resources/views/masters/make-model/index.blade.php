@@ -256,7 +256,7 @@
                                 <td>{{ $make_model->model }}</td>
                                 <td>{{ $make_model->description }}</td>
                                 <td> 
-                                    @if($make_model->status == 'active')
+                                    @if($make_model->status == 1)
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-secondary">Inactive</span>

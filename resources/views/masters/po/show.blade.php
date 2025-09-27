@@ -98,16 +98,22 @@
         </div>
         <div class="card-body">
             <div class="row g-3">
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">PO Number:</label>
+                 </div>
+                <div class="col-md-4">    
                     <p class="mb-0">{{ $po->po_number }}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">PO Date:</label>
+                     </div>
+                <div class="col-md-4">  
                     <p class="mb-0">{{ $po->po_date ? date('M d, Y',strtotime($po->po_date)) : 'N/A' }}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">Customer:</label>
+                </div>
+                <div class="col-md-4">  
                     <p class="mb-0">
                         @if($po->customer)
                             {{ $po->customer->customer_name }}
@@ -119,8 +125,10 @@
                         @endif
                     </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">Site:</label>
+                </div>
+                <div class="col-md-4">      
                     <p class="mb-0">
                         @if($po->site)
                             {{ $po->site->site_name }}
@@ -129,16 +137,22 @@
                         @endif
                     </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">Start Date:</label>
+                </div>
+                <div class="col-md-4">      
                     <p class="mb-0">{{ $po->valid_from ? date('M d, Y',strtotime($po->valid_from)) : 'N/A' }}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">End Date:</label>
+                </div>
+                <div class="col-md-4">      
                     <p class="mb-0">{{ $po->valid_to ? date('M d, Y',strtotime($po->valid_to)) : 'N/A' }}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">Status:</label>
+                </div>
+                <div class="col-md-4">  
                     <p class="mb-0">
                         @if($po->status === 'active')
                             <span class="badge bg-success">Active</span>
@@ -147,8 +161,10 @@
                         @endif
                     </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <label class="form-label fw-bold">Total Amount:</label>
+                </div>
+                <div class="col-md-4">  
                     <p class="mb-0 h5 text-primary">
                         ₹{{ number_format($po->total_amount, 2) }}
                     </p>
@@ -166,11 +182,18 @@
             @if($po->samples->count() > 0)
                 @foreach($po->samples as $sample)
                     <div class="sample-item">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class=" justify-content-between align-items-center mb-2 ">
+                            <div class="row">
+                            <div class="col-4">
                             <h6 class="mb-0">
                                 <i class="fas fa-flask me-2"></i>
                                 Sample: {{ $sample->sampleType->sample_type_name ?? 'N/A' }}
                             </h6>
+                             </div> 
+                             <div class="col-2"><h6 class="mb-0">Count : {{ $sample->sample_count}} </h6></div> 
+                             <div class="col-2"><h6 class="mb-0">Rate   :   {{ $sample->sample_rate}} </h6></div> 
+                             <div class="col-2"><h6 class="mb-0">Total   :   {{ $sample->sample_total}} </h6> </div> 
+                           </div> 
                         </div>
                         
                         @if($sample->description)
@@ -178,14 +201,14 @@
                         @endif
                         
                         @if($sample->tests->count() > 0)
-                            <div class="row g-2">
+                           <div class="row g-1">
                                 @foreach($sample->tests as $test)
                                     <div class="col-md-12">
                                         <div class="test-item">
-                                            <div class="test-item-header">
+                                            <div class="">
                                                 {{ $test->test->test_name ?? 'N/A' }}
                                             </div>
-                                            <div class="row g-2">
+                                      {{--      <div class="row g-2">
                                                 <div class="col-md-3">
                                                     <small class="text-muted">Price:</small>
                                                     <p class="mb-0">₹{{ number_format($test->price, 2) }}</p>
@@ -198,7 +221,7 @@
                                                     <small class="text-muted">Total:</small>
                                                     <p class="mb-0 fw-bold">₹{{ number_format($test->total, 2) }}</p>
                                                 </div>
-                                            </div>
+                                            </div> --}} 
                                         </div>
                                     </div>
                                 @endforeach

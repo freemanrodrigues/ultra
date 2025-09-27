@@ -24,6 +24,8 @@ class CustomerSiteMasterController
                 $q->where('site_customer_code', 'like', "%{$search}%")
                   ->orWhere('site_customer_name', 'like', "%{$search}%");
             });
+        } elseif ($request->filled('customer_id')) {
+             $query->where('customer_id', $request->get('customer_id'));
         }
 
         // Filter by status

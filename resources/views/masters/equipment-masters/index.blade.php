@@ -349,11 +349,7 @@
                                                     {{ $equipment->created_at->format('M d, Y') }}
                                                 </small>
                                             </td>
-                                            <td>
-                                                <small class="text-muted">
-                                                    {{ $equipment->updated_at->format('M d, Y') }}
-                                                </small>
-                                            </td>
+                                            
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <a href="{{ route('equipment-masters.show', $equipment) }}" 

@@ -249,7 +249,7 @@
                                 </td>
                                 <td>{{ $courier->courier_name }}</td>
                                 <td> 
-                                    @if($courier->status == 'active')
+                                    @if($courier->status == 1)
                                         <span class="badge bg-success">Active</span>
                                     @else
                                         <span class="badge bg-secondary">Inactive</span>
