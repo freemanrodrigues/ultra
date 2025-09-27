@@ -10,7 +10,8 @@ jQuery(function ($) {
 
     $('.assigned_contact').click(function() {
         const site_id = $(this).data('id');
-    
+        const customer_name = $(this).data('companyname');
+        $('.dsp_company_name').html(customer_name);
         $.post('/ajax/get-assigned-contact', { site_id: site_id }, function (response) {
             let html = '';
     
@@ -60,9 +61,11 @@ jQuery(function ($) {
         const site_id = $(this).data('id');
         const company_id = $(this).data('company_id');
         const customer_id = $(this).data('customer_id');
-    
+        const customer_name = $(this).data('companyname');
+  
         $('#site_id').val(site_id);
         $('#customer_id').val(customer_id);
+        $('.dsp_company_name').html(customer_name);
         $('.modal-footer').show();
     
         $.post('/ajax/get-contacts', { company_id: company_id }, function (response) {

@@ -267,6 +267,7 @@
                                        data-id="{{ $customerSiteMaster->id }}" 
                                        data-customer_id="{{ $customerSiteMaster->customer_id }}"  
                                        data-company_id="{{ $customerSiteMaster->company_id }}"  
+                                       data-companyname="{{ $customers[$customerSiteMaster->customer_id] }}"  
                                        data-bs-toggle="modal" 
                                        data-bs-target="#m3" 
                                        title="Assign Contact">
@@ -274,6 +275,7 @@
                                     </a>
                                     <a class="btn btn-xs btn-outline-info m-1 assigned_contact" 
                                        data-id="{{ $customerSiteMaster->site_master_id }}" 
+                                       data-companyname="{{ $customers[$customerSiteMaster->customer_id] }}"  
                                        data-bs-toggle="modal" 
                                        data-bs-target="#assigned_contact_Modal" 
                                        title="View Assigned Contacts">
@@ -348,7 +350,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header text-center">
-                <h5 class="modal-title">Assigned Contacts for <span id=''></span></h5>
+                <h5 class="modal-title">Assigned Contacts for <span class="dsp_company_name"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal Body -->
@@ -366,7 +368,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header text-center">
-                <h5 class="modal-title">Assigned Contacts for <span id=''></span></h5>
+                <h5 class="modal-title">Assigned Contacts for <span class="dsp_company_name"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal Body -->
@@ -385,7 +387,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header text-center">
-                <h5 class="modal-title">Assigned Contacts for </h5>
+                <h5 class="modal-title">Assigned Contacts for <span class="dsp_company_name"></span> </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal Body -->

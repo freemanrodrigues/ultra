@@ -60,7 +60,7 @@ td {
                         <select name="device_id[{{ $i+1 }}]" class="form-select selwidth equipment" data-id="{{ $i+1 }}" data-customer_id="{{ $sample->customer_id }}" data-customer_site_id="{{ $sample->customer_site_id }}"required>
                         <option value="">Select</option>
                             @foreach($equipments as $device)
-                            <option value="{{$device->id}}" @if(isset( $sample_details[$i]['equipment_assignments_id']) && $sample_details[$i]['equipment_assignments_id'] == $device->id) selected @endif>{{$device->machine_number." ". $device->customer_site_equiment_name }}</option> 
+                            <option value="{{$device->id}}" @if(isset( $sample_details[$i]['equipment_assignments_id']) && $sample_details[$i]['equipment_assignments_id'] == $device->id) selected @endif>{{$device->equipment->equipment_name}} - {{$device->equipment->serial_number}} [{{$device->customer_site_equiment_name}}]</option> 
                             @endforeach
                             <option value="New">New</option>
                         </select>

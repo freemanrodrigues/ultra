@@ -14,6 +14,6 @@ class EquipmentAssignment extends Model
     }
 
     public static function getSiteEquipmentList($id) {
-		  return EquipmentAssignment::where('customer_site_id',$id )->get();
+		  return EquipmentAssignment::with('equipment')->where('customer_site_id',$id )->get();
 	}
 }
