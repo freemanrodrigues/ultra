@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController,HomeController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController,SampleDetailTestAssignmentController, StateController,SiteMasterController,TestMasterController,UserController};
+use App\Http\Controllers\{BottleTypeController, CompanyMasterController, ContactMasterController, ContactAssignmentController,CourierMasterController,CustomerMasterController,CustomerSiteMasterController,EquipmentMasterController,EquipmentAssignmentController,EquipmentComponentController,HomeController, MakeMasterController,MakeModelMasterController,ModelMasterController, POMasterController,POTestLineController, QuotationController, SampleMasterController, SampleDetailController, SampleNatureController,SampleOilTypeController,SampleTypeController,SampleDetailTestAssignmentController, StateController,SiteMasterController,TestMasterController,UserController};
 
 
 Route::get('/', function () {
@@ -170,9 +170,20 @@ Route::post('/sample-details/save', [SampleDetailController::class,'saveSampleDe
 
 Route::get('/test-assigned/{id}', [SampleDetailTestAssignmentController::class,'assginedTestForSample'])->name('test-assigned');
 
+// Quotation Routes
+Route::resource('/quotation', QuotationController::class);
+Route::post('/quotation/{quotation}/submit-approval', [QuotationController::class, 'submitForApproval'])->name('quotation.submit-approval');
+Route::post('/quotation/{quotation}/approve', [QuotationController::class, 'approve'])->name('quotation.approve');
+Route::post('/quotation/{quotation}/reject', [QuotationController::class, 'reject'])->name('quotation.reject');
+Route::post('/quotation/{quotation}/create-revision', [QuotationController::class, 'createRevision'])->name('quotation.create-revision');
+Route::post('/quotation/{quotation}/change-status', [QuotationController::class, 'changeStatus'])->name('quotation.change-status');
+Route::get('/quotation/{quotation}/pdf', [QuotationController::class, 'generatePDF'])->name('quotation.pdf');
+Route::get('/quotation/{quotation}/preview-pdf', [QuotationController::class, 'previewPDF'])->name('quotation.preview-pdf');
+Route::get('/quotation/attachment/{attachment}/download', [QuotationController::class, 'downloadAttachment'])->name('quotation.download-attachment');
+Route::delete('/quotation/attachment/{attachment}', [QuotationController::class, 'deleteAttachment'])->name('quotation.delete-attachment');
 
-
-
-
+// AJAX Routes for Quotation
+Route::get('/api/quotation/sample-type-rates', [QuotationController::class, 'getSampleTypeRates'])->name('api.quotation.sample-type-rates');
+Route::get('/api/quotation/customer-sites', [QuotationController::class, 'getCustomerSites'])->name('api.quotation.customer-sites');
 
 });

@@ -9,6 +9,21 @@ return [
            'SITE_TYPE' => array('1' => 'HeadOffice', '2' => 'Manufacturing Plant1', '3' => 'Manufacturing Plant1', '4' => 'WareHouse Delhi', '5' => 'WareHouse Mumbai'),
            'BILLING_CYCLE' => array('1' => 'Monthly', '2' => 'Quarterly', '3' => 'Half Yearly', '4' => 'Yearly'),
            'PO_STATUS' => array(1 => 'Draft',2 =>'Active',3 =>'Suspended',4 =>'Closed',5 =>'Cancelled'),
+           
+           'QUOTATION_STATUS' => array(
+               1 => 'Draft',
+               2 => 'Pending Approval',
+               3 => 'Approved',
+               4 => 'Converted to Order',
+               5 => 'Closed',
+               6 => 'Cancelled'
+           ),
+           
+           'APPROVAL_STATUS' => array(
+               1 => 'Pending',
+               2 => 'Approved',
+               3 => 'Rejected'
+           ),
 
            'BRAND_OF_OIL' => array( 1  => "Castrol",
            2  => "Indian Oil (Servo)",

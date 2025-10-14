@@ -239,6 +239,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                  <li class="nav-item">
+                    <a href="{{ route('quotation.index') }}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Quotation</p>
+                    </a>
+                  </li>
                     <a href="{{ route('sample.index') }}" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sample</p>
